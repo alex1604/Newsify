@@ -1,0 +1,31 @@
+Grupp GitChaos: Alejandra, Albin,Jonas,Erik, Jonathan.
+
+Vecka 8:
+
+Måndag den 19 februari:
+
+Idag har vi format gruppen med namn gitChaos! Vi bestämde för att vi ska bygga en websida/app där man kan läsa nyheter från olia nyhetsbyråer som vi kommer dra
+ner via olka Api'er. Vi har börjat med slack/discord kanal samt lagt upp på Github. Vi har alla skapat varsin bransh som vi kommer jobba utifrån.
+
+På våran sida ska man kunna(hittills):  
+-logga in med gmail 
+-spara vissa artiklar som "favoriter" 
+-kommentera varje enskild artikel
+-söka på träfford som matchas med nyheter
+-se toptwitters på varje artikel
+-söka med hjälp av hastags(för twitter)
+
+Vi kommer dra api'er från nyhetsbyråer och twitter.
+Vi har bestämt att vi ska mötas för en Scrum imorgon den 20de kl 10:00 på discord för att bestämma dagen. Vi kommer ha dagliga scrums samt mötas i skolan de 
+vanliga shemalagda dagar vi brukar ha.
+
+Tisdag den 20februari:
+
+Vi möts på discord kl 10:00 och vi bestämmer att alla ska göra varsin mockup som vi ska visa imorgon onsdag och utifrån dessa bestämma vilken "design" vi vill ha
+på sidan. Vi börjar med att göra mockupsen för mobil först sen web. Imorgon möts vi för att bestämma designen på sida.
+
+Onsdag den 21februari:
+
+Vi möts för en scrum kl 09:00 och visar våra muckups vi gjort. Vi kommer överens om en designtyp som vi ska använda för sidan.
+Under dagen så börjar vi koda i html/css (vi jobbar alla på olika sidor av sidan) som vi sen kommer slå ihop.
+Imorgon så möts vi på discord för scrum kl 10:00 som vanligt.
