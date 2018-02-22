@@ -1,5 +1,5 @@
 
-      // Initialize Firebase
+// När du klickar på NEXT button på slidern
 
           nextTagBtn.addEventListener("click",function(){
 
@@ -20,7 +20,7 @@
         })
 
 
-        // Tillhör nextTagBtn
+// När du klickar på prev button på slidern
           previousTagBtn.addEventListener("click",function(){
 
           let sliderContentChangeLength =  sliderContentChange.children.length

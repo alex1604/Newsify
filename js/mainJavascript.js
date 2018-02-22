@@ -1,5 +1,11 @@
 
 
+      let user = {
+          name: "",
+          picture:"",
+
+      }
+
       var config = {
         apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
         authDomain: "newschaos-e8558.firebaseapp.com",
@@ -9,6 +15,13 @@
         messagingSenderId: "695749409670"
       };
       firebase.initializeApp(config);
+
+      const db = firebase.database()
+
+      let hej ={
+        hej: "oskdf"
+      }
+
       let gmailprovider = new firebase.auth.GoogleAuthProvider();
 
       firebase.auth().signInWithPopup(gmailprovider).then(function(result) {
@@ -16,7 +29,12 @@
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
+
+
         console.log(user)
+        console.log(db.ref("/users/").push(user))
+        db.ref("/users/").push(hej)
+
         // ...
       }).catch(function(error) {
         // Handle Errors here.
