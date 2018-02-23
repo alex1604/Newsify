@@ -193,11 +193,13 @@
 
 
     #currentTag {
-      padding:20px;
+      padding:10px;
       background: #d58c8c;
       width:150px;
       margin:auto;
       margin-top: 20px;
+      text-align: center;
+      font-size: 0.8em;
     }
 
     #currentTagH5{

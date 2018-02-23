@@ -1,10 +1,16 @@
+
+
+// tar alla inputs id i searchbar
 let inputValues ={
 
     inputKeyword : document.getElementById("inputKeyword"),
-    inputDate : document.getElementById("inputDate")
-
+    inputDate : document.getElementById("inputDate"),
+    inputSourceName : document.getElementById("inputSourceName"),
+    inputLanguages : document.getElementById("inputLanguages")
 }
 
+
+let currentTag = document.getElementById("currentTag")
 
 let previousTagBtn = document.getElementById("prev");
 let nextTagBtn = document.getElementById("next");
@@ -30,6 +36,38 @@ let totalLeft = "";
 
 let minusInputSlide = 1;
 let totalLeftInputSlide = "";
+
+
+inputValues.inputKeyword.addEventListener("change",function(){
+
+    console.log(inputValues.inputKeyword.value)
+    if(inputValues.inputKeyword.value !== "")
+    currentTag.innerHTML+= " #"+inputValues.inputKeyword.value
+
+})
+
+inputValues.inputDate.addEventListener("change",function(){
+
+      if(inputValues.inputDate.value !== "")
+      currentTag.innerHTML += " #" + inputValues.inputDate.value
+
+})
+
+inputValues.inputSourceName.addEventListener("change",function(){
+
+    if(inputValues.inputSourceName.value !== "")
+    currentTag.innerHTML += " #"+ inputValues.inputSourceName.value
+
+})
+
+inputValues.inputLanguages.addEventListener("change",function(){
+
+    if(inputValues.inputLanguages.value !== "")
+    currentTag.innerHTML += " #"+ inputValues.inputLanguages.value
+
+})
+
+
 
 // När du klickar på NEXT button på slidern
 //
