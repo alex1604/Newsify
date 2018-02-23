@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ProjektArbete Nyheter</title>
+    <link rel="stylesheet" type="text/css" href="styles/aengman.css"> 
+    
+    <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
+            authDomain: "newschaos-e8558.firebaseapp.com",
+            databaseURL: "https://newschaos-e8558.firebaseio.com",
+            projectId: "newschaos-e8558",
+            storageBucket: "newschaos-e8558.appspot.com",
+            messagingSenderId: "695749409670"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script type = "text/javascript" src="js/albinJavascript.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+    
+<body>
+    
+    <h1>NEWS SITE</h1>
+    <div class = "profileContainer">
+        <div class = "profileName">Placename</div>
+        <img class = "profilePicture" src = "" alt = "placeimg">
+    </div>
+    <div class = "loginDiv">
+        <button id = "login">Log in</button>
+        <button id = "logout">Log out</button>
+    </div>
+    <div class = "commentAll">
+        <div class = "commentInputDiv">
+            <input type = "text" id = "commentInput">
+            <button id = "commentButton">Comment</button>
+        </div>
+        <div class = commentContainer>
+            <div class = "commentDiv">
+                <img class = "commentImage" src = "https://lh3.googleusercontent.com/-Y6nqQ5p0nvM/AAAAAAAAAAI/AAAAAAAAAGI/67YdkO3_XKk/photo.jpg" alt = "temp">
+                <div class = "commentUsername">Aengman</div>
+                <div class = "commentTime">23/02 - 18</div>
+                <div class = "commentText">Testing the comments</div>
+            </div>
+        </div>
+    </div>
+    <div class = "twitterContainer">
+        <div class = "twitterDiv">
+            <div class = "twitterContent"> Hello, this is an example of content in a twitter div </div>
+        </div>
+        <div class = "twitterDiv">
+            <div class = "twitterContent"> Hello, this is an example of content in a twitter div </div>
+        </div>
+        <div class = "twitterDiv">
+            <div class = "twitterContent"> Hello, this is an example of content in a twitter div </div>
+        </div>
+        <div class = "twitterDiv">
+            <div class = "twitterContent"> Hello, this is an example of content in a twitter div </div>
+        </div>
+        <div class = "twitterDiv">
+            <div class = "twitterContent"> Hello, this is an example of content in a twitter div </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
