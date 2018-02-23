@@ -64,6 +64,8 @@
       #inputSliderContentChange{
         width:300px;
         margin-left: ;
+        transition-property: margin-left;
+        transition-duration: 0.5s;
       }
 
       #nextInput, #prevInput{
@@ -190,8 +192,19 @@
       }
 
 
-  
+    #currentTag {
+      padding:20px;
+      background: #d58c8c;
+      width:150px;
+      margin:auto;
+      margin-top: 20px;
+    }
 
+    #currentTagH5{
+      text-align: center;
+      margin-top: 5px;
+      color:rgba(0,0,0,0.6)
+    }
     .fa-google{
       margin:10px 0;
       font-size: 3em;

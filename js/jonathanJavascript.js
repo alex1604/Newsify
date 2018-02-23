@@ -1,3 +1,10 @@
+let inputValues ={
+
+    inputKeyword : document.getElementById("inputKeyword"),
+    inputDate : document.getElementById("inputDate")
+
+}
+
 
 let previousTagBtn = document.getElementById("prev");
 let nextTagBtn = document.getElementById("next");
@@ -25,7 +32,7 @@ let minusInputSlide = 1;
 let totalLeftInputSlide = "";
 
 // När du klickar på NEXT button på slidern
-// 
+//
 //           nextTagBtn.addEventListener("click",function(){
 //
 //           let sliderContentChangeLength =  sliderContentChange.children.length
