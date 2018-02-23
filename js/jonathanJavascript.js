@@ -44,3 +44,12 @@
             }
 
         })
+
+// När du klickar på nextInput
+
+inputSlider.nextInput.addEventListener("click",function(){
+
+
+
+
+})
