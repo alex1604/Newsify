@@ -49,14 +49,18 @@
             nextTagBtn: document.getElementById("nextInput"),
             prevTagBtn: document.getElementById("prevInput"),
             inputSliderContent : document.getElementById("inputSliderContent"),
-            inputSliderContentChange: document.getElementById("inputSliderContentChange")
-
+            inputSliderContentChange: document.getElementById("inputSliderContentChange"),
         }
 
-        let sliderContentChangeWidth = sliderContentChange.offsetWidth
+        let sliderContentChangeWidth = sliderContentChange.offsetWidth;
+        let inputSliderContentChangeWidth = inputSlider.inputSliderContentChange.offsetWidth;
 
+        console.log(inputSliderContentChangeWidth)
 
         //Tillhör previousTagBtn och nextTagBtn
         let minusSlide = 1;
         let totalLeft = "";
         /////////////////////////
+
+        let minusInputSlide = 1;
+        let totalLeftInputSlide = "";

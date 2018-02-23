@@ -47,9 +47,50 @@
 
 // När du klickar på nextInput
 
-inputSlider.nextInput.addEventListener("click",function(){
+inputSlider.nextTagBtn.addEventListener("click",function(){
 
 
+    let inputSliderContentChangeLength = inputSliderContentChange.children.length;
+
+
+      totalLeftInputSlide = minusInputSlide * inputSliderContentChangeWidth;
+      totalLeftInputSlide = totalLeftInputSlide.toString();
+
+      console.log(minusInputSlide)
+
+
+      totalLeftInputSlide = "-" + totalLeftInputSlide + "px";
+
+      if(inputSliderContentChangeLength > minusInputSlide){
+
+        inputSlider.inputSliderContentChange.style.marginLeft = totalLeftInputSlide;
+        minusInputSlide++
+      }
+
+
+
+})
+
+
+inputSlider.prevTagBtn.addEventListener("click",function(){
+  let inputSliderContentChangeLength = inputSliderContentChange.children.length;
+
+  totalLeftInputSlide = minusInputSlide * inputSliderContentChangeWidth;
+
+  totalLeftInputSlide = totalLeftInputSlide - (inputSliderContentChangeWidth *2);
+  totalLeftInputSlide = totalLeftInputSlide.toString();
+  totalLeftInputSlide = "-" + totalLeftInputSlide + "px";
+
+  console.log(totalLeftInputSlide)
+
+  if(minusInputSlide>1){
+
+    inputSlider.inputSliderContentChange.style.marginLeft = totalLeftInputSlide;
+
+    console.log(inputSlider.inputSliderContentChange)
+
+    minusInputSlide--
+  }
 
 
 })
