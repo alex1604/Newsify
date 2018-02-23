@@ -39,24 +39,3 @@
         var credential = error.credential;
         // ...
       });
-        let previousTagBtn = document.getElementById("prev");
-        let nextTagBtn = document.getElementById("next");
-        let sliderContent = document.getElementById("sliderContent");
-        let sliderContentChange = document.getElementById("sliderContentChange");
-
-        let inputSlider = {
-
-            nextTagBtn: document.getElementById("nextInput"),
-            prevTagBtn: document.getElementById("prevInput"),
-            inputSliderContent : document.getElementById("inputSliderContent"),
-            inputSliderContentChange: document.getElementById("inputSliderContentChange")
-
-        }
-
-        let sliderContentChangeWidth = sliderContentChange.offsetWidth
-
-
-        //Tillhör previousTagBtn och nextTagBtn
-        let minusSlide = 1;
-        let totalLeft = "";
-        /////////////////////////
