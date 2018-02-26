@@ -5,6 +5,7 @@
 }
 
       body{
+        color:#333644
       }
       .menuSlider {
         width: 100%;
@@ -45,7 +46,13 @@
 
 
     #inputKeyword{
-      color:rgba(0,0,0,0.8)
+      color:rgba(0,0,0,0.8);
+      font-size: 1.2em;
+    }
+
+    #inputKeyword:focus{
+      outline: none;
+
     }
 
     .tags {
@@ -243,11 +250,12 @@ line-height: 30px;
       }
 
       #login h5:first-child{
-          margin-bottom: 10px;
+          margin-bottom: 15px;
       }
 
       #login h5:last-child{
-        margin-bottom: 10px;
+        margin-top: 20px;
+        margin-bottom: 30px;
       }
 
 
@@ -259,6 +267,7 @@ line-height: 30px;
       margin:10px 0;
       font-size: 3em;
       color:white;
+      text-shadow:0px 0px 20px rgba(255,255,255,0.4);
     }
     body{
       width:100% auto;
