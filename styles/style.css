@@ -1,0 +1,329 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: helvetica;
+}
+
+      body{
+      }
+      .menuSlider {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+      }
+
+      header{
+        padding-top: 50px;
+        box-shadow: inset 0 20px 150px 1px rgba(213, 139, 139,0.7), 0 5px 10px rgba(213, 139, 139,0.5);
+        color:rgba(0,0,0,0.4);
+        padding-bottom:10px;
+        margin-bottom: 15px;
+      }
+
+
+
+
+      .slider{
+        width: 100%;
+        margin:0;
+        padding: 0;
+        overflow: hidden ;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        background: rgba(0,0,0,0.1)
+
+      }
+
+      #sliderContent{
+        width: 300px;
+        white-space: nowrap;
+        background: #d58c8c;
+        position: relative;
+      }
+
+
+
+
+    .tags {
+        height: 30px;
+        width: 300px;
+        padding:0;
+        margin:0;
+        text-align: center;
+        display: inline-block;
+color:black;
+    position: relative;
+
+      }
+
+    #sourceSlider, #countrySlider, #categorySlider, #languageSlider{
+      position: absolute;
+      transition-property: opacity;
+      transition-duration: 0.3s;
+      opacity: 0;
+    }
+
+
+
+      #countryPrevBtn, #categoryPrevBtn , #languangePrevBtn{
+        transform: rotate(180deg);
+      }
+
+
+
+      #sliderContentChange input.tags{
+        height: 40px;
+        box-sizing:border-box;
+        border:none;
+      }
+
+      #sliderContentChange{
+        width:300px;
+        margin-left: ;
+        transition-property: margin-left;
+        transition-duration: 0.5s;
+      }
+
+      #sourceContentChange, #countryContentChange, #categoryContentChange, #languageContentChange {
+        transition-property: margin-left;
+        transition-duration: 0.5s;
+        width:300px;
+      }
+
+
+      .nextPrevBtn{
+        width: 25px;
+        z-index: 100;
+        color:white;
+        text-align: center;
+        line-height: 30px;
+      }
+
+      .nextPrevBtn img {
+        width: 10px;
+        cursor: pointer;
+      }
+
+
+
+      #prevInput img{
+
+        transform: rotate(180deg);
+      }
+
+      #prevBtn {
+        transform: rotate(180deg);
+      }
+
+
+
+      #sliderContent{
+        width:300px;
+
+        white-space: nowrap;
+        background: #d58c8c;
+        position: relative;
+
+      }
+
+      #sliderContentChange{
+        color:rgba(255,255,255,0.8);
+        transition-property: margin-left;
+        transition-duration: 0.5s;
+
+      }
+
+
+
+      #sliderContent > div > div {
+          display: inline-block;
+          width: 300px;
+          height: 17px;
+          padding:7px 0px;
+          text-align: center;
+          font-size: 0.8em;
+          background: rgba(0,0,0,0.1)
+      }
+
+
+      #prev, #next{
+
+        width: 25px;
+        z-index: 100;
+        color:white;
+        text-align: center;
+        line-height: 30px;
+
+      }
+
+      #next img{
+        width:10px;
+        cursor: pointer;
+      }
+
+      #prev img{
+        width: 10px;
+        transform: rotate(180deg);
+        cursor:pointer;
+     }
+
+      .searchField {
+        position: relative;
+        margin-top: 20px;
+      }
+
+      .divInput {
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .divInput > div{
+        background: red;
+        display: inline-block;
+      }
+      .divInput > div:first-child input{
+        border:none;
+        height: 30px;
+        width:100px;
+        padding: 0 10px;
+        border-left: 5px solid #d58c8c;
+      }
+
+      .divInput > div:last-child {
+        height: 30px;
+        width: 25px;
+        background: #d58c8c;
+      }
+
+
+
+
+      .searchmenu h5 {
+          position: absolute;
+          top:0;
+          right: 0;
+      }
+
+
+      #googleLogo{
+        margin: 0 auto;
+        width:70px;
+        margin-top: 0;
+      }
+
+      #login{
+        text-align: center;
+      }
+
+      #login h5{
+
+      }
+
+
+
+    .fa-google{
+      margin:10px 0;
+      font-size: 3em;
+      color:red;
+      text-shadow: 10px -0px 7px #d58c8c ;
+    }
+    body{
+      width:100% auto;
+    }
+    #newsContainer{
+      display:flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .fa-angle-left, .fa-angle-right{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      font-size:50px;
+      margin: 0 2% 0 2%;
+    }
+    main{
+      display:flex;
+      flex-direction:column;
+      justify-content: flex-start;
+      align-items: center;
+      width:100%;
+      margin-top:50px;
+    }
+    .row{
+      display:flex;
+      flex-direction: row;
+      justify-content:space-around;
+      align-items: center;
+      width:90%;
+      height:400px;
+    }
+    article{
+      width:45%;
+      display:flex;
+      flex-direction: column;
+      justify-content:flex-start;
+      height:80%;
+    }
+    .blackLine{
+      height:15px;
+      width:100%;
+      background-color:black;
+    }
+    .mainContent{
+      display:flex;
+      flex-direction: row;
+      justify-content:flex-start;
+      width:100%;
+    }
+    .pinkAndTitle{
+      display:flex;
+      flex-direction: column;
+      justify-content:flex-start;
+      align-items: flex-start;
+      width:40%;
+    }
+    .pinkLine{
+      height:10px;
+      width:250%;
+      background-color:#D58B8C;
+    }
+    .title{
+      margin-top:3%;
+      font-size:18px;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+    .readMore{
+      font-size:18px;
+      align-self: center;
+    }
+    .readMore a:link{
+      text-decoration:none;
+      font-weight:bold;
+      color:#D58B8C;
+    }
+    .sumUp{
+      align-self: flex-end;
+      overflow: hidden;
+      height:40%;
+      text-align: justify;
+      font-family: "Cardo", serif;
+      font-weight:400;
+    }
+
+    .articleImage{
+      display:flex;
+      flex-direction: row;
+      justify-content:flex-end;
+      width:60%;
+      height:100%;
+    }
+    .articleImage > img{
+      max-width: 100%;
+      height: 200px;
+      display:block;
+      object-fit: contain;
+    }
