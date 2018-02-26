@@ -33,32 +33,222 @@
 
     </header>
 
-    <button type="button" name="button" id="searchBtn">Search</button>
 
 
-        <div class="inputSlider">
+        <div class="slider">
 
-          <div id="prevInput"><img src="img/play-button.png" alt=""></div>
+          <div id="prevInput" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
 
-              <div id="inputSliderContent">
+              <div id="sliderContent">
 
-                  <div id="inputSliderContentChange">
-                    <input id="inputKeyword" type="text" name="" value="" placeholder="Search Keyword or phrase"><input id="inputDate" type="text" name="" placeholder="Date published" value=""><input id="inputSourceName"type="text" name="" value="" placeholder="Source name ex. CNN"><input type="text" name="" value="" placeholder="Languange" id="inputLanguages">
-
+                  <div id="sliderContentChange">
+                    <input class="tags" id="inputKeyword" type="text" name="" value="" placeholder="Search Keyword or phrase"><ul class="tags">
+                      Source Name
+                    </ul><ul class="tags">
+                      Country
+                    </ul><ul class="tags">
+                      Category
+                    </ul><ul class="tags">
+                      Languages
+                    </ul>
 
                   </div>
 
               </div>
-              <div id="nextInput"><img src="img/play-button.png" alt=""></div>
+              <div id="nextInput" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
 
 
         </div>
 
 
-        <div id="currentTag"></div>
-        <h5 id="currentTagH5">Your current tag is</h5>
+        <div class="slider" id="sourceSlider">
+
+          <div id="prevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+                        <div id="sliderContent">
+
+                            <div  id="sourceContentChange">
+                              <ul class="tags">
+                                All
+                              </ul><ul class="tags">
+                                CNN
+                              </ul><ul class="tags">
+                                BBC News
+                              </ul><ul class="tags">
+                                ABC News
+                              </ul><ul class="tags">
+                                Al Jazeera English
+                              </ul><ul class="tags">
+                                ESPN
+                              </ul><ul class="tags">
+                                Financial Times
+                              </ul><ul class="tags">
+                                Fox News
+                              </ul><ul class="tags">
+                                Daily Mail
+                              </ul><ul class="tags">
+                                The Guardian (Uk)
+                              </ul><ul class="tags">
+                                The New York Times
+                              </ul><ul class="tags">
+                                IGN
+                              </ul><ul class="tags">
+                                CNN Spanish
+                              </ul><ul class="tags">
+                                Bloomberg
+                              </ul><ul class="tags">
+                                CBS
+                              </ul>
+
+                            </div>
+
+                        </div>
+
+          <div id="nextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+        </div>
+
+        <div class="slider"  id="countrySlider">
+
+          <div id="countryPrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+                        <div id="sliderContent">
+
+                            <div id="countryContentChange" >
+
+                              <ul class="tags">
+                                All
+                              </ul><ul class="tags">
+                                United States Of America
+                              </ul><ul class="tags">
+                                Canada
+                              </ul><ul class="tags">
+                                England
+                              </ul><ul class="tags">
+                                Germany
+                              </ul><ul class="tags">
+                                France
+                              </ul><ul class="tags">
+                                Australia
+                              </ul><ul class="tags">
+                                New Zeeland
+                              </ul><ul class="tags">
+                                China
+                              </ul><ul class="tags">
+                                Japan
+                              </ul><ul class="tags">
+                                Russia
+                              </ul><ul class="tags">
+                                Spain
+                              </ul><ul class="tags">
+                                Sweden
+                              </ul><ul class="tags">
+                                Norway
+                              </ul><ul class="tags">
+                                Finland
+                              </ul><ul class="tags">
+                                Denmark
+                              </ul><ul class="tags">
+                                Iceland
+                              </ul><ul class="tags">
+                                Turkey
+                              </ul>
+
+                            </div>
+
+                        </div>
+
+          <div id="countryNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+        </div>
+        <div class="slider"  id="categorySlider">
+
+          <div id="categoryPrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+                        <div id="sliderContent">
+
+                            <div id="categoryContentChange" >
+
+                              <ul class="tags">
+                                All
+                              </ul><ul class="tags">
+                                Business
+                              </ul><ul class="tags">
+                                Entertainment
+                              </ul><ul class="tags">
+                                General
+                              </ul><ul class="tags">
+                                Health
+                              </ul><ul class="tags">
+                                Science
+                              </ul><ul class="tags">
+                                Sport
+                              </ul><ul class="tags">
+                                Technology
+                              </ul>
+
+                            </div>
+
+                        </div>
+
+          <div id="categoryNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+        </div>
+        <div class="slider"  id="languageSlider">
+
+          <div id="languangePrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+                        <div id="sliderContent">
+
+                            <div id="languageContentChange" >
+
+                              <ul class="tags">
+                                All
+                              </ul><ul class="tags">
+                                Arabic
+                              </ul><ul class="tags">
+                                Danish
+                              </ul><ul class="tags">
+                                English
+                              </ul><ul class="tags">
+                                Spanish
+                              </ul><ul class="tags">
+                                French
+                              </ul><ul class="tags">
+                                Hebrew
+                              </ul><ul class="tags">
+                                Italian
+                              </ul><ul class="tags">
+                                Dutch
+                              </ul><ul class="tags">
+                                Norweigan
+                              </ul><ul class="tags">
+                                Portugues
+                              </ul><ul class="tags">
+                                Russian
+                              </ul><ul class="tags">
+                                Swedish
+                              </ul><ul class="tags">
+                                Chinese
+                              </ul>
+
+                            </div>
+
+                        </div>
+
+          <div id="languangeNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+        </div>
+
+
+
+
+
+
+
+
 
 
 
