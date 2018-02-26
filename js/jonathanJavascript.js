@@ -219,49 +219,64 @@ function sourceSwitch(sourceMinusSlide){
 
   switch (sourceMinusSlide) {
     case 1:
-        currentTag.sourceTag.innerHTML = " "
+        currentTag.sourceTag.innerHTML = " ";
+        sourceCode = '';
       break;
     case 2:
-      currentTag.sourceTag.innerHTML = "#CNN"
+      currentTag.sourceTag.innerHTML = "#CNN";
+      sourceCode = 'cnn';
       break;
       case 3:
-        currentTag.sourceTag.innerHTML = "#BBC"
+        currentTag.sourceTag.innerHTML = "#BBC";
+        sourceCode = 'bbc-news';
         break;
         case 4:
-          currentTag.sourceTag.innerHTML = "#ABCNews"
+          currentTag.sourceTag.innerHTML = "#ABCNews";
+          sourceCode = 'abc-news';
           break;
           case 5:
-            currentTag.sourceTag.innerHTML = "#AlJazeera"
+            currentTag.sourceTag.innerHTML = "#AlJazeera";
+            sourceCode = 'al-jazeera-english';
             break;
             case 6:
-              currentTag.sourceTag.innerHTML = "#ESPN"
+              currentTag.sourceTag.innerHTML = "#ESPN";
+              sourceCode = 'espn';
               break;
               case 7:
-                currentTag.sourceTag.innerHTML = "#FinancialTimes"
+                currentTag.sourceTag.innerHTML = "#FinancialTimes";
+                sourceCode = 'financial-times';
                 break;
                 case 8:
-                  currentTag.sourceTag.innerHTML = "#FoxNews"
+                  currentTag.sourceTag.innerHTML = "#FoxNews";
+                  sourceCode = 'fox-news';
                   break;
                   case 9:
-                    currentTag.sourceTag.innerHTML = "#DailyMail"
+                    currentTag.sourceTag.innerHTML = "#DailyMail";
+                    sourceCode = 'daily-mail';
                     break;
                     case 10:
-                      currentTag.sourceTag.innerHTML = "#TheGuardian"
+                      currentTag.sourceTag.innerHTML = "#TheGuardian";
+                      sourceCode = 'the-guardian-uk';
                       break;
                       case 11:
-                        currentTag.sourceTag.innerHTML = "#TheNewYorkTimes"
+                        currentTag.sourceTag.innerHTML = "#TheNewYorkTimes";
+                        sourceCode = 'the-new-york-times';
                         break;
                         case 12:
-                          currentTag.sourceTag.innerHTML = "#IGN"
+                          currentTag.sourceTag.innerHTML = "#IGN";
+                          sourceCode = 'ign';
                           break;
                           case 13:
-                            currentTag.sourceTag.innerHTML = "#CNNSpanish"
+                            currentTag.sourceTag.innerHTML = "#CNNSpanish";
+                            sourceCode = 'cnn-es';
                             break;
                             case 14:
-                              currentTag.sourceTag.innerHTML = "#Bloomberg"
+                              currentTag.sourceTag.innerHTML = "#Bloomberg";
+                              sourceCode = 'bloomberg';
                               break;
                               case 15:
-                                currentTag.sourceTag.innerHTML = "#CBS"
+                                currentTag.sourceTag.innerHTML = "#CBS";
+                                sourceCode = 'cbs-news';
                                 break;
                 default:
 
@@ -274,57 +289,63 @@ function countrySwitch(countryMinusSlide){
   switch (countryMinusSlide) {
     case 1:
       currentTag.countryTag.innerHTML = " ";
+      countryCode = '';
       break;
     case 2:
       currentTag.countryTag.innerHTML = "#USA";
+      countryCode = 'us';
       break;
     case 3:
       currentTag.countryTag.innerHTML = "#Canada";
+      countryCode = 'ca';
       break;
     case 4:
       currentTag.countryTag.innerHTML = "#England";
+      countryCode = 'en';
       break;
     case 5:
     currentTag.countryTag.innerHTML = "#Germany";
+    countryCode = 'de';
       break;
     case 6:
     currentTag.countryTag.innerHTML = "#France";
+    countryCode = 'fr';
       break;
     case 7:
     currentTag.countryTag.innerHTML = "#Australia";
+    countryCode = 'au';
       break;
     case 8:
     currentTag.countryTag.innerHTML = "#NewZeeland";
+    countryCode = 'nz';
       break;
     case 9:
     currentTag.countryTag.innerHTML = "#China";
+    countryCode = 'ch';
       break;
     case 10:
     currentTag.countryTag.innerHTML = "#Japan";
+    countryCode = 'jp';
       break;
     case 11:
     currentTag.countryTag.innerHTML = "#Russia";
+    countryCode = 'ru';
       break;
     case 12:
     currentTag.countryTag.innerHTML = "#Spain";
+    countryCode = 'es';
       break;
     case 13:
     currentTag.countryTag.innerHTML = "#Sweden";
+    countryCode = 'se';
       break;
     case 14:
     currentTag.countryTag.innerHTML = "#Norway";
+    countryCode = 'no';
       break;
     case 15:
-    currentTag.countryTag.innerHTML = "#Finland";
-      break;
-    case 16:
-    currentTag.countryTag.innerHTML = "#Denmark";
-      break;
-    case 17:
-    currentTag.countryTag.innerHTML = "#Iceland";
-      break;
-    case 18:
     currentTag.countryTag.innerHTML = "#Turkey";
+    countryCode = 'tr';
       break;
 
 
@@ -340,27 +361,35 @@ function categorySwitch(categoryMinusSlide){
   switch (categoryMinusSlide) {
     case 1:
       currentTag.categoryTag.innerHTML = " ";
+      categoryCode = '';
       break;
     case 2:
       currentTag.categoryTag.innerHTML = "#Business";
+      categoryCode = 'business';
       break;
     case 3:
       currentTag.categoryTag.innerHTML = "#Entertainment";
+      categoryCode = 'entertainment';
       break;
     case 4:
       currentTag.categoryTag.innerHTML = "#General";
+      categoryCode = 'general';
       break;
     case 5:
     currentTag.categoryTag.innerHTML = "#Health";
+      categoryCode = 'health';
       break;
     case 6:
     currentTag.categoryTag.innerHTML = "#Science";
+      categoryCode = 'science';
       break;
     case 7:
     currentTag.categoryTag.innerHTML = "#Sport";
+      categoryCode = 'sports';
       break;
     case 8:
     currentTag.categoryTag.innerHTML = "#Technology";
+      categoryCode = 'technology';
       break;
 
 
@@ -377,48 +406,52 @@ function languageSwitch(languageMinusSlide){
   switch (languageMinusSlide) {
     case 1:
       currentTag.languageTag.innerHTML = " ";
+      languageCode = '';
       break;
     case 2:
       currentTag.languageTag.innerHTML = "#Arabic";
+      languageCode = 'ar';
       break;
     case 3:
-      currentTag.languageTag.innerHTML = "#Danish";
+      currentTag.languageTag.innerHTML = "#English";
+      languageCode = 'en';
       break;
     case 4:
-      currentTag.languageTag.innerHTML = "#English";
+    currentTag.languageTag.innerHTML = "#Spanish";
+    languageCode = 'es';
       break;
     case 5:
-    currentTag.languageTag.innerHTML = "#Spanish";
+    currentTag.languageTag.innerHTML = "#French";
+    languageCode = 'fr';
       break;
     case 6:
-    currentTag.languageTag.innerHTML = "#French";
+    currentTag.languageTag.innerHTML = "#Hebrew";
+    languageCode = 'he';
       break;
     case 7:
-    currentTag.languageTag.innerHTML = "#Hebrew";
+    currentTag.languageTag.innerHTML = "#Italian";
+    languageCode = 'it';
       break;
     case 8:
-    currentTag.languageTag.innerHTML = "#Italian";
+    currentTag.languageTag.innerHTML = "#Dutch";
+    languageCode = 'nl';
       break;
     case 9:
-    currentTag.languageTag.innerHTML = "#Dutch";
+    currentTag.languageTag.innerHTML = "#Norweigan";
+    languageCode = 'no';
       break;
     case 10:
-    currentTag.languageTag.innerHTML = "#Norweigan";
+    currentTag.languageTag.innerHTML = "#Portugues";
+    languageCode = 'pt';
       break;
     case 11:
-    currentTag.languageTag.innerHTML = "#Portugues";
+    currentTag.languageTag.innerHTML = "#Russian";
+    languageCode = 'ru';
       break;
     case 12:
-    currentTag.languageTag.innerHTML = "#Russian";
-      break;
-    case 13:
     currentTag.languageTag.innerHTML = "#Swedish";
+    languageCode = 'se';
       break;
-    case 14:
-    currentTag.languageTag.innerHTML = "#Chinese";
-      break;
-
-
 
     default:
 

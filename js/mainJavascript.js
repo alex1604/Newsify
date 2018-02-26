@@ -1,7 +1,3 @@
-
-
-
-
       var config = {
         apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
         authDomain: "newschaos-e8558.firebaseapp.com",
@@ -39,3 +35,9 @@
         var credential = error.credential;
         // ...
       });
+
+      let sourceCode = '';
+      let countryCode = '';
+      let categoryCode = '';
+      let languageCode = '';
+      let tagCode = document.getElementById('inputTag').value;
