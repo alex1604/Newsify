@@ -81,6 +81,9 @@ let languageMinusSlide = 1;
 let languageTotalLeft = "";
 
 
+
+
+
 // När du klickar på nextInput
 
 slider.nextTagBtn.addEventListener("click",function(){
@@ -187,10 +190,18 @@ slider.prevTagBtn.addEventListener("click",function(){
 
 })
 
+// function slider(sliderContentChangeLength, totalLeft, minusSlide, sliderContentChangeWidth,slider, sliderContentChange){
+//
+//
+//
+//
+// }
 
 sourceSlider.nextBtn.addEventListener("click", function(){
 
+
   let sourceContentChangeLength = sourceSlider.sourceContentChange.children.length;
+
   sourceTotalLeft = sourceMinusSlide * sourceContentChangeWidth;
   sourceTotalLeft = sourceTotalLeft.toString();
 
