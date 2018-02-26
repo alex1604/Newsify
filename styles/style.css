@@ -22,71 +22,101 @@
       }
 
 
-      #searchBtn{
-      background:    #d58c8c;
-      padding:10px 20px;
-      width: 100px;
-        border:0;
-        display:block;
-        margin:auto;
-        border-radius: 5px ;
-        color:rgba(255,255,255,0.8)
-      }
 
 
-      .inputSlider{
+      .slider{
         width: 100%;
         margin:0;
         padding: 0;
-        overflow: hidden;
+        overflow: hidden ;
         display: flex;
         justify-content: center;
         margin-top: 10px;
+        background: rgba(0,0,0,0.1)
 
       }
 
-      #inputSliderContent{
+      #sliderContent{
         width: 300px;
         white-space: nowrap;
         background: #d58c8c;
         position: relative;
       }
 
-      #inputSliderContentChange input{
-        box-sizing:border-box;
+
+
+
+    .tags {
         height: 30px;
         width: 300px;
         padding:0;
         margin:0;
         text-align: center;
+        display: inline-block;
+color:black;
+    position: relative;
+
       }
 
-      #inputSliderContentChange{
+    #sourceSlider, #countrySlider, #categorySlider, #languageSlider{
+      position: absolute;
+      transition-property: opacity;
+      transition-duration: 0.3s;
+      opacity: 0;
+    }
+
+
+
+      #countryPrevBtn, #categoryPrevBtn , #languangePrevBtn{
+        transform: rotate(180deg);
+      }
+
+
+
+      #sliderContentChange input.tags{
+        height: 40px;
+        box-sizing:border-box;
+        border:none;
+      }
+
+      #sliderContentChange{
         width:300px;
         margin-left: ;
         transition-property: margin-left;
         transition-duration: 0.5s;
       }
 
-      #nextInput, #prevInput{
-
-                width: 25px;
-                z-index: 100;
-                color:white;
-                text-align: center;
-                line-height: 30px;
+      #sourceContentChange, #countryContentChange, #categoryContentChange, #languageContentChange {
+        transition-property: margin-left;
+        transition-duration: 0.5s;
+        width:300px;
       }
 
-      #nextInput img{
-        width:10px;
+
+      .nextPrevBtn{
+        width: 25px;
+        z-index: 100;
+        color:white;
+        text-align: center;
+        line-height: 30px;
+      }
+
+      .nextPrevBtn img {
+        width: 10px;
         cursor: pointer;
       }
 
+
+
       #prevInput img{
-        width: 10px;
+
         transform: rotate(180deg);
-        cursor:pointer;
       }
+
+      #prevBtn {
+        transform: rotate(180deg);
+      }
+
 
 
       #sliderContent{
@@ -192,21 +222,7 @@
       }
 
 
-    #currentTag {
-      padding:10px;
-      background: #d58c8c;
-      width:150px;
-      margin:auto;
-      margin-top: 20px;
-      text-align: center;
-      font-size: 0.8em;
-    }
 
-    #currentTagH5{
-      text-align: center;
-      margin-top: 5px;
-      color:rgba(0,0,0,0.6)
-    }
     .fa-google{
       margin:10px 0;
       font-size: 3em;

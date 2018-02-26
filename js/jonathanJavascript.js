@@ -1,14 +1,5 @@
 
 
-// tar alla inputs id i searchbar
-let inputValues ={
-
-    inputKeyword : document.getElementById("inputKeyword"),
-    inputDate : document.getElementById("inputDate"),
-    inputSourceName : document.getElementById("inputSourceName"),
-    inputLanguages : document.getElementById("inputLanguages")
-}
-
 
 let currentTag = document.getElementById("currentTag")
 
@@ -17,16 +8,51 @@ let nextTagBtn = document.getElementById("next");
 let sliderContent = document.getElementById("sliderContent");
 let sliderContentChange = document.getElementById("sliderContentChange");
 
-let inputSlider = {
+let slider = {
 
     nextTagBtn: document.getElementById("nextInput"),
     prevTagBtn: document.getElementById("prevInput"),
-    inputSliderContent : document.getElementById("inputSliderContent"),
-    inputSliderContentChange: document.getElementById("inputSliderContentChange"),
+    sliderContent : document.getElementById("sliderContent"),
+    sliderContentChange: document.getElementById("sliderContentChange"),
+    sourceName : document.getElementById("sourceName")
+}
+
+let sourceSlider = {
+    nextBtn : document.getElementById("nextBtn"),
+    prevBtn : document.getElementById("prevBtn"),
+    sourceContentChange : document.getElementById("sourceContentChange"),
+    slider : document.getElementById("sourceSlider")
+}
+
+let countrySlider = {
+    countryNextBtn : document.getElementById("countryNextBtn"),
+    countryPrevBtn : document.getElementById("countryPrevBtn"),
+    countryContentChange : document.getElementById("countryContentChange"),
+    slider: document.getElementById("countrySlider")
+
+}
+
+let categorySlider = {
+  categoryNextBtn: document.getElementById("categoryNextBtn"),
+  categoryPrevBtn: document.getElementById("categoryPrevBtn"),
+  categoryContentChange : document.getElementById("categoryContentChange"),
+  slider: document.getElementById("categorySlider")
+}
+
+let languageSlider = {
+
+  languangeNextBtn : document.getElementById("languangeNextBtn"),
+  languangePrevBtn : document.getElementById("languangePrevBtn"),
+  languageContentChange : document.getElementById("languageContentChange"),
+  slider : document.getElementById("languageSlider")
 }
 
 // let sliderContentChangeWidth = sliderContentChange.offsetWidth;
-let inputSliderContentChangeWidth = inputSlider.inputSliderContentChange.offsetWidth;
+let sliderContentChangeWidth = slider.sliderContentChange.offsetWidth;
+let sourceContentChangeWidth = sourceSlider.sourceContentChange.offsetWidth;
+let countryContentChangeWidth = countrySlider.countryContentChange.offsetWidth;
+let categoryContentChangeWidth = categorySlider.categoryContentChange.offsetWidth;
+let languageContentChangeWidth = languageSlider.languageContentChange.offsetWidth;
 
 
 //Tillhör previousTagBtn och nextTagBtn
@@ -34,107 +60,77 @@ let minusSlide = 1;
 let totalLeft = "";
 /////////////////////////
 
-let minusInputSlide = 1;
-let totalLeftInputSlide = "";
+// För sourceSlider
 
+let sourceMinusSlide = 1;
+let sourceTotalLeft = ""
 
-inputValues.inputKeyword.addEventListener("change",function(){
+//For countrySlider
 
-    console.log(inputValues.inputKeyword.value)
-    if(inputValues.inputKeyword.value !== "")
-    currentTag.innerHTML+= " #"+inputValues.inputKeyword.value
+let countryMinusSlide = 1;
+let countryTotalLeft = ""
 
-})
+//For categorySlider
 
-inputValues.inputDate.addEventListener("change",function(){
+let categoryMinusSlide = 1;
+let categoryTotalLeft = "";
 
-      if(inputValues.inputDate.value !== "")
-      currentTag.innerHTML += " #" + inputValues.inputDate.value
+// For languageSlider
 
-})
+let languageMinusSlide = 1;
+let languageTotalLeft = "";
 
-inputValues.inputSourceName.addEventListener("change",function(){
-
-    if(inputValues.inputSourceName.value !== "")
-    currentTag.innerHTML += " #"+ inputValues.inputSourceName.value
-
-})
-
-inputValues.inputLanguages.addEventListener("change",function(){
-
-    if(inputValues.inputLanguages.value !== "")
-    currentTag.innerHTML += " #"+ inputValues.inputLanguages.value
-
-})
-
-
-
-// När du klickar på NEXT button på slidern
-//
-//           nextTagBtn.addEventListener("click",function(){
-//
-//           let sliderContentChangeLength =  sliderContentChange.children.length
-//
-//            totalLeft = minusSlide * sliderContentChangeWidth;
-//            totalLeft = totalLeft.toString()
-//
-//            totalLeft = "-" + totalLeft + "px";
-//
-//
-//             if(sliderContentChangeLength > minusSlide){
-//
-//               sliderContentChange.style.marginLeft = totalLeft;
-//               minusSlide++
-//             }
-//
-//         })
-//
-//
-// // När du klickar på prev button på slidern
-//           previousTagBtn.addEventListener("click",function(){
-//
-//           let sliderContentChangeLength =  sliderContentChange.children.length
-//
-//           totalLeft = minusSlide * sliderContentChangeWidth;
-//
-//           totalLeft = totalLeft - (sliderContentChangeWidth *2);
-//           totalLeft = totalLeft.toString();
-//
-//
-//           totalLeft = "-" + totalLeft + "px";
-//           console.log("totalleft är: " + totalLeft)
-//           console.log("minusslide är: " + minusSlide)
-//
-//
-//             if(minusSlide>1){
-//
-//               sliderContentChange.style.marginLeft = totalLeft ;
-//
-//               minusSlide--
-//             }
-//
-//         })
 
 // När du klickar på nextInput
 
-inputSlider.nextTagBtn.addEventListener("click",function(){
+slider.nextTagBtn.addEventListener("click",function(){
 
 
-    let inputSliderContentChangeLength = inputSliderContentChange.children.length;
+    let sliderContentChangeLength = sliderContentChange.children.length;
 
 
-      totalLeftInputSlide = minusInputSlide * inputSliderContentChangeWidth;
-      totalLeftInputSlide = totalLeftInputSlide.toString();
-
-      console.log(minusInputSlide)
+      totalLeft = minusSlide * sliderContentChangeWidth;
+      totalLeft = totalLeft.toString();
 
 
-      totalLeftInputSlide = "-" + totalLeftInputSlide + "px";
 
-      if(inputSliderContentChangeLength > minusInputSlide){
+      totalLeft = "-" + totalLeft + "px";
 
-        inputSlider.inputSliderContentChange.style.marginLeft = totalLeftInputSlide;
-        minusInputSlide++
+
+
+
+      if(sliderContentChangeLength > minusSlide){
+
+        slider.sliderContentChange.style.marginLeft = totalLeft;
+        minusSlide++
+        if(minusSlide === 2){
+          sourceSlider.slider.style.opacity ="1"
+          // sourceContentChangeWidth = sourceSlider.sourceContentChange.offsetWidth;
+        }else {
+          sourceSlider.slider.style.opacity ="0"
+        }
+
+        if(minusSlide === 3){
+          countrySlider.slider.style.opacity = "1";
+          // countryContentChangeWidth = countrySlider.countryContentChange.offsetWidth;
+
+
+        }else{
+          countrySlider.slider.style.opacity = "0"
+        }
+
+        if(minusSlide === 4){
+          categorySlider.slider.style.opacity = "1"
+        }else{
+          categorySlider.slider.style.opacity = "0"
+        }
+
+        if(minusSlide === 5){
+          languageSlider.slider.style.opacity = "1"
+        }else{
+          languageSlider.slider.style.opacity = "0"
+        }
+
       }
 
 
@@ -142,25 +138,264 @@ inputSlider.nextTagBtn.addEventListener("click",function(){
 })
 
 
-inputSlider.prevTagBtn.addEventListener("click",function(){
-  let inputSliderContentChangeLength = inputSliderContentChange.children.length;
+slider.prevTagBtn.addEventListener("click",function(){
+  let sliderContentChangeLength = sliderContentChange.children.length;
 
-  totalLeftInputSlide = minusInputSlide * inputSliderContentChangeWidth;
+  totalLeft = minusSlide * sliderContentChangeWidth;
 
-  totalLeftInputSlide = totalLeftInputSlide - (inputSliderContentChangeWidth *2);
-  totalLeftInputSlide = totalLeftInputSlide.toString();
-  totalLeftInputSlide = "-" + totalLeftInputSlide + "px";
+  totalLeft = totalLeft - (sliderContentChangeWidth *2);
+  totalLeft = totalLeft.toString();
+  totalLeft = "-" + totalLeft + "px";
 
-  console.log(totalLeftInputSlide)
 
-  if(minusInputSlide>1){
 
-    inputSlider.inputSliderContentChange.style.marginLeft = totalLeftInputSlide;
+  if(minusSlide>1){
 
-    console.log(inputSlider.inputSliderContentChange)
+    slider.sliderContentChange.style.marginLeft = totalLeft;
 
-    minusInputSlide--
+
+    minusSlide--
+    if(minusSlide === 2){
+      sourceSlider.slider.style.opacity ="1";
+      sourceContentChangeWidth = sourceSlider.sourceContentChange.offsetWidth;
+
+    }else {
+      sourceSlider.slider.style.opacity ="0"
+    }
+
+    if(minusSlide === 3){
+      countrySlider.slider.style.opacity = "1";
+      sourceContentChangeWidth = countrySlider.countryContentChange.offsetWidth;
+
+    }else{
+      countrySlider.slider.style.opacity = "0"
+    }
+
+    if(minusSlide === 4){
+      categorySlider.slider.style.opacity = "1"
+    }else{
+      categorySlider.slider.style.opacity = "0"
+    }
+    if(minusSlide === 5){
+      languageSlider.slider.style.opacity = "1"
+    }else{
+      languageSlider.slider.style.opacity = "0"
+    }
+
   }
 
 
 })
+
+
+sourceSlider.nextBtn.addEventListener("click", function(){
+
+  let sourceContentChangeLength = sourceSlider.sourceContentChange.children.length;
+  sourceTotalLeft = sourceMinusSlide * sourceContentChangeWidth;
+  sourceTotalLeft = sourceTotalLeft.toString();
+
+
+
+  sourceTotalLeft = "-" + sourceTotalLeft + "px";
+
+
+  if(sourceContentChangeLength > sourceMinusSlide){
+
+    sourceSlider.sourceContentChange.style.marginLeft = sourceTotalLeft;
+
+
+    sourceMinusSlide++
+
+
+  }
+
+
+})
+
+
+sourceSlider.prevBtn.addEventListener("click", function(){
+
+  let sourceContentChangeLength = sourceSlider.sourceContentChange.children.length;
+
+  sourceTotalLeft = sourceMinusSlide * sourceContentChangeWidth;
+
+  sourceTotalLeft = sourceTotalLeft - (sourceContentChangeWidth *2);
+  sourceTotalLeft = sourceTotalLeft.toString();
+
+  sourceTotalLeft = "-" + sourceTotalLeft + "px";
+
+
+
+  if(sourceMinusSlide>1){
+
+
+
+    sourceSlider.sourceContentChange.style.marginLeft = sourceTotalLeft;
+
+
+    sourceMinusSlide--
+
+
+
+  }
+
+})
+
+
+countrySlider.countryNextBtn.addEventListener("click",function(){
+
+  let countryContentChangeLength = countrySlider.countryContentChange.children.length;
+
+  countryTotalLeft = countryMinusSlide * countryContentChangeWidth;
+  countryTotalLeft = countryTotalLeft.toString();
+
+
+
+  countryTotalLeft = "-" + countryTotalLeft + "px";
+
+  if(countryContentChangeLength > countryMinusSlide){
+
+
+
+    countrySlider.countryContentChange.style.marginLeft = countryTotalLeft;
+
+
+    countryMinusSlide++
+  }
+
+
+})
+
+countrySlider.countryPrevBtn.addEventListener("click",function(){
+
+  let countryContentChangeLength = countrySlider.countryContentChange.children.length;
+
+  countryTotalLeft = countryMinusSlide * countryContentChangeWidth;
+
+  countryTotalLeft = countryTotalLeft - (countryContentChangeWidth *2);
+  countryTotalLeft = countryTotalLeft.toString();
+
+  countryTotalLeft =  "-" +countryTotalLeft + "px";
+
+
+  if(countryMinusSlide>1){
+
+
+
+    countrySlider.countryContentChange.style.marginLeft = countryTotalLeft;
+
+
+    countryMinusSlide--
+
+
+
+  }
+
+
+})
+
+categorySlider.categoryNextBtn.addEventListener("click",function(){
+
+
+  let categoryContentChangeLength = categorySlider.categoryContentChange.children.length;
+
+  categoryTotalLeft = categoryMinusSlide * categoryContentChangeWidth;
+  categoryTotalLeft = categoryTotalLeft.toString();
+
+
+
+  categoryTotalLeft = "-" + categoryTotalLeft + "px";
+
+  if(categoryContentChangeLength > categoryMinusSlide){
+
+
+
+    categorySlider.categoryContentChange.style.marginLeft = categoryTotalLeft;
+
+
+    categoryMinusSlide++
+
+  }
+
+
+
+})
+
+categorySlider.categoryPrevBtn.addEventListener("click",function(){
+  let categoryContentChangeLength = categorySlider.categoryContentChange.children.length;
+
+  categoryTotalLeft = categoryMinusSlide * categoryContentChangeWidth;
+
+  categoryTotalLeft = categoryTotalLeft - (categoryContentChangeWidth *2);
+  categoryTotalLeft = categoryTotalLeft.toString();
+
+  categoryTotalLeft =  "-" +categoryTotalLeft + "px";
+
+
+  if(categoryMinusSlide>1){
+
+
+
+    categorySlider.categoryContentChange.style.marginLeft = categoryTotalLeft;
+
+
+    categoryMinusSlide--
+
+
+
+  }
+
+})
+
+languageSlider.languangeNextBtn.addEventListener("click",function(){
+
+  let languageContentChangeLength = languageSlider.languageContentChange.children.length;
+
+  languageTotalLeft = languageMinusSlide * languageContentChangeWidth;
+  languageTotalLeft = languageTotalLeft.toString();
+
+
+
+  languageTotalLeft = "-" + languageTotalLeft + "px";
+
+
+    if(languageContentChangeLength > languageMinusSlide){
+
+
+
+      languageSlider.languageContentChange.style.marginLeft = languageTotalLeft;
+
+
+      languageMinusSlide++
+
+    }
+
+
+})
+
+
+languageSlider.languangePrevBtn.addEventListener("click",function(){
+
+  let languageContentChangeLength = languageSlider.languageContentChange.children.length;
+  languageTotalLeft = languageMinusSlide * languageContentChangeWidth;
+
+  languageTotalLeft = languageTotalLeft - (languageContentChangeWidth *2);
+  languageTotalLeft = languageTotalLeft.toString();
+
+  languageTotalLeft =  "-" +languageTotalLeft + "px";
+
+
+  if(languageMinusSlide>1){
+
+
+
+    languageSlider.languageContentChange.style.marginLeft = languageTotalLeft;
+
+
+    languageMinusSlide--
+
+
+
+  }
+
+});
