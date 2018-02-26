@@ -270,7 +270,7 @@ function sourceSwitch(sourceMinusSlide){
   switch (sourceMinusSlide) {
     case 1:
         currentTag.sourceTag.innerHTML = " ";
-        sourceCode = '';
+        sourceCode = ' ';
       break;
     case 2:
       currentTag.sourceTag.innerHTML = "#CNN";
@@ -339,7 +339,7 @@ function countrySwitch(countryMinusSlide){
   switch (countryMinusSlide) {
     case 1:
       currentTag.countryTag.innerHTML = " ";
-      countryCode = '';
+      countryCode = ' ';
       break;
     case 2:
       currentTag.countryTag.innerHTML = "#USA";
@@ -411,7 +411,7 @@ function categorySwitch(categoryMinusSlide){
   switch (categoryMinusSlide) {
     case 1:
       currentTag.categoryTag.innerHTML = " ";
-      categoryCode = '';
+      categoryCode = ' ';
       break;
     case 2:
       currentTag.categoryTag.innerHTML = "#Business";
@@ -456,7 +456,7 @@ function languageSwitch(languageMinusSlide){
   switch (languageMinusSlide) {
     case 1:
       currentTag.languageTag.innerHTML = " ";
-      languageCode = '';
+      languageCode = ' ';
       break;
     case 2:
       currentTag.languageTag.innerHTML = "#Arabic";
