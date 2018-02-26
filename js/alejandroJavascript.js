@@ -2,41 +2,60 @@ var callback = function(){
 
   console.log('Hello');
 
-  const key = 'ca2d5b8c76a84ec68544ecdeadf04043';
-  let url = 'https://newsapi.org/v2/top-headlines?q=Trump&country=us&apiKey=' + key;
+  const key = '&apiKey=ca2d5b8c76a84ec68544ecdeadf04043';
+  let urlBase = 'https://newsapi.org/v2/everything';
+  let question = '?';
+  let queryStart = 'q=';
+  let queryString = '';
+  let url = urlBase + question + queryStart + 'Putin' + key;
 
-  var req = new Request(url);
+  var getNews = function (url){
+    var req = new Request(url);
 
-  fetch(req)
-  .then(function(response){
+    fetch(req)
+    .then(function(response){
 
-    return response.json();
+      return response.json();
 
-  }).then(function(object){
+    }).then(function(object){
 
-    let articles = object.articles;
-    console.log(articles);
+      let articles = object.articles;
+      console.log(articles);
 
-    let myArticles = [];
-    let amount = 10;
+      let myArticles = [];
+      let amount = 10;
 
-    for (article in articles){
-      if (amount > 0){
-        console.log(article.title);
-        console.log(article.description);
-        console.log(article.urlToImage);
-        console.log(article.source.name);
-        console.log(article.author);
-      } else{
-        break;
+      for (article in articles){
+        console.log('hej');
+        if (amount > 0){
+          console.log(articles[article].title);
+          console.log(articles[article].description);
+          console.log(articles[article].urlToImage);
+          console.log(articles[article].source.name);
+          console.log(articles[article].author);
+          myArticles.push(article);
+        } else{
+          break;
+        }
+        console.log(amount);
+        amount--;
       }
-      amount--;
-    }
 
-  })
-  .catch(function(fail){
+    })
+    .catch(function(){
+      console.log('failed');
+    });
+  }
 
-  });
+  getNews(url);
+
+  // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
+
+  ; // when 5 end of scrollbar
+
+  //whenAllTagsChosen.addEventListener('click',function(){
+
+  //});
 }
 
 window.addEventListener('load', callback);
