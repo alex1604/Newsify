@@ -15,12 +15,13 @@ var callback = function(){
   let question = '?';
 
   let searchArray = [];
+  let completeSearchArray = [];
 
-  let queryString = 'q=' + tagCode;
-  let category = 'category=' + categoryCode;
-  let language = 'language=' + languageCode;
-  let country = 'country=' + countryCode;
-  let source = 'sources=' + sourceCode;
+  let queryString = 'q=';
+  let category = 'category=';
+  let language = 'language=';
+  let country = 'country=';
+  let source = 'sources=';
   let searchBtn = document.getElementById('searchBtn');
 
   // Function that retrieves all most recent and most interesting news:
@@ -65,37 +66,54 @@ var callback = function(){
     });
   }
 
+  getAllNews();
+
   // Function that retrieves news corresponding to the user's criteria:
 
   var getSomeNews = function (queryString, category, country, language, source){
 
+    let tagCode = document.getElementById('inputTag').innerHTML.slice(1);
     let url = urlBase + question;
 
-    searchArray.push(queryString);
-    searchArray.push(category);
-    searchArray.push(country);
-    searchArray.push(language);
-    searchArray.push(source);
+    searchArray.push(tagCode);
+    console.log(tagCode);
+    searchArray.push(categoryCode);
+    console.log(categoryCode);
+    searchArray.push(countryCode);
+    console.log(countryCode);
+    searchArray.push(languageCode);
+    console.log(languageCode);
+    searchArray.push(sourceCode);
+    console.log(sourceCode);
 
-    let newSearchArray = searchArray.filter(x => x != undefined && x != 'null' && x != '');
+    completeSearchArray.push(queryString);
+    completeSearchArray.push(category);
+    completeSearchArray.push(country);
+    completeSearchArray.push(language);
+    completeSearchArray.push(source);
 
-    let length = newSearchArray.length;
-
-    if (length != 0){
-
-      if (length > 1){
-        for (i=1; i<length-1;i++){
-          newSearchArray[i] = '&' + newSearchArray[i] + '&';
+    for (i=0;i<completeSearchArray.length;i++){
+      let count = 0;
+      if (searchArray[i] == 'undefined' || searchArray[i] == 'null' || searchArray[i] == ' '){
+        searchArray.splice(i,1);
+        completeSearchArray.splice(i,1);
+        console.log(completeSearchArray);
+      } else {
+        if (count != 0){
+          completeSearchArray[i] += searchArray[i];
+          completeSearchArray[i] = '&' + completeSearchArray[i] + '&';
+          url += completeSearchArray[i];
+        } else{
+          completeSearchArray[i] += searchArray[i];
+          completeSearchArray[i] += '&';
+          url += completeSearchArray[i];
+          count++;
         }
       }
-      newSearchArray[length-1] = newSearchArray[length-1] + '&';
+      count = 0;
     }
-
-    for (let elem in newSearchArray){
-      url += newSearchArray[elem];
-    }
-
     url += key;
+    console.log(url);
 
     let req = new Request(url);
 
@@ -128,20 +146,19 @@ var callback = function(){
         amount--;
       }
       searchArray = [];
-      newSearchArray = [];
+      completeSearchArray = [];
+      url = '';
     })
     .catch(function(){
       console.log('failed');
     });
   }
 
-  getAllNews();
-
   // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
 
   // when click on search Button:
-
-  searchBtn.addEventListener('click', getSomeNews(queryString, category, country, language, source));
+  searchBtn.addEventListener('click', function(){console.log('clicked');});
+  searchBtn.addEventListener('click', function(){getSomeNews(queryString, category, country, language, source)});
 
 }
 
