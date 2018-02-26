@@ -15,8 +15,9 @@
 
       header{
         padding-top: 50px;
-        box-shadow: inset 0 20px 150px 1px rgba(213, 139, 139,0.7), 0 5px 10px rgba(213, 139, 139,0.5);
-        color:rgba(0,0,0,0.4);
+        /* box-shadow: inset 0 20px 150px 1px rgba(20, 58, 82,0.5); */
+        background:#333644;
+        color:rgba(255,255,255,0.7);
         padding-bottom:10px;
         margin-bottom: 15px;
       }
@@ -32,19 +33,20 @@
         display: flex;
         justify-content: center;
         margin-top: 10px;
-        background: rgba(0,0,0,0.1)
+        background: rgba(0,0,0,0.1);
 
       }
 
       #sliderContent{
         width: 300px;
         white-space: nowrap;
-        background: #d58c8c;
         position: relative;
       }
 
 
-
+    #inputKeyword{
+      color:rgba(0,0,0,0.8)
+    }
 
     .tags {
         height: 30px;
@@ -53,7 +55,8 @@
         margin:0;
         text-align: center;
         display: inline-block;
-color:black;
+color:rgba(255,255,255,0.7);
+line-height: 30px;
     position: relative;
 
       }
@@ -63,6 +66,7 @@ color:black;
       transition-property: opacity;
       transition-duration: 0.3s;
       opacity: 0;
+
     }
 
 
@@ -92,6 +96,11 @@ color:black;
         width:300px;
       }
 
+      #languageContentChange .tags, #sourceContentChange .tags, #countryContentChange .tags ,#categoryContentChange .tags {
+        color:rgba(255,255,255,0.5)
+      }
+
+
 
       .nextPrevBtn{
         width: 25px;
@@ -107,6 +116,15 @@ color:black;
       }
 
 
+      #searchBtn{
+        margin-top: 20px;
+        padding:5px 30px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        border-left: 5px solid rgb(52, 55, 77);
+        border-right: 5px solid #34374C;
+      }
 
       #prevInput img{
 
@@ -123,14 +141,14 @@ color:black;
         width:300px;
 
         white-space: nowrap;
-        background: #d58c8c;
+        background: #C65F63;
         position: relative;
 
       }
 
       #sliderContentChange{
-        color:rgba(255,255,255,0.8);
-        transition-property: margin-left;
+        color:rgba(0,0,0,0.7);
+          transition-property: margin-left;
         transition-duration: 0.5s;
 
       }
@@ -217,23 +235,30 @@ color:black;
         margin: 0 auto;
         width:70px;
         margin-top: 0;
+
       }
 
       #login{
         text-align: center;
       }
 
-      #login h5{
-
+      #login h5:first-child{
+          margin-bottom: 10px;
       }
+
+      #login h5:last-child{
+        margin-bottom: 10px;
+      }
+
+
+
 
 
 
     .fa-google{
       margin:10px 0;
       font-size: 3em;
-      color:red;
-      text-shadow: 10px -0px 7px #d58c8c ;
+      color:white;
     }
     body{
       width:100% auto;
