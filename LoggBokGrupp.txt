@@ -35,3 +35,8 @@ Torsdag den 22februari.
 Vi möts kl 10:00 på discord för dagens scrum, vi går alla igenom vad vi skall göra under dagen och vad vi gjorde igår. Alla ska jobba med sin del av projektet och
 förbereder sig för presentationen imorgon av projektet. Vi ska visa en pdf med alla mockups vi gjort samt en kort presentation av våran applikation och vad man kan
 använda den till och hur den funkar.
+
+Fredag den 23februari:
+
+Vi möts kl 09:00 för dagens Scrum, idag kodar vi tillsammans i gruppen efter vi har presenterat våran ide för klassen. Vi är i stort sätt klara med desingnen på sidan.
+Det som ska göras nu är att dra ner nyheterna med apiet samt försöka implementera twitter på våran sida. 
