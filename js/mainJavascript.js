@@ -1,10 +1,6 @@
 
 
-      let user = {
-          name: "",
-          picture:"",
 
-      }
 
       var config = {
         apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
@@ -18,9 +14,7 @@
 
       const db = firebase.database()
 
-      let hej ={
-        hej: "oskdf"
-      }
+
 
       let gmailprovider = new firebase.auth.GoogleAuthProvider();
 
@@ -32,8 +26,7 @@
 
 
         console.log(user)
-        console.log(db.ref("/users/").push(user))
-        db.ref("/users/").push(hej)
+
 
         // ...
       }).catch(function(error) {
@@ -46,15 +39,3 @@
         var credential = error.credential;
         // ...
       });
-        let previousTagBtn = document.getElementById("prev");
-        let nextTagBtn = document.getElementById("next")
-        let sliderContent = document.getElementById("sliderContent")
-        let sliderContentChange = document.getElementById("sliderContentChange")
-
-        let sliderContentChangeWidth = sliderContentChange.offsetWidth
-
-
-        //Tillhör previousTagBtn
-        let minusSlide = 1;
-        let totalLeft = "";
-        /////////////////////////

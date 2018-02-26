@@ -1,4 +1,4 @@
-Grupp GitChaos: Alejandra, Albin,Jonas,Erik, Jonathan.
+﻿Grupp GitChaos: Alejandra, Albin,Jonas,Erik, Jonathan.
 
 Vecka 8:
 
@@ -29,3 +29,9 @@ Onsdag den 21februari:
 Vi möts för en scrum kl 09:00 och visar våra muckups vi gjort. Vi kommer överens om en designtyp som vi ska använda för sidan.
 Under dagen så börjar vi koda i html/css (vi jobbar alla på olika sidor av sidan) som vi sen kommer slå ihop.
 Imorgon så möts vi på discord för scrum kl 10:00 som vanligt.
+
+Torsdag den 22februari.
+
+Vi möts kl 10:00 på discord för dagens scrum, vi går alla igenom vad vi skall göra under dagen och vad vi gjorde igår. Alla ska jobba med sin del av projektet och
+förbereder sig för presentationen imorgon av projektet. Vi ska visa en pdf med alla mockups vi gjort samt en kort presentation av våran applikation och vad man kan
+använda den till och hur den funkar.
