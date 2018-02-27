@@ -99,14 +99,12 @@ slider.inputKeyword.addEventListener("change",function(){
 
 
 
-
 // När du klickar på nextInput
 
 slider.nextTagBtn.addEventListener("click",function(){
 
 
     let sliderContentChangeLength = sliderContentChange.children.length;
-
 
       totalLeft = minusSlide * sliderContentChangeWidth;
       totalLeft = totalLeft.toString();
@@ -510,35 +508,90 @@ function languageSwitch(languageMinusSlide){
 }
 
 
+function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth, sliderContentChange, funktionen){
+
+  console.log(totalLeft)
+
+
+
+  switch (sliderContentChange.id) {
+
+    case "sourceContentChange":
+
+    totalLeft = sourceMinusSlide * contentChangeWidth;
+    totalLeft = totalLeft.toString();
+
+    totalLeft = "-" + totalLeft + "px";
+
+      if(contentChangeLength> sourceMinusSlide){
+
+        sliderContentChange.style.marginLeft = totalLeft;
+        sourceMinusSlide++
+        funktionen(sourceMinusSlide)
+      }
+      break;
+
+    case "countryContentChange":
+    totalLeft = countryMinusSlide * contentChangeWidth;
+    totalLeft = totalLeft.toString();
+
+    totalLeft = "-" + totalLeft + "px";
+
+      if(contentChangeLength> countryMinusSlide){
+
+        sliderContentChange.style.marginLeft = totalLeft;
+        countryMinusSlide++
+        funktionen(countryMinusSlide)
+      }
+
+      break;
+
+    case "categoryContentChange":
+    totalLeft = categoryMinusSlide * contentChangeWidth;
+    totalLeft = totalLeft.toString();
+
+    totalLeft = "-" + totalLeft + "px";
+
+      if(contentChangeLength> categoryMinusSlide){
+
+        sliderContentChange.style.marginLeft = totalLeft;
+        categoryMinusSlide++
+        funktionen(categoryMinusSlide)
+      }
+
+      break;
+    case "languageContentChange":
+    totalLeft = languageMinusSlide * contentChangeWidth;
+    totalLeft = totalLeft.toString();
+
+    totalLeft = "-" + totalLeft + "px";
+
+      if(contentChangeLength> languageMinusSlide){
+
+        sliderContentChange.style.marginLeft = totalLeft;
+        languageMinusSlide++
+        funktionen(languageMinusSlide)
+      }
+
+
+      break;
+
+    default:
+
+  }
+
+
+
+
+}
 
 sourceSlider.nextBtn.addEventListener("click", function(){
 
 
 
   let sourceContentChangeLength = sourceSlider.sourceContentChange.children.length;
-  sourceTotalLeft = sourceMinusSlide * sourceContentChangeWidth;
-  sourceTotalLeft = sourceTotalLeft.toString();
+  sliderFunctionRight(sourceContentChangeLength, sourceTotalLeft, sourceContentChangeWidth, sourceSlider.sourceContentChange, sourceSwitch)
 
-
-
-  sourceTotalLeft = "-" + sourceTotalLeft + "px";
-
-
-  if(sourceContentChangeLength > sourceMinusSlide){
-
-    sourceSlider.sourceContentChange.style.marginLeft = sourceTotalLeft;
-
-
-    sourceMinusSlide++
-
-    console.log(sourceMinusSlide)
-
-    sourceSwitch(sourceMinusSlide)
-
-
-
-
-  }
 
 
 })
@@ -581,24 +634,8 @@ countrySlider.countryNextBtn.addEventListener("click",function(){
 
   let countryContentChangeLength = countrySlider.countryContentChange.children.length;
 
-  countryTotalLeft = countryMinusSlide * countryContentChangeWidth;
-  countryTotalLeft = countryTotalLeft.toString();
+  sliderFunctionRight(countryContentChangeLength, countryTotalLeft, countryContentChangeWidth, countrySlider.countryContentChange, countrySwitch)
 
-
-
-  countryTotalLeft = "-" + countryTotalLeft + "px";
-
-  if(countryContentChangeLength > countryMinusSlide){
-
-
-
-    countrySlider.countryContentChange.style.marginLeft = countryTotalLeft;
-
-
-    countryMinusSlide++
-
-    countrySwitch(countryMinusSlide)
-  }
 
 
 })
@@ -633,31 +670,9 @@ countrySlider.countryPrevBtn.addEventListener("click",function(){
 })
 
 categorySlider.categoryNextBtn.addEventListener("click",function(){
-
-
   let categoryContentChangeLength = categorySlider.categoryContentChange.children.length;
 
-  categoryTotalLeft = categoryMinusSlide * categoryContentChangeWidth;
-  categoryTotalLeft = categoryTotalLeft.toString();
-
-
-
-  categoryTotalLeft = "-" + categoryTotalLeft + "px";
-
-  if(categoryContentChangeLength > categoryMinusSlide){
-
-
-
-    categorySlider.categoryContentChange.style.marginLeft = categoryTotalLeft;
-
-
-    categoryMinusSlide++
-
-    categorySwitch(categoryMinusSlide)
-
-  }
-
-
+  sliderFunctionRight(categoryContentChangeLength, categoryTotalLeft, categoryContentChangeWidth, categorySlider.categoryContentChange, categorySwitch)
 
 })
 
@@ -692,27 +707,7 @@ languageSlider.languangeNextBtn.addEventListener("click",function(){
 
   let languageContentChangeLength = languageSlider.languageContentChange.children.length;
 
-  languageTotalLeft = languageMinusSlide * languageContentChangeWidth;
-  languageTotalLeft = languageTotalLeft.toString();
-
-
-
-  languageTotalLeft = "-" + languageTotalLeft + "px";
-
-
-    if(languageContentChangeLength > languageMinusSlide){
-
-
-
-      languageSlider.languageContentChange.style.marginLeft = languageTotalLeft;
-
-
-      languageMinusSlide++
-
-      languageSwitch(languageMinusSlide)
-
-    }
-
+    sliderFunctionRight(languageContentChangeLength, languageTotalLeft, languageContentChangeWidth, languageSlider.languageContentChange, languageSwitch)
 
 })
 
