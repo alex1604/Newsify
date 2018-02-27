@@ -40,4 +40,3 @@
       let countryCode = '';
       let categoryCode = '';
       let languageCode = '';
-      let tagCode = document.getElementById('inputTag').value;
