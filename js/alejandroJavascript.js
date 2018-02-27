@@ -24,16 +24,90 @@ var callback = function(){
   let source = 'sources=';
   let searchBtn = document.getElementById('searchBtn');
 
-  let titles = document.getElementsByClassName('title');
-  let descriptions = document.getElementsByClassName('sumUp');
-  let images = document.getElementsByClassName('articleImageLink');
-  let readMore = document.getElementsByClassName('readMoreLink');
+  let main = document.getElementsByTagName('main')[0];
+  console.log(main);
 
   let myArticles = [];
+
+  // Function that creates the HTML for news dynamically:
+
+  var createNews = function (){
+
+    let article = document.createElement('article');
+    let blackLine = document.createElement('div');
+    blackLine.classList.add('blackLine');
+    let mainContent = document.createElement('div');
+    mainContent.classList.add('mainContent');
+
+    let pinkAndTitle = document.createElement('div');
+    pinkAndTitle.classList.add('pinkAndTitle');
+
+    let pinkLine = document.createElement('div');
+    pinkLine.classList.add('pinkLine');
+
+    let title = document.createElement('div');
+    title.classList.add('title');
+
+    let sumUp = document.createElement('p');
+    sumUp.classList.add('sumUp');
+
+    let readMore = document.createElement('div');
+    readMore.classList.add('readMore');
+    let readMore2 = document.createElement('div');
+    readMore.classList.add('readMore');
+    let a = document.createElement('a');
+    a.classList.add('readMoreLink');
+    a.target = '_blank';
+    a.innerHTML = 'Read full article...';
+
+    let a2 = document.createElement('a');
+    a2.classList.add('readMoreLink');
+    a2.target = '_blank';
+
+    let i2 = document.createElement('i');
+    i2.classList.add('fas');
+    i2.classList.add('fa-angle-down');
+
+    readMore.appendChild(a);
+    a2.appendChild(i2);
+    readMore2.appendChild(a2);
+
+
+    pinkAndTitle.appendChild(pinkLine);
+    pinkAndTitle.appendChild(title);
+    pinkAndTitle.appendChild(sumUp);
+    pinkAndTitle.appendChild(readMore);
+    pinkAndTitle.appendChild(readMore2);
+
+    let articleImage = document.createElement('div');
+    articleImage.classList.add('articleImage');
+    let img = document.createElement('img');
+    img.classList.add('articleImageLink');
+
+    articleImage.appendChild(img);
+
+    mainContent.appendChild(pinkAndTitle);
+    mainContent.appendChild(articleImage);
+
+    article.appendChild(blackLine);
+    article.appendChild(mainContent);
+
+    main.appendChild(article);
+  }
 
   // Define function that browses the results on the page, dynamically modifying the HTML:
 
   var browseNews = function (array,number){
+
+    for (i = number; i > 0; i--){
+      createNews();
+      console.log('news created');
+    }
+
+    let titles = document.getElementsByClassName('title');
+    let descriptions = document.getElementsByClassName('sumUp');
+    let images = document.getElementsByClassName('articleImageLink');
+    let readMore = document.getElementsByClassName('readMoreLink');
 
     let count = 0;
 
@@ -71,7 +145,7 @@ var callback = function(){
 
       for (article in articles){
         console.log('hej');
-        if (amount > 0){
+        if (amount > 0 && articles[article] != 'undefined' && articles[article] != null && articles[article] != ''){
           console.log(articles[article].title);
           console.log(articles[article].description);
           console.log(articles[article].urlToImage);
@@ -85,7 +159,8 @@ var callback = function(){
         console.log(amount);
         amount--;
       }
-      browseNews(myArticles, 4);
+      amount = myArticles.length;
+      browseNews(myArticles, amount);
     })
     .catch(function(){
       console.log('failed');
