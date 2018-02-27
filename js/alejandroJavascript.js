@@ -184,7 +184,7 @@ var callback = function(){
 
     for (i=0;i<completeSearchArray.length;i++){
       let count = 0;
-      if (searchArray[i] != ''){
+      if (searchArray[i] != '' && searchArray[i] != null){
         if (count != 0){
           completeSearchArray[i] += searchArray[i];
           completeSearchArray[i] = '&' + completeSearchArray[i] + '&';
@@ -244,6 +244,7 @@ var callback = function(){
   })
   .catch(function(){
     console.log('failed');
+    alert('Oups, no results for your search.');
   });
 }
 
