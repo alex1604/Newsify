@@ -24,6 +24,32 @@ var callback = function(){
   let source = 'sources=';
   let searchBtn = document.getElementById('searchBtn');
 
+  let titles = document.getElementsByClassName('title');
+  let descriptions = document.getElementsByClassName('sumUp');
+  let images = document.getElementsByClassName('articleImageLink');
+  let readMore = document.getElementsByClassName('readMoreLink');
+
+  let myArticles = [];
+
+  // Define function that browses the results on the page, dynamically modifying the HTML:
+
+  var browseNews = function (array,number){
+
+    let count = 0;
+
+    do{
+
+      titles[count].innerHTML = array[count].title;
+      descriptions[count].innerHTML = array[count].description;
+      images[count].src = array[count].urlToImage;
+      readMore[count].href = array[count].url;
+      readMore[(count + 1)].href = array[count].url;
+      count++;
+
+    } while (count < number);
+
+  }
+
   // Function that retrieves all most recent and most interesting news:
 
   var getAllNews = function (){
@@ -41,8 +67,7 @@ var callback = function(){
       let articles = object.articles;
       console.log(articles);
 
-      let myArticles = [];
-      let amount = 10;
+      let amount = 12;
 
       for (article in articles){
         console.log('hej');
@@ -52,14 +77,15 @@ var callback = function(){
           console.log(articles[article].urlToImage);
           console.log(articles[article].source.name);
           console.log(articles[article].author);
-          myArticles.push(article);
+          myArticles.push(articles[article]);
+          console.log(myArticles);
         } else{
           break;
         }
         console.log(amount);
         amount--;
       }
-
+      browseNews(myArticles, 4);
     })
     .catch(function(){
       console.log('failed');
