@@ -239,7 +239,8 @@ var callback = function(){
           console.log(articles[article].urlToImage);
           console.log(articles[article].source.name);
           console.log(articles[article].author);
-          myArticles.push(article);
+          myArticles.push(articles[article]);
+          console.log(myArticles);
         } else{
           break;
         }
@@ -249,6 +250,11 @@ var callback = function(){
       searchArray = [];
       completeSearchArray = [];
       url = '';
+      while (main.hasChildNodes()) {
+        main.removeChild(main.lastChild);
+      }
+      amount = myArticles.length;
+      browseNews(myArticles, amount);
     })
     .catch(function(){
       console.log('failed');
