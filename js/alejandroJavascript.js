@@ -60,24 +60,12 @@ var callback = function(){
     a.target = '_blank';
     a.innerHTML = 'Read full article...';
 
-    let a2 = document.createElement('a');
-    a2.classList.add('readMoreLink');
-    a2.target = '_blank';
-
-    let i2 = document.createElement('i');
-    i2.classList.add('fas');
-    i2.classList.add('fa-angle-down');
-
     readMore.appendChild(a);
-    a2.appendChild(i2);
-    readMore2.appendChild(a2);
-
 
     pinkAndTitle.appendChild(pinkLine);
     pinkAndTitle.appendChild(title);
     pinkAndTitle.appendChild(sumUp);
     pinkAndTitle.appendChild(readMore);
-    pinkAndTitle.appendChild(readMore2);
 
     let articleImage = document.createElement('div');
     articleImage.classList.add('articleImage');
@@ -117,7 +105,6 @@ var callback = function(){
       descriptions[count].innerHTML = array[count].description;
       images[count].src = array[count].urlToImage;
       readMore[count].href = array[count].url;
-      readMore[(count + 1)].href = array[count].url;
       count++;
 
     } while (count < number);
