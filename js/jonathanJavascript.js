@@ -319,7 +319,7 @@ function sourceSwitch(sourceMinusSlide){
   switch (sourceMinusSlide) {
     case 1:
         currentTag.sourceTag.innerHTML = " ";
-        sourceCode = ' ';
+        sourceCode = null;
       break;
     case 2:
       currentTag.sourceTag.innerHTML = "#CNN";
@@ -388,7 +388,7 @@ function countrySwitch(countryMinusSlide){
   switch (countryMinusSlide) {
     case 1:
       currentTag.countryTag.innerHTML = " ";
-      countryCode = ' ';
+      countryCode = null;
       break;
     case 2:
       currentTag.countryTag.innerHTML = "#USA";
@@ -400,7 +400,7 @@ function countrySwitch(countryMinusSlide){
       break;
     case 4:
       currentTag.countryTag.innerHTML = "#England";
-      countryCode = 'en';
+      countryCode = 'gb';
       break;
     case 5:
     currentTag.countryTag.innerHTML = "#Germany";
@@ -460,7 +460,7 @@ function categorySwitch(categoryMinusSlide){
   switch (categoryMinusSlide) {
     case 1:
       currentTag.categoryTag.innerHTML = " ";
-      categoryCode = ' ';
+      categoryCode = null;
       break;
     case 2:
       currentTag.categoryTag.innerHTML = "#Business";
@@ -505,7 +505,7 @@ function languageSwitch(languageMinusSlide){
   switch (languageMinusSlide) {
     case 1:
       currentTag.languageTag.innerHTML = " ";
-      languageCode = ' ';
+      languageCode = null;
       break;
     case 2:
       currentTag.languageTag.innerHTML = "#Arabic";
