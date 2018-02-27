@@ -25,12 +25,17 @@ let slider = {
     inputKeyword: document.getElementById("inputKeyword")
 }
 
+slider.prevTagBtn.style.opacity = "0"
+
 let sourceSlider = {
     nextBtn : document.getElementById("nextBtn"),
     prevBtn : document.getElementById("prevBtn"),
     sourceContentChange : document.getElementById("sourceContentChange"),
     slider : document.getElementById("sourceSlider")
 }
+
+sourceSlider.prevBtn.style.opacity = "0"
+
 
 let countrySlider = {
     countryNextBtn : document.getElementById("countryNextBtn"),
@@ -40,12 +45,17 @@ let countrySlider = {
 
 }
 
+
+countrySlider.countryPrevBtn.style.opacity ="0"
+
 let categorySlider = {
   categoryNextBtn: document.getElementById("categoryNextBtn"),
   categoryPrevBtn: document.getElementById("categoryPrevBtn"),
   categoryContentChange : document.getElementById("categoryContentChange"),
   slider: document.getElementById("categorySlider")
 }
+
+categorySlider.categoryPrevBtn.style.opacity = "0"
 
 let languageSlider = {
 
@@ -54,6 +64,7 @@ let languageSlider = {
   languageContentChange : document.getElementById("languageContentChange"),
   slider : document.getElementById("languageSlider")
 }
+languageSlider.languangePrevBtn.style.opacity ="0"
 
 // let sliderContentChangeWidth = sliderContentChange.offsetWidth;
 let sliderContentChangeWidth = slider.sliderContentChange.offsetWidth;
@@ -111,12 +122,23 @@ slider.nextTagBtn.addEventListener("click",function(){
 
 
 
+
       totalLeft = "-" + totalLeft + "px";
+
+      if(minusSlide> 0){
+        slider.prevTagBtn.style.opacity = "1";
+      }
+
+      if(minusSlide === sliderContentChangeLength-1){
+        slider.nextTagBtn.style.opacity = "0";
+      }
 
       if(minusSlide === 1){
 
-          if(slider.inputKeyword.value === ""){
+        if(slider.inputKeyword.value === ""){
+
           currentTag.inputTag.innerHTML = ""
+
         }else{
             currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
         }
@@ -193,6 +215,8 @@ slider.prevTagBtn.addEventListener("click",function(){
   totalLeft = totalLeft.toString();
   totalLeft = "-" + totalLeft + "px";
 
+
+
   if(minusSlide === 1){
 
     if(slider.inputKeyword.value === ""){
@@ -208,6 +232,18 @@ slider.prevTagBtn.addEventListener("click",function(){
 
 
     minusSlide--
+    console.log(minusSlide)
+
+    if(minusSlide === 1){
+      slider.prevTagBtn.style.opacity = "0"
+    }
+    if(minusSlide < sliderContentChangeLength){
+      slider.nextTagBtn.style.opacity = "1"
+
+    }
+
+
+
     if(minusSlide === 2){
 
       if(countryMinusSlide> 1 || categoryMinusSlide > 1){
@@ -508,7 +544,19 @@ function languageSwitch(languageMinusSlide){
 }
 
 
-function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth, sliderContentChange, funktionen){
+function showArrowsOrNot(minusSlide,prevBtn,nextBtn, contentChangeLength ){
+
+  if(minusSlide> 0){
+    prevBtn.style.opacity = "1";
+  }
+
+  if(minusSlide === contentChangeLength-1){
+    nextBtn.style.opacity = "0";
+  }
+
+}
+
+function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth, sliderContentChange, funktionen, nextBtn, prevBtn){
 
   console.log(totalLeft)
 
@@ -527,6 +575,7 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         sliderContentChange.style.marginLeft = totalLeft;
         sourceMinusSlide++
+        showArrowsOrNot(sourceMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
         funktionen(sourceMinusSlide)
       }
       break;
@@ -541,6 +590,8 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         sliderContentChange.style.marginLeft = totalLeft;
         countryMinusSlide++
+        showArrowsOrNot(countryMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
+
         funktionen(countryMinusSlide)
       }
 
@@ -556,6 +607,8 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         sliderContentChange.style.marginLeft = totalLeft;
         categoryMinusSlide++
+        showArrowsOrNot(categoryMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
+
         funktionen(categoryMinusSlide)
       }
 
@@ -570,6 +623,8 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         sliderContentChange.style.marginLeft = totalLeft;
         languageMinusSlide++
+        showArrowsOrNot(languageMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
+
         funktionen(languageMinusSlide)
       }
 
@@ -590,7 +645,7 @@ sourceSlider.nextBtn.addEventListener("click", function(){
 
 
   let sourceContentChangeLength = sourceSlider.sourceContentChange.children.length;
-  sliderFunctionRight(sourceContentChangeLength, sourceTotalLeft, sourceContentChangeWidth, sourceSlider.sourceContentChange, sourceSwitch)
+  sliderFunctionRight(sourceContentChangeLength, sourceTotalLeft, sourceContentChangeWidth, sourceSlider.sourceContentChange, sourceSwitch, sourceSlider.nextBtn, sourceSlider.prevBtn)
 
 
 
@@ -618,8 +673,14 @@ sourceSlider.prevBtn.addEventListener("click", function(){
 
 
     sourceMinusSlide--
+    if(sourceMinusSlide === 1){
 
+      sourceSlider.prevBtn.style.opacity = "0"
+    }
+    if(sourceMinusSlide < sourceContentChangeLength){
+      sourceSlider.nextBtn.style.opacity = "1"
 
+    }
     sourceSwitch(sourceMinusSlide)
 
 
@@ -634,7 +695,7 @@ countrySlider.countryNextBtn.addEventListener("click",function(){
 
   let countryContentChangeLength = countrySlider.countryContentChange.children.length;
 
-  sliderFunctionRight(countryContentChangeLength, countryTotalLeft, countryContentChangeWidth, countrySlider.countryContentChange, countrySwitch)
+  sliderFunctionRight(countryContentChangeLength, countryTotalLeft, countryContentChangeWidth, countrySlider.countryContentChange, countrySwitch, countrySlider.countryNextBtn, countrySlider.countryPrevBtn)
 
 
 
@@ -660,6 +721,14 @@ countrySlider.countryPrevBtn.addEventListener("click",function(){
 
 
     countryMinusSlide--
+    if(countryMinusSlide === 1){
+
+      countrySlider.countryPrevBtn.style.opacity = "0"
+    }
+    if(countryMinusSlide < countryContentChangeLength){
+      countrySlider.countryNextBtn.style.opacity = "1"
+
+    }
     countrySwitch(countryMinusSlide)
 
 
@@ -672,7 +741,7 @@ countrySlider.countryPrevBtn.addEventListener("click",function(){
 categorySlider.categoryNextBtn.addEventListener("click",function(){
   let categoryContentChangeLength = categorySlider.categoryContentChange.children.length;
 
-  sliderFunctionRight(categoryContentChangeLength, categoryTotalLeft, categoryContentChangeWidth, categorySlider.categoryContentChange, categorySwitch)
+  sliderFunctionRight(categoryContentChangeLength, categoryTotalLeft, categoryContentChangeWidth, categorySlider.categoryContentChange, categorySwitch, categorySlider.categoryNextBtn, categorySlider.categoryPrevBtn)
 
 })
 
@@ -696,6 +765,15 @@ categorySlider.categoryPrevBtn.addEventListener("click",function(){
 
     categoryMinusSlide--
 
+    if(categoryMinusSlide === 1){
+
+      categorySlider.categoryPrevBtn.style.opacity = "0"
+    }
+    if(categoryMinusSlide < categoryContentChangeLength){
+      categorySlider.categoryNextBtn.style.opacity = "1"
+
+    }
+
     categorySwitch(categoryMinusSlide)
 
 
@@ -707,7 +785,7 @@ languageSlider.languangeNextBtn.addEventListener("click",function(){
 
   let languageContentChangeLength = languageSlider.languageContentChange.children.length;
 
-    sliderFunctionRight(languageContentChangeLength, languageTotalLeft, languageContentChangeWidth, languageSlider.languageContentChange, languageSwitch)
+    sliderFunctionRight(languageContentChangeLength, languageTotalLeft, languageContentChangeWidth, languageSlider.languageContentChange, languageSwitch, languageSlider.languangeNextBtn, languageSlider.languangePrevBtn)
 
 })
 
@@ -731,6 +809,15 @@ languageSlider.languangePrevBtn.addEventListener("click",function(){
 
 
     languageMinusSlide--
+
+     if(languageMinusSlide === 1){
+
+        languageSlider.languangePrevBtn.style.opacity = "0"
+      }
+      if(languageMinusSlide < languageContentChangeLength){
+        languageSlider.languangeNextBtn.style.opacity = "1"
+
+      }
     languageSwitch(languageMinusSlide)
 
 
