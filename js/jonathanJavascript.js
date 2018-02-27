@@ -163,7 +163,10 @@ slider.nextTagBtn.addEventListener("click",function(){
         }
 
         if(minusSlide === 3){
-          if(sourceMinusSlide>1){
+          console.log(sourceMinusSlide)
+
+
+          if(sourceMinusSlide>1 || slider.inputKeyword.value !== "" || languageMinusSlide>1){
             countrySlider.slider.style.opacity = "0";
 
 
@@ -180,7 +183,7 @@ slider.nextTagBtn.addEventListener("click",function(){
 
         if(minusSlide === 4){
 
-          if(sourceMinusSlide>1){
+          if(sourceMinusSlide>1 || slider.inputKeyword.value !== "" || languageMinusSlide>1){
             categorySlider.slider.style.opacity = "0"
 
           }else{
@@ -194,7 +197,13 @@ slider.nextTagBtn.addEventListener("click",function(){
         }
 
         if(minusSlide === 5){
-          languageSlider.slider.style.opacity = "1"
+          if(countryMinusSlide> 1 || categoryMinusSlide > 1){
+            languageSlider.slider.style.opacity = "0"
+
+          }else{
+            languageSlider.slider.style.opacity = "1"
+
+          }
         }else{
           languageSlider.slider.style.opacity = "0"
         }
@@ -260,8 +269,8 @@ slider.prevTagBtn.addEventListener("click",function(){
     }
 
     if(minusSlide === 3){
-
-      if(sourceMinusSlide>1){
+        console.log(sourceMinusSlide)
+      if(sourceMinusSlide>1 || slider.inputKeyword.value !== "" || languageMinusSlide>1){
         countrySlider.slider.style.opacity = "0";
 
       }else{
@@ -277,7 +286,7 @@ slider.prevTagBtn.addEventListener("click",function(){
     }
 
     if(minusSlide === 4){
-      if(sourceMinusSlide>1){
+      if(sourceMinusSlide>1 || slider.inputKeyword.value !== "" || languageMinusSlide>1){
         categorySlider.slider.style.opacity = "0"
 
       }else{
@@ -288,7 +297,13 @@ slider.prevTagBtn.addEventListener("click",function(){
       categorySlider.slider.style.opacity = "0"
     }
     if(minusSlide === 5){
-      languageSlider.slider.style.opacity = "1"
+      if(countryMinusSlide> 1 || categoryMinusSlide > 1){
+        languageSlider.slider.style.opacity = "0"
+
+      }else{
+        languageSlider.slider.style.opacity = "1"
+
+      }
     }else{
       languageSlider.slider.style.opacity = "0"
     }
@@ -590,6 +605,17 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         sliderContentChange.style.marginLeft = totalLeft;
         countryMinusSlide++
+        if(countryMinusSlide>1){
+          slider.inputKeyword.disabled = true;
+          slider.inputKeyword.setAttribute("placeholder", "You can not combine that tag")
+
+
+        }else{
+          slider.inputKeyword.disabled = false;
+          slider.inputKeyword.setAttribute("placeholder", "Search keyword or phrase")
+
+
+        }
         showArrowsOrNot(countryMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
 
         funktionen(countryMinusSlide)
@@ -607,6 +633,18 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         sliderContentChange.style.marginLeft = totalLeft;
         categoryMinusSlide++
+        if(categoryMinusSlide>1){
+          slider.inputKeyword.disabled = true;
+          slider.inputKeyword.setAttribute("placeholder", "You can not combine that tag")
+
+
+        }else{
+          slider.inputKeyword.disabled = false;
+          slider.inputKeyword.setAttribute("placeholder", "Searc keyword or phrase")
+
+
+
+        }
         showArrowsOrNot(categoryMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
 
         funktionen(categoryMinusSlide)
@@ -721,6 +759,14 @@ countrySlider.countryPrevBtn.addEventListener("click",function(){
 
 
     countryMinusSlide--
+    if(countryMinusSlide>1){
+      slider.inputKeyword.disabled = true;
+
+    }else{
+      slider.inputKeyword.disabled = false;
+
+
+    }
     if(countryMinusSlide === 1){
 
       countrySlider.countryPrevBtn.style.opacity = "0"
@@ -765,6 +811,18 @@ categorySlider.categoryPrevBtn.addEventListener("click",function(){
 
     categoryMinusSlide--
 
+
+    if(categoryMinusSlide>1){
+      slider.inputKeyword.disabled = true;
+      slider.inputKeyword.setAttribute("placeholder", "You can not combine that tag")
+
+    }else{
+      slider.inputKeyword.disabled = false;
+      slider.inputKeyword.setAttribute("placeholder", "Search keyword or phrase")
+
+
+    }
+    console.log(categoryMinusSlide)
     if(categoryMinusSlide === 1){
 
       categorySlider.categoryPrevBtn.style.opacity = "0"
