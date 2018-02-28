@@ -1,5 +1,5 @@
-
-
+let readMore = document.getElementsByClassName("readMore");
+let readMoreLength = readMore.length;
 
 let currentTag = {
 
@@ -99,7 +99,13 @@ let categoryTotalLeft = "";
 let languageMinusSlide = 1;
 let languageTotalLeft = "";
 
+console.log(readMoreLength)
 
+for(let i =0; i < readMoreLength; i++){
+
+  console.log(readMore[i])
+
+}
 
 
 slider.inputKeyword.addEventListener("change",function(){
