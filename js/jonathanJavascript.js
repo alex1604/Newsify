@@ -1,3 +1,4 @@
+console.log("JJJS");
 let readMore = document.getElementsByClassName("readMore");
 let readMoreLength = readMore.length;
 
