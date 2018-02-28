@@ -1,3 +1,4 @@
+console.log("mainJS");
 let login = document.getElementById("login");
 
       var config = {
