@@ -142,6 +142,37 @@ var callback = function(){
     article.appendChild(mainContent);
 
     main.appendChild(article);
+
+
+    //Jonathans kod //
+
+    mainContent.addEventListener("click",function(e){
+
+      if(e.target.className=== "readMoreLink"){
+
+          // let href = e.target.getAttribute("href")
+          // let divIframe = document.getElementById("iframe");
+          //
+          // let iframeElement = document.createElement("iframe");
+          // iframeElement.setAttribute("src", href);
+          // iframeElement.setAttribute("id", "contact");
+          // iframeElement.setAttribute("allowtransparency", "true");
+          // iframeElement.setAttribute("frameborder","0")
+          // iframeElement.setAttribute("scrolling","yes")
+          // iframeElement.setAttribute("width","100%")
+          // iframeElement.setAttribute("height","500px")
+          // iframeElement.setAttribute("frameborder","0")
+          // iframeElement.setAttribute("align","center")
+          //
+          // divIframe.appendChild(iframeElement)
+
+
+          // <!-- <iframe id="contact" src="http://www.bbc.com/news/world-middle-east-43219614" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
+
+      }
+
+    })
+
   }
 
   // Define function that browses the results on the page, dynamically modifying the HTML:
@@ -150,7 +181,6 @@ var callback = function(){
 
     for (i = number; i > 0; i--){
       createNews();
-      console.log('news created');
     }
 
     let titles = document.getElementsByClassName('title');
@@ -197,6 +227,8 @@ var callback = function(){
 
           myArticles.push(articles[article]);
 
+
+
         } else{
           break;
         }
@@ -204,6 +236,8 @@ var callback = function(){
         amount--;
       }
       amount = myArticles.length;
+      console.log(myArticles)
+
       browseNews(myArticles, amount);
     })
     .catch(function(){
