@@ -272,7 +272,7 @@ var callback = function(){
 
 
       let myArticles = [];
-      let amount = 10;
+      let amount = 12;
 
       for (article in articles){
 
