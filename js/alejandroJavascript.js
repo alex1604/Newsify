@@ -8,6 +8,56 @@ let tagCode = document.getElementById('inputTag').value;
 
 var callback = function(){
 
+  var countryKey = '';
+  var ltd = '';
+  var lng = '';
+  var urlWeather = '';
+  var weatherResponse;
+
+  var getWeather = function (ltd,lng,urlWeather){
+    let reqWeather = new Request(urlWeather);
+    let locationKey = '';
+    fetch(reqWeather)
+    .then(function(response){
+      return response.json();
+    }).then(function(object){
+      locationKey = object.Key;
+      countryKey = object.Country.EnglishName;
+      console.log(locationKey);
+      console.log(countryKey);
+      reqWeather = 'http://dataservice.accuweather.com/forecasts/v1/daily/1day/' + locationKey + '?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq';
+      fetch(reqWeather)
+      .then(function(response){
+        return response.json();
+      }).then(function(object){
+        weatherResponse = object;
+        console.log(object);
+      }).catch(function(fail){
+        console.log('we can`t process this request right now');
+      })
+    }).catch(function(fail){
+      console.log('errorLocation');
+    });
+  }
+
+  var getLocation = function () {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(savePosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+  var savePosition = function (position) {
+    ltd = position.coords.latitude;
+    lng = position.coords.longitude;
+    console.log(ltd);
+    console.log(lng);
+    urlWeather = 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq'
+    + '&q=' + ltd + ',' + lng;
+    getWeather(ltd,lng,urlWeather);
+  }
+  getLocation();
+
   console.log('Hello');
 
   const key = 'apiKey=ca2d5b8c76a84ec68544ecdeadf04043';
@@ -60,12 +110,24 @@ var callback = function(){
     a.target = '_blank';
     a.innerHTML = 'Read full article...';
 
+    let a2 = document.createElement('a');
+    a2.classList.add('readMoreLink');
+    a2.target = '_blank';
+
+    let i2 = document.createElement('i');
+    i2.classList.add('fas');
+    i2.classList.add('fa-angle-down');
+
     readMore.appendChild(a);
+    a2.appendChild(i2);
+    readMore2.appendChild(a2);
+
 
     pinkAndTitle.appendChild(pinkLine);
     pinkAndTitle.appendChild(title);
     pinkAndTitle.appendChild(sumUp);
     pinkAndTitle.appendChild(readMore);
+    pinkAndTitle.appendChild(readMore2);
 
     let articleImage = document.createElement('div');
     articleImage.classList.add('articleImage');
@@ -105,6 +167,7 @@ var callback = function(){
       descriptions[count].innerHTML = array[count].description;
       images[count].src = array[count].urlToImage;
       readMore[count].href = array[count].url;
+      readMore[(count + 1)].href = array[count].url;
       count++;
 
     } while (count < number);
@@ -179,12 +242,14 @@ var callback = function(){
     completeSearchArray.push(country);
     completeSearchArray.push(language);
     completeSearchArray.push(source);
-    console.log(completeSearchArray);
-    console.log(searchArray);
 
     for (i=0;i<completeSearchArray.length;i++){
       let count = 0;
-      if (searchArray[i] != '' && searchArray[i] != null){
+      if (searchArray[i] == 'undefined' || searchArray[i] == 'null' || searchArray[i] == ' '){
+        searchArray.splice(i,1);
+        completeSearchArray.splice(i,1);
+        console.log(completeSearchArray);
+      } else {
         if (count != 0){
           completeSearchArray[i] += searchArray[i];
           completeSearchArray[i] = '&' + completeSearchArray[i] + '&';
@@ -195,64 +260,62 @@ var callback = function(){
           url += completeSearchArray[i];
           count++;
         }
-    }
-    count = 0;
-  }
-  url += key;
-  console.log(url);
-
-  let req = new Request(url);
-
-  fetch(req)
-  .then(function(response){
-
-    return response.json();
-
-  }).then(function(object){
-
-    let articles = object.articles;
-    console.log(articles);
-
-    let myArticles = [];
-    let amount = 10;
-
-    for (article in articles){
-      console.log('hej');
-      if (amount > 0){
-        console.log(articles[article].title);
-        console.log(articles[article].description);
-        console.log(articles[article].urlToImage);
-        console.log(articles[article].source.name);
-        console.log(articles[article].author);
-        myArticles.push(articles[article]);
-        console.log(myArticles);
-      } else{
-        break;
       }
-      console.log(amount);
-      amount--;
+      count = 0;
     }
-    console.log(completeSearchArray);
-    searchArray = [];
-    completeSearchArray = [];
-    url = '';
-    while (main.hasChildNodes()) {
-      main.removeChild(main.lastChild);
-    }
-    amount = myArticles.length;
-    browseNews(myArticles, amount);
-  })
-  .catch(function(){
-    console.log('failed');
-    alert('Oups, no results for your search.');
-  });
-}
+    url += key;
+    console.log(url);
 
-// När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
+    let req = new Request(url);
 
-// when click on search Button:
-searchBtn.addEventListener('click', function(){console.log('clicked');});
-searchBtn.addEventListener('click', function(){getSomeNews(queryString, category, country, language, source)});
+    fetch(req)
+    .then(function(response){
+
+      return response.json();
+
+    }).then(function(object){
+
+      let articles = object.articles;
+      console.log(articles);
+
+      let myArticles = [];
+      let amount = 10;
+
+      for (article in articles){
+        console.log('hej');
+        if (amount > 0){
+          console.log(articles[article].title);
+          console.log(articles[article].description);
+          console.log(articles[article].urlToImage);
+          console.log(articles[article].source.name);
+          console.log(articles[article].author);
+          myArticles.push(articles[article]);
+          console.log(myArticles);
+        } else{
+          break;
+        }
+        console.log(amount);
+        amount--;
+      }
+      searchArray = [];
+      completeSearchArray = [];
+      url = '';
+      while (main.hasChildNodes()) {
+        main.removeChild(main.lastChild);
+      }
+      amount = myArticles.length;
+      browseNews(myArticles, amount);
+    })
+    .catch(function(){
+      console.log('failed');
+    });
+  }
+
+  // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
+
+  // when click on search Button:
+  searchBtn.addEventListener('click', function(){console.log('clicked');});
+  searchBtn.addEventListener('click', function(){getSomeNews(queryString, category, country, language, source)});
 
 }
 
