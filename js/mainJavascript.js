@@ -14,7 +14,7 @@
 
       let gmailprovider = new firebase.auth.GoogleAuthProvider();
 
-      firebase.auth().signInWithPopup(gmailprovider).then(function(result) {
+      /*firebase.auth().signInWithPopup(gmailprovider).then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
         // The signed-in user info.
@@ -34,7 +34,7 @@
         // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
         // ...
-      });
+      });*/
 
       let sourceCode = '';
       let countryCode = '';
