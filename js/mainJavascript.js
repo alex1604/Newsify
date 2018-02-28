@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 let login = document.getElementById("login");
 
-=======
->>>>>>> 7cee106b068a954d78e618b1b7e64b80eb7ff536
       var config = {
         apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
         authDomain: "newschaos-e8558.firebaseapp.com",
@@ -81,7 +78,6 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail){
   })
 }
 
-<<<<<<< HEAD
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     //when the user is logged in, runs loginHeader
@@ -96,21 +92,3 @@ firebase.auth().onAuthStateChanged(function(user) {
     // No user is signed in.
   }
 });
-=======
-        // ...
-      }).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-      });
-
-      let sourceCode = '';
-      let countryCode = '';
-      let categoryCode = '';
-      let languageCode = '';
->>>>>>> 7cee106b068a954d78e618b1b7e64b80eb7ff536
