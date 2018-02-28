@@ -44,8 +44,7 @@ let loginHeader = function(user){
             userName.className = "userName";
             signOut.innerText = "log out";
 
-
-
+  
             signOut.addEventListener("click", function(){
               firebase.auth().signOut().then(function(){
                   var header = document.getElementById("header");
