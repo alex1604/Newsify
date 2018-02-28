@@ -395,26 +395,27 @@ var callback = function(){
 
     for (i=0;i<completeSearchArray.length;i++){
       let count = 0;
-      if (searchArray[i] == 'undefined' || searchArray[i] == 'null' || searchArray[i] == ' '){
-        searchArray.splice(i,1);
-        completeSearchArray.splice(i,1);
+      if (searchArray[i] != '' && searchArray[i] != null){
+          if (count != 0){
+            completeSearchArray[i] += searchArray[i];
+            completeSearchArray[i] = '&' + completeSearchArray[i] + '&';
+           url += completeSearchArray[i];
+         } else{
+           completeSearchArray[i] += searchArray[i];
+           completeSearchArray[i] += '&';
+           url += completeSearchArray[i];
+           count++;
+         }
+     }
+     count = 0;
 
-      } else {
-        if (count != 0){
-          completeSearchArray[i] += searchArray[i];
-          completeSearchArray[i] = '&' + completeSearchArray[i] + '&';
-          url += completeSearchArray[i];
-        } else{
-          completeSearchArray[i] += searchArray[i];
-          completeSearchArray[i] += '&';
-          url += completeSearchArray[i];
-          count++;
-        }
-      }
-      count = 0;
+      /*
+
+   }
+      */
     }
     url += key;
-
+    console.log(url);
 
     let req = new Request(url);
 
@@ -459,7 +460,7 @@ var callback = function(){
   // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
 
   // when click on search Button:
-  searchBtn.addEventListener('click', () => getSomeNews(queryString, category, country, language, source));
+  searchBtn.addEventListener('click', function(){getSomeNews(queryString, category, country, language, source)});
 
 }
 
