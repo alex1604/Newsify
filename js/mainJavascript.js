@@ -92,3 +92,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     // No user is signed in.
   }
 });
+
+let sourceCode = '';
+let countryCode = '';
+let categoryCode = '';
+let languageCode = '';
