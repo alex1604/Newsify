@@ -302,7 +302,7 @@ var callback = function(){
   // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
 
   // when click on search Button:
-  searchBtn.addEventListener('click', function(){getSomeNews(queryString, category, country, language, source)});
+  searchBtn.addEventListener('click', () => getSomeNews(queryString, category, country, language, source));
 
 }
 
