@@ -82,7 +82,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     //when the user is logged in, runs loginHeader
       loginHeader(user);
-      var search = firebase.database().ref("users/").endAt(user.uid);
+      var search = firebase.database().ref("users/").orderByChild(user.uid);
       console.log(search);
       firebaseInsertUser(user.uid, user.displayName, user.photoURL, user.email)
       // User is signed in.
