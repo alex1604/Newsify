@@ -75,7 +75,6 @@ var callback = function(){
   let searchBtn = document.getElementById('searchBtn');
 
   let main = document.getElementsByTagName('main')[0];
-  console.log(main);
 
   let myArticles = [];
 
@@ -189,24 +188,19 @@ var callback = function(){
     }).then(function(object){
 
       let articles = object.articles;
-      console.log(articles);
 
       let amount = 12;
 
       for (article in articles){
-        console.log('hej');
+
         if (amount > 0 && articles[article] != 'undefined' && articles[article] != null && articles[article] != ''){
-          console.log(articles[article].title);
-          console.log(articles[article].description);
-          console.log(articles[article].urlToImage);
-          console.log(articles[article].source.name);
-          console.log(articles[article].author);
+
           myArticles.push(articles[article]);
-          console.log(myArticles);
+
         } else{
           break;
         }
-        console.log(amount);
+
         amount--;
       }
       amount = myArticles.length;
@@ -227,15 +221,14 @@ var callback = function(){
     let url = urlBase + question;
 
     searchArray.push(tagCode);
-    console.log(tagCode);
+
     searchArray.push(categoryCode);
-    console.log(categoryCode);
+
     searchArray.push(countryCode);
-    console.log(countryCode);
+
     searchArray.push(languageCode);
-    console.log(languageCode);
+
     searchArray.push(sourceCode);
-    console.log(sourceCode);
 
     completeSearchArray.push(queryString);
     completeSearchArray.push(category);
@@ -248,7 +241,7 @@ var callback = function(){
       if (searchArray[i] == 'undefined' || searchArray[i] == 'null' || searchArray[i] == ' '){
         searchArray.splice(i,1);
         completeSearchArray.splice(i,1);
-        console.log(completeSearchArray);
+
       } else {
         if (count != 0){
           completeSearchArray[i] += searchArray[i];
@@ -264,7 +257,7 @@ var callback = function(){
       count = 0;
     }
     url += key;
-    console.log(url);
+
 
     let req = new Request(url);
 
@@ -276,25 +269,20 @@ var callback = function(){
     }).then(function(object){
 
       let articles = object.articles;
-      console.log(articles);
+
 
       let myArticles = [];
       let amount = 10;
 
       for (article in articles){
-        console.log('hej');
+
         if (amount > 0){
-          console.log(articles[article].title);
-          console.log(articles[article].description);
-          console.log(articles[article].urlToImage);
-          console.log(articles[article].source.name);
-          console.log(articles[article].author);
+
           myArticles.push(articles[article]);
-          console.log(myArticles);
+
         } else{
           break;
         }
-        console.log(amount);
         amount--;
       }
       searchArray = [];
@@ -314,7 +302,6 @@ var callback = function(){
   // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
 
   // when click on search Button:
-  searchBtn.addEventListener('click', function(){console.log('clicked');});
   searchBtn.addEventListener('click', function(){getSomeNews(queryString, category, country, language, source)});
 
 }
