@@ -43,9 +43,8 @@ let loginHeader = function(user){
             userName.innerText = user.displayName;
             userName.className = "userName";
             signOut.innerText = "log out";
+
   
-  
-           
             signOut.addEventListener("click", function(){
               firebase.auth().signOut().then(function(){
                   var header = document.getElementById("header");
@@ -84,7 +83,12 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail){
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+
+
     //when the user is logged in, runs loginHeader
+
+    document.getElementById("beforeLoggedIn").style.display ="none";
+
       loginHeader(user);
       var search = firebase.database().ref("users/").orderByChild(user.uid);
       console.log(search);
@@ -93,6 +97,8 @@ firebase.auth().onAuthStateChanged(function(user) {
       // Put in the displayname change and whatnot?
   } else {
       console.log("logged out");
+      document.getElementById("beforeLoggedIn").style.display ="block";
+
     // No user is signed in.
   }
 });
