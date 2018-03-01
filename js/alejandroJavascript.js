@@ -206,65 +206,53 @@ var callback = function(){
   var createNews = function (){
 
     let article = document.createElement('article');
-    let blackLine = document.createElement('div');
-    blackLine.classList.add('blackLine');
-    let mainContent = document.createElement('div');
-    mainContent.classList.add('mainContent');
+     let blackLine = document.createElement('div');
+     blackLine.classList.add('blackLine');
+     let mainContent = document.createElement('div');
+     mainContent.classList.add('mainContent');
 
-    let pinkAndTitle = document.createElement('div');
-    pinkAndTitle.classList.add('pinkAndTitle');
+     let pinkAndTitle = document.createElement('div');
+     pinkAndTitle.classList.add('pinkAndTitle');
 
-    let pinkLine = document.createElement('div');
-    pinkLine.classList.add('pinkLine');
+     let pinkLine = document.createElement('div');
+     pinkLine.classList.add('pinkLine');
 
-    let title = document.createElement('div');
-    title.classList.add('title');
+     let title = document.createElement('div');
+     title.classList.add('title');
 
-    let sumUp = document.createElement('p');
-    sumUp.classList.add('sumUp');
+     let sumUp = document.createElement('p');
+     sumUp.classList.add('sumUp');
 
-    let readMore = document.createElement('div');
-    readMore.classList.add('readMore');
-    let readMore2 = document.createElement('div');
-    readMore.classList.add('readMore');
-    let a = document.createElement('a');
-    a.classList.add('readMoreLink');
-    a.target = '_blank';
-    a.innerHTML = 'Read full article...';
+     let readMore = document.createElement('div');
+     readMore.classList.add('readMore');
+     let readMore2 = document.createElement('div');
+     readMore.classList.add('readMore');
+     let a = document.createElement('a');
+     a.classList.add('readMoreLink');
+     a.target = '_blank';
+     a.innerHTML = 'Read full article...';
 
-    let a2 = document.createElement('a');
-    a2.classList.add('readMoreLink');
-    a2.target = '_blank';
+     readMore.appendChild(a);
 
-    let i2 = document.createElement('i');
-    i2.classList.add('fas');
-    i2.classList.add('fa-angle-down');
+     pinkAndTitle.appendChild(pinkLine);
+     pinkAndTitle.appendChild(title);
+     pinkAndTitle.appendChild(sumUp);
+     pinkAndTitle.appendChild(readMore);
 
-    readMore.appendChild(a);
-    a2.appendChild(i2);
-    readMore2.appendChild(a2);
+     let articleImage = document.createElement('div');
+     articleImage.classList.add('articleImage');
+     let img = document.createElement('img');
+     img.classList.add('articleImageLink');
 
+     articleImage.appendChild(img);
 
-    pinkAndTitle.appendChild(pinkLine);
-    pinkAndTitle.appendChild(title);
-    pinkAndTitle.appendChild(sumUp);
-    pinkAndTitle.appendChild(readMore);
-    pinkAndTitle.appendChild(readMore2);
+     mainContent.appendChild(pinkAndTitle);
+     mainContent.appendChild(articleImage);
 
-    let articleImage = document.createElement('div');
-    articleImage.classList.add('articleImage');
-    let img = document.createElement('img');
-    img.classList.add('articleImageLink');
+     article.appendChild(blackLine);
+     article.appendChild(mainContent);
 
-    articleImage.appendChild(img);
-
-    mainContent.appendChild(pinkAndTitle);
-    mainContent.appendChild(articleImage);
-
-    article.appendChild(blackLine);
-    article.appendChild(mainContent);
-
-    main.appendChild(article);
+     main.appendChild(article);
 
 
     //Jonathans kod //
@@ -319,7 +307,6 @@ var callback = function(){
       descriptions[count].innerHTML = array[count].description;
       images[count].src = array[count].urlToImage;
       readMore[count].href = array[count].url;
-      readMore[(count + 1)].href = array[count].url;
       count++;
 
     } while (count < number);
@@ -396,23 +383,18 @@ var callback = function(){
     for (i=0;i<completeSearchArray.length;i++){
       let count = 0;
       if (searchArray[i] != '' && searchArray[i] != null){
-          if (count != 0){
-            completeSearchArray[i] += searchArray[i];
-            completeSearchArray[i] = '&' + completeSearchArray[i] + '&';
-           url += completeSearchArray[i];
-         } else{
-           completeSearchArray[i] += searchArray[i];
-           completeSearchArray[i] += '&';
-           url += completeSearchArray[i];
-           count++;
-         }
-     }
-     count = 0;
-
-      /*
-
-   }
-      */
+        if (count != 0){
+          completeSearchArray[i] += searchArray[i];
+          completeSearchArray[i] = '&' + completeSearchArray[i] + '&';
+          url += completeSearchArray[i];
+        } else{
+          completeSearchArray[i] += searchArray[i];
+          completeSearchArray[i] += '&';
+          url += completeSearchArray[i];
+          count++;
+        }
+      }
+      count = 0;
     }
     url += key;
     console.log(url);
@@ -456,7 +438,6 @@ var callback = function(){
       console.log('failed');
     });
   }
-
   // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
 
   // when click on search Button:
