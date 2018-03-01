@@ -20,8 +20,8 @@ var callback = function(){
     let max = object.DailyForecasts[0].Temperature.Maximum.Value;
     let weather = document.getElementById('weather');
 
-    min = Math.ceil((min - 32) * 5 / 9);
-    max = Math.ceil((max - 32) * 5 / 9);
+    min = Math.ceil((min - 32) * 5 / 9) + ' /';
+    max = ' ' + Math.ceil((max - 32) * 5 / 9);
 
     switch(dayIcon){
       case 1:
