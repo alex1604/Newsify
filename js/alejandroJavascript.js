@@ -20,8 +20,8 @@ var callback = function(){
     let max = object.DailyForecasts[0].Temperature.Maximum.Value;
     let weather = document.getElementById('weather');
 
-    min = Math.ceil((min - 32) * 5 / 9) + ' /';
-    max = ' ' + Math.ceil((max - 32) * 5 / 9);
+    min = Math.ceil((min - 32) * 5 / 9);
+    max = Math.ceil((max - 32) * 5 / 9);
 
     switch(dayIcon){
       case 1:
@@ -126,12 +126,12 @@ var callback = function(){
     }
 
     document.getElementById('weatherLocation').innerHTML = weatherLocation;
-    document.getElementById('min').innerHTML = min + ' ºC' + ' /';
-    document.getElementById('max').innerHTML = ' ' + max + ' ºC';
+    document.getElementById('min').innerHTML = min + 'ºC' + ' / ';
+    document.getElementById('max').innerHTML = max + 'ºC';
 
     document.getElementById('weatherLocation2').innerHTML = weatherLocation;
-    document.getElementById('min2').innerHTML = min + ' ºC' + ' /';
-    document.getElementById('max2').innerHTML = ' ' + max + ' ºC';
+    document.getElementById('min2').innerHTML = min + 'ºC' + ' / ';
+    document.getElementById('max2').innerHTML = max + 'ºC';
 
   };
 
@@ -186,7 +186,8 @@ var callback = function(){
     getWeather(ltd,lng,urlWeather);
   }
 
-  //getLocation(); råden är kommenterat pga begränsat antal anrop till API:t
+  //getLocation();
+  //raden är kommenterat pga begränsat antal anrop till API:t
 
   /*console.log('Hello');
 
