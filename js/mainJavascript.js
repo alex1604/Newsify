@@ -6,8 +6,11 @@ let whenLoggedIn = document.getElementById("whenLoggedIn");
 
 let addTagBtn = document.getElementById("addTag");
 
+let allUsers = []
 
 whenLoggedIn.style.display = "none";
+
+
 
 let login = document.getElementById("login");
 
@@ -22,6 +25,7 @@ let login = document.getElementById("login");
       firebase.initializeApp(config);
 
       const db = firebase.database()
+
 
 
 
@@ -79,13 +83,33 @@ let loginHeader = function(user){
 
 let firebaseInsertUser = function (userID, userName, userPicture, userMail){
   //adds user to database with username, email, photourl
+
+
+  db.ref("users").once("value",function(snapshot){
+
+      let obj = snapshot.val()
+      for(let prop in obj){
+          allUsers.push(prop)
+      }
+
+
+      for(let i=0; i< allUsers.length; i++){
+
+          if(userID === allUsers[i]){
+            console.log(allUsers[i])
+          }
+
+      }
+
+  })
+
   var database = firebase.database;
   database().ref("/users/" + userID).set({
     username: userName,
     photoURL: userPicture,
     email: userMail,
     tags : {
-      example: "example",
+      example: "Saved articles",
     },
     favourites: {
       example: "example",
@@ -175,9 +199,20 @@ firebase.auth().onAuthStateChanged(function(user) {
 
       addTagBtn.addEventListener("click",function(){
 
-          db.ref("users/"+ user.uid + "/tags").push("hej")
+          if(document.getElementById("currentTag").innerText !== ""){
+
+             db.ref("users/"+ user.uid + "/tags").push(document.getElementById("currentTag").innerText)
+
+
+          }
+
+
+
 
       })
+
+
+
 
     //when the user is logged in, runs loginHeader
 

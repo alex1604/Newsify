@@ -1010,11 +1010,7 @@ tagsSlider.tagsNextBtn.style.display = "block";
 tagsSlider.tagsPrevBtn.style.display = "block";
 tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
 
-while (main.hasChildNodes()) {
-  main.removeChild(main.lastChild);
-}
 
-getAllNews();
 
 })
 
