@@ -1,6 +1,8 @@
-console.log("JJJS");
-let readMore = document.getElementsByClassName("readMore");
-let readMoreLength = readMore.length;
+let beforeLoggedIn = document.getElementById("beforeLoggedIn")
+
+let deleteCurrentTag = document.getElementById("deleteTag");
+
+
 
 let currentTag = {
 
@@ -8,7 +10,8 @@ let currentTag = {
   sourceTag : document.getElementById("sourceTag"),
   countryTag: document.getElementById("countryTag"),
   categoryTag : document.getElementById("categoryTag"),
-  languageTag: document.getElementById("languageTag")
+  languageTag: document.getElementById("languageTag"),
+
 }
 
 let previousTagBtn = document.getElementById("prev");
@@ -67,6 +70,16 @@ let languageSlider = {
 }
 languageSlider.languangePrevBtn.style.opacity ="0"
 
+
+let tagsSlider ={
+
+    tagsNextBtn : document.getElementById('tagsNextBtn'),
+    tagsPrevBtn: document.getElementById("tagsPrevBtn"),
+    tagsContentChange : document.getElementById("tagsSliderContentChange"),
+    slider: document.getElementById("tagsSlider")
+}
+
+
 // let sliderContentChangeWidth = sliderContentChange.offsetWidth;
 let sliderContentChangeWidth = slider.sliderContentChange.offsetWidth;
 let sourceContentChangeWidth = sourceSlider.sourceContentChange.offsetWidth;
@@ -100,20 +113,35 @@ let categoryTotalLeft = "";
 let languageMinusSlide = 1;
 let languageTotalLeft = "";
 
-console.log(readMoreLength)
+//For tagsSlider
 
-for(let i =0; i < readMoreLength; i++){
-
-  console.log(readMore[i])
-
-}
+let tagsMinusSlide = 1;
+let tagsTotalLeft = "";
 
 
 slider.inputKeyword.addEventListener("change",function(){
-  currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
+
+  if(slider.inputKeyword.value === ""){
+    console.log(slider.inputKeyword.innerHTML)
+
+    currentTag.inputTag.innerHTML = ""
+    tagsSlider.tagsNextBtn.style.display = "block";
+    tagsSlider.tagsPrevBtn.style.display = "block";
+    tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
+
+  }else{
+    console.log(slider.inputKeyword.innerHTML)
+
+    currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
+    tagsSlider.tagsNextBtn.style.display = "none";
+    tagsSlider.tagsPrevBtn.style.display = "none";
+    tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
+
+
+  }
+
 
 })
-
 
 
 
@@ -144,10 +172,12 @@ slider.nextTagBtn.addEventListener("click",function(){
 
         if(slider.inputKeyword.value === ""){
 
-          currentTag.inputTag.innerHTML = ""
+            currentTag.inputTag.innerHTML = ""
+
 
         }else{
             currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
+
         }
       }
 
@@ -156,7 +186,7 @@ slider.nextTagBtn.addEventListener("click",function(){
         slider.sliderContentChange.style.marginLeft = totalLeft;
         minusSlide++
         if(minusSlide === 2){
-          if(countryMinusSlide> 1 || categoryMinusSlide > 1){
+          if(countryMinusSlide> 1 || categoryMinusSlide > 1 ){
             sourceSlider.slider.style.opacity ="0";
 
           }else{
@@ -170,7 +200,6 @@ slider.nextTagBtn.addEventListener("click",function(){
         }
 
         if(minusSlide === 3){
-          console.log(sourceMinusSlide)
 
 
           if(sourceMinusSlide>1 || slider.inputKeyword.value !== "" || languageMinusSlide>1){
@@ -248,7 +277,6 @@ slider.prevTagBtn.addEventListener("click",function(){
 
 
     minusSlide--
-    console.log(minusSlide)
 
     if(minusSlide === 1){
       slider.prevTagBtn.style.opacity = "0"
@@ -276,7 +304,6 @@ slider.prevTagBtn.addEventListener("click",function(){
     }
 
     if(minusSlide === 3){
-        console.log(sourceMinusSlide)
       if(sourceMinusSlide>1 || slider.inputKeyword.value !== "" || languageMinusSlide>1){
         countrySlider.slider.style.opacity = "0";
 
@@ -565,11 +592,19 @@ function languageSwitch(languageMinusSlide){
 
 }
 
-
 function showArrowsOrNot(minusSlide,prevBtn,nextBtn, contentChangeLength ){
 
-  if(minusSlide> 0){
+  console.log("minusSlide: ", minusSlide);
+  console.log("prevBtn: ", prevBtn);
+  console.log("nextBtn: ", nextBtn);
+  console.log("contentChangeLength: ", contentChangeLength)
+
+
+
+  if(minusSlide> 1){
     prevBtn.style.opacity = "1";
+    console.log("prevBtn: ", prevBtn);
+
   }
 
   if(minusSlide === contentChangeLength-1){
@@ -579,8 +614,6 @@ function showArrowsOrNot(minusSlide,prevBtn,nextBtn, contentChangeLength ){
 }
 
 function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth, sliderContentChange, funktionen, nextBtn, prevBtn){
-
-  console.log(totalLeft)
 
 
 
@@ -597,7 +630,10 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         sliderContentChange.style.marginLeft = totalLeft;
         sourceMinusSlide++
-        showArrowsOrNot(sourceMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
+        tagsSlider.tagsNextBtn.style.display = "none";
+        tagsSlider.tagsPrevBtn.style.display = "none";
+        tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
+                showArrowsOrNot(sourceMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
         funktionen(sourceMinusSlide)
       }
       break;
@@ -612,6 +648,11 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         sliderContentChange.style.marginLeft = totalLeft;
         countryMinusSlide++
+
+        tagsSlider.tagsNextBtn.style.display = "none";
+        tagsSlider.tagsPrevBtn.style.display = "none";
+        tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
+
         if(countryMinusSlide>1){
           slider.inputKeyword.disabled = true;
           slider.inputKeyword.setAttribute("placeholder", "You can not combine that tag")
@@ -640,6 +681,11 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         sliderContentChange.style.marginLeft = totalLeft;
         categoryMinusSlide++
+
+        tagsSlider.tagsNextBtn.style.display = "none";
+        tagsSlider.tagsPrevBtn.style.display = "none";
+        tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
+
         if(categoryMinusSlide>1){
           slider.inputKeyword.disabled = true;
           slider.inputKeyword.setAttribute("placeholder", "You can not combine that tag")
@@ -668,6 +714,10 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         sliderContentChange.style.marginLeft = totalLeft;
         languageMinusSlide++
+        tagsSlider.tagsNextBtn.style.display = "none";
+        tagsSlider.tagsPrevBtn.style.display = "none";
+        tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
+
         showArrowsOrNot(languageMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
 
         funktionen(languageMinusSlide)
@@ -675,6 +725,30 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
 
       break;
+
+    case "tagsSliderContentChange":
+
+          totalLeft = tagsMinusSlide * contentChangeWidth;
+          totalLeft = totalLeft.toString();
+
+          totalLeft = "-" + totalLeft + "px";
+
+          if(contentChangeLength> tagsMinusSlide){
+
+            sliderContentChange.style.marginLeft = totalLeft;
+            tagsMinusSlide++
+
+            showArrowsOrNot(tagsMinusSlide, prevBtn,nextBtn,contentChangeLength+1)
+
+
+
+          }
+
+
+
+      break;
+
+
 
     default:
 
@@ -718,9 +792,14 @@ sourceSlider.prevBtn.addEventListener("click", function(){
 
 
     sourceMinusSlide--
+
     if(sourceMinusSlide === 1){
 
       sourceSlider.prevBtn.style.opacity = "0"
+      tagsSlider.tagsNextBtn.style.display = "block";
+      tagsSlider.tagsPrevBtn.style.display = "block";
+      tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
+
     }
     if(sourceMinusSlide < sourceContentChangeLength){
       sourceSlider.nextBtn.style.opacity = "1"
@@ -776,7 +855,11 @@ countrySlider.countryPrevBtn.addEventListener("click",function(){
     }
     if(countryMinusSlide === 1){
 
-      countrySlider.countryPrevBtn.style.opacity = "0"
+      countrySlider.countryPrevBtn.style.opacity = "0";
+      tagsSlider.tagsNextBtn.style.display = "block";
+      tagsSlider.tagsPrevBtn.style.display = "block";
+      tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
+
     }
     if(countryMinusSlide < countryContentChangeLength){
       countrySlider.countryNextBtn.style.opacity = "1"
@@ -829,10 +912,13 @@ categorySlider.categoryPrevBtn.addEventListener("click",function(){
 
 
     }
-    console.log(categoryMinusSlide)
     if(categoryMinusSlide === 1){
 
-      categorySlider.categoryPrevBtn.style.opacity = "0"
+      categorySlider.categoryPrevBtn.style.opacity = "0";
+      tagsSlider.tagsNextBtn.style.display = "block";
+      tagsSlider.tagsPrevBtn.style.display = "block";
+      tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
+
     }
     if(categoryMinusSlide < categoryContentChangeLength){
       categorySlider.categoryNextBtn.style.opacity = "1"
@@ -877,7 +963,11 @@ languageSlider.languangePrevBtn.addEventListener("click",function(){
 
      if(languageMinusSlide === 1){
 
-        languageSlider.languangePrevBtn.style.opacity = "0"
+        languageSlider.languangePrevBtn.style.opacity = "0";
+        tagsSlider.tagsNextBtn.style.display = "block";
+        tagsSlider.tagsPrevBtn.style.display = "block";
+        tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
+
       }
       if(languageMinusSlide < languageContentChangeLength){
         languageSlider.languangeNextBtn.style.opacity = "1"
@@ -890,3 +980,40 @@ languageSlider.languangePrevBtn.addEventListener("click",function(){
   }
 
 });
+
+
+deleteCurrentTag.addEventListener("click",function(){
+
+  currentTag.inputTag.innerHTML = "";
+  currentTag.sourceTag.innerHTML = "";
+  currentTag.countryTag.innerHTML = "";
+  currentTag.categoryTag.innerHTML = "";
+  currentTag.languageTag.innerHTML = "";
+
+  slider.inputKeyword.value = ""
+
+sourceSlider.sourceContentChange.style.marginLeft = "0";
+countrySlider.countryContentChange.style.marginLeft = "0";
+categorySlider.categoryContentChange.style.marginLeft = "0";
+languageSlider.languageContentChange.style.marginLeft = "0"
+
+
+
+sourceMinusSlide = 1;
+countryMinusSlide = 1;
+categoryMinusSlide = 1;
+languageMinusSlide = 1
+
+showArrowsOrNot(sourceMinusSlide, sourceSlider.nextBtn ,sourceSlider.prevBtn, sourceSlider.sourceContentChange.children.length )
+
+tagsSlider.tagsNextBtn.style.display = "block";
+tagsSlider.tagsPrevBtn.style.display = "block";
+tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
+
+
+
+})
+
+function tagsSwitch(){
+  return "hej"
+}

@@ -18,8 +18,7 @@
         justify-content: center;
       }
 
-    #beforeLoggedIn{
-    }
+
 
       header{
         padding-top: 50px;
@@ -46,11 +45,12 @@
 
       }
 
-      #sliderContent{
+      #sliderContent, #tagsSlider{
         width: 300px;
         white-space: nowrap;
         position: relative;
       }
+
 
 
     #inputKeyword{
@@ -98,12 +98,15 @@ line-height: 30px;
         border:none;
       }
 
-      #sliderContentChange{
+
+      #sliderContentChange, #tagsSliderContentChange{
         width:300px;
         margin-left: ;
         transition-property: margin-left;
         transition-duration: 0.5s;
       }
+
+
 
       #sourceContentChange, #countryContentChange, #categoryContentChange, #languageContentChange {
         transition-property: margin-left;
@@ -131,7 +134,7 @@ line-height: 30px;
       }
 
 
-      #searchBtn{
+      .Btn{
         margin-top: 20px;
         padding:5px 30px;
         outline: none;
@@ -141,14 +144,19 @@ line-height: 30px;
         border-right: 5px solid #34374C;
       }
 
+      #addTag{
+        display: none;
+      }
       #prevInput img{
 
         transform: rotate(180deg);
       }
 
-      #prevBtn {
+      #prevBtn, #tagsPrevBtn {
         transform: rotate(180deg);
       }
+
+
 
 
 

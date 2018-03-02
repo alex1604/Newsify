@@ -1,4 +1,14 @@
 console.log("mainJS");
+
+let signedInNowOrBefore = "before"
+
+let whenLoggedIn = document.getElementById("whenLoggedIn");
+
+let addTagBtn = document.getElementById("addTag");
+
+
+whenLoggedIn.style.display = "none";
+
 let login = document.getElementById("login");
 
       var config = {
@@ -21,6 +31,8 @@ let login = document.getElementById("login");
         //simple click event on the "login" div
               firebase.auth().signInWithPopup(gmailprovider).then(function(result) {
                   console.log("log-in button");
+
+                    signedInNowOrBefore = "now";
                   }).catch(function(error) {
                   console.log("Error: " + error);
               })
@@ -85,21 +97,108 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
 
 
+    whenLoggedIn.style.display = "block"
+
+    let tagsContentChangeWidth = tagsSlider.tagsContentChange.offsetWidth;
+
+
+    addTagBtn.style.display ="inline-block";
+
+    console.log(signedInNowOrBefore)
+
+        if(signedInNowOrBefore === "before"){
+
+                tagsSlider.tagsNextBtn.addEventListener("click",function(){
+
+                  let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
+                  sliderFunctionRight(tagsContentChangeLength, tagsTotalLeft, tagsContentChangeWidth, tagsSlider.tagsContentChange, tagsSwitch, tagsSlider.tagsNextBtn, tagsSlider.tagsPrevBtn)
+
+                  if(tagsMinusSlide>1){
+
+                      beforeLoggedIn.style.display = "none"
+                  }
+
+                })
+        }
+
+
+
+
+
+        if(signedInNowOrBefore === "before"){
+
+
+            tagsSlider.tagsPrevBtn.addEventListener("click",function(){
+
+              let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
+              tagsTotalLeft = tagsMinusSlide * tagsContentChangeWidth;
+
+              tagsTotalLeft = tagsTotalLeft - (tagsContentChangeWidth *2);
+              tagsTotalLeft = tagsTotalLeft.toString();
+
+              tagsTotalLeft =  "-" +tagsTotalLeft + "px";
+
+
+              if(tagsMinusSlide>1){
+
+
+
+                tagsSlider.tagsContentChange.style.marginLeft = tagsTotalLeft;
+
+
+                tagsMinusSlide--
+
+                console.log(tagsMinusSlide)
+
+                 if(tagsMinusSlide === 1){
+
+                    tagsSlider.tagsPrevBtn.style.opacity = "0"
+                  }
+                  if(tagsMinusSlide < tagsContentChangeLength){
+                    tagsSlider.tagsNextBtn.style.opacity = "1"
+
+                  }
+
+                  if(tagsMinusSlide===1){
+
+                    beforeLoggedIn.style.display = "block"
+                  }
+                // languageSwitch(languageMinusSlide)
+
+
+
+              }
+
+            });
+      }
+
+
+      addTagBtn.addEventListener("click",function(){
+
+          db.ref("users/"+ user.uid + "/tags").push("hej")
+
+      })
+
     //when the user is logged in, runs loginHeader
 
 
       loginHeader(user);
       var search = firebase.database().ref("users/").orderByChild(user.uid);
-      console.log(search);
+      console.log(user.uid);
       firebaseInsertUser(user.uid, user.displayName, user.photoURL, user.email)
       // User is signed in.
       // Put in the displayname change and whatnot?
   } else {
       console.log("logged out");
+      addTagBtn.style.display = "none";
+      whenLoggedIn.style.display =  "none";
 
     // No user is signed in.
   }
 });
+
+
+
 
 let sourceCode = '';
 let countryCode = '';
