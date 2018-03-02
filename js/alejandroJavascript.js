@@ -26,119 +26,113 @@ var callback = function(){
     switch(dayIcon){
       case 1:
       weather.classList.add('wi-day-sunny');
+      weather2.classList.add('wi-day-sunny');
       break;
       case 2:
       weather.classList.add('wi-day-sunny-overcast');
+      weather2.classList.add('wi-day-sunny-overcast');
       case 3:
       weather.classList.add('wi-day-cloudy-high');
+      weather2.classList.add('wi-day-cloudy-high');
       break;
       case 4:
       weather.classList.add('wi-day-cloudy');
+      weather2.classList.add('wi-day-cloudy');
       break;
       case 5:
       weather.classList.add('wi-day-haze');
+      weather2.classList.add('wi-day-haze');
       break;
       case 6:
       weather.classList.add('wi-day-cloud');
+      weather2.classList.add('wi-day-cloud');
       break;
       case 7:
       weather.classList.add('wi-cloudy');
+      weather2.classList.add('wi-cloudy');
       break;
       case 8:
       weather.classList.add('wi-cloudy');
+      weather2.classList.add('wi-cloudy');
       break;
       case 11:
       weather.classList.add('wi-fog');
+      weather2.classList.add('wi-fog');
       break;
       case 12:
       weather.classList.add('wi-day-showers');
+      weather2.classList.add('wi-day-showers');
       break;
       case 13:
       weather.classList.add('wi-day-showers');
+      weather2.classList.add('wi-day-showers');
       break;
       case 14:
       weather.classList.add('wi-day-showers');
+      weather2.classList.add('wi-day-showers');
       break;
       case 15:
       weather.classList.add('wi-day-storm-showers');
+      weather2.classList.add('wi-day-storm-showers');
       break;
       case 16:
       weather.classList.add('wi-day-storm-showers');
+      weather2.classList.add('wi-day-storm-showers');
       break;
       case 17:
       weather.classList.add('wi-day-storm-showers');
+      weather2.classList.add('wi-day-storm-showers');
       break;
       case 18:
       weather.classList.add('wi-day-rain-mix');
+      weather2.classList.add('wi-day-rain-mix');
       break;
       case 19:
       weather.classList.add('wi-day-cloudy-windy');
+      weather2.classList.add('wi-day-cloudy-windy');
       break;
       case 20:
       weather.classList.add('wi-day-cloudy-windy');
+      weather2.classList.add('wi-day-cloudy-windy');
       break;
       case 21:
       weather.classList.add('wi-day-cloudy-windy');
+      weather2.classList.add('wi-day-cloudy-windy');
       break;
       case 22:
       weather.classList.add('wi-day-snow');
+      weather2.classList.add('wi-day-snow');
       break;
       case 23:
       weather.classList.add('wi-day-snow');
+      weather2.classList.add('wi-day-snow');
       break;
       case 24:
       weather.classList.add('wi-snowflake-cold');
+      weather2.classList.add('wi-snowflake-cold');
       break;
       case 25:
       weather.classList.add('wi-day-sleet');
+      weather2.classList.add('wi-day-sleet');
       break;
       case 26:
       weather.classList.add('wi-day-hail');
+      weather2.classList.add('wi-day-hail');
       break;
       case 29:
       weather.classList.add('wi-day-snow-thunderstorm');
-      break;
-      case 33:
-      weather.classList.add('wi-night-clear');
-      break;
-      case 34:
-      weather.classList.add('wi-night-cloudy-high');
-      break;
-      case 35:
-      weather.classList.add('wi-night-partly-cloudy');
-      break;
-      case 36:
-      weather.classList.add('wi-night-cloudy');
-      break;
-      case 37:
-      weather.classList.add('wi-night-cloudy');
-      break;
-      case 38:
-      weather.classList.add('wi-night-cloudy');
-      break;
-      case 39:
-      weather.classList.add('wi-night-alt-showers');
-      break;
-      case 40:
-      weather.classList.add('wi-night-alt-showers');
-      break;
-      case 41:
-      weather.classList.add('wi-night-storm-showers');
-      break;
-      case 42:
-      weather.classList.add('wi-night-storm-showers');
-      break;
-      case 43:
-      weather.classList.add('wi-night-cloudy-windy');
-      break;
-      case 44:
-      weather.classList.add('wi-night-snow');
+      weather2.classList.add('wi-day-snow-thunderstorm');
       break;
     }
 
     document.getElementById('weatherLocation').innerHTML = weatherLocation;
-    document.getElementById('min').innerHTML = min + ' ºC';
-    document.getElementById('max').innerHTML = max + ' ºC';
+    document.getElementById('min').innerHTML = min + ' ºC' + ' /';
+    document.getElementById('max').innerHTML = ' ' + max + ' ºC';
+
+    document.getElementById('weatherLocation2').innerHTML = weatherLocation;
+    document.getElementById('min2').innerHTML = min + ' ºC' + ' /';
+    document.getElementById('max2').innerHTML = ' ' + max + ' ºC';
+
   };
 
   var getWeather = function (ltd,lng,urlWeather){
