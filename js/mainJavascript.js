@@ -198,9 +198,173 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 
-
-
 let sourceCode = '';
 let countryCode = '';
 let categoryCode = '';
 let languageCode = '';
+
+const key = 'apiKey=ca2d5b8c76a84ec68544ecdeadf04043';
+let urlBase = 'https://newsapi.org/v2/top-headlines';
+let question = '?';
+
+let searchArray = [];
+let completeSearchArray = [];
+
+let queryString = 'q=';
+let category = 'category=';
+let language = 'language=';
+let country = 'country=';
+let source = 'sources=';
+let searchBtn = document.getElementById('searchBtn');
+
+let main = document.getElementsByTagName('main')[0];
+
+let myArticles = [];
+
+var createNews = function (){
+
+  let article = document.createElement('article');
+   let blackLine = document.createElement('div');
+   blackLine.classList.add('blackLine');
+   let mainContent = document.createElement('div');
+   mainContent.classList.add('mainContent');
+
+   let pinkAndTitle = document.createElement('div');
+   pinkAndTitle.classList.add('pinkAndTitle');
+
+   let pinkLine = document.createElement('div');
+   pinkLine.classList.add('pinkLine');
+
+   let title = document.createElement('div');
+   title.classList.add('title');
+
+   let sumUp = document.createElement('p');
+   sumUp.classList.add('sumUp');
+
+   let readMore = document.createElement('div');
+   readMore.classList.add('readMore');
+   let readMore2 = document.createElement('div');
+   readMore.classList.add('readMore');
+   let a = document.createElement('a');
+   a.classList.add('readMoreLink');
+   a.target = '_blank';
+   a.innerHTML = 'Read full article...';
+
+   readMore.appendChild(a);
+
+   pinkAndTitle.appendChild(pinkLine);
+   pinkAndTitle.appendChild(title);
+   pinkAndTitle.appendChild(sumUp);
+   pinkAndTitle.appendChild(readMore);
+
+   let articleImage = document.createElement('div');
+   articleImage.classList.add('articleImage');
+   let img = document.createElement('img');
+   img.classList.add('articleImageLink');
+
+   articleImage.appendChild(img);
+
+   mainContent.appendChild(pinkAndTitle);
+   mainContent.appendChild(articleImage);
+
+   article.appendChild(blackLine);
+   article.appendChild(mainContent);
+
+   main.appendChild(article);
+
+
+  //Jonathans kod //
+
+  mainContent.addEventListener("click",function(e){
+
+    if(e.target.className=== "readMoreLink"){
+
+      // let href = e.target.getAttribute("href")
+      // let divIframe = document.getElementById("iframe");
+      //
+      // let iframeElement = document.createElement("iframe");
+      // iframeElement.setAttribute("src", href);
+      // iframeElement.setAttribute("id", "contact");
+      // iframeElement.setAttribute("allowtransparency", "true");
+      // iframeElement.setAttribute("frameborder","0")
+      // iframeElement.setAttribute("scrolling","yes")
+      // iframeElement.setAttribute("width","100%")
+      // iframeElement.setAttribute("height","500px")
+      // iframeElement.setAttribute("frameborder","0")
+      // iframeElement.setAttribute("align","center")
+      //
+      // divIframe.appendChild(iframeElement)
+
+
+      // <!-- <iframe id="contact" src="http://www.bbc.com/news/world-middle-east-43219614" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
+
+    }
+
+  })
+
+}
+
+var browseNews = function (array,number){
+
+  for (i = number; i > 0; i--){
+    createNews();
+  }
+
+  let titles = document.getElementsByClassName('title');
+  let descriptions = document.getElementsByClassName('sumUp');
+  let images = document.getElementsByClassName('articleImageLink');
+  let readMore = document.getElementsByClassName('readMoreLink');
+
+  let count = 0;
+
+  do{
+
+    titles[count].innerHTML = array[count].title;
+    descriptions[count].innerHTML = array[count].description;
+    images[count].src = array[count].urlToImage;
+    readMore[count].href = array[count].url;
+    count++;
+
+  } while (count < number);
+
+}
+
+var getAllNews = function (){
+
+  let url = urlBase + question + 'country=us&' + key;
+  let req = new Request(url);
+
+  fetch(req)
+  .then(function(response){
+
+    return response.json();
+
+  }).then(function(object){
+
+    let articles = object.articles;
+
+    let amount = 12;
+
+    for (article in articles){
+
+      if (amount > 0 && articles[article] != 'undefined' && articles[article] != null && articles[article] != ''){
+
+        myArticles.push(articles[article]);
+
+
+
+      } else{
+        break;
+      }
+
+      amount--;
+    }
+    amount = myArticles.length;
+    console.log(myArticles)
+
+    browseNews(myArticles, amount);
+  })
+  .catch(function(){
+    console.log('failed');
+  });
+}

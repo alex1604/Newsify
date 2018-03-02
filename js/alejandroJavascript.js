@@ -194,7 +194,7 @@ var callback = function(){
 
   //getLocation(); råden är kommenterat pga begränsat antal anrop till API:t
 
-  console.log('Hello');
+  /*console.log('Hello');
 
   const key = 'apiKey=ca2d5b8c76a84ec68544ecdeadf04043';
   let urlBase = 'https://newsapi.org/v2/top-headlines';
@@ -366,7 +366,9 @@ var callback = function(){
     .catch(function(){
       console.log('failed');
     });
-  }
+  }*/
+
+
 
   getAllNews();
 
@@ -451,8 +453,8 @@ var callback = function(){
       console.log('failed');
     });
   }
-  // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
 
+// När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
   // when click on search Button:
   searchBtn.addEventListener('click', function(){getSomeNews(queryString, category, country, language, source)});
 
