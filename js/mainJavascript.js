@@ -8,6 +8,7 @@ let addTagBtn = document.getElementById("addTag");
 
 let allUsers = []
 
+
 whenLoggedIn.style.display = "none";
 
 
@@ -34,6 +35,7 @@ let login = document.getElementById("login");
       login.addEventListener("click", function(event){
         //simple click event on the "login" div
               firebase.auth().signInWithPopup(gmailprovider).then(function(result) {
+
                   console.log("log-in button");
 
                     signedInNowOrBefore = "now";
@@ -81,6 +83,10 @@ let loginHeader = function(user){
             console.log("success");
 }
 
+let id = ""
+
+
+
 let firebaseInsertUser = function (userID, userName, userPicture, userMail){
   //adds user to database with username, email, photourl
 
@@ -90,32 +96,72 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail){
       let obj = snapshot.val()
       for(let prop in obj){
           allUsers.push(prop)
+
       }
 
 
       for(let i=0; i< allUsers.length; i++){
 
           if(userID === allUsers[i]){
-            console.log(allUsers[i])
+            id = allUsers[i]
           }
+
+      }
+
+
+      if(id === ""){
+        console.log("finns inte")
+        var database = firebase.database;
+        database().ref("/users/" + userID).set({
+          username: userName,
+          photoURL: userPicture,
+          email: userMail,
+          tags : {
+
+          },
+          favourites: {
+            example: "example",
+          },
+        })
+
+
+      }else{
+
+        console.log("finns")
+
+
+            db.ref("users/"+ id + "/tags").once("value",function(snapshot){
+
+                  let obj = snapshot.val()
+
+                  let tagsSliderContentChange = document.getElementById("tagsSliderContentChange")
+
+                  for(let prop in obj){
+                    let ul = document.createElement("ul");
+                    ul.className = "tags";
+                    ul.innerHTML = obj[prop];
+                    tagsSliderContentChange.appendChild(ul)
+
+
+                  }
+
+
+
+
+            })
+
+
+
+
 
       }
 
   })
 
-  var database = firebase.database;
-  database().ref("/users/" + userID).set({
-    username: userName,
-    photoURL: userPicture,
-    email: userMail,
-    tags : {
-      example: "Saved articles",
-    },
-    favourites: {
-      example: "example",
-    },
-  })
+
 }
+
+
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -123,12 +169,15 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     whenLoggedIn.style.display = "block"
 
+    document.getElementById("tagsSliderContentChange").innerHTML = "";
+    document.getElementById("tagsSliderContentChange").innerHTML = "<ul class='tags'>Scroll through your saved tags</ul>";
+
+
     let tagsContentChangeWidth = tagsSlider.tagsContentChange.offsetWidth;
 
 
     addTagBtn.style.display ="inline-block";
 
-    console.log(signedInNowOrBefore)
 
         if(signedInNowOrBefore === "before"){
 
@@ -197,19 +246,9 @@ firebase.auth().onAuthStateChanged(function(user) {
       }
 
 
-      addTagBtn.addEventListener("click",function(){
-
-          if(document.getElementById("currentTag").innerText !== ""){
-
-             db.ref("users/"+ user.uid + "/tags").push(document.getElementById("currentTag").innerText)
-
-
-          }
 
 
 
-
-      })
 
 
 
@@ -219,7 +258,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
       loginHeader(user);
       var search = firebase.database().ref("users/").orderByChild(user.uid);
-      console.log(user.uid);
+      sammaid = user.uid;
       firebaseInsertUser(user.uid, user.displayName, user.photoURL, user.email)
       // User is signed in.
       // Put in the displayname change and whatnot?
@@ -231,6 +270,29 @@ firebase.auth().onAuthStateChanged(function(user) {
     // No user is signed in.
   }
 });
+
+
+
+  addTagBtn.addEventListener("click",function(){
+
+        let innerText = document.getElementById("currentTag").innerText;
+
+        console.log(sammaid)
+
+      if(document.getElementById("currentTag").innerText !== ""){
+
+
+            db.ref("users/"+ sammaid+ "/tags").push(innerText)
+            let ul = document.createElement("ul");
+            ul.className = "tags";
+            ul.innerHTML = innerText;
+            tagsSliderContentChange.appendChild(ul)
+
+      }
+
+
+  })
+
 
 
 let sourceCode = '';
