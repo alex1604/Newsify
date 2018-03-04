@@ -4,6 +4,7 @@ let deleteCurrentTag = document.getElementById("deleteTag");
 
 
 
+
 let currentTag = {
 
   inputTag : document.getElementById("inputTag"),
