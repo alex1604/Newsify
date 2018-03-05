@@ -136,7 +136,7 @@ slider.inputKeyword.addEventListener("change",function(){
     currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
     tagsSlider.tagsNextBtn.style.display = "none";
     tagsSlider.tagsPrevBtn.style.display = "none";
-    tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
+    // tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
 
 
   }
