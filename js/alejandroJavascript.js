@@ -12,29 +12,171 @@ var callback = function(){
   var ltd = '';
   var lng = '';
   var urlWeather = '';
+<<<<<<< HEAD
   var weatherResponse;
+=======
+  var weatherResponse = '';
+
+  var browseWeather = function (object, weatherLocation){
+    let dayIcon = object.DailyForecasts[0].Day.Icon;
+    let min = object.DailyForecasts[0].Temperature.Minimum.Value;
+    let max = object.DailyForecasts[0].Temperature.Maximum.Value;
+    let weather = document.getElementById('weather');
+
+    min = Math.ceil((min - 32) * 5 / 9);
+    max = Math.ceil((max - 32) * 5 / 9);
+
+    switch(dayIcon){
+      case 1:
+      weather.classList.add('wi-day-sunny');
+      weather2.classList.add('wi-day-sunny');
+      break;
+      case 2:
+      weather.classList.add('wi-day-sunny-overcast');
+      weather2.classList.add('wi-day-sunny-overcast');
+      case 3:
+      weather.classList.add('wi-day-cloudy-high');
+      weather2.classList.add('wi-day-cloudy-high');
+      break;
+      case 4:
+      weather.classList.add('wi-day-cloudy');
+      weather2.classList.add('wi-day-cloudy');
+      break;
+      case 5:
+      weather.classList.add('wi-day-haze');
+      weather2.classList.add('wi-day-haze');
+      break;
+      case 6:
+      weather.classList.add('wi-day-cloud');
+      weather2.classList.add('wi-day-cloud');
+      break;
+      case 7:
+      weather.classList.add('wi-cloudy');
+      weather2.classList.add('wi-cloudy');
+      break;
+      case 8:
+      weather.classList.add('wi-cloudy');
+      weather2.classList.add('wi-cloudy');
+      break;
+      case 11:
+      weather.classList.add('wi-fog');
+      weather2.classList.add('wi-fog');
+      break;
+      case 12:
+      weather.classList.add('wi-day-showers');
+      weather2.classList.add('wi-day-showers');
+      break;
+      case 13:
+      weather.classList.add('wi-day-showers');
+      weather2.classList.add('wi-day-showers');
+      break;
+      case 14:
+      weather.classList.add('wi-day-showers');
+      weather2.classList.add('wi-day-showers');
+      break;
+      case 15:
+      weather.classList.add('wi-day-storm-showers');
+      weather2.classList.add('wi-day-storm-showers');
+      break;
+      case 16:
+      weather.classList.add('wi-day-storm-showers');
+      weather2.classList.add('wi-day-storm-showers');
+      break;
+      case 17:
+      weather.classList.add('wi-day-storm-showers');
+      weather2.classList.add('wi-day-storm-showers');
+      break;
+      case 18:
+      weather.classList.add('wi-day-rain-mix');
+      weather2.classList.add('wi-day-rain-mix');
+      break;
+      case 19:
+      weather.classList.add('wi-day-cloudy-windy');
+      weather2.classList.add('wi-day-cloudy-windy');
+      break;
+      case 20:
+      weather.classList.add('wi-day-cloudy-windy');
+      weather2.classList.add('wi-day-cloudy-windy');
+      break;
+      case 21:
+      weather.classList.add('wi-day-cloudy-windy');
+      weather2.classList.add('wi-day-cloudy-windy');
+      break;
+      case 22:
+      weather.classList.add('wi-day-snow');
+      weather2.classList.add('wi-day-snow');
+      break;
+      case 23:
+      weather.classList.add('wi-day-snow');
+      weather2.classList.add('wi-day-snow');
+      break;
+      case 24:
+      weather.classList.add('wi-snowflake-cold');
+      weather2.classList.add('wi-snowflake-cold');
+      break;
+      case 25:
+      weather.classList.add('wi-day-sleet');
+      weather2.classList.add('wi-day-sleet');
+      break;
+      case 26:
+      weather.classList.add('wi-day-hail');
+      weather2.classList.add('wi-day-hail');
+      break;
+      case 29:
+      weather.classList.add('wi-day-snow-thunderstorm');
+      weather2.classList.add('wi-day-snow-thunderstorm');
+      break;
+    }
+
+    document.getElementById('weatherLocation').innerHTML = weatherLocation;
+    document.getElementById('min').innerHTML = min + 'ºC' + ' / ';
+    document.getElementById('max').innerHTML = max + 'ºC';
+
+    document.getElementById('weatherLocation2').innerHTML = weatherLocation;
+    document.getElementById('min2').innerHTML = min + 'ºC' + ' / ';
+    document.getElementById('max2').innerHTML = max + 'ºC';
+
+  };
+>>>>>>> 3121f940c68dfd8975ced1c821ea588cf401d905
 
   var getWeather = function (ltd,lng,urlWeather){
     let reqWeather = new Request(urlWeather);
     let locationKey = '';
+    let weatherLocation = '';
     fetch(reqWeather)
     .then(function(response){
       return response.json();
     }).then(function(object){
+      console.log(object);
       locationKey = object.Key;
       countryKey = object.Country.EnglishName;
+      weatherLocation = object.LocalizedName + ' , ' + countryKey;
       console.log(locationKey);
       console.log(countryKey);
+<<<<<<< HEAD
       reqWeather = 'http://dataservice.accuweather.com/forecasts/v1/daily/1day/' + locationKey + '?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq';
       fetch(reqWeather)
+=======
+      console.log(weatherLocation);
+      let urlWeather2 = 'http://dataservice.accuweather.com/forecasts/v1/daily/1day/' + locationKey + '?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq';
+      console.log(urlWeather2);
+      let reqWeather2 = new Request(urlWeather2);
+      fetch(reqWeather2)
+>>>>>>> 3121f940c68dfd8975ced1c821ea588cf401d905
       .then(function(response){
         return response.json();
+        console.log(response);
       }).then(function(object){
         weatherResponse = object;
+<<<<<<< HEAD
         console.log(object);
+=======
+        console.log(weatherResponse);
+        browseWeather(weatherResponse, weatherLocation);
+>>>>>>> 3121f940c68dfd8975ced1c821ea588cf401d905
       }).catch(function(fail){
         console.log('we can`t process this request right now');
-      })
+      });
     }).catch(function(fail){
       console.log('errorLocation');
     });
@@ -56,9 +198,15 @@ var callback = function(){
     + '&q=' + ltd + ',' + lng;
     getWeather(ltd,lng,urlWeather);
   }
+<<<<<<< HEAD
   getLocation();
+=======
 
-  console.log('Hello');
+  //getLocation();
+  //raden är kommenterat pga begränsat antal anrop till API:t
+>>>>>>> 3121f940c68dfd8975ced1c821ea588cf401d905
+
+  /*console.log('Hello');
 
   const key = 'apiKey=ca2d5b8c76a84ec68544ecdeadf04043';
   let urlBase = 'https://newsapi.org/v2/top-headlines';
@@ -83,65 +231,53 @@ var callback = function(){
   var createNews = function (){
 
     let article = document.createElement('article');
-    let blackLine = document.createElement('div');
-    blackLine.classList.add('blackLine');
-    let mainContent = document.createElement('div');
-    mainContent.classList.add('mainContent');
+     let blackLine = document.createElement('div');
+     blackLine.classList.add('blackLine');
+     let mainContent = document.createElement('div');
+     mainContent.classList.add('mainContent');
 
-    let pinkAndTitle = document.createElement('div');
-    pinkAndTitle.classList.add('pinkAndTitle');
+     let pinkAndTitle = document.createElement('div');
+     pinkAndTitle.classList.add('pinkAndTitle');
 
-    let pinkLine = document.createElement('div');
-    pinkLine.classList.add('pinkLine');
+     let pinkLine = document.createElement('div');
+     pinkLine.classList.add('pinkLine');
 
-    let title = document.createElement('div');
-    title.classList.add('title');
+     let title = document.createElement('div');
+     title.classList.add('title');
 
-    let sumUp = document.createElement('p');
-    sumUp.classList.add('sumUp');
+     let sumUp = document.createElement('p');
+     sumUp.classList.add('sumUp');
 
-    let readMore = document.createElement('div');
-    readMore.classList.add('readMore');
-    let readMore2 = document.createElement('div');
-    readMore.classList.add('readMore');
-    let a = document.createElement('a');
-    a.classList.add('readMoreLink');
-    a.target = '_blank';
-    a.innerHTML = 'Read full article...';
+     let readMore = document.createElement('div');
+     readMore.classList.add('readMore');
+     let readMore2 = document.createElement('div');
+     readMore.classList.add('readMore');
+     let a = document.createElement('a');
+     a.classList.add('readMoreLink');
+     a.target = '_blank';
+     a.innerHTML = 'Read full article...';
 
-    let a2 = document.createElement('a');
-    a2.classList.add('readMoreLink');
-    a2.target = '_blank';
+     readMore.appendChild(a);
 
-    let i2 = document.createElement('i');
-    i2.classList.add('fas');
-    i2.classList.add('fa-angle-down');
+     pinkAndTitle.appendChild(pinkLine);
+     pinkAndTitle.appendChild(title);
+     pinkAndTitle.appendChild(sumUp);
+     pinkAndTitle.appendChild(readMore);
 
-    readMore.appendChild(a);
-    a2.appendChild(i2);
-    readMore2.appendChild(a2);
+     let articleImage = document.createElement('div');
+     articleImage.classList.add('articleImage');
+     let img = document.createElement('img');
+     img.classList.add('articleImageLink');
 
+     articleImage.appendChild(img);
 
-    pinkAndTitle.appendChild(pinkLine);
-    pinkAndTitle.appendChild(title);
-    pinkAndTitle.appendChild(sumUp);
-    pinkAndTitle.appendChild(readMore);
-    pinkAndTitle.appendChild(readMore2);
+     mainContent.appendChild(pinkAndTitle);
+     mainContent.appendChild(articleImage);
 
-    let articleImage = document.createElement('div');
-    articleImage.classList.add('articleImage');
-    let img = document.createElement('img');
-    img.classList.add('articleImageLink');
+     article.appendChild(blackLine);
+     article.appendChild(mainContent);
 
-    articleImage.appendChild(img);
-
-    mainContent.appendChild(pinkAndTitle);
-    mainContent.appendChild(articleImage);
-
-    article.appendChild(blackLine);
-    article.appendChild(mainContent);
-
-    main.appendChild(article);
+     main.appendChild(article);
 
 
     //Jonathans kod //
@@ -196,7 +332,6 @@ var callback = function(){
       descriptions[count].innerHTML = array[count].description;
       images[count].src = array[count].urlToImage;
       readMore[count].href = array[count].url;
-      readMore[(count + 1)].href = array[count].url;
       count++;
 
     } while (count < number);
@@ -243,7 +378,9 @@ var callback = function(){
     .catch(function(){
       console.log('failed');
     });
-  }
+  }*/
+
+
 
   getAllNews();
 
@@ -272,11 +409,7 @@ var callback = function(){
 
     for (i=0;i<completeSearchArray.length;i++){
       let count = 0;
-      if (searchArray[i] == 'undefined' || searchArray[i] == 'null' || searchArray[i] == ' '){
-        searchArray.splice(i,1);
-        completeSearchArray.splice(i,1);
-
-      } else {
+      if (searchArray[i] != '' && searchArray[i] != null){
         if (count != 0){
           completeSearchArray[i] += searchArray[i];
           completeSearchArray[i] = '&' + completeSearchArray[i] + '&';
@@ -291,7 +424,7 @@ var callback = function(){
       count = 0;
     }
     url += key;
-
+    console.log(url);
 
     let req = new Request(url);
 
@@ -333,10 +466,9 @@ var callback = function(){
     });
   }
 
-  // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
-
+// När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
   // when click on search Button:
-  searchBtn.addEventListener('click', () => getSomeNews(queryString, category, country, language, source));
+  searchBtn.addEventListener('click', function(){getSomeNews(queryString, category, country, language, source)});
 
 }
 
