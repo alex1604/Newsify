@@ -8,13 +8,13 @@ console.log("erikJS");
        let datum = new Date();
        let date = datum.getDate();
        let month = datum.getMonth() + 1;
-       let link = "http://numbersapi.com/"+month+"/"+date+"/date?json";
+       let link = "https://numbersapi.com/"+month+"/"+date+"/date?json";
        let footer = document.getElementById("footer");
        let divHistory = document.getElementById("divHistory");
        let div1 = document.getElementById("div1"); 
        let div2 = document.getElementById("div2"); 
        let timeDiv = document.getElementById("time");
-       let timeLink = "http://api.timezonedb.com/v2/get-time-zone?key=982P7H46YD1D&format=json&by=zone&zone=Europe/Stockholm"
+       let timeLink = "https://api.timezonedb.com/v2/get-time-zone?key=982P7H46YD1D&format=json&by=zone&zone=Europe/Stockholm"
        let time = document.getElementById("time");
            
            
