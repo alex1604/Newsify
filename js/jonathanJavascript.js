@@ -1,3 +1,5 @@
+console.log("jonteJS");
+
 let beforeLoggedIn = document.getElementById("beforeLoggedIn")
 
 let deleteCurrentTag = document.getElementById("deleteTag");
