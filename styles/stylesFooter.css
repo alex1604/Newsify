@@ -9,18 +9,39 @@
 }
 
 #divHistory {
-    margin-left: 5px;
+    margin-left: 10px;
     margin-top: 10px;
+    width: 50%;
 }
 
 #div1 {
-    margin-left: 10px;
-    margin-top: 10px;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 6px;
+    width: 20%;
+    
 }
 
 #div2 {
-    margin-left: 10px;
+    display: block;
+    margin-left: 20px;
     margin-top: 10px;
+    width: 50%;
+    
+    
+}
+
+#time {
+    position: absolute;
+    top: 60px;
+    margin-right: 100px;
+    right: 0;
+    display: block;
+    margin-left: 1000px;
+    margin-top: -20px;
+    width: auto;
+    font-weight: bold;
+   
 }
 
 
