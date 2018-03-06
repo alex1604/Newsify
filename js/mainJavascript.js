@@ -13,6 +13,8 @@ whenLoggedIn.style.display = "none";
 
 
 
+let tagsContentChangeWidth = ""
+
 let login = document.getElementById("login");
 
 var config = {
@@ -173,7 +175,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById("tagsSliderContentChange").innerHTML = "<ul class='tags'>Scroll through your saved tags</ul>";
 
 
-    let tagsContentChangeWidth = tagsSlider.tagsContentChange.offsetWidth;
+    tagsContentChangeWidth = tagsSlider.tagsContentChange.offsetWidth;
 
 
     addTagBtn.style.display = "inline-block";
@@ -181,17 +183,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     if (signedInNowOrBefore === "before") {
 
-      tagsSlider.tagsNextBtn.addEventListener("click", function () {
 
-        let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
-        sliderFunctionRight(tagsContentChangeLength, tagsTotalLeft, tagsContentChangeWidth, tagsSlider.tagsContentChange, tagsSwitch, tagsSlider.tagsNextBtn, tagsSlider.tagsPrevBtn)
-
-        if (tagsMinusSlide > 1) {
-
-          beforeLoggedIn.style.display = "none"
-        }
-
-      })
     }
 
 
@@ -201,57 +193,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (signedInNowOrBefore === "before") {
 
 
-      tagsSlider.tagsPrevBtn.addEventListener("click", function () {
 
-        let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
-        tagsTotalLeft = tagsMinusSlide * tagsContentChangeWidth;
-
-        tagsTotalLeft = tagsTotalLeft - (tagsContentChangeWidth * 2);
-        tagsTotalLeft = tagsTotalLeft.toString();
-
-        tagsTotalLeft = "-" + tagsTotalLeft + "px";
-
-
-        if (tagsMinusSlide > 1) {
-
-
-
-          tagsSlider.tagsContentChange.style.marginLeft = tagsTotalLeft;
-
-
-          tagsMinusSlide--
-
-          console.log(tagsMinusSlide)
-
-          if (tagsMinusSlide === 1) {
-
-            tagsSlider.tagsPrevBtn.style.opacity = "0"
-          }
-          if (tagsMinusSlide < tagsContentChangeLength) {
-            tagsSlider.tagsNextBtn.style.opacity = "1"
-
-          }
-
-          if (tagsMinusSlide === 1) {
-
-            beforeLoggedIn.style.display = "block"
-          }
-          // languageSwitch(languageMinusSlide)
-
-
-
-        }
-
-      });
     }
-
-
-
-
-
-
-
-
 
     //when the user is logged in, runs loginHeader
 
@@ -271,27 +214,9 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 });
 
+console.log(tagsSlider.tagsPrevBtn)
 
 
-addTagBtn.addEventListener("click", function () {
-
-  let innerText = document.getElementById("currentTag").innerText;
-
-  console.log(sammaid)
-
-  if (document.getElementById("currentTag").innerText !== "") {
-
-
-    db.ref("users/" + sammaid + "/tags").push(innerText)
-    let ul = document.createElement("ul");
-    ul.className = "tags";
-    ul.innerHTML = innerText;
-    tagsSliderContentChange.appendChild(ul)
-
-  }
-
-
-})
 
 
 
@@ -378,10 +303,10 @@ var createNews = function () {
   //pinkAndTitle.appendChild(fb_share);
   /*
  <div class="fb-share-button" data-href="https://developers.facebook.com
- /docs/plugins/" data-layout="button_count" data-size="large" 
+ /docs/plugins/" data-layout="button_count" data-size="large"
  data-mobile-iframe="true"><a target="_blank" href=
  "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.
- facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
+ facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
  class="fb-xfbml-parse-ignore">Compartir</a></div>
   */
 
@@ -443,7 +368,7 @@ var browseNews = function (array, number) {
   let images = document.getElementsByClassName('articleImageLink');
   let readMore = document.getElementsByClassName('readMoreLink');
   let fbShare = document.getElementsByClassName('fb-share');
-  
+
 
   let count = 0;
 
@@ -457,10 +382,10 @@ var browseNews = function (array, number) {
     count++;
 
   } while (count < number);
-  
+
   let fbBtn = document.getElementsByClassName('fb-share');
   console.log(fbBtn);
-  
+
   for (let x of fbBtn){
     x.addEventListener('click',function(){
       let fbUrl = x.name;
@@ -469,9 +394,9 @@ var browseNews = function (array, number) {
         href: fbUrl,
       }, function(response){});
     });
-    
+
   }
-    
+
 }
 
 var getAllNews = function () {
