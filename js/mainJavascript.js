@@ -1,4 +1,4 @@
-console.log("mainJS");
+console.log("hej");
 
 let signedInNowOrBefore = "before"
 
@@ -128,7 +128,7 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail){
       }else{
 
         console.log("finns")
-
+             db.ref("/users/" + userID + "/photoURL").set(userPicture);
 
             db.ref("users/"+ id + "/tags").once("value",function(snapshot){
 
@@ -179,7 +179,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     addTagBtn.style.display ="inline-block";
 
 
-        if(signedInNowOrBefore === "before"){
 
                 tagsSlider.tagsNextBtn.addEventListener("click",function(){
 
@@ -192,13 +191,11 @@ firebase.auth().onAuthStateChanged(function(user) {
                   }
 
                 })
-        }
 
 
 
 
 
-        if(signedInNowOrBefore === "before"){
 
 
             tagsSlider.tagsPrevBtn.addEventListener("click",function(){
@@ -243,7 +240,6 @@ firebase.auth().onAuthStateChanged(function(user) {
               }
 
             });
-      }
 
 
 
@@ -273,25 +269,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 
-  addTagBtn.addEventListener("click",function(){
-
-        let innerText = document.getElementById("currentTag").innerText;
-
-        console.log(sammaid)
-
-      if(document.getElementById("currentTag").innerText !== ""){
 
 
-            db.ref("users/"+ sammaid+ "/tags").push(innerText)
-            let ul = document.createElement("ul");
-            ul.className = "tags";
-            ul.innerHTML = innerText;
-            tagsSliderContentChange.appendChild(ul)
-
-      }
 
 
-  })
 
 
 

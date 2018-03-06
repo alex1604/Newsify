@@ -145,6 +145,24 @@ slider.inputKeyword.addEventListener("change",function(){
 })
 
 
+slider.inputKeyword.addEventListener("keydown",function(e){
+
+      console.log(e.key)
+
+      if(e.key !== " "  && e.key !== "Backspace"){
+        currentTag.inputTag.innerHTML += e.key
+
+      }else if(e.key === "Backspace"){
+
+        currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length -1)
+      }
+
+
+
+
+})
+
+
 
 // När du klickar på nextInput
 
@@ -985,32 +1003,54 @@ languageSlider.languangePrevBtn.addEventListener("click",function(){
 
 deleteCurrentTag.addEventListener("click",function(){
 
-  currentTag.inputTag.innerHTML = "";
-  currentTag.sourceTag.innerHTML = "";
-  currentTag.countryTag.innerHTML = "";
-  currentTag.categoryTag.innerHTML = "";
-  currentTag.languageTag.innerHTML = "";
 
-  slider.inputKeyword.value = ""
 
-sourceSlider.sourceContentChange.style.marginLeft = "0";
-countrySlider.countryContentChange.style.marginLeft = "0";
-categorySlider.categoryContentChange.style.marginLeft = "0";
-languageSlider.languageContentChange.style.marginLeft = "0"
+})
 
 
 
-sourceMinusSlide = 1;
-countryMinusSlide = 1;
-categoryMinusSlide = 1;
-languageMinusSlide = 1
+addTagBtn.addEventListener("click",function(){
 
-showArrowsOrNot(sourceMinusSlide, sourceSlider.nextBtn ,sourceSlider.prevBtn, sourceSlider.sourceContentChange.children.length )
+      let innerText = document.getElementById("currentTag").innerText;
 
-tagsSlider.tagsNextBtn.style.display = "block";
-tagsSlider.tagsPrevBtn.style.display = "block";
-tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
 
+
+    if(document.getElementById("currentTag").innerText !== ""){
+
+
+          db.ref("users/"+ sammaid+ "/tags").push(innerText)
+          let ul = document.createElement("ul");
+          ul.className = "tags";
+          ul.innerHTML = innerText;
+          tagsSliderContentChange.appendChild(ul)
+
+          currentTag.inputTag.innerHTML = "";
+          currentTag.sourceTag.innerHTML = "";
+          currentTag.countryTag.innerHTML = "";
+          currentTag.categoryTag.innerHTML = "";
+          currentTag.languageTag.innerHTML = "";
+
+          slider.inputKeyword.value = ""
+
+          sourceSlider.sourceContentChange.style.marginLeft = "0";
+          countrySlider.countryContentChange.style.marginLeft = "0";
+          categorySlider.categoryContentChange.style.marginLeft = "0";
+          languageSlider.languageContentChange.style.marginLeft = "0"
+
+
+
+          sourceMinusSlide = 1;
+          countryMinusSlide = 1;
+          categoryMinusSlide = 1;
+          languageMinusSlide = 1
+
+          showArrowsOrNot(sourceMinusSlide, sourceSlider.nextBtn ,sourceSlider.prevBtn, sourceSlider.sourceContentChange.children.length )
+
+          tagsSlider.tagsNextBtn.style.display = "block";
+          tagsSlider.tagsPrevBtn.style.display = "block";
+          tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
+
+    }
 
 
 })
