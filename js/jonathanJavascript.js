@@ -144,6 +144,19 @@ slider.inputKeyword.addEventListener("change",function(){
 })
 
 
+slider.inputKeyword.addEventListener("keydown",function(e){
+
+
+  console.log(e.key)
+  if(e.key !== " " && e.key !== "Backspace"){
+    currentTag.inputTag.innerHTML += e.key;
+  }else if(e.key === "Backspace"){
+    currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
+  }
+
+})
+
+
 
 // När du klickar på nextInput
 
