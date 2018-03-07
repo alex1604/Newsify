@@ -1,0 +1,13 @@
+#login:hover {
+    background-color: white;
+}
+.userPicture{
+    margin: 0 auto;
+    width:70px;
+    margin-top: 0;
+    border-radius: 50%;
+}
+.commentDropDown {
+  position: relative;
+  left: 1500px;
+}

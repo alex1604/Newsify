@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Projektgrupp</title>
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/aengman.css">
+  <link rel="stylesheet" href="styles/weather-icons.min.css">
+  <link rel="stylesheet" type="text/css" href="./styles/stylesFooter.css">
+
+</head>
+<body>
+
+
+
+  <header id = "header">
+
+
+    <div id="login">
+      <h5 id = "loginText">Log In</h5>
+      <div id="googleLogo">
+        <i class="fab fa-google"></i>
+        <div id="weatherCast">
+          <i id="weather" class="wi wi-day-cloudy"></i>
+          <div id="weatherLocation">Northville, Greenland</div>
+          <div id="weatherTemp"><p id="min">-40ºC /</p><p id="max"> -20ºC</p></div>
+        </div>
+      </div>
+      <h5>Follow the news you actually want to follow</h5>
+    </div>
+
+    <div id="whenLoggedIn">
+
+
+
+          <div class="slider">
+
+            <div id="tagsPrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+
+                <div id="tagsSlider">
+
+                    <div id="tagsSliderContentChange">
+
+                    </div>
+
+                </div>
+                <div id="tagsNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+
+
+          </div>
+
+          <div id="weatherCast2">
+            <i id="weather2" class="wi wi-day-cloudy"></i>
+            <div id="weatherLocation2">Northville, Greenland</div>
+            <div id="weatherTemp2"><p id="min2">-40ºC /</p><p id="max2"> -20ºC</p></div>
+          </div>
+
+        </div>
+
+    </header>
+
+
+
+
+
+  <div id="beforeLoggedIn">
+    <div class="slider">
+
+      <div id="prevInput" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+
+      <div id="sliderContent">
+
+        <div id="sliderContentChange">
+          <input class="tags" id="inputKeyword" type="text" name="" value="" placeholder="Search Keyword or phrase"><ul class="tags">
+            Source Name
+          </ul><ul class="tags">
+            Country
+          </ul><ul class="tags">
+            Category
+          </ul><ul class="tags">
+            Languages
+          </ul>
+
+        </div>
+
+      </div>
+      <div id="nextInput" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+
+
+    </div>
+
+
+    <div class="slider" id="sourceSlider">
+
+      <div id="prevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+      <div id="sliderContent">
+
+        <div  id="sourceContentChange">
+          <ul class="tags">
+            All
+          </ul><ul class="tags">
+            CNN
+          </ul><ul class="tags">
+            BBC News
+          </ul><ul class="tags">
+            ABC News
+          </ul><ul class="tags">
+            Al Jazeera English
+          </ul><ul class="tags">
+            ESPN
+          </ul><ul class="tags">
+            Financial Times
+          </ul><ul class="tags">
+            Fox News
+          </ul><ul class="tags">
+            Daily Mail
+          </ul><ul class="tags">
+            The Guardian (Uk)
+          </ul><ul class="tags">
+            The New York Times
+          </ul><ul class="tags">
+            IGN
+          </ul><ul class="tags">
+            CNN Spanish
+          </ul><ul class="tags">
+            Bloomberg
+          </ul><ul class="tags">
+            CBS
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div id="nextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+    </div>
+
+    <div class="slider"  id="countrySlider">
+
+      <div id="countryPrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+      <div id="sliderContent">
+
+        <div id="countryContentChange" >
+
+          <ul class="tags">
+            All
+          </ul><ul class="tags">
+            United States Of America
+          </ul><ul class="tags">
+            Canada
+          </ul><ul class="tags">
+            England
+          </ul><ul class="tags">
+            Germany
+          </ul><ul class="tags">
+            France
+          </ul><ul class="tags">
+            Australia
+          </ul><ul class="tags">
+            New Zeeland
+          </ul><ul class="tags">
+            China
+          </ul><ul class="tags">
+            Japan
+          </ul><ul class="tags">
+            Russia
+          </ul><ul class="tags">
+            Spain
+          </ul><ul class="tags">
+            Sweden
+          </ul><ul class="tags">
+            Norway
+          </ul><ul class="tags">
+            Turkey
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div id="countryNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+    </div>
+    <div class="slider"  id="categorySlider">
+
+      <div id="categoryPrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+      <div id="sliderContent">
+
+        <div id="categoryContentChange" >
+
+          <ul class="tags">
+            All
+          </ul><ul class="tags">
+            Business
+          </ul><ul class="tags">
+            Entertainment
+          </ul><ul class="tags">
+            General
+          </ul><ul class="tags">
+            Health
+          </ul><ul class="tags">
+            Science
+          </ul><ul class="tags">
+            Sport
+          </ul><ul class="tags">
+            Technology
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div id="categoryNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+    </div>
+    <div class="slider"  id="languageSlider">
+
+      <div id="languangePrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+      <div id="sliderContent">
+
+        <div id="languageContentChange" >
+
+          <ul class="tags">
+            All
+          </ul><ul class="tags">
+            Arabic
+          </ul><ul class="tags">
+            English
+          </ul><ul class="tags">
+            Spanish
+          </ul><ul class="tags">
+            French
+          </ul><ul class="tags">
+            Hebrew
+          </ul><ul class="tags">
+            Italian
+          </ul><ul class="tags">
+            Dutch
+          </ul><ul class="tags">
+            Norweigan
+          </ul><ul class="tags">
+            Portugues
+          </ul><ul class="tags">
+            Russian
+          </ul><ul class="tags">
+            Swedish
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div id="languangeNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+    </div>
+
+  </div>
+
+
+  <div class="currentTag">
+    <h5>Your current tag is </h5>
+    <div id="currentTag">
+
+      <span id="inputTag"></span>
+      <span id="sourceTag"></span>
+      <span id="countryTag"></span>
+      <span id="categoryTag"></span>
+      <span id="languageTag"></span>
+
+    </div>
+                <button class="Btn" id="addTag">Add tag</button>
+
+            <button class="Btn" id="searchBtn">Search</button>
+
+            <button class="Btn" id="deleteTag">Delete tag</button>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+<div id="newsContainer">
+
+  <main>
+  </main>
+  <div id="iframe">
+    <!-- <iframe id="contact" src="https://www.bloomberg.com/news/articles/2018-02-28/eu-says-n-ireland-could-remain-in-customs-union-brexit-update"  allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
+    <!-- <iframe id="contact" src="https://www.bloomberg.com/news/articles/2018-02-28/eu-says-n-ireland-could-remain-in-customs-union-brexit-update/" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
+  </div>
+</div>
+
+ <div id="footer">
+
+     <div id="divHistory">Today in History:
+          <div id="div1"></div>
+          <div id="div2"></div>
+         </div>
+     <div id="time"></div>
+</div>
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+
+<!--Main javascript fil. Där alla variabler ska skrivas och som vi kan använda oss av. Eller om vi har någon stor funktion som ska användas över hela sidan. t.ex firebase.
+DEN ENDA GÅNGEN NI KAN SNAPA EN VARIABEL ÄR -> när ni skapar den i en FUNKTION så att den inte krockar med andra variabler.  -->
+
+<script type="text/javascript" src="js/mainJavascript.js"></script>
+
+
+<!--Jonathans javascriptfil -->
+<script type="text/javascript" src="js/jonathanJavascript.js"></script>
+
+<!--Alejandros javascriptfil -->
+<script type="text/javascript" src="js/alejandroJavascript.js"></script>
+<!--Albins javascriptfil -->
+
+<script type="text/javascript" src="js/albinJavascript.js"></script>
+<!--Jonas javascriptfil -->
+
+<script type="text/javascript" src="js/jonasJavascript.js"></script>
+<!--Eriks javascriptfil -->
+
+<!--<script type="text/javascript" src="js/erikJavascript.js"></script>-->
+
+
+
+
+</body>
+</html>
