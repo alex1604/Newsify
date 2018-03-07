@@ -13,7 +13,10 @@ whenLoggedIn.style.display = "none";
 
 
 
-let login = document.getElementById("login");
+let tagsContentChangeWidth = ""
+
+let login = document.getElementById("googleLogo");
+let loginFb = document.getElementById("facebookLogo");
 
 var config = {
   apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
@@ -44,6 +47,76 @@ login.addEventListener("click", function (event) {
   })
 });
 
+var fbProvider = new firebase.auth.FacebookAuthProvider(); 
+
+loginFb.addEventListener("click", function () {
+  //simple click event on the "facebook login" div
+
+  let uid = '';
+  let uname = '';
+  let upicture = '';
+  let uemail = '';
+  let accessToken = '';
+
+  FB.getLoginStatus(function (response) {
+    console.log(response);
+    if (response.status == 'unknown' || response.status == 'not_authorized') {
+      FB.login(function (response) {
+        if (response.authResponse) {
+          
+          accessToken = response.accessToken;
+
+          signedInNowOrBefore = "now";
+          firebase.auth().signInWithPopup(fbProvider).then(function(response){
+            console.log(response);
+            uid = response.user.uid;
+            console.log(uid + ' first');
+            uemail = response.additionalUserInfo.profile.email;
+            console.log(uemail + ' first');
+            uname = response.additionalUserInfo.profile.name;
+            console.log(uname + ' first');
+            upicture = response.additionalUserInfo.profile.picture.data.url;
+            console.log(upicture);
+
+            console.log(response);
+            console.log('success authenticating fb in database');
+          firebaseInsertUserFacebook(uid, uname, upicture, uemail);
+          })
+          .catch(function(){
+            console.log('error authenticating fb in database');
+          });
+
+        } else {
+          console.log('User cancelled login');
+        }
+      },
+        { scope: 'public_profile,email' })
+
+    } else {
+      FB.getAuthResponse(function (response) {
+        if (response != null) {
+          uid = response.authResponse.userID;
+          console.log(uid + ' second');
+          accessToken = response.authResponse.accessToken;
+          signedInNowOrBefore = "before";
+          firebase.auth().signInWithPopup(fbProvider).then(function(){
+            console.log('success authenticating fb in database');
+          
+          })
+          .catch(function(){
+            console.log('error authenticating fb in database');
+          });
+
+        } else {
+          console.log('there was a problem loading your facebook user information. Please sign out and in again.');
+        }
+      });
+    }
+    
+  });
+  
+});
+
 let loginHeader = function (user) {
   /*// This gives you a Google Access Token. You can use it to access the Google API.
   var token = result.credential.accessToken;
@@ -69,7 +142,11 @@ let loginHeader = function (user) {
       header.removeChild(header.lastChild);
       document.getElementById("login").style.display = "";
       localStorage.removeItem("userHeader");
-    }).catch(function (error) {
+    })
+    .then(function(){
+      FB.logout();
+    })
+    .catch(function (error) {
       console.log("error: " + error);
     })
   });
@@ -84,6 +161,81 @@ let loginHeader = function (user) {
 }
 
 let id = ""
+
+
+let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMail) {
+  //adds user to database with username, email, photourl
+
+
+  db.ref("users").once("value", function (snapshot) {
+
+    let obj = snapshot.val()
+    for (let prop in obj) {
+      allUsers.push(prop);
+
+    }
+
+
+    for (let i = 0; i < allUsers.length; i++) {
+
+      if (userID === allUsers[i]) {
+        id = allUsers[i];
+      }
+
+    }
+
+
+    if (id === "") {
+      console.log("finns inte")
+      var database = firebase.database;
+      database().ref("/users/" + userID).set({
+        username: userName,
+        photoURL: userPicture,
+        email: userMail,
+        tags: {
+
+        },
+        favourites: {
+          example: "example",
+        },
+      })
+
+
+    } else {
+
+      console.log("finns")
+
+
+      db.ref("users/" + id + "/tags").once("value", function (snapshot) {
+
+        let obj = snapshot.val()
+
+        let tagsSliderContentChange = document.getElementById("tagsSliderContentChange")
+
+        for (let prop in obj) {
+          let ul = document.createElement("ul");
+          ul.className = "tags";
+          ul.innerHTML = obj[prop];
+          tagsSliderContentChange.appendChild(ul)
+
+
+        }
+
+
+
+
+      })
+
+
+
+
+
+    }
+
+  })
+
+
+}
 
 
 
@@ -173,7 +325,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById("tagsSliderContentChange").innerHTML = "<ul class='tags'>Scroll through your saved tags</ul>";
 
 
-    let tagsContentChangeWidth = tagsSlider.tagsContentChange.offsetWidth;
+    tagsContentChangeWidth = tagsSlider.tagsContentChange.offsetWidth;
 
 
     addTagBtn.style.display = "inline-block";
@@ -181,17 +333,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     if (signedInNowOrBefore === "before") {
 
-      tagsSlider.tagsNextBtn.addEventListener("click", function () {
 
-        let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
-        sliderFunctionRight(tagsContentChangeLength, tagsTotalLeft, tagsContentChangeWidth, tagsSlider.tagsContentChange, tagsSwitch, tagsSlider.tagsNextBtn, tagsSlider.tagsPrevBtn)
-
-        if (tagsMinusSlide > 1) {
-
-          beforeLoggedIn.style.display = "none"
-        }
-
-      })
     }
 
 
@@ -201,57 +343,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (signedInNowOrBefore === "before") {
 
 
-      tagsSlider.tagsPrevBtn.addEventListener("click", function () {
 
-        let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
-        tagsTotalLeft = tagsMinusSlide * tagsContentChangeWidth;
-
-        tagsTotalLeft = tagsTotalLeft - (tagsContentChangeWidth * 2);
-        tagsTotalLeft = tagsTotalLeft.toString();
-
-        tagsTotalLeft = "-" + tagsTotalLeft + "px";
-
-
-        if (tagsMinusSlide > 1) {
-
-
-
-          tagsSlider.tagsContentChange.style.marginLeft = tagsTotalLeft;
-
-
-          tagsMinusSlide--
-
-          console.log(tagsMinusSlide)
-
-          if (tagsMinusSlide === 1) {
-
-            tagsSlider.tagsPrevBtn.style.opacity = "0"
-          }
-          if (tagsMinusSlide < tagsContentChangeLength) {
-            tagsSlider.tagsNextBtn.style.opacity = "1"
-
-          }
-
-          if (tagsMinusSlide === 1) {
-
-            beforeLoggedIn.style.display = "block"
-          }
-          // languageSwitch(languageMinusSlide)
-
-
-
-        }
-
-      });
     }
-
-
-
-
-
-
-
-
 
     //when the user is logged in, runs loginHeader
 
@@ -271,27 +364,9 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 });
 
+console.log(tagsSlider.tagsPrevBtn)
 
 
-addTagBtn.addEventListener("click", function () {
-
-  let innerText = document.getElementById("currentTag").innerText;
-
-  console.log(sammaid)
-
-  if (document.getElementById("currentTag").innerText !== "") {
-
-
-    db.ref("users/" + sammaid + "/tags").push(innerText)
-    let ul = document.createElement("ul");
-    ul.className = "tags";
-    ul.innerHTML = innerText;
-    tagsSliderContentChange.appendChild(ul)
-
-  }
-
-
-})
 
 
 
@@ -378,10 +453,10 @@ var createNews = function () {
   //pinkAndTitle.appendChild(fb_share);
   /*
  <div class="fb-share-button" data-href="https://developers.facebook.com
- /docs/plugins/" data-layout="button_count" data-size="large" 
+ /docs/plugins/" data-layout="button_count" data-size="large"
  data-mobile-iframe="true"><a target="_blank" href=
  "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.
- facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
+ facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
  class="fb-xfbml-parse-ignore">Compartir</a></div>
   */
 
@@ -443,7 +518,7 @@ var browseNews = function (array, number) {
   let images = document.getElementsByClassName('articleImageLink');
   let readMore = document.getElementsByClassName('readMoreLink');
   let fbShare = document.getElementsByClassName('fb-share');
-  
+
 
   let count = 0;
 
@@ -457,21 +532,21 @@ var browseNews = function (array, number) {
     count++;
 
   } while (count < number);
-  
+
   let fbBtn = document.getElementsByClassName('fb-share');
   console.log(fbBtn);
-  
-  for (let x of fbBtn){
-    x.addEventListener('click',function(){
+
+  for (let x of fbBtn) {
+    x.addEventListener('click', function () {
       let fbUrl = x.name;
       FB.ui({
         method: 'share',
         href: fbUrl,
-      }, function(response){});
+      }, function (response) { });
     });
-    
+
   }
-    
+
 }
 
 var getAllNews = function () {
