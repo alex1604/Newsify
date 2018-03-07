@@ -3,7 +3,13 @@ let beforeLoggedIn = document.getElementById("beforeLoggedIn")
 let deleteCurrentTag = document.getElementById("deleteTag");
 
 
+let tagsSlider ={
 
+    tagsNextBtn : document.getElementById('tagsNextBtn'),
+    tagsPrevBtn: document.getElementById("tagsPrevBtn"),
+    tagsContentChange : document.getElementById("tagsSliderContentChange"),
+    slider: document.getElementById("tagsSlider")
+}
 
 let currentTag = {
 
@@ -72,13 +78,6 @@ let languageSlider = {
 languageSlider.languangePrevBtn.style.opacity ="0"
 
 
-let tagsSlider ={
-
-    tagsNextBtn : document.getElementById('tagsNextBtn'),
-    tagsPrevBtn: document.getElementById("tagsPrevBtn"),
-    tagsContentChange : document.getElementById("tagsSliderContentChange"),
-    slider: document.getElementById("tagsSlider")
-}
 
 
 // let sliderContentChangeWidth = sliderContentChange.offsetWidth;
@@ -141,6 +140,19 @@ slider.inputKeyword.addEventListener("change",function(){
 
   }
 
+
+})
+
+
+slider.inputKeyword.addEventListener("keydown",function(e){
+
+
+  console.log(e.key)
+  if(e.key !== " " && e.key !== "Backspace"){
+    currentTag.inputTag.innerHTML += e.key;
+  }else if(e.key === "Backspace"){
+    currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
+  }
 
 })
 
@@ -1011,6 +1023,83 @@ tagsSlider.tagsNextBtn.style.display = "block";
 tagsSlider.tagsPrevBtn.style.display = "block";
 tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
 
+
+
+})
+
+
+tagsSlider.tagsNextBtn.addEventListener("click", function () {
+
+  let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
+  sliderFunctionRight(tagsContentChangeLength, tagsTotalLeft, tagsContentChangeWidth, tagsSlider.tagsContentChange, tagsSwitch, tagsSlider.tagsNextBtn, tagsSlider.tagsPrevBtn)
+
+  if (tagsMinusSlide > 1) {
+
+    beforeLoggedIn.style.display = "none"
+  }
+
+})
+
+
+tagsSlider.tagsPrevBtn.addEventListener("click", function () {
+
+  let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
+  tagsTotalLeft = tagsMinusSlide * tagsContentChangeWidth;
+
+  tagsTotalLeft = tagsTotalLeft - (tagsContentChangeWidth * 2);
+  tagsTotalLeft = tagsTotalLeft.toString();
+
+  tagsTotalLeft = "-" + tagsTotalLeft + "px";
+
+
+  if (tagsMinusSlide > 1) {
+
+
+
+    tagsSlider.tagsContentChange.style.marginLeft = tagsTotalLeft;
+
+
+    tagsMinusSlide--
+
+    console.log(tagsMinusSlide)
+
+    if (tagsMinusSlide === 1) {
+
+      tagsSlider.tagsPrevBtn.style.opacity = "0"
+    }
+    if (tagsMinusSlide < tagsContentChangeLength) {
+      tagsSlider.tagsNextBtn.style.opacity = "1"
+
+    }
+
+    if (tagsMinusSlide === 1) {
+
+      beforeLoggedIn.style.display = "block"
+    }
+    // languageSwitch(languageMinusSlide)
+
+
+
+  }
+
+});
+
+addTagBtn.addEventListener("click", function () {
+
+  let innerText = document.getElementById("currentTag").innerText;
+
+  console.log(sammaid)
+
+  if (document.getElementById("currentTag").innerText !== "") {
+
+
+    db.ref("users/" + sammaid + "/tags").push(innerText)
+    let ul = document.createElement("ul");
+    ul.className = "tags";
+    ul.innerHTML = innerText;
+    tagsSliderContentChange.appendChild(ul)
+
+  }
 
 
 })

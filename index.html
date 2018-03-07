@@ -16,7 +16,24 @@
 </head>
 <body>
 
-
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId            : '210487799499825',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v2.12'
+          });
+        };
+      
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script>
 
   <header id = "header">
 
@@ -31,6 +48,9 @@
           <div id="weatherTemp"><p id="min">-40ºC /</p><p id="max"> -20ºC</p></div>
         </div>
       </div>
+      <div id="facebookLogo">
+        <i class="fab fa-facebook"></i>
+        </div>
       <h5>Follow the news you actually want to follow</h5>
     </div>
 
