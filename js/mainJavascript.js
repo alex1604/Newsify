@@ -49,7 +49,7 @@ login.addEventListener("click", function (event) {
   })
 });
 
-var fbProvider = new firebase.auth.FacebookAuthProvider(); 
+var fbProvider = new firebase.auth.FacebookAuthProvider();
 
 loginFb.addEventListener("click", function () {
   //simple click event on the "facebook login" div
@@ -65,7 +65,7 @@ loginFb.addEventListener("click", function () {
     if (response.status == 'unknown' || response.status == 'not_authorized') {
       FB.login(function (response) {
         if (response.authResponse) {
-          
+
           accessToken = response.accessToken;
 
           signedInNowOrBefore = "now";
@@ -103,7 +103,7 @@ loginFb.addEventListener("click", function () {
           signedInNowOrBefore = "before";
           firebase.auth().signInWithPopup(fbProvider).then(function(){
             console.log('success authenticating fb in database');
-          
+
           })
           .catch(function(){
             console.log('error authenticating fb in database');
@@ -114,9 +114,9 @@ loginFb.addEventListener("click", function () {
         }
       });
     }
-    
+
   });
-  
+
 });
 
 let loginHeader = function (user) {
@@ -143,7 +143,6 @@ let loginHeader = function (user) {
       var header = document.getElementById("header");
       header.removeChild(header.lastChild);
       document.getElementById("login").style.display = "";
-      localStorage.removeItem("userHeader");
     })
     .then(function(){
       FB.logout();
@@ -319,7 +318,10 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
-
+    localStorage.setItem("username", user.displayName);
+    localStorage.setItem("photoURL", user.photoURL);
+    localStorage.setItem("userid", user.uid);
+    //puts in related data in localstorage, feel free to use for functions
 
     whenLoggedIn.style.display = "block"
 
@@ -338,13 +340,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     }
 
-
-
-
-
     if (signedInNowOrBefore === "before") {
-
-
 
     }
 
@@ -359,6 +355,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     // Put in the displayname change and whatnot?
   } else {
     console.log("logged out");
+    localStorage.clear(); //clears the localstorage for the next user
     addTagBtn.style.display = "none";
     whenLoggedIn.style.display = "none";
 
@@ -398,85 +395,6 @@ let myArticles = [];
 var createNews = function () {
 
   let article = document.createElement('article');
-<<<<<<< HEAD
-   let blackLine = document.createElement('div');
-   blackLine.classList.add('blackLine');
-   let mainContent = document.createElement('div');
-   mainContent.classList.add('mainContent');
-
-   let pinkAndTitle = document.createElement('div');
-   pinkAndTitle.classList.add('pinkAndTitle');
-
-   let pinkLine = document.createElement('div');
-   pinkLine.classList.add('pinkLine');
-
-   let title = document.createElement('div');
-   title.classList.add('title');
-
-   let sumUp = document.createElement('p');
-   sumUp.classList.add('sumUp');
-
-   let readMore = document.createElement('div');
-   readMore.classList.add('readMore');
-   let readMore2 = document.createElement('div');
-   readMore.classList.add('readMore');
-   let a = document.createElement('a');
-   a.classList.add('readMoreLink');
-   a.target = '_blank';
-   a.innerHTML = 'Read full article...';
-
-   let commentContainer = document.createElement("div");
-   comment.className = "commentContainer";
-   let commentDropDown = document.createElement("button");
-   commentDropDown.innerText = "comments" + /*amount of comments*/ "(0)";
-   commentDropDown.className = "commentDropDown";
-   commentDropDown.addEventListener("click", function(event){
-     if (event.target.children.length == 0){
-       console.log(event.target.children.length);
-     console.log(event.target);
-     let writeBox = document.createElement("textarea");
-     writeBox.type = "input";
-     writeBox.placeholder = "Input your comment here";
-     writeBox.clannName = "writeBox";
-     let commentButton = document.createElement("button");
-     commentButton.innerText = "Comment";
-     commentButton.className = "commentButton";
-     commentButton.addEventListener("click", function(event){
-       console.log(event);
-     });
-     event.target.append(writeBox);
-     event.target.append(commentButton);
-     }
-     else if (event.target.children.length > 0){
-       while (event.target.children.length > 0){
-         event.target.removeChild(event.target.lastChild);
-       }
-     }
-   })
-   commentContainer.appendChild(commentDropDown);
-   readMore.appendChild(commentContainer);
-   readMore.appendChild(a);
-
-   pinkAndTitle.appendChild(pinkLine);
-   pinkAndTitle.appendChild(title);
-   pinkAndTitle.appendChild(sumUp);
-   pinkAndTitle.appendChild(readMore);
-
-   let articleImage = document.createElement('div');
-   articleImage.classList.add('articleImage');
-   let img = document.createElement('img');
-   img.classList.add('articleImageLink');
-
-   articleImage.appendChild(img);
-
-   mainContent.appendChild(pinkAndTitle);
-   mainContent.appendChild(articleImage);
-
-   article.appendChild(blackLine);
-   article.appendChild(mainContent);
-
-   main.appendChild(article);
-=======
   let blackLine = document.createElement('div');
   blackLine.classList.add('blackLine');
   let mainContent = document.createElement('div');
@@ -523,6 +441,89 @@ var createNews = function () {
   fb_share.innerHTML = 'Share on Facebook';
   fb_share.name = '';
 
+  let commentContainer = document.createElement("div");
+  commentContainer.className = "commentContainer";
+  let commentDropDown = document.createElement("button");
+  commentDropDown.innerText = "comments" + /*amount of comments*/ "(0)";
+  commentDropDown.className = "commentDropDown";
+  commentDropDown.addEventListener("click", function(event){
+    if (event.target.parentElement.children.length == 1){
+    let writeBox = document.createElement("textarea");
+    writeBox.type = "input";
+    writeBox.placeholder = "Input your comment here";
+    writeBox.clannName = "writeBox";
+    writeBox.addEventListener("keyup", function(event){
+      //Comments if user clicks enter
+      if (event.key == "Enter"){
+        console.log(event.target);
+        let text = event.target.parentElement.childNodes[1].value;
+        event.target.parentElement.childNodes[1].value = "";
+        if (text !== ""){
+          let commentWhole = document.createElement("div");
+          let commentText = document.createElement("div");
+          let commentUsername = document.createElement("div");
+          let commentUserPicture = document.createElement("img");
+          commentText.innerText = text;
+          commentText.className = "commentText";
+          commentUsername.innerText = localStorage.getItem("username");
+          commentUsername.className = "commentUsername";
+          commentUserPicture.src = localStorage.getItem("photoURL");
+          commentUserPicture.className = "commentUserPicture";
+          commentUserPicture.alt = "Userpic";
+          commentWhole.appendChild(commentUserPicture);
+          commentWhole.appendChild(commentUsername);
+          commentWhole.appendChild(commentText);
+          event.target.parentElement.insertBefore(commentWhole, event.target.parentElement.childNodes[3]);
+          firebase.database().ref("/").push({
+            content: text,
+            user: localStorage.getItem("username"),
+            photoURL: localStorage.getItem("photoURL"),
+          })
+        }
+      }
+    });
+    let commentButton = document.createElement("button");
+    //comments if user clicks the comment button
+    commentButton.innerText = "Comment";
+    commentButton.className = "commentButton";
+    commentButton.addEventListener("click", function(event){
+      console.log(event.target);
+      let text = event.target.parentElement.childNodes[1].value;
+      event.target.parentElement.childNodes[1].value = "";
+      if (text !== ""){
+        let commentWhole = document.createElement("div");
+        let commentText = document.createElement("div");
+        let commentUsername = document.createElement("div");
+        let commentUserPicture = document.createElement("img");
+        commentText.innerText = text;
+        commentText.className = "commentText";
+        commentUsername.innerText = localStorage.getItem("username");
+        commentUsername.className = "commentUsername";
+        commentUserPicture.src = localStorage.getItem("photoURL");
+        commentUserPicture.className = "commentUserPicture";
+        commentUserPicture.alt = "Userpic";
+        commentWhole.appendChild(commentUserPicture);
+        commentWhole.appendChild(commentUsername);
+        commentWhole.appendChild(commentText);
+        event.target.parentElement.insertBefore(commentWhole, event.target.parentElement.childNodes[3]);
+        firebase.database().ref("/").push({
+          content: text,
+          user: localStorage.getItem("username"),
+          photoURL: localStorage.getItem("photoURL"),
+        })
+      }
+    });
+    event.target.parentElement.append(writeBox);
+    event.target.parentElement.append(commentButton);
+    }
+    else if (event.target.parentElement.children.length > 1){
+      while (event.target.parentElement.children.length > 1){
+        event.target.parentElement.removeChild(event.target.parentElement.lastChild);
+      }
+    }
+  })
+  commentContainer.appendChild(commentDropDown);
+  readMore.appendChild(commentContainer)
   readMore.appendChild(a);
 
   pinkAndTitle.appendChild(pinkLine);
@@ -555,7 +556,6 @@ var createNews = function () {
   article.appendChild(mainContent);
 
   main.appendChild(article);
->>>>>>> 0875f0b37d6b7382a4432fb03284fe51b7dce8f5
 
 
   //Jonathans kod //
@@ -638,7 +638,6 @@ var getAllNews = function () {
 
   fetch(req)
     .then(function (response) {
-
       return response.json();
 
     }).then(function (object) {
@@ -666,7 +665,7 @@ var getAllNews = function () {
 
       browseNews(myArticles, amount);
     })
-    .catch(function () {
-      console.log('failed');
+    .catch(function (error) {
+      console.log('failed', error);
     });
 }
