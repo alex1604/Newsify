@@ -33,5 +33,15 @@ console.log("erikJS");
                div2.appendChild(divTxt);
      
      }) 
+        
+        var whenScroll = function(evt) {
+              if(footer.style.display === "block") {
+                  footer.style.display = "none";
+              } else {
+                  footer.style.display = "block";
+              }
+          }
+           
+        window.addEventListener("scroll", whenScroll)
 };
       
