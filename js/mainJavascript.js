@@ -443,24 +443,7 @@ var createNews = function () {
   commentArticle.appendChild(commentArticleText);
 // end of save,share,comment
 
-  /*let fb_share = document.createElement('div');
-  fb_share.classList.add('fb-share-button')
-  fb_share.attr('data-layout') = 'button_count';
-  fb_share.atrr('data-size') = 'large';
-  fb_share.attr('data-mobile-iframe') = 'true';
-  let fb_a = document.createElement('a');
-  fb_a.classList.add('fb-xfbml-parse-ignore')
-  fb_a.target = '_blank';
-  fb_a.href = "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-  fb_a.innerHTML = 'Share';*/
 
-  //fb_share.appendChild(fb_a);
-
-  let fb_share = document.createElement('button');
-  fb_share.type = 'button';
-  fb_share.classList.add('fb-share');
-  fb_share.innerHTML = 'Share on Facebook';
-  fb_share.name = '';
 
   readMore.appendChild(a);
 
@@ -468,19 +451,11 @@ var createNews = function () {
   pinkAndTitle.appendChild(title);
   pinkAndTitle.appendChild(sumUp);
   pinkAndTitle.appendChild(readMore);
-  pinkAndTitle.appendChild(fb_share);
-  pinkAndTitle.appendChild(saveToFavourites)
+  pinkAndTitle.appendChild(saveToFavourites);
   pinkAndTitle.appendChild(shareArticle);
   pinkAndTitle.appendChild(commentArticle);
   //pinkAndTitle.appendChild(fb_share);
-  /*
- <div class="fb-share-button" data-href="https://developers.facebook.com
- /docs/plugins/" data-layout="button_count" data-size="large"
- data-mobile-iframe="true"><a target="_blank" href=
- "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.
- facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
- class="fb-xfbml-parse-ignore">Compartir</a></div>
-  */
+
 
   let articleImage = document.createElement('div');
   articleImage.classList.add('articleImage');
@@ -512,7 +487,7 @@ var browseNews = function (array, number) {
   let descriptions = document.getElementsByClassName('sumUp');
   let images = document.getElementsByClassName('articleImageLink');
   let readMore = document.getElementsByClassName('readMoreLink');
-  let fbShare = document.getElementsByClassName('fb-share');
+  let fbShare = document.getElementsByClassName('shareArticle');
 
 
   let count = 0;
@@ -528,7 +503,7 @@ var browseNews = function (array, number) {
 
   } while (count < number);
 
-  let fbBtn = document.getElementsByClassName('fb-share');
+  let fbBtn = document.getElementsByClassName('shareArticle');
   console.log(fbBtn);
 
   for (let x of fbBtn) {
