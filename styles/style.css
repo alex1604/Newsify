@@ -4,7 +4,9 @@
   font-family: helvetica;
 }
 
+  iframe{
 
+  }
 
       body{
         color:#333644
@@ -99,7 +101,7 @@ line-height: 30px;
 
       #sliderContentChange, #tagsSliderContentChange{
         width:300px;
-        margin-left: 0;
+        margin-left: ;
         transition-property: margin-left;
         transition-duration: 0.5s;
       }
@@ -252,17 +254,13 @@ line-height: 30px;
       }
 
 
-      #googleLogo,#facebookLogo{
+      #googleLogo{
         margin: 0 auto;
         width:70px;
         margin-top: 0;
 
       }
 
-      #googleLogo:hover > .fa-google, #facebookLogo:hover > .fa-facebook{
-        cursor:pointer;
-        transform: scale(1.1);
-      }
       #login{
         text-align: center;
       }
@@ -281,7 +279,7 @@ line-height: 30px;
 
 
 
-    .fa-google, .fa-facebook{
+    .fa-google{
       margin:10px 0;
       font-size: 3em;
       color:white;
@@ -350,6 +348,8 @@ line-height: 30px;
     .title{
       margin-top:3%;
       font-family: 'Josefin Sans', sans-serif;
+      font-size: 26px;
+      font-weight: bold;
     }
     .readMore{
       align-self: center;
@@ -365,6 +365,7 @@ line-height: 30px;
       text-align: justify;
       font-family: "Cardo", serif;
       font-weight:400;
+      font-size: 20px;
     }
 
     .articleImage{
@@ -431,3 +432,18 @@ line-height: 30px;
       margin-top:2%;
       font-size:0.9em;
     }
+    /* Save,share and comment links*/
+    .newsFooter{
+      margin-top: 30px;
+      margin-left: 5px;
+      padding:5px 30px;
+      outline: none;
+      border: none;
+      cursor: pointer;
+
+      text-decoration: none;
+    }
+    .newsFooterSpan{
+      margin-left: 5px;
+    }
+    /* end of Save,share and comment links*/

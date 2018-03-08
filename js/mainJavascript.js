@@ -39,11 +39,11 @@ login.addEventListener("click", function (event) {
   //simple click event on the "login" div
   firebase.auth().signInWithPopup(gmailprovider).then(function (result) {
 
-    console.log("log-in button");
+    //console.log("log-in button");
 
     signedInNowOrBefore = "now";
   }).catch(function (error) {
-    console.log("Error: " + error);
+   // console.log("Error: " + error);
   })
 });
 
@@ -59,7 +59,7 @@ loginFb.addEventListener("click", function () {
   let accessToken = '';
 
   FB.getLoginStatus(function (response) {
-    console.log(response);
+    //console.log(response);
     if (response.status == 'unknown' || response.status == 'not_authorized') {
       FB.login(function (response) {
         if (response.authResponse) {
@@ -68,26 +68,26 @@ loginFb.addEventListener("click", function () {
 
           signedInNowOrBefore = "now";
           firebase.auth().signInWithPopup(fbProvider).then(function(response){
-            console.log(response);
+            //console.log(response);
             uid = response.user.uid;
-            console.log(uid + ' first');
+            //console.log(uid + ' first');
             uemail = response.additionalUserInfo.profile.email;
-            console.log(uemail + ' first');
+            //console.log(uemail + ' first');
             uname = response.additionalUserInfo.profile.name;
-            console.log(uname + ' first');
+            //console.log(uname + ' first');
             upicture = response.additionalUserInfo.profile.picture.data.url;
-            console.log(upicture);
+            //console.log(upicture);
 
-            console.log(response);
-            console.log('success authenticating fb in database');
+            //console.log(response);
+            //console.log('success authenticating fb in database');
           firebaseInsertUserFacebook(uid, uname, upicture, uemail);
           })
           .catch(function(){
-            console.log('error authenticating fb in database');
+            //console.log('error authenticating fb in database');
           });
 
         } else {
-          console.log('User cancelled login');
+          //console.log('User cancelled login');
         }
       },
         { scope: 'public_profile,email' })
@@ -96,19 +96,19 @@ loginFb.addEventListener("click", function () {
       FB.getAuthResponse(function (response) {
         if (response != null) {
           uid = response.authResponse.userID;
-          console.log(uid + ' second');
+          //console.log(uid + ' second');
           accessToken = response.authResponse.accessToken;
           signedInNowOrBefore = "before";
           firebase.auth().signInWithPopup(fbProvider).then(function(){
-            console.log('success authenticating fb in database');
+            //console.log('success authenticating fb in database');
           
           })
           .catch(function(){
-            console.log('error authenticating fb in database');
+            //console.log('error authenticating fb in database');
           });
 
         } else {
-          console.log('there was a problem loading your facebook user information. Please sign out and in again.');
+          //console.log('there was a problem loading your facebook user information. Please sign out and in again.');
         }
       });
     }
@@ -147,7 +147,7 @@ let loginHeader = function (user) {
       FB.logout();
     })
     .catch(function (error) {
-      console.log("error: " + error);
+      //console.log("error: " + error);
     })
   });
   signOut.className = "signOut";
@@ -157,7 +157,7 @@ let loginHeader = function (user) {
   loggedIn.appendChild(signOut);
   login.style.display = "none";
   header.appendChild(loggedIn);
-  console.log("success");
+  //console.log("success");
 }
 
 let id = ""
@@ -215,14 +215,14 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
         for (let prop in obj) {
           let ul = document.createElement("ul");
           ul.className = "tags";
-          ul.innerHTML = obj[prop];
           tagsSliderContentChange.appendChild(ul)
-
-
+          
+          
         }
-
-
-
+        
+        
+        
+        ul.innerHTML = obj[prop];
 
       })
 
@@ -279,7 +279,7 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
     } else {
 
-      console.log("finns")
+      //console.log("finns")
 
 
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
@@ -364,7 +364,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 });
 
-console.log(tagsSlider.tagsPrevBtn)
+//console.log(tagsSlider.tagsPrevBtn)
 
 
 
@@ -422,6 +422,42 @@ var createNews = function () {
   a.target = '_blank';
   a.innerHTML = 'Read full article...';
 
+  // added save , share and comments links to articles - Jonas
+  let saveToFavourites = document.createElement('a');
+  let shareArticle = document.createElement('a');
+  let commentArticle = document.createElement('a');
+
+  saveToFavourites.className = 'newsFooter saveToFavourite';
+    
+  let saveIcon = document.createElement('i');
+     saveIcon.className = 'far fa-star';
+     saveToFavourites.appendChild(saveIcon);
+  let saveToFavouritesText = document.createElement('span');
+  saveToFavouritesText.className = 'newsFooterSpan';
+  saveToFavouritesText.innerText = 'Save';
+  saveToFavourites.appendChild(saveToFavouritesText);
+  
+  shareArticle.className = 'newsFooter shareArticle';
+  
+  let shareIcon = document.createElement('i');
+    shareIcon.className = 'fas fa-share-alt';
+    shareArticle.appendChild(shareIcon);
+  let shareArticleText = document.createElement('span');
+  shareArticleText.className = 'newsFooterSpan';
+  shareArticleText.innerText = 'Share';
+  shareArticle.appendChild(shareArticleText);
+  
+  commentArticle.className = 'newsFooter commentArticle';
+
+  let commentIcon = document.createElement('i');
+    commentIcon.className = 'far fa-comment';
+    commentArticle.appendChild(commentIcon);
+  let commentArticleText = document.createElement('span');
+  commentArticleText.className = 'newsFooterSpan';
+  commentArticleText.innerText = 'Comment';
+  commentArticle.appendChild(commentArticleText);
+// end of save,share,comment
+
   /*let fb_share = document.createElement('div');
   fb_share.classList.add('fb-share-button')
   fb_share.attr('data-layout') = 'button_count';
@@ -449,7 +485,9 @@ var createNews = function () {
   pinkAndTitle.appendChild(sumUp);
   pinkAndTitle.appendChild(readMore);
   pinkAndTitle.appendChild(fb_share);
-
+  pinkAndTitle.appendChild(saveToFavourites)
+  pinkAndTitle.appendChild(shareArticle);
+  pinkAndTitle.appendChild(commentArticle);
   //pinkAndTitle.appendChild(fb_share);
   /*
  <div class="fb-share-button" data-href="https://developers.facebook.com
@@ -534,7 +572,7 @@ var browseNews = function (array, number) {
   } while (count < number);
 
   let fbBtn = document.getElementsByClassName('fb-share');
-  console.log(fbBtn);
+  //console.log(fbBtn);
 
   for (let x of fbBtn) {
     x.addEventListener('click', function () {
@@ -580,11 +618,11 @@ var getAllNews = function () {
         amount--;
       }
       amount = myArticles.length;
-      console.log(myArticles)
+      //console.log(myArticles)
 
       browseNews(myArticles, amount);
     })
     .catch(function () {
-      console.log('failed');
+      //console.log('failed');
     });
 }
