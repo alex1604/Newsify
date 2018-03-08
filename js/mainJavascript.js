@@ -422,12 +422,47 @@ var createNews = function () {
   a.target = '_blank';
   a.innerHTML = 'Read full article...';
 
+  // added save , share and comments links to articles - Jonas
+  let saveToFavourites = document.createElement('a');
+  let shareArticle = document.createElement('a');
+  let commentArticle = document.createElement('a');
+
+  saveToFavourites.className = 'newsFooter saveToFavourite';
+    
+  let saveIcon = document.createElement('i');
+     saveIcon.className = 'far fa-star';
+     saveToFavourites.appendChild(saveIcon);
+  let saveToFavouritesText = document.createElement('span');
+  saveToFavouritesText.className = 'newsFooterSpan';
+  saveToFavouritesText.innerText = 'Save';
+  saveToFavourites.appendChild(saveToFavouritesText);
+  
+  shareArticle.className = 'newsFooter shareArticle';
+  
+  let shareIcon = document.createElement('i');
+    shareIcon.className = 'fas fa-share-alt';
+    shareArticle.appendChild(shareIcon);
+  let shareArticleText = document.createElement('span');
+  shareArticleText.className = 'newsFooterSpan';
+  shareArticleText.innerText = 'Share';
+  shareArticle.appendChild(shareArticleText);
+  
+  commentArticle.className = 'newsFooter commentArticle';
+
+  let commentIcon = document.createElement('i');
+    commentIcon.className = 'far fa-comment';
+    commentArticle.appendChild(commentIcon);
+  let commentArticleText = document.createElement('span');
+  commentArticleText.className = 'newsFooterSpan';
+  commentArticleText.innerText = 'Comment';
+  commentArticle.appendChild(commentArticleText);
+// end of save,share,comment
+
   /*let fb_share = document.createElement('div');
   fb_share.classList.add('fb-share-button')
   fb_share.attr('data-layout') = 'button_count';
   fb_share.atrr('data-size') = 'large';
   fb_share.attr('data-mobile-iframe') = 'true';
-
   let fb_a = document.createElement('a');
   fb_a.classList.add('fb-xfbml-parse-ignore')
   fb_a.target = '_blank';
@@ -449,7 +484,9 @@ var createNews = function () {
   pinkAndTitle.appendChild(sumUp);
   pinkAndTitle.appendChild(readMore);
   pinkAndTitle.appendChild(fb_share);
-
+  pinkAndTitle.appendChild(saveToFavourites)
+  pinkAndTitle.appendChild(shareArticle);
+  pinkAndTitle.appendChild(commentArticle);
   //pinkAndTitle.appendChild(fb_share);
   /*
  <div class="fb-share-button" data-href="https://developers.facebook.com
