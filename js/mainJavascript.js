@@ -6,6 +6,7 @@ let whenLoggedIn = document.getElementById("whenLoggedIn");
 
 let addTagBtn = document.getElementById("addTag");
 
+let deleteOwnTag = document.getElementById("deleteOwnTag");
 let allUsers = []
 
 
@@ -280,7 +281,7 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
     } else {
 
       console.log("finns")
-
+db.ref("/users/" + userID + "/photoURL").set(userPicture);
 
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
 
@@ -330,22 +331,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     addTagBtn.style.display = "inline-block";
 
-
-    if (signedInNowOrBefore === "before") {
-
-
-    }
-
-
-
-
-
-    if (signedInNowOrBefore === "before") {
-
-
-
-    }
-
     //when the user is logged in, runs loginHeader
 
 
@@ -364,7 +349,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 });
 
-console.log(tagsSlider.tagsPrevBtn)
+
 
 
 
@@ -513,34 +498,7 @@ var createNews = function () {
   main.appendChild(article);
 
 
-  //Jonathans kod //
 
-  mainContent.addEventListener("click", function (e) {
-
-    if (e.target.className === "readMoreLink") {
-
-      // let href = e.target.getAttribute("href")
-      // let divIframe = document.getElementById("iframe");
-      //
-      // let iframeElement = document.createElement("iframe");
-      // iframeElement.setAttribute("src", href);
-      // iframeElement.setAttribute("id", "contact");
-      // iframeElement.setAttribute("allowtransparency", "true");
-      // iframeElement.setAttribute("frameborder","0")
-      // iframeElement.setAttribute("scrolling","yes")
-      // iframeElement.setAttribute("width","100%")
-      // iframeElement.setAttribute("height","500px")
-      // iframeElement.setAttribute("frameborder","0")
-      // iframeElement.setAttribute("align","center")
-      //
-      // divIframe.appendChild(iframeElement)
-
-
-      // <!-- <iframe id="contact" src="http://www.bbc.com/news/world-middle-east-43219614" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
-
-    }
-
-  })
 
 }
 
