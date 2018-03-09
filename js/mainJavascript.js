@@ -94,29 +94,31 @@ loginFb.addEventListener("click", function () {
         { scope: 'public_profile,email' })
 
     } else {
-      FB.getAuthResponse(function (response) {
-        if (response != null) {
-          uid = response.authResponse.userID;
-          console.log(uid + ' second');
-          accessToken = response.authResponse.accessToken;
-          signedInNowOrBefore = "before";
-          firebase.auth().signInWithPopup(fbProvider).then(function(){
-            console.log('success authenticating fb in database');
-          
+          firebase.auth().signInWithRedirect(fbProvider);
+          firebase.auth().getRedirectResult().then(function(result) {
+            if (result.credential) {
+              console.log(result);
+              uid = response.publicProfile.id;
+            console.log(uid + ' first');
+            uemail = response.additionalUserInfo.profile.email;
+            console.log(uemail + ' first');
+            uname = response.additionalUserInfo.profile.name;
+            console.log(uname + ' first');
+            upicture = response.additionalUserInfo.profile.picture.data.url;
+            console.log(upicture);
+              firebaseInsertUserFacebook(uid, uname, upicture, uemail);
+            }
           })
-          .catch(function(){
-            console.log('error authenticating fb in database');
-          });
-
-        } else {
-          console.log('there was a problem loading your facebook user information. Please sign out and in again.');
+          .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            console.log(errorCode);
+            var errorMessage = error.message;
+            console.log(errorMessage);
+          }); 
         }
       });
-    }
-    
-  });
-  
-});
+    });
 
 let loginHeader = function (user) {
   /*// This gives you a Google Access Token. You can use it to access the Google API.
@@ -142,6 +144,7 @@ let loginHeader = function (user) {
       var header = document.getElementById("header");
       header.removeChild(header.lastChild);
       document.getElementById("login").style.display = "";
+      document.getElementById("loginFb").style.display = "";
       localStorage.removeItem("userHeader");
     })
     .then(function(){
