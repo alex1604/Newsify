@@ -7,8 +7,6 @@ console.log("erikJS");
        let date = datum.getDate();
        let month = datum.getMonth() + 1;
        let link = "http://cors-anywhere.herokuapp.com/http://history.muffinlabs.com/date";
-//       let cors = "http://cors-anywhere.herokuapp.com/"
-      /* let link = "http://numbersapi.com/"+month+"/"+date+"/date?json"; */
        let footer = document.getElementById("footer");
        let divHistory = document.getElementById("divHistory");
        let eventYear = document.getElementById("eventYear"); 
@@ -17,28 +15,24 @@ console.log("erikJS");
               
            fetch(link)
            .then(function(response) {
-               return response.json();
+                return response.json();
             })
            .then(function(obj) {
-               let date = JSON.stringify(obj.date);
+              let date = JSON.stringify(obj.date);
                divHistory.innerHTML = "Today in History: " + date;
                
-               
               let randomEvent = obj.data.Events;
-               console.log(randomEvent);
                
-           let random = Math.floor(Math.random()*randomEvent.length);
+              let random = Math.floor(Math.random()*randomEvent.length);
                     
-                
+              let event1Year = JSON.stringify(obj.data.Events[random].year);
             
-            let event1Year = JSON.stringify(obj.data.Events[random].year);
-            let event1Text = JSON.stringify(obj.data.Events[random].text);
+              let event1Text = JSON.stringify(obj.data.Events[random].text);
                 
-            
                eventYear.innerHTML = "Year: " + event1Year;
                eventText.innerHTML = event1Text;
        
-     }) 
+     });
         
         var whenScroll = function(evt) {
               if(footer.style.display === "block") {
