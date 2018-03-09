@@ -12,22 +12,26 @@
     margin-left: 10px;
     margin-top: 10px;
     width: 50%;
+    font-weight: bold;
     
 }
 
-#div1 {
+#eventYear {
     display: inline-block;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-top: 6px;
-    width: 20%;
+    width: auto;
+    font-weight: bold;
     
 }
 
-#div2 {
+#eventText {
     display: block;
-    margin-left: 20px;
-    margin-top: 10px;
+    margin-left: 10px;
+    margin-top: 6px;
     width: 50%;
+    font-weight: bold;
+    
     
     
 }
