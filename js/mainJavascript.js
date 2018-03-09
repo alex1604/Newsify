@@ -444,19 +444,35 @@ var createNews = function () {
 // end of save,share,comment
 
 
- console.log(shareArticle);
   let commentContainer = document.createElement("div");
   commentContainer.className = "commentContainer";
   let commentDropDown = document.createElement("button");
   commentDropDown.innerText = "comments" + /*amount of comments*/ "(0)";
   commentDropDown.className = "commentDropDown";
   commentDropDown.addEventListener("click", function(event){
+    if (event.target.parentElement.children.length == 1){
     let targetUrl = event.target.parentNode.parentNode.children[1].href;
     db.ref("/Articles/").once("value", function(snapshot){
       var found = "unfound";
-      console.log(event.target.parentNode.parentNode.parentNode)
       for (var item in snapshot.val()){
         if (snapshot.val()[item].saveUrl == targetUrl){
+          for (var comment in snapshot.val()[item].comments){
+            let commentWhole = document.createElement("div");
+            let commentText = document.createElement("div");
+            let commentUsername = document.createElement("div");
+            let commentUserPicture = document.createElement("img");
+            commentText.innerText = snapshot.val()[item].comments[comment].content;
+            commentText.className = "commentText";
+            commentUsername.innerText = snapshot.val()[item].comments[comment].username;
+            commentUsername.className = "commentUsername";
+            commentUserPicture.src = snapshot.val()[item].comments[comment].photoURL;
+            commentUserPicture.className = "commentUserPicture";
+            commentUserPicture.alt = "Userpic";
+            commentWhole.appendChild(commentUserPicture);
+            commentWhole.appendChild(commentUsername);
+            commentWhole.appendChild(commentText);
+            event.target.parentElement.insertBefore(commentWhole, event.target.parentElement.childNodes[3])
+          }
           found = "found";
         }
       }
@@ -465,17 +481,16 @@ var createNews = function () {
           saveDescription: event.target.parentNode.parentNode.parentNode.children[2].innerText,
           saveTitle: event.target.parentNode.parentNode.parentNode.children[1].innerText,
           saveUrl: targetUrl,
-          saveUrlImage: "",
+          saveUrlImage: event.target.parentNode.parentNode.parentNode.parentNode.children[1].firstChild.src,
           comments: {
           }
         })
       }
     })
-    if (event.target.parentElement.children.length == 1){
       let writeBox = document.createElement("textarea");
       writeBox.type = "input";
       writeBox.placeholder = "Input your comment here";
-      writeBox.clannName = "writeBox";
+      writeBox.className = "writeBox";
       writeBox.addEventListener("keyup", function(event){
         //Comments if user clicks enter
         if (event.key == "Enter"){
@@ -498,11 +513,18 @@ var createNews = function () {
             commentWhole.appendChild(commentUsername);
             commentWhole.appendChild(commentText);
             event.target.parentElement.insertBefore(commentWhole, event.target.parentElement.childNodes[3]);
-            firebase.database().ref("/").push({
-              content: text,
-              username: localStorage.getItem("username"),
-              photoURL: localStorage.getItem("photoURL"),
-              userID: localStorage.getItem("userid"),
+            firebase.database().ref("/Articles/").once("value", function(snapshot){
+              let snap = snapshot.val();
+              for (var item in snap){
+                if (snap[item].saveUrl == event.target.parentNode.parentNode.lastChild.href){
+                  firebase.database().ref("/Articles/" + item + "/comments/").push({
+                    content: text,
+                    username: localStorage.getItem("username"),
+                    photoURL: localStorage.getItem("photoURL"),
+                    userID: localStorage.getItem("userid"),
+                  })
+                }
+              }
             })
           }
         }
