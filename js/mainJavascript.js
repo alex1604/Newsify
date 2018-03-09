@@ -471,9 +471,17 @@ var createNews = function () {
   article.appendChild(mainContent);
 
   main.appendChild(article);
+  mainContent.addEventListener("click", function (e) {
 
+    if (e.target.className === "readMoreLink") {
 
+      let href = e.target.getAttribute("href");
 
+      window.open(href,'_blank');
+
+    }
+
+  })
 
 }
 
