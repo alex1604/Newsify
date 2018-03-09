@@ -444,51 +444,69 @@ var createNews = function () {
 // end of save,share,comment
 
 
-
-
+ console.log(shareArticle);
   let commentContainer = document.createElement("div");
   commentContainer.className = "commentContainer";
   let commentDropDown = document.createElement("button");
   commentDropDown.innerText = "comments" + /*amount of comments*/ "(0)";
   commentDropDown.className = "commentDropDown";
   commentDropDown.addEventListener("click", function(event){
-    console.log(event.target.parentNode);
-    if (event.target.parentElement.children.length == 1){
-    let writeBox = document.createElement("textarea");
-    writeBox.type = "input";
-    writeBox.placeholder = "Input your comment here";
-    writeBox.clannName = "writeBox";
-    writeBox.addEventListener("keyup", function(event){
-      //Comments if user clicks enter
-      if (event.key == "Enter"){
-        //console.log(event.target);
-        let text = event.target.parentElement.childNodes[1].value;
-        event.target.parentElement.childNodes[1].value = "";
-        if (text !== ""){
-          let commentWhole = document.createElement("div");
-          let commentText = document.createElement("div");
-          let commentUsername = document.createElement("div");
-          let commentUserPicture = document.createElement("img");
-          commentText.innerText = text;
-          commentText.className = "commentText";
-          commentUsername.innerText = localStorage.getItem("username");
-          commentUsername.className = "commentUsername";
-          commentUserPicture.src = localStorage.getItem("photoURL");
-          commentUserPicture.className = "commentUserPicture";
-          commentUserPicture.alt = "Userpic";
-          commentWhole.appendChild(commentUserPicture);
-          commentWhole.appendChild(commentUsername);
-          commentWhole.appendChild(commentText);
-          event.target.parentElement.insertBefore(commentWhole, event.target.parentElement.childNodes[3]);
-          firebase.database().ref("/").push({
-            content: text,
-            username: localStorage.getItem("username"),
-            photoURL: localStorage.getItem("photoURL"),
-            userID: localStorage.getItem("userid"),
-          })
+    let targetUrl = event.target.parentNode.parentNode.children[1].href;
+    db.ref("/Articles/").once("value", function(snapshot){
+      var found = "unfound";
+      console.log(event.target.parentNode.parentNode.parentNode)
+      for (var item in snapshot.val()){
+        if (snapshot.val()[item].saveUrl == targetUrl){
+          found = "found";
         }
       }
-    });
+      if (found == "unfound"){
+        db.ref("/Articles/").push({
+          saveDescription: event.target.parentNode.parentNode.parentNode.children[2].innerText,
+          saveTitle: event.target.parentNode.parentNode.parentNode.children[1].innerText,
+          saveUrl: targetUrl,
+          saveUrlImage: "",
+          comments: {
+          }
+        })
+      }
+    })
+    if (event.target.parentElement.children.length == 1){
+      let writeBox = document.createElement("textarea");
+      writeBox.type = "input";
+      writeBox.placeholder = "Input your comment here";
+      writeBox.clannName = "writeBox";
+      writeBox.addEventListener("keyup", function(event){
+        //Comments if user clicks enter
+        if (event.key == "Enter"){
+          //console.log(event.target);
+          let text = event.target.parentElement.childNodes[1].value;
+          event.target.parentElement.childNodes[1].value = "";
+          if (text !== ""){
+            let commentWhole = document.createElement("div");
+            let commentText = document.createElement("div");
+            let commentUsername = document.createElement("div");
+            let commentUserPicture = document.createElement("img");
+            commentText.innerText = text;
+            commentText.className = "commentText";
+            commentUsername.innerText = localStorage.getItem("username");
+            commentUsername.className = "commentUsername";
+            commentUserPicture.src = localStorage.getItem("photoURL");
+            commentUserPicture.className = "commentUserPicture";
+            commentUserPicture.alt = "Userpic";
+            commentWhole.appendChild(commentUserPicture);
+            commentWhole.appendChild(commentUsername);
+            commentWhole.appendChild(commentText);
+            event.target.parentElement.insertBefore(commentWhole, event.target.parentElement.childNodes[3]);
+            firebase.database().ref("/").push({
+              content: text,
+              username: localStorage.getItem("username"),
+              photoURL: localStorage.getItem("photoURL"),
+              userID: localStorage.getItem("userid"),
+            })
+          }
+        }
+      });
     let commentButton = document.createElement("button");
     //comments if user clicks the comment button
     commentButton.innerText = "Comment";
