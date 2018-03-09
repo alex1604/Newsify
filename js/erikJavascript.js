@@ -24,26 +24,20 @@ console.log("erikJS");
                divHistory.innerHTML = "Today in History: " + date;
                
                
-               //console.log(obj.data.Events[42]);
-            let event1Year = JSON.stringify(obj.data.Events[42].year);
-            let event1Text = JSON.stringify(obj.data.Events[42].text);
-                console.log(event1Text);
+              let randomEvent = obj.data.Events;
+               console.log(randomEvent);
+               
+           let random = Math.floor(Math.random()*randomEvent.length);
+                    
+                
+            
+            let event1Year = JSON.stringify(obj.data.Events[random].year);
+            let event1Text = JSON.stringify(obj.data.Events[random].text);
+                
             
                eventYear.innerHTML = "Year: " + event1Year;
                eventText.innerHTML = event1Text;
-               
-               /*     
-               
-               let divYear = document.createElement("div");
-               let txt = JSON.stringify(obj.text);
-               let divTxt = document.createElement("div");
-               divYear.innerHTML = "Year: " + year;
-               divYear.id = "divYear";
-               divTxt.innerHTML = txt;
-               divTxt.id = "divTxt";
-               div1.appendChild(divYear);
-               div2.appendChild(divTxt);
-     */
+       
      }) 
         
         var whenScroll = function(evt) {

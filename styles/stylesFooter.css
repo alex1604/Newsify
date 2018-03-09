@@ -1,4 +1,5 @@
 #footer {
+    display: block;
     position: fixed;
     bottom: 0;
     align-self: flex-start;
@@ -9,28 +10,31 @@
 }
 
 #divHistory {
-    margin-left: 10px;
-    margin-top: 10px;
+    margin-left: 20px;
+    margin-top: 16px;
     width: 50%;
     font-weight: bold;
+    font-size: 16px;
     
 }
 
 #eventYear {
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 20px;
     margin-top: 6px;
     width: auto;
     font-weight: bold;
+    font-size: 14px;
     
 }
 
 #eventText {
     display: block;
-    margin-left: 10px;
+    margin-left: 20px;
     margin-top: 6px;
     width: 50%;
     font-weight: bold;
+    font-size: 13px;
     
     
     
