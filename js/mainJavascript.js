@@ -41,7 +41,7 @@ login.addEventListener("click", function (event) {
   //simple click event on the "login" div
   firebase.auth().signInWithPopup(gmailprovider).then(function (result) {
 
-    console.log("log-in button");
+    //console.log("log-in button");
 
     signedInNowOrBefore = "now";
   }).catch(function (error) {
@@ -61,7 +61,7 @@ loginFb.addEventListener("click", function () {
   let accessToken = '';
 
   FB.getLoginStatus(function (response) {
-    console.log(response);
+    //console.log(response);
     if (response.status == 'unknown' || response.status == 'not_authorized') {
       FB.login(function (response) {
         if (response.authResponse) {
@@ -70,18 +70,18 @@ loginFb.addEventListener("click", function () {
 
           signedInNowOrBefore = "now";
           firebase.auth().signInWithPopup(fbProvider).then(function(response){
-            console.log(response);
+            //console.log(response);
             uid = response.user.uid;
-            console.log(uid + ' first');
+            //console.log(uid + ' first');
             uemail = response.additionalUserInfo.profile.email;
-            console.log(uemail + ' first');
+            //console.log(uemail + ' first');
             uname = response.additionalUserInfo.profile.name;
-            console.log(uname + ' first');
+            //console.log(uname + ' first');
             upicture = response.additionalUserInfo.profile.picture.data.url;
-            console.log(upicture);
+            //console.log(upicture);
 
-            console.log(response);
-            console.log('success authenticating fb in database');
+            //console.log(response);
+            //console.log('success authenticating fb in database');
           firebaseInsertUserFacebook(uid, uname, upicture, uemail);
           })
           .catch(function(){
@@ -98,11 +98,11 @@ loginFb.addEventListener("click", function () {
       FB.getAuthResponse(function (response) {
         if (response != null) {
           uid = response.authResponse.userID;
-          console.log(uid + ' second');
+          //console.log(uid + ' second');
           accessToken = response.authResponse.accessToken;
           signedInNowOrBefore = "before";
           firebase.auth().signInWithPopup(fbProvider).then(function(){
-            console.log('success authenticating fb in database');
+            //console.log('success authenticating fb in database');
 
           })
           .catch(function(){
@@ -187,7 +187,7 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
 
 
     if (id === "") {
-      console.log("finns inte")
+      //console.log("finns inte")
       var database = firebase.database;
       database().ref("/users/" + userID).set({
         username: userName,
@@ -204,7 +204,7 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
 
     } else {
 
-      console.log("finns")
+      //console.log("finns")
 
 
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
@@ -263,7 +263,7 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
 
     if (id === "") {
-      console.log("finns inte")
+      //console.log("finns inte")
       var database = firebase.database;
       database().ref("/users/" + userID).set({
         username: userName,
@@ -280,7 +280,7 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
     } else {
 
-      console.log("finns")
+      //console.log("finns")
 
 
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
@@ -354,7 +354,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     // User is signed in.
     // Put in the displayname change and whatnot?
   } else {
-    console.log("logged out");
+    //console.log("logged out");
     localStorage.clear(); //clears the localstorage for the next user
     addTagBtn.style.display = "none";
     whenLoggedIn.style.display = "none";
@@ -363,7 +363,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 });
 
-console.log(tagsSlider.tagsPrevBtn)
+//console.log(tagsSlider.tagsPrevBtn)
 
 
 
@@ -441,12 +441,14 @@ var createNews = function () {
   fb_share.innerHTML = 'Share on Facebook';
   fb_share.name = '';
 
+
   let commentContainer = document.createElement("div");
   commentContainer.className = "commentContainer";
   let commentDropDown = document.createElement("button");
   commentDropDown.innerText = "comments" + /*amount of comments*/ "(0)";
   commentDropDown.className = "commentDropDown";
   commentDropDown.addEventListener("click", function(event){
+    console.log(event.target.parentNode);
     if (event.target.parentElement.children.length == 1){
     let writeBox = document.createElement("textarea");
     writeBox.type = "input";
@@ -455,7 +457,7 @@ var createNews = function () {
     writeBox.addEventListener("keyup", function(event){
       //Comments if user clicks enter
       if (event.key == "Enter"){
-        console.log(event.target);
+        //console.log(event.target);
         let text = event.target.parentElement.childNodes[1].value;
         event.target.parentElement.childNodes[1].value = "";
         if (text !== ""){
@@ -476,8 +478,9 @@ var createNews = function () {
           event.target.parentElement.insertBefore(commentWhole, event.target.parentElement.childNodes[3]);
           firebase.database().ref("/").push({
             content: text,
-            user: localStorage.getItem("username"),
+            username: localStorage.getItem("username"),
             photoURL: localStorage.getItem("photoURL"),
+            userID: localStorage.getItem("userid"),
           })
         }
       }
@@ -487,7 +490,7 @@ var createNews = function () {
     commentButton.innerText = "Comment";
     commentButton.className = "commentButton";
     commentButton.addEventListener("click", function(event){
-      console.log(event.target);
+      //console.log(event.target);
       let text = event.target.parentElement.childNodes[1].value;
       event.target.parentElement.childNodes[1].value = "";
       if (text !== ""){
@@ -510,6 +513,7 @@ var createNews = function () {
           content: text,
           user: localStorage.getItem("username"),
           photoURL: localStorage.getItem("photoURL"),
+          userID: localStorage.getItem("userid"),
         })
       }
     });
@@ -616,7 +620,7 @@ var browseNews = function (array, number) {
   } while (count < number);
 
   let fbBtn = document.getElementsByClassName('fb-share');
-  console.log(fbBtn);
+  //console.log(fbBtn);
 
   for (let x of fbBtn) {
     x.addEventListener('click', function () {
@@ -661,7 +665,7 @@ var getAllNews = function () {
         amount--;
       }
       amount = myArticles.length;
-      console.log(myArticles)
+      //console.log(myArticles)
 
       browseNews(myArticles, amount);
     })
