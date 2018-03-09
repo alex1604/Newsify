@@ -6,6 +6,7 @@ let whenLoggedIn = document.getElementById("whenLoggedIn");
 
 let addTagBtn = document.getElementById("addTag");
 
+let deleteOwnTag = document.getElementById("deleteOwnTag");
 let allUsers = []
 
 let commentBox;
@@ -280,8 +281,7 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
     } else {
 
-      //console.log("finns")
-
+db.ref("/users/" + userID + "/photoURL").set(userPicture);
 
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
 
@@ -334,16 +334,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     addTagBtn.style.display = "inline-block";
 
-
-    if (signedInNowOrBefore === "before") {
-
-
-    }
-
-    if (signedInNowOrBefore === "before") {
-
-    }
-
     //when the user is logged in, runs loginHeader
 
 
@@ -362,10 +352,6 @@ firebase.auth().onAuthStateChanged(function (user) {
     // No user is signed in.
   }
 });
-
-//console.log(tagsSlider.tagsPrevBtn)
-
-
 
 
 
@@ -421,25 +407,43 @@ var createNews = function () {
   a.target = '_blank';
   a.innerHTML = 'Read full article...';
 
-  /*let fb_share = document.createElement('div');
-  fb_share.classList.add('fb-share-button')
-  fb_share.attr('data-layout') = 'button_count';
-  fb_share.atrr('data-size') = 'large';
-  fb_share.attr('data-mobile-iframe') = 'true';
+  // added save , share and comments links to articles - Jonas
+  let saveToFavourites = document.createElement('a');
+  let shareArticle = document.createElement('a');
+  let commentArticle = document.createElement('a');
 
-  let fb_a = document.createElement('a');
-  fb_a.classList.add('fb-xfbml-parse-ignore')
-  fb_a.target = '_blank';
-  fb_a.href = "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-  fb_a.innerHTML = 'Share';*/
+  saveToFavourites.className = 'newsFooter saveToFavourite';
 
-  //fb_share.appendChild(fb_a);
+  let saveIcon = document.createElement('i');
+     saveIcon.className = 'far fa-star';
+     saveToFavourites.appendChild(saveIcon);
+  let saveToFavouritesText = document.createElement('span');
+  saveToFavouritesText.className = 'newsFooterSpan';
+  saveToFavouritesText.innerText = 'Save';
+  saveToFavourites.appendChild(saveToFavouritesText);
 
-  let fb_share = document.createElement('button');
-  fb_share.type = 'button';
-  fb_share.classList.add('fb-share');
-  fb_share.innerHTML = 'Share on Facebook';
-  fb_share.name = '';
+  shareArticle.className = 'newsFooter shareArticle';
+
+  let shareIcon = document.createElement('i');
+    shareIcon.className = 'fas fa-share-alt';
+    shareArticle.appendChild(shareIcon);
+  let shareArticleText = document.createElement('span');
+  shareArticleText.className = 'newsFooterSpan';
+  shareArticleText.innerText = 'Share';
+  shareArticle.appendChild(shareArticleText);
+
+  commentArticle.className = 'newsFooter commentArticle';
+
+  let commentIcon = document.createElement('i');
+    commentIcon.className = 'far fa-comment';
+    commentArticle.appendChild(commentIcon);
+  let commentArticleText = document.createElement('span');
+  commentArticleText.className = 'newsFooterSpan';
+  commentArticleText.innerText = 'Comment';
+  commentArticle.appendChild(commentArticleText);
+// end of save,share,comment
+
+
 
 
   let commentContainer = document.createElement("div");
@@ -534,17 +538,11 @@ var createNews = function () {
   pinkAndTitle.appendChild(title);
   pinkAndTitle.appendChild(sumUp);
   pinkAndTitle.appendChild(readMore);
-  pinkAndTitle.appendChild(fb_share);
-
+  pinkAndTitle.appendChild(saveToFavourites);
+  pinkAndTitle.appendChild(shareArticle);
+  pinkAndTitle.appendChild(commentArticle);
   //pinkAndTitle.appendChild(fb_share);
-  /*
- <div class="fb-share-button" data-href="https://developers.facebook.com
- /docs/plugins/" data-layout="button_count" data-size="large"
- data-mobile-iframe="true"><a target="_blank" href=
- "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.
- facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
- class="fb-xfbml-parse-ignore">Compartir</a></div>
-  */
+
 
   let articleImage = document.createElement('div');
   articleImage.classList.add('articleImage');
@@ -562,34 +560,7 @@ var createNews = function () {
   main.appendChild(article);
 
 
-  //Jonathans kod //
 
-  mainContent.addEventListener("click", function (e) {
-
-    if (e.target.className === "readMoreLink") {
-
-      // let href = e.target.getAttribute("href")
-      // let divIframe = document.getElementById("iframe");
-      //
-      // let iframeElement = document.createElement("iframe");
-      // iframeElement.setAttribute("src", href);
-      // iframeElement.setAttribute("id", "contact");
-      // iframeElement.setAttribute("allowtransparency", "true");
-      // iframeElement.setAttribute("frameborder","0")
-      // iframeElement.setAttribute("scrolling","yes")
-      // iframeElement.setAttribute("width","100%")
-      // iframeElement.setAttribute("height","500px")
-      // iframeElement.setAttribute("frameborder","0")
-      // iframeElement.setAttribute("align","center")
-      //
-      // divIframe.appendChild(iframeElement)
-
-
-      // <!-- <iframe id="contact" src="http://www.bbc.com/news/world-middle-east-43219614" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
-
-    }
-
-  })
 
 }
 
@@ -603,7 +574,7 @@ var browseNews = function (array, number) {
   let descriptions = document.getElementsByClassName('sumUp');
   let images = document.getElementsByClassName('articleImageLink');
   let readMore = document.getElementsByClassName('readMoreLink');
-  let fbShare = document.getElementsByClassName('fb-share');
+  let fbShare = document.getElementsByClassName('shareArticle');
 
 
   let count = 0;
@@ -619,8 +590,7 @@ var browseNews = function (array, number) {
 
   } while (count < number);
 
-  let fbBtn = document.getElementsByClassName('fb-share');
-  //console.log(fbBtn);
+  let fbBtn = document.getElementsByClassName('shareArticle');
 
   for (let x of fbBtn) {
     x.addEventListener('click', function () {
