@@ -12,6 +12,7 @@ let tagsSlider ={
 }
 
 
+
 let currentTag = {
 
   inputTag : document.getElementById("inputTag"),
@@ -747,6 +748,13 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
           totalLeft = "-" + totalLeft + "px";
 
+          console.log(tagsMinusSlide)
+
+
+
+
+           document.getElementById("currentTag").innerHTML = tagsSlider.tagsContentChange.children[tagsMinusSlide].innerHTML
+
           if(contentChangeLength> tagsMinusSlide){
 
             sliderContentChange.style.marginLeft = totalLeft;
@@ -1027,18 +1035,28 @@ function clear(){
 
 addTagBtn.addEventListener("click", function () {
 
-  let innerText = document.getElementById("currentTag").innerText;
+  let innerHTML = document.getElementById("currentTag").innerHTML;
 
   console.log(sammaid)
 
-  if (document.getElementById("currentTag").innerText !== "") {
+  if (document.getElementById("currentTag").innerHTML !== "") {
 
 
-    db.ref("users/" + sammaid + "/tags").push(innerText)
+    db.ref("users/" + sammaid + "/tags").push(innerHTML)
     let ul = document.createElement("ul");
+
     ul.className = "tags";
-    ul.innerHTML = innerText;
+    ul.innerHTML = innerHTML;
     tagsSliderContentChange.appendChild(ul)
+
+
+    if(tagsMinusSlide < tagsSlider.tagsContentChange.children.length){
+      tagsSlider.tagsNextBtn.style.display ="block"
+    }else{
+      tagsSlider.tagsNextBtn.style.display ="block"
+
+    }
+
 
   }
     clear()
@@ -1052,6 +1070,9 @@ deleteCurrentTag.addEventListener("click",function(){
 
 
 tagsSlider.tagsNextBtn.addEventListener("click", function () {
+
+  tagsSlider.tagsPrevBtn.style.display ="block";
+
 
   let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
   sliderFunctionRight(tagsContentChangeLength, tagsTotalLeft, tagsContentChangeWidth, tagsSlider.tagsContentChange, tagsSwitch, tagsSlider.tagsNextBtn, tagsSlider.tagsPrevBtn)
@@ -1097,10 +1118,13 @@ tagsSlider.tagsPrevBtn.addEventListener("click", function () {
 
     tagsMinusSlide--
 
+    document.getElementById("currentTag").innerHTML = tagsSlider.tagsContentChange.children[tagsMinusSlide-1].innerHTML
 
     if (tagsMinusSlide === 1) {
 
       tagsSlider.tagsPrevBtn.style.opacity = "0"
+
+
     }
     if (tagsMinusSlide < tagsContentChangeLength) {
       tagsSlider.tagsNextBtn.style.opacity = "1"
@@ -1110,6 +1134,7 @@ tagsSlider.tagsPrevBtn.addEventListener("click", function () {
     if (tagsMinusSlide === 1) {
 
       beforeLoggedIn.style.display = "block"
+      document.getElementById("currentTag").innerHTML = ""
     }
     // languageSwitch(languageMinusSlide)
 
@@ -1126,6 +1151,7 @@ deleteOwnTag.addEventListener("click",function(){
 
     db.ref("/users/"+ id + "/tags/").once("value",function(snapshot){
 
+
           let obj = snapshot.val()
           console.log("y är: ", y)
           console.log("tagsMinusSlide: ", tagsMinusSlide)
@@ -1134,14 +1160,12 @@ deleteOwnTag.addEventListener("click",function(){
         let found = false;
         let proppet = ""
         let tag = tagsSlider.tagsContentChange.children[tagsMinusSlide-1];
-
+        let totalLeft;
         for(let prop in obj){
 
 
-          let totalLeft = (tagsMinusSlide-2) * 300;
-          totalLeft = totalLeft.toString();
+           totalLeft = (tagsMinusSlide-1) * 300;
 
-          totalLeft = "-"+ totalLeft + "px";
 
 
 
@@ -1161,7 +1185,7 @@ deleteOwnTag.addEventListener("click",function(){
 
 
 
-          // if(tagsMinusSlide === tagsSlider.tagsContentChange.children.length)
+
             // console.log(prop)
             // db.ref("/users/"+ id + "/tags/"+ prop).remove()
             // tagsSlider.tagsContentChange.children[tagsMinusSlide-1].remove()
@@ -1178,6 +1202,30 @@ deleteOwnTag.addEventListener("click",function(){
 
 
           db.ref("/users/"+ id + "/tags/"+ proppet).remove()
+
+          console.log(tagsMinusSlide)
+          console.log(totalLeft)
+
+          console.log(tagsSlider.tagsContentChange.children.length)
+          if(tagsMinusSlide === tagsSlider.tagsContentChange.children.length +1){
+
+            totalLeft = totalLeft -300
+            totalLeft = totalLeft.toString();
+
+            totalLeft = "-"+ totalLeft + "px";
+              console.log(totalLeft)
+             tagsSlider.tagsContentChange.style.marginLeft = totalLeft;
+
+             tagsMinusSlide--
+
+             if(tagsMinusSlide === 1){
+
+               beforeLoggedIn.style.display = "block"
+
+             }
+
+
+          }
           found = false;
         }
 
