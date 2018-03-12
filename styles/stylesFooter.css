@@ -6,38 +6,52 @@
     background:#333644;
     color:rgba(255,255,255,0.7);
     width: 100%;
-    height: 100px;
+    height: 60px;
+    
 }
 
 #divHistory {
-    margin-left: 20px;
-    margin-top: 16px;
+    margin-left: 60px;
+    margin-top: -30px;
     width: 50%;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 10px;
     
+    
+}
+
+i {
+    margin-left: 20px;
+    margin-top: 20px;
 }
 
 #eventYear {
     display: inline-block;
-    margin-left: 20px;
-    margin-top: 6px;
+    margin-left: 60px;
+    margin-top: 1px;
     width: auto;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 10px;
     
 }
 
 #eventText {
     display: block;
-    margin-left: 20px;
-    margin-top: 6px;
-    width: 50%;
+    margin-left: 60px;
+    margin-top: 1px;
+    width: 30%;
     font-weight: bold;
-    font-size: 13px;
-    
-    
-    
+    font-size: 10px;
+}
+
+h3 {
+    display: block;
+    position: fixed;
+    color: white;
+    font-weight: bold;
+    margin-left: 640px;
+    margin-top: -30px;
+    font-style: italic;
 }
 
 #time {
@@ -47,9 +61,10 @@
     right: 0;
     display: block;
     margin-left: 1000px;
-    margin-top: -20px;
+    margin-top: -35px;
     width: auto;
     font-weight: bold;
+    font-size: 10px;
 }
 
 
