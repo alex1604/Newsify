@@ -1,4 +1,4 @@
-﻿Grupp GitChaos: Alejandra, Albin,Jonas,Erik, Jonathan.
+Grupp GitChaos: Alejandra, Albin,Jonas,Erik, Jonathan.
 
 Vecka 8:
 
@@ -78,3 +78,4 @@ Okomplicerat möte och fortsatt jobb, två borta p.g.a sjukdom och trasig dator 
 Måndag 12 mars:
 Dåligt förberedande inför vår sprintreview. Något som vi måste jobba på nästa gång när vi ska framföra inför klassen.
 Vi bytte scrummaster till Albin. Vi gick igenom sakerna som vi behövde få gjort inför nästa sprint. Bra uppdelning av arbetsuppgifter.
+
