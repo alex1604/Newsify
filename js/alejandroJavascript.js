@@ -6,7 +6,7 @@ let languageCode = '';
 let tagCode = document.getElementById('inputTag').value;
 */
 console.log("alejandroJavacript.js");
-var callback = function(){
+var callback = function () {
 
   var countryKey = '';
   var ltd = '';
@@ -14,7 +14,7 @@ var callback = function(){
   var urlWeather = '';
   var weatherResponse = '';
 
-  var browseWeather = function (object, weatherLocation){
+  var browseWeather = function (object, weatherLocation) {
     let dayIcon = object.DailyForecasts[0].Day.Icon;
     let min = object.DailyForecasts[0].Temperature.Minimum.Value;
     let max = object.DailyForecasts[0].Temperature.Maximum.Value;
@@ -23,106 +23,106 @@ var callback = function(){
     min = Math.ceil((min - 32) * 5 / 9);
     max = Math.ceil((max - 32) * 5 / 9);
 
-    switch(dayIcon){
+    switch (dayIcon) {
       case 1:
-      weather.classList.add('wi-day-sunny');
-      weather2.classList.add('wi-day-sunny');
-      break;
+        weather.classList.add('wi-day-sunny');
+        weather2.classList.add('wi-day-sunny');
+        break;
       case 2:
-      weather.classList.add('wi-day-sunny-overcast');
-      weather2.classList.add('wi-day-sunny-overcast');
+        weather.classList.add('wi-day-sunny-overcast');
+        weather2.classList.add('wi-day-sunny-overcast');
       case 3:
-      weather.classList.add('wi-day-cloudy-high');
-      weather2.classList.add('wi-day-cloudy-high');
-      break;
+        weather.classList.add('wi-day-cloudy-high');
+        weather2.classList.add('wi-day-cloudy-high');
+        break;
       case 4:
-      weather.classList.add('wi-day-cloudy');
-      weather2.classList.add('wi-day-cloudy');
-      break;
+        weather.classList.add('wi-day-cloudy');
+        weather2.classList.add('wi-day-cloudy');
+        break;
       case 5:
-      weather.classList.add('wi-day-haze');
-      weather2.classList.add('wi-day-haze');
-      break;
+        weather.classList.add('wi-day-haze');
+        weather2.classList.add('wi-day-haze');
+        break;
       case 6:
-      weather.classList.add('wi-day-cloud');
-      weather2.classList.add('wi-day-cloud');
-      break;
+        weather.classList.add('wi-day-cloud');
+        weather2.classList.add('wi-day-cloud');
+        break;
       case 7:
-      weather.classList.add('wi-cloudy');
-      weather2.classList.add('wi-cloudy');
-      break;
+        weather.classList.add('wi-cloudy');
+        weather2.classList.add('wi-cloudy');
+        break;
       case 8:
-      weather.classList.add('wi-cloudy');
-      weather2.classList.add('wi-cloudy');
-      break;
+        weather.classList.add('wi-cloudy');
+        weather2.classList.add('wi-cloudy');
+        break;
       case 11:
-      weather.classList.add('wi-fog');
-      weather2.classList.add('wi-fog');
-      break;
+        weather.classList.add('wi-fog');
+        weather2.classList.add('wi-fog');
+        break;
       case 12:
-      weather.classList.add('wi-day-showers');
-      weather2.classList.add('wi-day-showers');
-      break;
+        weather.classList.add('wi-day-showers');
+        weather2.classList.add('wi-day-showers');
+        break;
       case 13:
-      weather.classList.add('wi-day-showers');
-      weather2.classList.add('wi-day-showers');
-      break;
+        weather.classList.add('wi-day-showers');
+        weather2.classList.add('wi-day-showers');
+        break;
       case 14:
-      weather.classList.add('wi-day-showers');
-      weather2.classList.add('wi-day-showers');
-      break;
+        weather.classList.add('wi-day-showers');
+        weather2.classList.add('wi-day-showers');
+        break;
       case 15:
-      weather.classList.add('wi-day-storm-showers');
-      weather2.classList.add('wi-day-storm-showers');
-      break;
+        weather.classList.add('wi-day-storm-showers');
+        weather2.classList.add('wi-day-storm-showers');
+        break;
       case 16:
-      weather.classList.add('wi-day-storm-showers');
-      weather2.classList.add('wi-day-storm-showers');
-      break;
+        weather.classList.add('wi-day-storm-showers');
+        weather2.classList.add('wi-day-storm-showers');
+        break;
       case 17:
-      weather.classList.add('wi-day-storm-showers');
-      weather2.classList.add('wi-day-storm-showers');
-      break;
+        weather.classList.add('wi-day-storm-showers');
+        weather2.classList.add('wi-day-storm-showers');
+        break;
       case 18:
-      weather.classList.add('wi-day-rain-mix');
-      weather2.classList.add('wi-day-rain-mix');
-      break;
+        weather.classList.add('wi-day-rain-mix');
+        weather2.classList.add('wi-day-rain-mix');
+        break;
       case 19:
-      weather.classList.add('wi-day-cloudy-windy');
-      weather2.classList.add('wi-day-cloudy-windy');
-      break;
+        weather.classList.add('wi-day-cloudy-windy');
+        weather2.classList.add('wi-day-cloudy-windy');
+        break;
       case 20:
-      weather.classList.add('wi-day-cloudy-windy');
-      weather2.classList.add('wi-day-cloudy-windy');
-      break;
+        weather.classList.add('wi-day-cloudy-windy');
+        weather2.classList.add('wi-day-cloudy-windy');
+        break;
       case 21:
-      weather.classList.add('wi-day-cloudy-windy');
-      weather2.classList.add('wi-day-cloudy-windy');
-      break;
+        weather.classList.add('wi-day-cloudy-windy');
+        weather2.classList.add('wi-day-cloudy-windy');
+        break;
       case 22:
-      weather.classList.add('wi-day-snow');
-      weather2.classList.add('wi-day-snow');
-      break;
+        weather.classList.add('wi-day-snow');
+        weather2.classList.add('wi-day-snow');
+        break;
       case 23:
-      weather.classList.add('wi-day-snow');
-      weather2.classList.add('wi-day-snow');
-      break;
+        weather.classList.add('wi-day-snow');
+        weather2.classList.add('wi-day-snow');
+        break;
       case 24:
-      weather.classList.add('wi-snowflake-cold');
-      weather2.classList.add('wi-snowflake-cold');
-      break;
+        weather.classList.add('wi-snowflake-cold');
+        weather2.classList.add('wi-snowflake-cold');
+        break;
       case 25:
-      weather.classList.add('wi-day-sleet');
-      weather2.classList.add('wi-day-sleet');
-      break;
+        weather.classList.add('wi-day-sleet');
+        weather2.classList.add('wi-day-sleet');
+        break;
       case 26:
-      weather.classList.add('wi-day-hail');
-      weather2.classList.add('wi-day-hail');
-      break;
+        weather.classList.add('wi-day-hail');
+        weather2.classList.add('wi-day-hail');
+        break;
       case 29:
-      weather.classList.add('wi-day-snow-thunderstorm');
-      weather2.classList.add('wi-day-snow-thunderstorm');
-      break;
+        weather.classList.add('wi-day-snow-thunderstorm');
+        weather2.classList.add('wi-day-snow-thunderstorm');
+        break;
     }
 
     document.getElementById('weatherLocation').innerHTML = weatherLocation;
@@ -135,38 +135,38 @@ var callback = function(){
 
   };
 
-  var getWeather = function (ltd,lng,urlWeather){
+  var getWeather = function (ltd, lng, urlWeather) {
     let reqWeather = new Request(urlWeather);
     let locationKey = '';
     let weatherLocation = '';
     fetch(reqWeather)
-    .then(function(response){
-      return response.json();
-    }).then(function(object){
-      console.log(object);
-      locationKey = object.Key;
-      countryKey = object.Country.EnglishName;
-      weatherLocation = object.LocalizedName + ' , ' + countryKey;
-      console.log(locationKey);
-      console.log(countryKey);
-      console.log(weatherLocation);
-      let urlWeather2 = 'https://dataservice.accuweather.com/forecasts/v1/daily/1day/' + locationKey + '?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq';
-      console.log(urlWeather2);
-      let reqWeather2 = new Request(urlWeather2);
-      fetch(reqWeather2)
-      .then(function(response){
+      .then(function (response) {
         return response.json();
-        console.log(response);
-      }).then(function(object){
-        weatherResponse = object;
-        console.log(weatherResponse);
-        browseWeather(weatherResponse, weatherLocation);
-      }).catch(function(fail){
-        console.log('we can`t process this request right now');
+      }).then(function (object) {
+        console.log(object);
+        locationKey = object.Key;
+        countryKey = object.Country.EnglishName;
+        weatherLocation = object.LocalizedName + ' , ' + countryKey;
+        console.log(locationKey);
+        console.log(countryKey);
+        console.log(weatherLocation);
+        let urlWeather2 = 'https://dataservice.accuweather.com/forecasts/v1/daily/1day/' + locationKey + '?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq';
+        console.log(urlWeather2);
+        let reqWeather2 = new Request(urlWeather2);
+        fetch(reqWeather2)
+          .then(function (response) {
+            return response.json();
+            console.log(response);
+          }).then(function (object) {
+            weatherResponse = object;
+            console.log(weatherResponse);
+            browseWeather(weatherResponse, weatherLocation);
+          }).catch(function (fail) {
+            console.log('we can`t process this request right now');
+          });
+      }).catch(function (fail) {
+        console.log('errorLocation');
       });
-    }).catch(function(fail){
-      console.log('errorLocation');
-    });
   }
 
   var getLocation = function () {
@@ -182,8 +182,8 @@ var callback = function(){
     console.log(ltd);
     console.log(lng);
     urlWeather = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq'
-    + '&q=' + ltd + ',' + lng;
-    getWeather(ltd,lng,urlWeather);
+      + '&q=' + ltd + ',' + lng;
+    getWeather(ltd, lng, urlWeather);
   }
 
   getLocation();
@@ -369,7 +369,7 @@ var callback = function(){
 
   // Function that retrieves news corresponding to the user's criteria:
 
-  var getSomeNews = function (queryString, category, country, language, source){
+  var getSomeNews = function (queryString, category, country, language, source) {
 
     let tagCode = document.getElementById('inputTag').innerHTML.slice(1);
     let url = urlBase + question;
@@ -390,14 +390,14 @@ var callback = function(){
     completeSearchArray.push(language);
     completeSearchArray.push(source);
 
-    for (i=0;i<completeSearchArray.length;i++){
+    for (i = 0; i < completeSearchArray.length; i++) {
       let count = 0;
-      if (searchArray[i] != '' && searchArray[i] != null){
-        if (count != 0){
+      if (searchArray[i] != '' && searchArray[i] != null) {
+        if (count != 0) {
           completeSearchArray[i] += searchArray[i];
           completeSearchArray[i] = '&' + completeSearchArray[i] + '&';
           url += completeSearchArray[i];
-        } else{
+        } else {
           completeSearchArray[i] += searchArray[i];
           completeSearchArray[i] += '&';
           url += completeSearchArray[i];
@@ -409,50 +409,55 @@ var callback = function(){
     url += key;
     console.log(url);
 
-    let req = new Request(url);
+    if (url !== 'https://newsapi.org/v2/top-headlines?apiKey=ca2d5b8c76a84ec68544ecdeadf04043') {
+
+      let req = new Request(url);
 
     fetch(req)
-    .then(function(response){
+      .then(function (response) {
 
-      return response.json();
+        return response.json();
 
-    }).then(function(object){
+      }).then(function (object) {
 
-      let articles = object.articles;
+        let articles = object.articles;
 
 
-      let myArticles = [];
-      let amount = 12;
+        let myArticles = [];
+        let amount = 12;
 
-      for (article in articles){
+        for (article in articles) {
 
-        if (amount > 0){
+          if (amount > 0) {
 
-          myArticles.push(articles[article]);
+            myArticles.push(articles[article]);
 
-        } else{
-          break;
+          } else {
+            break;
+          }
+          amount--;
         }
-        amount--;
-      }
-      searchArray = [];
-      completeSearchArray = [];
-      url = '';
-      while (main.hasChildNodes()) {
-        main.removeChild(main.lastChild);
-      }
-      amount = myArticles.length;
-      browseNews(myArticles, amount);
-    })
-    .catch(function(){
-      console.log('failed');
-    });
+        searchArray = [];
+        completeSearchArray = [];
+        url = '';
+        while (main.hasChildNodes()) {
+          main.removeChild(main.lastChild);
+        }
+        amount = myArticles.length;
+        browseNews(myArticles, amount);
+      })
+      .catch(function () {
+        console.log('failed');
+      });
+  } else {
+    getAllNews();
+}
   }
 
 // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
-  // when click on search Button:
+// when click on search Button:
 
-  searchBtn.addEventListener('click', function(){getSomeNews(queryString, category, country, language, source)});
+searchBtn.addEventListener('click', (x) => getSomeNews(queryString, category, country, language, source) );
 
 }
 

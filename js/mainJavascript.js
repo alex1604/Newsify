@@ -634,7 +634,11 @@ var browseNews = function (array, number) {
 
     titles[count].innerHTML = array[count].title;
     descriptions[count].innerHTML = array[count].description;
-    images[count].src = array[count].urlToImage;
+    if (array[count].urlToImage == null){
+      images[count].src = 'img/default.png';
+    } else {
+      images[count].src = array[count].urlToImage;
+    }
     readMore[count].href = array[count].url;
     fbShare[count].name = array[count].url;
     count++;
