@@ -150,7 +150,7 @@ var callback = function(){
       console.log(locationKey);
       console.log(countryKey);
       console.log(weatherLocation);
-      let urlWeather2 = 'http://dataservice.accuweather.com/forecasts/v1/daily/1day/' + locationKey + '?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq';
+      let urlWeather2 = 'https://dataservice.accuweather.com/forecasts/v1/daily/1day/' + locationKey + '?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq';
       console.log(urlWeather2);
       let reqWeather2 = new Request(urlWeather2);
       fetch(reqWeather2)
@@ -181,7 +181,7 @@ var callback = function(){
     lng = position.coords.longitude;
     console.log(ltd);
     console.log(lng);
-    urlWeather = 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq'
+    urlWeather = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq'
     + '&q=' + ltd + ',' + lng;
     getWeather(ltd,lng,urlWeather);
   }
@@ -451,9 +451,9 @@ var callback = function(){
 
 // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
   // when click on search Button:
-  
+
   searchBtn.addEventListener('click', function(){getSomeNews(queryString, category, country, language, source)});
-  
+
 }
 
 window.addEventListener('load', callback);

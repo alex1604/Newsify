@@ -3,6 +3,8 @@
     width:70px;
     margin-top: 0;
     border-radius: 50%;
+    margin-bottom: 10px;
+    box-shadow: 0 0 20px;
 }
 .commentUserPicture {
   width: 30px;
@@ -11,4 +13,17 @@
 .commentDropDown {
   position: relative;
   left: 1500px;
+}
+
+/* Jon */
+.loggedIn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.userName {
+  margin-bottom: 10px;
+  text-align: center;
 }

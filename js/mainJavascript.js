@@ -96,17 +96,6 @@ loginFb.addEventListener("click", function () {
         { scope: 'public_profile,email' })
 
     } else {
-<<<<<<< HEAD
-      FB.getAuthResponse(function (response) {
-        if (response != null) {
-          uid = response.authResponse.userID;
-          //console.log(uid + ' second');
-          accessToken = response.authResponse.accessToken;
-          signedInNowOrBefore = "before";
-          firebase.auth().signInWithPopup(fbProvider).then(function(){
-            //console.log('success authenticating fb in database');
-
-=======
           firebase.auth().signInWithRedirect(fbProvider);
           firebase.auth().getRedirectResult().then(function(result) {
             if (result.credential) {
@@ -121,7 +110,6 @@ loginFb.addEventListener("click", function () {
             console.log(upicture);
               firebaseInsertUserFacebook(uid, uname, upicture, uemail);
             }
->>>>>>> 7c7454a183c3631fe38aaaca106d3cbda11cf1b6
           })
           .catch(function(error) {
             // Handle Errors here.
@@ -129,18 +117,10 @@ loginFb.addEventListener("click", function () {
             console.log(errorCode);
             var errorMessage = error.message;
             console.log(errorMessage);
-          }); 
+          });
         }
       });
-<<<<<<< HEAD
-    }
-
-  });
-
-});
-=======
     });
->>>>>>> 7c7454a183c3631fe38aaaca106d3cbda11cf1b6
 
 let loginHeader = function (user) {
   /*// This gives you a Google Access Token. You can use it to access the Google API.
@@ -166,11 +146,7 @@ let loginHeader = function (user) {
       var header = document.getElementById("header");
       header.removeChild(header.lastChild);
       document.getElementById("login").style.display = "";
-<<<<<<< HEAD
-=======
       document.getElementById("loginFb").style.display = "";
-      localStorage.removeItem("userHeader");
->>>>>>> 7c7454a183c3631fe38aaaca106d3cbda11cf1b6
     })
     .then(function(){
       FB.logout();
