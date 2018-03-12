@@ -5,7 +5,7 @@ let categoryCode = '';
 let languageCode = '';
 let tagCode = document.getElementById('inputTag').value;
 */
-
+console.log("alejandroJavacript.js");
 var callback = function(){
 
   var countryKey = '';
@@ -269,24 +269,24 @@ var callback = function(){
 
       if(e.target.className=== "readMoreLink"){
 
-        // let href = e.target.getAttribute("href")
-        // let divIframe = document.getElementById("iframe");
-        //
-        // let iframeElement = document.createElement("iframe");
-        // iframeElement.setAttribute("src", href);
-        // iframeElement.setAttribute("id", "contact");
-        // iframeElement.setAttribute("allowtransparency", "true");
-        // iframeElement.setAttribute("frameborder","0")
-        // iframeElement.setAttribute("scrolling","yes")
-        // iframeElement.setAttribute("width","100%")
-        // iframeElement.setAttribute("height","500px")
-        // iframeElement.setAttribute("frameborder","0")
-        // iframeElement.setAttribute("align","center")
-        //
-        // divIframe.appendChild(iframeElement)
+          // let href = e.target.getAttribute("href")
+          // let divIframe = document.getElementById("iframe");
+          //
+          // let iframeElement = document.createElement("iframe");
+          // iframeElement.setAttribute("src", href);
+          // iframeElement.setAttribute("id", "contact");
+          // iframeElement.setAttribute("allowtransparency", "true");
+          // iframeElement.setAttribute("frameborder","0")
+          // iframeElement.setAttribute("scrolling","yes")
+          // iframeElement.setAttribute("width","100%")
+          // iframeElement.setAttribute("height","500px")
+          // iframeElement.setAttribute("frameborder","0")
+          // iframeElement.setAttribute("align","center")
+          //
+          // divIframe.appendChild(iframeElement)
 
 
-        // <!-- <iframe id="contact" src="http://www.bbc.com/news/world-middle-east-43219614" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
+          // <!-- <iframe id="contact" src="http://www.bbc.com/news/world-middle-east-43219614" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
 
       }
 
@@ -451,9 +451,9 @@ var callback = function(){
 
 // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
   // when click on search Button:
-  
+
   searchBtn.addEventListener('click', function(){getSomeNews(queryString, category, country, language, source)});
-  
+
 }
 
 window.addEventListener('load', callback);
