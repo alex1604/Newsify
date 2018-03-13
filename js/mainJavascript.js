@@ -150,9 +150,9 @@ let loginHeader = function (user) {
       var header = document.getElementById("header");
       header.removeChild(header.lastChild);
     })
-    /*.then(function(){
+    .then(function(){
       FB.logout();
-    })*/
+    })
     .catch(function (error) {
       console.log("error: " + error);
     })
