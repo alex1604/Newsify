@@ -218,10 +218,10 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
         let tagsSliderContentChange = document.getElementById("tagsSliderContentChange")
 
         for (let prop in obj) {
-          let ul = document.createElement("ul");
-          ul.className = "tags";
-          ul.innerHTML = obj[prop];
-          tagsSliderContentChange.appendChild(ul)
+          let div = document.createElement("div");
+          div.className = "tags";
+          div.innerHTML = obj[prop];
+          tagsSliderContentChange.appendChild(div)
 
 
         }
@@ -293,10 +293,10 @@ db.ref("/users/" + userID + "/photoURL").set(userPicture);
         let tagsSliderContentChange = document.getElementById("tagsSliderContentChange")
 
         for (let prop in obj) {
-          let ul = document.createElement("ul");
-          ul.className = "tags";
-          ul.innerHTML = obj[prop];
-          tagsSliderContentChange.appendChild(ul)
+          let div = document.createElement("div");
+          div.className = "tags";
+          div.innerHTML = obj[prop];
+          tagsSliderContentChange.appendChild(div)
 
 
         }
