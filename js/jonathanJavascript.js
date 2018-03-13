@@ -121,38 +121,62 @@ let tagsMinusSlide = 1;
 let tagsTotalLeft = "";
 
 
-slider.inputKeyword.addEventListener("change",function(){
-
-  if(slider.inputKeyword.value === ""){
-
-    currentTag.inputTag.innerHTML = ""
-    tagsSlider.tagsNextBtn.style.display = "block";
-    tagsSlider.tagsPrevBtn.style.display = "block";
-    tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
-
-  }else{
-
-    currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
-    tagsSlider.tagsNextBtn.style.display = "none";
-    tagsSlider.tagsPrevBtn.style.display = "none";
-    // tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
-
-
-  }
-
-
-})
+// slider.inputKeyword.addEventListener("change",function(){
+//
+//   if(slider.inputKeyword.value === ""){
+//
+//     currentTag.inputTag.innerHTML = ""
+//     tagsSlider.tagsNextBtn.style.display = "block";
+//     tagsSlider.tagsPrevBtn.style.display = "block";
+//     tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
+//
+//   }else{
+//
+//     currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
+//     tagsSlider.tagsNextBtn.style.display = "none";
+//     tagsSlider.tagsPrevBtn.style.display = "none";
+//     // tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
+//
+//
+//   }
+//
+//
+// })
 
 
 slider.inputKeyword.addEventListener("keydown",function(e){
 
 
-  if(e.key !== " " && e.key !== "Backspace"){
-    currentTag.inputTag.innerHTML += e.key;
-  }else if(e.key === "Backspace"){
+
+  if(e.key === "Backspace"){
     currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
+
   }
 
+  // if(e.key !== " " && e.key !== "Backspace"){
+  //   currentTag.inputTag.innerHTML += e.key;
+  // }else if(e.key === "Backspace"){
+  //   currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
+  // }
+
+})
+
+
+slider.inputKeyword.addEventListener("keypress",function(e){
+
+  if(e.key !== " " && e.key !== "Enter"){
+    console.log(currentTag.inputTag.innerHTML.length)
+
+    if(currentTag.inputTag.innerHTML.length === 0){
+      currentTag.inputTag.innerHTML += "#"+e.key;
+
+    }else{
+      currentTag.inputTag.innerHTML += e.key;
+
+    }
+
+
+  }
 })
 
 
@@ -166,7 +190,6 @@ slider.nextTagBtn.addEventListener("click",function(){
 
       totalLeft = minusSlide * sliderContentChangeWidth;
       totalLeft = totalLeft.toString();
-
 
 
 
@@ -188,7 +211,7 @@ slider.nextTagBtn.addEventListener("click",function(){
 
 
         }else{
-            currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
+            // currentTag.inputTag.innerHTML = slider.inputKeyword.value;
 
         }
       }
@@ -258,6 +281,7 @@ slider.nextTagBtn.addEventListener("click",function(){
 
       }
 
+      console.log(minusSlide)
 
 
 })
@@ -279,7 +303,7 @@ slider.prevTagBtn.addEventListener("click",function(){
     if(slider.inputKeyword.value === ""){
     currentTag.inputTag.innerHTML = ""
   }else{
-      currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
+      // currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
   }
   }
 
@@ -355,6 +379,7 @@ slider.prevTagBtn.addEventListener("click",function(){
     }
 
   }
+  console.log(minusSlide)
 
 
 })
@@ -1262,7 +1287,80 @@ deleteOwnTag.addEventListener("click",function(){
 })
 
 
+let sliderContentChangeClick = sliderContentChange.children;
 
+
+for(let g = 0; g< sliderContentChangeClick.length; g++){
+
+  if(sliderContentChangeClick[g] !== undefined){
+    sliderContentChangeClick[g].addEventListener("click",function(){
+
+      console.log(sliderContentChangeClick[g])
+
+        console.log(g)
+
+        if(g === 0){
+
+          slider.sliderContentChange.style.marginLeft = "0px";
+          minusSlide=1;
+
+          sourceSlider.slider.style.opacity ="0";
+          countrySlider.slider.style.opacity = "0";
+          categorySlider.slider.style.opacity = "0"
+          languageSlider.slider.style.opacity = "0"
+
+
+
+        }else if(g === 1){
+          slider.sliderContentChange.style.marginLeft = "-300px";
+          minusSlide=2;
+          sourceSlider.slider.style.opacity ="1";
+
+          countrySlider.slider.style.opacity = "0";
+          categorySlider.slider.style.opacity = "0"
+          languageSlider.slider.style.opacity = "0"
+
+
+
+
+        }else if( g===2){
+          slider.sliderContentChange.style.marginLeft = "-600px";
+
+          minusSlide = 3;
+          sourceSlider.slider.style.opacity ="0";
+          categorySlider.slider.style.opacity = "0"
+          languageSlider.slider.style.opacity = "0"
+
+          countrySlider.slider.style.opacity = "1";
+
+        }else if( g=== 3){
+          slider.sliderContentChange.style.marginLeft = "-900px";
+
+          minusSlide = 4;
+          categorySlider.slider.style.opacity = "1"
+
+                    countrySlider.slider.style.opacity = "0";
+                    sourceSlider.slider.style.opacity ="0";
+                    languageSlider.slider.style.opacity = "0"
+
+
+
+
+        }else if(g === 4){
+          slider.sliderContentChange.style.marginLeft = "-1200px";
+          minusSlide = 5;
+          languageSlider.slider.style.opacity = "1"
+          categorySlider.slider.style.opacity = "0"
+
+                    countrySlider.slider.style.opacity = "0";
+                    sourceSlider.slider.style.opacity ="0";
+
+        }
+
+
+    })
+  }
+}
 
 
 function tagsSwitch(){
