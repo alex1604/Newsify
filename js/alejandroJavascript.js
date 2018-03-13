@@ -143,23 +143,23 @@ var callback = function () {
       .then(function (response) {
         return response.json();
       }).then(function (object) {
-        console.log(object);
+        //console.log(object);
         locationKey = object.Key;
         countryKey = object.Country.EnglishName;
         weatherLocation = object.LocalizedName + ' , ' + countryKey;
-        console.log(locationKey);
-        console.log(countryKey);
-        console.log(weatherLocation);
+        //console.log(locationKey);
+        //console.log(countryKey);
+        //console.log(weatherLocation);
         let urlWeather2 = 'https://dataservice.accuweather.com/forecasts/v1/daily/1day/' + locationKey + '?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq';
-        console.log(urlWeather2);
+        //console.log(urlWeather2);
         let reqWeather2 = new Request(urlWeather2);
         fetch(reqWeather2)
           .then(function (response) {
             return response.json();
-            console.log(response);
+            //console.log(response);
           }).then(function (object) {
             weatherResponse = object;
-            console.log(weatherResponse);
+            //console.log(weatherResponse);
             browseWeather(weatherResponse, weatherLocation);
           }).catch(function (fail) {
             console.log('we can`t process this request right now');
