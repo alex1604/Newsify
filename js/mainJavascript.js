@@ -218,10 +218,10 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
         let tagsSliderContentChange = document.getElementById("tagsSliderContentChange")
 
         for (let prop in obj) {
-          let ul = document.createElement("ul");
-          ul.className = "tags";
-          ul.innerHTML = obj[prop];
-          tagsSliderContentChange.appendChild(ul)
+          let div = document.createElement("div");
+          div.className = "tags";
+          div.innerHTML = obj[prop];
+          tagsSliderContentChange.appendChild(div)
 
 
         }
@@ -293,10 +293,10 @@ db.ref("/users/" + userID + "/photoURL").set(userPicture);
         let tagsSliderContentChange = document.getElementById("tagsSliderContentChange")
 
         for (let prop in obj) {
-          let ul = document.createElement("ul");
-          ul.className = "tags";
-          ul.innerHTML = obj[prop];
-          tagsSliderContentChange.appendChild(ul)
+          let div = document.createElement("div");
+          div.className = "tags";
+          div.innerHTML = obj[prop];
+          tagsSliderContentChange.appendChild(div)
 
 
         }
@@ -634,7 +634,11 @@ var browseNews = function (array, number) {
 
     titles[count].innerHTML = array[count].title;
     descriptions[count].innerHTML = array[count].description;
-    images[count].src = array[count].urlToImage;
+    if (array[count].urlToImage == null){
+      images[count].src = 'img/default.png';
+    } else {
+      images[count].src = array[count].urlToImage;
+    }
     readMore[count].href = array[count].url;
     fbShare[count].name = array[count].url;
     count++;
