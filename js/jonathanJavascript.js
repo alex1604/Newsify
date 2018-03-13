@@ -147,12 +147,26 @@ slider.inputKeyword.addEventListener("change",function(){
 slider.inputKeyword.addEventListener("keydown",function(e){
 
 
-  if(e.key !== " " && e.key !== "Backspace"){
-    currentTag.inputTag.innerHTML += e.key;
-  }else if(e.key === "Backspace"){
+  if(e.key === "Backspace"){
     currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
+
   }
 
+  // if(e.key !== " " && e.key !== "Backspace"){
+  //   currentTag.inputTag.innerHTML += e.key;
+  // }else if(e.key === "Backspace"){
+  //   currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
+  // }
+
+})
+
+
+slider.inputKeyword.addEventListener("keypress",function(e){
+
+  if(e.key !== " " && e.key !== "Enter"){
+    currentTag.inputTag.innerHTML += e.key;
+
+  }
 })
 
 
