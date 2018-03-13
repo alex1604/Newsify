@@ -12,6 +12,7 @@ let tagsSlider ={
 }
 
 
+
 let currentTag = {
 
   inputTag : document.getElementById("inputTag"),
@@ -123,7 +124,6 @@ let tagsTotalLeft = "";
 slider.inputKeyword.addEventListener("change",function(){
 
   if(slider.inputKeyword.value === ""){
-    console.log(slider.inputKeyword.innerHTML)
 
     currentTag.inputTag.innerHTML = ""
     tagsSlider.tagsNextBtn.style.display = "block";
@@ -131,7 +131,6 @@ slider.inputKeyword.addEventListener("change",function(){
     tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
 
   }else{
-    console.log(slider.inputKeyword.innerHTML)
 
     currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
     tagsSlider.tagsNextBtn.style.display = "none";
@@ -148,7 +147,6 @@ slider.inputKeyword.addEventListener("change",function(){
 slider.inputKeyword.addEventListener("keydown",function(e){
 
 
-  console.log(e.key)
   if(e.key !== " " && e.key !== "Backspace"){
     currentTag.inputTag.innerHTML += e.key;
   }else if(e.key === "Backspace"){
@@ -371,6 +369,7 @@ function sourceSwitch(sourceMinusSlide){
       break;
     case 2:
       currentTag.sourceTag.innerHTML = "#CNN";
+
       sourceCode = 'cnn';
       break;
       case 3:
@@ -608,16 +607,11 @@ function languageSwitch(languageMinusSlide){
 
 function showArrowsOrNot(minusSlide,prevBtn,nextBtn, contentChangeLength ){
 
-  console.log("minusSlide: ", minusSlide);
-  console.log("prevBtn: ", prevBtn);
-  console.log("nextBtn: ", nextBtn);
-  console.log("contentChangeLength: ", contentChangeLength)
 
 
 
   if(minusSlide> 1){
     prevBtn.style.opacity = "1";
-    console.log("prevBtn: ", prevBtn);
 
   }
 
@@ -674,7 +668,7 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         }else{
           slider.inputKeyword.disabled = false;
-          slider.inputKeyword.setAttribute("placeholder", "Search keyword or phrase")
+          slider.inputKeyword.setAttribute("placeholder", "Search by keyword")
 
 
         }
@@ -746,6 +740,12 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
           totalLeft = totalLeft.toString();
 
           totalLeft = "-" + totalLeft + "px";
+
+
+
+
+
+           // document.getElementById("currentTag").innerHTML = tagsSlider.tagsContentChange.children[tagsMinusSlide].innerHTML
 
           if(contentChangeLength> tagsMinusSlide){
 
@@ -921,7 +921,7 @@ categorySlider.categoryPrevBtn.addEventListener("click",function(){
 
     }else{
       slider.inputKeyword.disabled = false;
-      slider.inputKeyword.setAttribute("placeholder", "Search keyword or phrase")
+      slider.inputKeyword.setAttribute("placeholder", "Search by keyword")
 
 
     }
@@ -995,6 +995,15 @@ languageSlider.languangePrevBtn.addEventListener("click",function(){
 });
 
 function clear(){
+
+  document.getElementById("ownCurrentTag").innerHTML = ""
+
+  tagsSlider.tagsContentChange.style.marginLeft = "0";
+  tagsMinusSlide = 1;
+
+  beforeLoggedIn.style.display = "block"
+
+
   currentTag.inputTag.innerHTML = "";
   currentTag.sourceTag.innerHTML = "";
   currentTag.countryTag.innerHTML = "";
@@ -1002,6 +1011,9 @@ function clear(){
   currentTag.languageTag.innerHTML = "";
 
   slider.inputKeyword.value = ""
+  slider.inputKeyword.placeholder ="Search by keyword"
+  slider.inputKeyword.disabled = false;
+
 
   sourceSlider.sourceContentChange.style.marginLeft = "0";
   countrySlider.countryContentChange.style.marginLeft = "0";
@@ -1027,18 +1039,26 @@ function clear(){
 
 addTagBtn.addEventListener("click", function () {
 
-  let innerText = document.getElementById("currentTag").innerText;
+  let innerHTML = document.getElementById("currentTag").innerHTML;
 
-  console.log(sammaid)
-
-  if (document.getElementById("currentTag").innerText !== "") {
+  if (document.getElementById("currentTag").innerHTML !== "") {
 
 
-    db.ref("users/" + sammaid + "/tags").push(innerText)
-    let ul = document.createElement("ul");
-    ul.className = "tags";
-    ul.innerHTML = innerText;
-    tagsSliderContentChange.appendChild(ul)
+    db.ref("users/" + sammaid + "/tags").push(innerHTML)
+    let div = document.createElement("div");
+
+    div.className = "tags";
+    div.innerHTML = innerHTML;
+    tagsSliderContentChange.appendChild(div)
+
+
+    if(tagsMinusSlide < tagsSlider.tagsContentChange.children.length){
+      tagsSlider.tagsNextBtn.style.display ="block"
+    }else{
+      tagsSlider.tagsNextBtn.style.display ="block"
+
+    }
+
 
   }
     clear()
@@ -1053,12 +1073,23 @@ deleteCurrentTag.addEventListener("click",function(){
 
 tagsSlider.tagsNextBtn.addEventListener("click", function () {
 
+  tagsSlider.tagsPrevBtn.style.display ="block";
+
   let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
   sliderFunctionRight(tagsContentChangeLength, tagsTotalLeft, tagsContentChangeWidth, tagsSlider.tagsContentChange, tagsSwitch, tagsSlider.tagsNextBtn, tagsSlider.tagsPrevBtn)
 
   if (tagsMinusSlide > 1) {
 
+      for(let i=1; i<=tagsContentChangeLength; i++){
+        if(tagsMinusSlide === i){
+
+          document.getElementById("ownCurrentTag").innerHTML =  document.querySelectorAll("#tagsSliderContentChange .tags")[i-1].innerHTML
+
+        }
+      }
     beforeLoggedIn.style.display = "none"
+    // document.getElementById("currentTag").innerHTML =
+
   }
 
 
@@ -1066,7 +1097,6 @@ tagsSlider.tagsNextBtn.addEventListener("click", function () {
 
 
        if(i === tagsMinusSlide){
-         console.log(tagsSlider.tagsContentChange.children[i-1].innerHTML);
        }
 
 
@@ -1091,6 +1121,7 @@ tagsSlider.tagsPrevBtn.addEventListener("click", function () {
   if (tagsMinusSlide > 1) {
 
 
+    document.getElementById("ownCurrentTag").innerHTML =  document.querySelectorAll("#tagsSliderContentChange .tags")[i+1].innerHTML
 
     tagsSlider.tagsContentChange.style.marginLeft = tagsTotalLeft;
 
@@ -1101,21 +1132,31 @@ tagsSlider.tagsPrevBtn.addEventListener("click", function () {
     if (tagsMinusSlide === 1) {
 
       tagsSlider.tagsPrevBtn.style.opacity = "0"
+
+
     }
     if (tagsMinusSlide < tagsContentChangeLength) {
       tagsSlider.tagsNextBtn.style.opacity = "1"
 
     }
 
-    if (tagsMinusSlide === 1) {
+    if (tagsMinusSlide > 1) {
 
+
+
+    }else{
+
+      document.getElementById("ownCurrentTag").innerHTML = ""
       beforeLoggedIn.style.display = "block"
+
     }
     // languageSwitch(languageMinusSlide)
 
 
 
   }
+
+
 
 });
 
@@ -1124,29 +1165,33 @@ let y=2;
 deleteOwnTag.addEventListener("click",function(){
 
 
+
+
+      if(document.querySelectorAll("#tagsSliderContentChange .tags").length === tagsMinusSlide){
+
+        document.getElementById("ownCurrentTag").innerHTML = document.querySelectorAll("#tagsSliderContentChange .tags")[tagsMinusSlide-2].innerHTML;
+          }else{
+            document.getElementById("ownCurrentTag").innerHTML = document.querySelectorAll("#tagsSliderContentChange .tags")[tagsMinusSlide].innerHTML;
+          }
+
+
     db.ref("/users/"+ id + "/tags/").once("value",function(snapshot){
 
+
           let obj = snapshot.val()
-          console.log("y är: ", y)
-          console.log("tagsMinusSlide: ", tagsMinusSlide)
-          // console.log("i är: ", i)
 
         let found = false;
         let proppet = ""
         let tag = tagsSlider.tagsContentChange.children[tagsMinusSlide-1];
-
+        let totalLeft;
         for(let prop in obj){
 
 
-          let totalLeft = (tagsMinusSlide-2) * 300;
-          totalLeft = totalLeft.toString();
-
-          totalLeft = "-"+ totalLeft + "px";
+           totalLeft = (tagsMinusSlide-1) * 300;
 
 
 
-          console.log(tagsMinusSlide)
-          console.log(tagsSlider.tagsContentChange.children.length)
+
 
 
           if(tag.innerHTML === obj[prop]){
@@ -1161,8 +1206,7 @@ deleteOwnTag.addEventListener("click",function(){
 
 
 
-          // if(tagsMinusSlide === tagsSlider.tagsContentChange.children.length)
-            // console.log(prop)
+
             // db.ref("/users/"+ id + "/tags/"+ prop).remove()
             // tagsSlider.tagsContentChange.children[tagsMinusSlide-1].remove()
             // tagsSlider.tagsContentChange.style.marginLeft = totalLeft;
@@ -1178,10 +1222,42 @@ deleteOwnTag.addEventListener("click",function(){
 
 
           db.ref("/users/"+ id + "/tags/"+ proppet).remove()
+
+
+
+
+          if(tagsMinusSlide === tagsSlider.tagsContentChange.children.length +1){
+
+            totalLeft = totalLeft -300
+            totalLeft = totalLeft.toString();
+
+            totalLeft = "-"+ totalLeft + "px";
+             tagsSlider.tagsContentChange.style.marginLeft = totalLeft;
+
+             tagsMinusSlide--
+
+
+
+
+
+             if(tagsMinusSlide === 1){
+
+               beforeLoggedIn.style.display = "block"
+
+             }
+
+
+          }
           found = false;
         }
 
     })
+
+    if(document.querySelectorAll("#tagsSliderContentChange .tags").length === 2){
+      document.getElementById("ownCurrentTag").innerHTML = "";
+    }
+
+
 
 })
 
