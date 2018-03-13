@@ -13,6 +13,8 @@ var callback = function () {
   var lng = '';
   var urlWeather = '';
   var weatherResponse = '';
+  var suggestedNews = document.getElementById('suggestedNews');
+
 
   var browseWeather = function (object, weatherLocation) {
     let dayIcon = object.DailyForecasts[0].Day.Icon;
@@ -413,51 +415,123 @@ var callback = function () {
 
       let req = new Request(url);
 
-    fetch(req)
-      .then(function (response) {
+      fetch(req)
+        .then(function (response) {
 
-        return response.json();
+          return response.json();
 
-      }).then(function (object) {
+        }).then(function (object) {
 
-        let articles = object.articles;
+          let articles = object.articles;
 
 
-        let myArticles = [];
-        let amount = 12;
+          let myArticles = [];
+          let amount = 12;
 
-        for (article in articles) {
+          for (article in articles) {
 
-          if (amount > 0) {
+            if (amount > 0) {
 
-            myArticles.push(articles[article]);
+              myArticles.push(articles[article]);
 
-          } else {
-            break;
+            } else {
+              break;
+            }
+            amount--;
           }
-          amount--;
-        }
-        searchArray = [];
-        completeSearchArray = [];
-        url = '';
-        while (main.hasChildNodes()) {
-          main.removeChild(main.lastChild);
-        }
-        amount = myArticles.length;
-        browseNews(myArticles, amount);
-      })
-      .catch(function () {
-        console.log('failed');
-      });
-  } else {
-    getAllNews();
-}
+          searchArray = [];
+          completeSearchArray = [];
+          url = '';
+          while (main.hasChildNodes()) {
+            main.removeChild(main.lastChild);
+          }
+          amount = myArticles.length;
+          browseNews(myArticles, amount);
+        })
+        .catch(function () {
+          console.log('failed');
+        });
+    } else {
+      getAllNews();
+    }
   }
 
-// När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
-// when click on search Button:
+  var getSuggestedNews = function () {
 
-searchBtn.addEventListener('click', (x) => getSomeNews(queryString, category, country, language, source) );
+    let suggestedArticles = [];
+    let searchWords = [];
+    let url = urlBase + question;
+    let myRegExp = /(inputTag">)#.+\</;
+    let myReg = [];
+
+    db.ref('users/' + storedUser.uid + '/tags').once('value', function (snapshot) {
+      let allData = snapshot.val();
+      for (let object in allData) {
+        console.log(allData[object]);
+        let exec = myRegExp.exec(allData[object]);
+        if (exec != null){
+        myReg.push(exec);
+        }
+        console.log(myReg);
+      }
+      for (let element in myReg) {
+        let word = myReg[element][0];
+        let length = word.length - 1;
+        word = word.slice(11, length);
+        if (word != null && word != ''){
+        searchWords.push(word);
+        } else{
+          continue
+        }
+      }
+      for (let x in searchWords) {
+        url += 'q=' + searchWords[x];
+        url += '&' + key;
+        console.log(url);
+        let req = new Request(url);
+  
+        fetch(req)
+          .then(function (response) {
+            return response.json();
+            console.log(response.json());
+          }).then(function (object) {
+            let articles = object.articles;
+  
+            for (article in articles) {
+  
+              if (articles[article] != null && articles[article] != 'undefined') {
+                console.log(articles[article]);
+                suggestedArticles.push(articles[article]);
+              } else {
+                continue;
+              }
+            }
+          })
+          .then(function(){
+            while (main.hasChildNodes()) {
+              main.removeChild(main.lastChild);
+            }
+            amount = suggestedArticles.length;
+            browseNews(suggestedArticles, amount);
+          })
+          .catch(function (error) {
+            console.log('Something went wrong');
+          });
+        url = urlBase + question;
+      }
+    });
+    console.log(searchWords);
+    console.log(suggestedArticles); 
+  }
+
+
+  // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
+  // when click on search Button:
+
+  searchBtn.addEventListener('click', (x) => getSomeNews(queryString, category, country, language, source));
+  // Regular expression for suggested articles from database ^#.+\<
+  // (inputTag) ^(inputTag">#).+\<
+  suggestedNews.addEventListener('click', getSuggestedNews);
 
 }
 
