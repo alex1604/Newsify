@@ -121,30 +121,31 @@ let tagsMinusSlide = 1;
 let tagsTotalLeft = "";
 
 
-slider.inputKeyword.addEventListener("change",function(){
-
-  if(slider.inputKeyword.value === ""){
-
-    currentTag.inputTag.innerHTML = ""
-    tagsSlider.tagsNextBtn.style.display = "block";
-    tagsSlider.tagsPrevBtn.style.display = "block";
-    tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
-
-  }else{
-
-    currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
-    tagsSlider.tagsNextBtn.style.display = "none";
-    tagsSlider.tagsPrevBtn.style.display = "none";
-    // tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
-
-
-  }
-
-
-})
+// slider.inputKeyword.addEventListener("change",function(){
+//
+//   if(slider.inputKeyword.value === ""){
+//
+//     currentTag.inputTag.innerHTML = ""
+//     tagsSlider.tagsNextBtn.style.display = "block";
+//     tagsSlider.tagsPrevBtn.style.display = "block";
+//     tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
+//
+//   }else{
+//
+//     currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
+//     tagsSlider.tagsNextBtn.style.display = "none";
+//     tagsSlider.tagsPrevBtn.style.display = "none";
+//     // tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
+//
+//
+//   }
+//
+//
+// })
 
 
 slider.inputKeyword.addEventListener("keydown",function(e){
+
 
 
   if(e.key === "Backspace"){
@@ -164,7 +165,16 @@ slider.inputKeyword.addEventListener("keydown",function(e){
 slider.inputKeyword.addEventListener("keypress",function(e){
 
   if(e.key !== " " && e.key !== "Enter"){
-    currentTag.inputTag.innerHTML += e.key;
+    console.log(currentTag.inputTag.innerHTML.length)
+
+    if(currentTag.inputTag.innerHTML.length === 0){
+      currentTag.inputTag.innerHTML += "#"+e.key;
+
+    }else{
+      currentTag.inputTag.innerHTML += e.key;
+
+    }
+
 
   }
 })
@@ -202,7 +212,7 @@ slider.nextTagBtn.addEventListener("click",function(){
 
 
         }else{
-            currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
+            // currentTag.inputTag.innerHTML = slider.inputKeyword.value;
 
         }
       }
@@ -293,7 +303,7 @@ slider.prevTagBtn.addEventListener("click",function(){
     if(slider.inputKeyword.value === ""){
     currentTag.inputTag.innerHTML = ""
   }else{
-      currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
+      // currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
   }
   }
 
