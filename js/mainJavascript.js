@@ -9,12 +9,11 @@ let addTagBtn = document.getElementById("addTag");
 let deleteOwnTag = document.getElementById("deleteOwnTag");
 let allUsers = []
 
+let loginDiv = document.getElementById("login");
+let loginPopup = document.getElementById("loginPopup");
+
+
 let commentBox;
-
-
-whenLoggedIn.style.display = "none";
-
-
 
 let tagsContentChangeWidth = ""
 
@@ -37,6 +36,11 @@ const db = firebase.database()
 
 
 let gmailprovider = new firebase.auth.GoogleAuthProvider();
+
+loginPopup.addEventListener("click", function(event){
+  loginPopup.style.display = "none";
+  loginDiv.style.display = "";
+})
 
 login.addEventListener("click", function (event) {
   //simple click event on the "login" div
@@ -145,12 +149,10 @@ let loginHeader = function (user) {
     firebase.auth().signOut().then(function () {
       var header = document.getElementById("header");
       header.removeChild(header.lastChild);
-      document.getElementById("login").style.display = "";
-      document.getElementById("loginFb").style.display = "";
     })
-    .then(function(){
+    /*.then(function(){
       FB.logout();
-    })
+    })*/
     .catch(function (error) {
       console.log("error: " + error);
     })
@@ -160,9 +162,9 @@ let loginHeader = function (user) {
   loggedIn.appendChild(userName);
   loggedIn.appendChild(userPicture);
   loggedIn.appendChild(signOut);
-  login.style.display = "none";
+  loginDiv.style.display = "none";
   header.appendChild(loggedIn);
-  console.log("success");
+  loginPopup.style.display = "none";
 }
 
 let id = ""
@@ -209,8 +211,6 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
     } else {
 
       //console.log("finns")
-
-
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
 
         let obj = snapshot.val()
@@ -222,24 +222,10 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
           ul.className = "tags";
           ul.innerHTML = obj[prop];
           tagsSliderContentChange.appendChild(ul)
-
-
         }
-
-
-
-
       })
-
-
-
-
-
     }
-
   })
-
-
 }
 
 
@@ -297,24 +283,10 @@ db.ref("/users/" + userID + "/photoURL").set(userPicture);
           ul.className = "tags";
           ul.innerHTML = obj[prop];
           tagsSliderContentChange.appendChild(ul)
-
-
         }
-
-
-
-
       })
-
-
-
-
-
     }
-
   })
-
-
 }
 
 
@@ -351,6 +323,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     localStorage.clear(); //clears the localstorage for the next user
     addTagBtn.style.display = "none";
     whenLoggedIn.style.display = "none";
+    loginDiv.style.display = "none";
+    loginPopup.style.display = "";
 
     // No user is signed in.
   }
