@@ -193,7 +193,6 @@ slider.nextTagBtn.addEventListener("click",function(){
 
 
 
-
       totalLeft = "-" + totalLeft + "px";
 
       if(minusSlide> 0){
@@ -282,6 +281,7 @@ slider.nextTagBtn.addEventListener("click",function(){
 
       }
 
+      console.log(minusSlide)
 
 
 })
@@ -379,6 +379,7 @@ slider.prevTagBtn.addEventListener("click",function(){
     }
 
   }
+  console.log(minusSlide)
 
 
 })
@@ -1286,7 +1287,80 @@ deleteOwnTag.addEventListener("click",function(){
 })
 
 
+let sliderContentChangeClick = sliderContentChange.children;
 
+
+for(let g = 0; g< sliderContentChangeClick.length; g++){
+
+  if(sliderContentChangeClick[g] !== undefined){
+    sliderContentChangeClick[g].addEventListener("click",function(){
+
+      console.log(sliderContentChangeClick[g])
+
+        console.log(g)
+
+        if(g === 0){
+
+          slider.sliderContentChange.style.marginLeft = "0px";
+          minusSlide=1;
+
+          sourceSlider.slider.style.opacity ="0";
+          countrySlider.slider.style.opacity = "0";
+          categorySlider.slider.style.opacity = "0"
+          languageSlider.slider.style.opacity = "0"
+
+
+
+        }else if(g === 1){
+          slider.sliderContentChange.style.marginLeft = "-300px";
+          minusSlide=2;
+          sourceSlider.slider.style.opacity ="1";
+
+          countrySlider.slider.style.opacity = "0";
+          categorySlider.slider.style.opacity = "0"
+          languageSlider.slider.style.opacity = "0"
+
+
+
+
+        }else if( g===2){
+          slider.sliderContentChange.style.marginLeft = "-600px";
+
+          minusSlide = 3;
+          sourceSlider.slider.style.opacity ="0";
+          categorySlider.slider.style.opacity = "0"
+          languageSlider.slider.style.opacity = "0"
+
+          countrySlider.slider.style.opacity = "1";
+
+        }else if( g=== 3){
+          slider.sliderContentChange.style.marginLeft = "-900px";
+
+          minusSlide = 4;
+          categorySlider.slider.style.opacity = "1"
+
+                    countrySlider.slider.style.opacity = "0";
+                    sourceSlider.slider.style.opacity ="0";
+                    languageSlider.slider.style.opacity = "0"
+
+
+
+
+        }else if(g === 4){
+          slider.sliderContentChange.style.marginLeft = "-1200px";
+          minusSlide = 5;
+          languageSlider.slider.style.opacity = "1"
+          categorySlider.slider.style.opacity = "0"
+
+                    countrySlider.slider.style.opacity = "0";
+                    sourceSlider.slider.style.opacity ="0";
+
+        }
+
+
+    })
+  }
+}
 
 
 function tagsSwitch(){

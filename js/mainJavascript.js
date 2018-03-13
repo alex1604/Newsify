@@ -351,6 +351,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     localStorage.clear(); //clears the localstorage for the next user
     addTagBtn.style.display = "none";
     whenLoggedIn.style.display = "none";
+    
 
     // No user is signed in.
   }
