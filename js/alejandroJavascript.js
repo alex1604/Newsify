@@ -374,6 +374,7 @@ var callback = function () {
   var getSomeNews = function (queryString, category, country, language, source) {
 
     let tagCode = document.getElementById('inputTag').innerHTML.slice(1);
+    console.log(document.getElementById('inputTag'));
     let url = urlBase + question;
 
     searchArray.push(tagCode);
@@ -408,6 +409,8 @@ var callback = function () {
       }
       count = 0;
     }
+    completeSearchArray = [];
+    searchArray = [];
     url += key;
     console.log(url);
 
@@ -439,9 +442,6 @@ var callback = function () {
             }
             amount--;
           }
-          searchArray = [];
-          completeSearchArray = [];
-          url = '';
           while (main.hasChildNodes()) {
             main.removeChild(main.lastChild);
           }
@@ -454,6 +454,7 @@ var callback = function () {
     } else {
       getAllNews();
     }
+    url = '';
   }
 
   var getSuggestedNews = function () {
@@ -469,8 +470,8 @@ var callback = function () {
       for (let object in allData) {
         console.log(allData[object]);
         let exec = myRegExp.exec(allData[object]);
-        if (exec != null){
-        myReg.push(exec);
+        if (exec != null) {
+          myReg.push(exec);
         }
         console.log(myReg);
       }
@@ -478,9 +479,9 @@ var callback = function () {
         let word = myReg[element][0];
         let length = word.length - 1;
         word = word.slice(11, length);
-        if (word != null && word != ''){
-        searchWords.push(word);
-        } else{
+        if (word != null && word != '') {
+          searchWords.push(word);
+        } else {
           continue
         }
       }
@@ -489,16 +490,16 @@ var callback = function () {
         url += '&' + key;
         console.log(url);
         let req = new Request(url);
-  
+
         fetch(req)
           .then(function (response) {
             return response.json();
             console.log(response.json());
           }).then(function (object) {
             let articles = object.articles;
-  
+
             for (article in articles) {
-  
+
               if (articles[article] != null && articles[article] != 'undefined') {
                 console.log(articles[article]);
                 suggestedArticles.push(articles[article]);
@@ -507,7 +508,7 @@ var callback = function () {
               }
             }
           })
-          .then(function(){
+          .then(function () {
             while (main.hasChildNodes()) {
               main.removeChild(main.lastChild);
             }
@@ -521,7 +522,7 @@ var callback = function () {
       }
     });
     console.log(searchWords);
-    console.log(suggestedArticles); 
+    console.log(suggestedArticles);
   }
 
 
