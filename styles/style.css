@@ -40,7 +40,7 @@
         display: flex;
         justify-content: center;
         margin-top: 10px;
-        background: rgba(0,0,0,0.1);
+        background: #333644;
 
       }
 
@@ -212,6 +212,7 @@ line-height: 30px;
      .currentTag{
        position: relative;
        top:50px;
+       
        text-align: center;
      }
 

@@ -37,51 +37,51 @@
       </script>
 
   <header id = "header">
+    <div id="weatherCast">
+      <i id="weather" class="wi wi-day-cloudy"></i>
+      <div id="weatherLocation">Northville, Greenland</div>
+      <div id="weatherTemp"><p id="min">-40ºC /</p><p id="max"> -20ºC</p></div>
+    </div>
 
+    <div id = "loginPopup">
+      <button class = "popupButton">Log in</button>
+    </div>
+    <h5>Follow the news you actually want to follow</h5>
 
     <div id="login">
-      <h5 id = "loginText">Log In</h5>
       <div id="googleLogo">
         <i class="fab fa-google"></i>
-        <div id="weatherCast">
-          <i id="weather" class="wi wi-day-cloudy"></i>
-          <div id="weatherLocation">Northville, Greenland</div>
-          <div id="weatherTemp"><p id="min">-40ºC /</p><p id="max"> -20ºC</p></div>
-        </div>
       </div>
       <div id="facebookLogo">
         <i class="fab fa-facebook"></i>
         </div>
-      <h5>Follow the news you actually want to follow</h5>
     </div>
 
     <div id="whenLoggedIn">
 
-
-        <button id="deleteOwnTag">Delete tag</button>
-          <div class="slider">
-
-            <div id="tagsPrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+      <div class="slider">
 
 
-                <div id="tagsSlider">
+        <div id="tagsPrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
-                    <div id="tagsSliderContentChange">
 
-                    </div>
+
+            <div id="tagsSlider">
+
+                <div id="tagsSliderContentChange">
 
                 </div>
-                <div id="tagsNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+            </div>
+            <div id="tagsNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
 
 
-          </div>
+      </div>
 
-          <div id="weatherCast2">
-            <i id="weather2" class="wi wi-day-cloudy"></i>
-            <div id="weatherLocation2">Northville, Greenland</div>
-            <div id="weatherTemp2"><p id="min2">-40ºC /</p><p id="max2"> -20ºC</p></div>
-          </div>
+        <button id="deleteOwnTag">Delete tag</button>
+        <button id="showFavourites">Show Favourites</button>
+        <button id="suggestedNews">Suggested News</button>
 
         </div>
 
@@ -100,7 +100,7 @@
       <div id="sliderContent">
 
         <div id="sliderContentChange">
-          <input class="tags" id="inputKeyword" type="text" name="" value="" placeholder="Search Keyword or phrase"><ul class="tags">
+          <input class="tags" id="inputKeyword" type="text" name="" value="" placeholder="Search by keyword"><ul class="tags">
             Source Name
           </ul><ul class="tags">
             Country
@@ -293,21 +293,28 @@
 
 
   <div class="currentTag">
-    <h5>Your current tag is </h5>
-    <div id="currentTag">
 
-      <span id="inputTag"></span>
-      <span id="sourceTag"></span>
-      <span id="countryTag"></span>
-      <span id="categoryTag"></span>
-      <span id="languageTag"></span>
-
-    </div>
                 <button class="Btn" id="addTag">Add tag</button>
 
             <button class="Btn" id="searchBtn">Search</button>
 
             <button class="Btn" id="deleteTag">Clear tag</button>
+
+            <h5>Your current tag is </h5>
+
+            <div id="currentTag">
+
+              <span id="inputTag"></span>
+              <span id="sourceTag"></span>
+              <span id="countryTag"></span>
+              <span id="categoryTag"></span>
+              <span id="languageTag"></span>
+
+            </div>
+
+            <div id="ownCurrentTag">
+
+            </div>
 </div>
 
 
@@ -331,12 +338,20 @@
 </div>
 
  <div id="footer">
+<<<<<<< HEAD
      <i class="fas fa-university"></i>
      <div id="divHistory"></div>
           <div id="eventYear"></div>
           <div id="eventText"></div>
          
         <h3>Newsify</h3>
+
+     <div id="divHistory">Today in History:
+          <div id="div1"></div>
+          <div id="div2"></div>
+         </div>
+
+
      <div id="time">TIME</div>
 </div>
 
@@ -367,7 +382,10 @@ DEN ENDA GÅNGEN NI KAN SNAPA EN VARIABEL ÄR -> när ni skapar den i en FUNKTIO
 <script type="text/javascript" src="js/jonasJavascript.js"></script>
 <!--Eriks javascriptfil -->
 
+
 <script type="text/javascript" src="js/erikJavascript.js"></script>
+
+<!--<script type="text/javascript" src="js/erikJavascript.js"></script>-->
 
 
 
