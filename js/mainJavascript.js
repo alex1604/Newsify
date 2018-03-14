@@ -543,7 +543,7 @@ var browseNews = function (array, number) {
         writeBox.className = "writeBox";
         writeBox.addEventListener("keyup", function(event){
           //Comments if user clicks enter
-          if (event.key == "Enter"){
+          if (event.key == "Enter" && localStorage.getItem("username") !== null){
             //console.log(event.target);
             let text = event.target.parentElement.children[3].value;
             event.target.parentElement.children[3].value = "";
@@ -583,7 +583,7 @@ var browseNews = function (array, number) {
       commentButton.addEventListener("click", function(event){
           let text = event.target.parentElement.children[3].value;
           event.target.parentElement.children[3].value = "";
-          if (text !== ""){
+          if (text !== "" && localStorage.getItem("username" !== null)){
             let commentWhole = document.createElement("div");
             let commentText = document.createElement("div");
             let commentUsername = document.createElement("div");
