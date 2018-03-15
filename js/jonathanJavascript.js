@@ -1,634 +1,134 @@
-let beforeLoggedIn = document.getElementById("beforeLoggedIn")
 
-let deleteCurrentTag = document.getElementById("deleteTag");
-
-
-let tagsSlider ={
-
-    tagsNextBtn : document.getElementById('tagsNextBtn'),
-    tagsPrevBtn: document.getElementById("tagsPrevBtn"),
-    tagsContentChange : document.getElementById("tagsSliderContentChange"),
-    slider: document.getElementById("tagsSlider"),
-}
+// Kollar vart man är i den första slidern. den man är på ska få klassen tags zIndex och de andra bara tags eftersom att man vill att den ska vara längst fram och synas beroende på vart minusSlide är.
+function checkZIndex(contentChangeLength, contentChangeCorrect, andraLength, andraContentChange, tredjeLength, tredjeContentChange, fjardeLength, fjardeContentChange){
 
 
 
-let currentTag = {
+    for(let i=0; i< contentChangeLength; i++){
 
-  inputTag : document.getElementById("inputTag"),
-  sourceTag : document.getElementById("sourceTag"),
-  countryTag: document.getElementById("countryTag"),
-  categoryTag : document.getElementById("categoryTag"),
-  languageTag: document.getElementById("languageTag"),
+        contentChangeCorrect[i].className = "tags zIndex"
 
-}
+    }
 
-let previousTagBtn = document.getElementById("prev");
-let nextTagBtn = document.getElementById("next");
-let sliderContent = document.getElementById("sliderContent");
-let sliderContentChange = document.getElementById("sliderContentChange");
+    for(let i=0; i< andraLength; i++){
 
-let slider = {
-
-    nextTagBtn: document.getElementById("nextInput"),
-    prevTagBtn: document.getElementById("prevInput"),
-    sliderContent : document.getElementById("sliderContent"),
-    sliderContentChange: document.getElementById("sliderContentChange"),
-    sourceName : document.getElementById("sourceName"),
-    inputKeyword: document.getElementById("inputKeyword")
-}
-
-slider.prevTagBtn.style.opacity = "0"
-
-let sourceSlider = {
-    nextBtn : document.getElementById("nextBtn"),
-    prevBtn : document.getElementById("prevBtn"),
-    sourceContentChange : document.getElementById("sourceContentChange"),
-    slider : document.getElementById("sourceSlider")
-}
-
-sourceSlider.prevBtn.style.opacity = "0"
+        andraContentChange[i].className = "tags"
 
 
-let countrySlider = {
-    countryNextBtn : document.getElementById("countryNextBtn"),
-    countryPrevBtn : document.getElementById("countryPrevBtn"),
-    countryContentChange : document.getElementById("countryContentChange"),
-    slider: document.getElementById("countrySlider")
+    }
 
-}
+    for(let i=0; i< tredjeLength; i++){
+
+        tredjeContentChange[i].className = "tags"
 
 
-countrySlider.countryPrevBtn.style.opacity ="0"
+    }
 
-let categorySlider = {
-  categoryNextBtn: document.getElementById("categoryNextBtn"),
-  categoryPrevBtn: document.getElementById("categoryPrevBtn"),
-  categoryContentChange : document.getElementById("categoryContentChange"),
-  slider: document.getElementById("categorySlider")
-}
+    for(let i=0; i< fjardeLength; i++){
 
-categorySlider.categoryPrevBtn.style.opacity = "0"
+        fjardeContentChange[i].className = "tags"
 
-let languageSlider = {
-
-  languangeNextBtn : document.getElementById("languangeNextBtn"),
-  languangePrevBtn : document.getElementById("languangePrevBtn"),
-  languageContentChange : document.getElementById("languageContentChange"),
-  slider : document.getElementById("languageSlider")
-}
-languageSlider.languangePrevBtn.style.opacity ="0"
-
-
-
-
-// let sliderContentChangeWidth = sliderContentChange.offsetWidth;
-let sliderContentChangeWidth = slider.sliderContentChange.offsetWidth;
-let sourceContentChangeWidth = sourceSlider.sourceContentChange.offsetWidth;
-let countryContentChangeWidth = countrySlider.countryContentChange.offsetWidth;
-let categoryContentChangeWidth = categorySlider.categoryContentChange.offsetWidth;
-let languageContentChangeWidth = languageSlider.languageContentChange.offsetWidth;
-
-
-//Tillhör previousTagBtn och nextTagBtn
-let minusSlide = 1;
-let totalLeft = "";
-/////////////////////////
-
-// För sourceSlider
-
-let sourceMinusSlide = 1;
-let sourceTotalLeft = ""
-
-//For countrySlider
-
-let countryMinusSlide = 1;
-let countryTotalLeft = ""
-
-//For categorySlider
-
-let categoryMinusSlide = 1;
-let categoryTotalLeft = "";
-
-// For languageSlider
-
-let languageMinusSlide = 1;
-let languageTotalLeft = "";
-
-//For tagsSlider
-
-let tagsMinusSlide = 1;
-let tagsTotalLeft = "";
-
-
-// slider.inputKeyword.addEventListener("change",function(){
-//
-//   if(slider.inputKeyword.value === ""){
-//
-//     currentTag.inputTag.innerHTML = ""
-//     tagsSlider.tagsNextBtn.style.display = "block";
-//     tagsSlider.tagsPrevBtn.style.display = "block";
-//     tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
-//
-//   }else{
-//
-//     currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
-//     tagsSlider.tagsNextBtn.style.display = "none";
-//     tagsSlider.tagsPrevBtn.style.display = "none";
-//     // tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
-//
-//
-//   }
-//
-//
-// })
-
-
-slider.inputKeyword.addEventListener("keydown",function(e){
-
-
-
-  if(e.key === "Backspace"){
-    currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
-
-  }
-
-  // if(e.key !== " " && e.key !== "Backspace"){
-  //   currentTag.inputTag.innerHTML += e.key;
-  // }else if(e.key === "Backspace"){
-  //   currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
-  // }
-
-})
-
-
-slider.inputKeyword.addEventListener("keypress",function(e){
-
-  if(e.key !== " " && e.key !== "Enter"){
-    console.log(currentTag.inputTag.innerHTML.length)
-
-    if(currentTag.inputTag.innerHTML.length === 0){
-      currentTag.inputTag.innerHTML += "#"+e.key;
-
-    }else{
-      currentTag.inputTag.innerHTML += e.key;
 
     }
 
 
-  }
-})
+
+}
 
 
 
-// När du klickar på nextInput
-
-slider.nextTagBtn.addEventListener("click",function(){
-
-
-    let sliderContentChangeLength = sliderContentChange.children.length;
-
-      totalLeft = minusSlide * sliderContentChangeWidth;
-      totalLeft = totalLeft.toString();
-
-
-
-      totalLeft = "-" + totalLeft + "px";
-
-      if(minusSlide> 0){
-        slider.prevTagBtn.style.opacity = "1";
-      }
-
-      if(minusSlide === sliderContentChangeLength-1){
-        slider.nextTagBtn.style.opacity = "0";
-      }
-
-      if(minusSlide === 1){
-
-        if(slider.inputKeyword.value === ""){
-
-            currentTag.inputTag.innerHTML = ""
-
-
-        }else{
-            // currentTag.inputTag.innerHTML = slider.inputKeyword.value;
-
-        }
-      }
-
-      if(sliderContentChangeLength > minusSlide){
-
-        slider.sliderContentChange.style.marginLeft = totalLeft;
-        minusSlide++
-        if(minusSlide === 2){
-          if(countryMinusSlide> 1 || categoryMinusSlide > 1 ){
-            sourceSlider.slider.style.opacity ="0";
-
-          }else{
-            sourceSlider.slider.style.opacity ="1";
-
-          }
-
-          // sourceContentChangeWidth = sourceSlider.sourceContentChange.offsetWidth;
-        }else {
-          sourceSlider.slider.style.opacity ="0"
-        }
-
-        if(minusSlide === 3){
-
-
-          if(sourceMinusSlide>1 || slider.inputKeyword.value !== "" || languageMinusSlide>1){
-            countrySlider.slider.style.opacity = "0";
-
-
-
-          }else{
-            countrySlider.slider.style.opacity = "1";
-          }
-          // countryContentChangeWidth = countrySlider.countryContentChange.offsetWidth;
-
-
-        }else{
-          countrySlider.slider.style.opacity = "0"
-        }
-
-        if(minusSlide === 4){
-
-          if(sourceMinusSlide>1 || slider.inputKeyword.value !== "" || languageMinusSlide>1){
-            categorySlider.slider.style.opacity = "0"
-
-          }else{
-            categorySlider.slider.style.opacity = "1"
-
-          }
-
-
-        }else{
-          categorySlider.slider.style.opacity = "0"
-        }
-
-        if(minusSlide === 5){
-          if(countryMinusSlide> 1 || categoryMinusSlide > 1){
-            languageSlider.slider.style.opacity = "0"
-
-          }else{
-            languageSlider.slider.style.opacity = "1"
-
-          }
-        }else{
-          languageSlider.slider.style.opacity = "0"
-        }
-
-      }
-
-      console.log(minusSlide)
-
-
-})
-
-
-slider.prevTagBtn.addEventListener("click",function(){
-  let sliderContentChangeLength = sliderContentChange.children.length;
-
-  totalLeft = minusSlide * sliderContentChangeWidth;
-
-  totalLeft = totalLeft - (sliderContentChangeWidth *2);
-  totalLeft = totalLeft.toString();
-  totalLeft = "-" + totalLeft + "px";
-
-
-
-  if(minusSlide === 1){
-
-    if(slider.inputKeyword.value === ""){
-    currentTag.inputTag.innerHTML = ""
-  }else{
-      // currentTag.inputTag.innerHTML = "#"+slider.inputKeyword.value;
-  }
-  }
-
-  if(minusSlide>1){
-
-    slider.sliderContentChange.style.marginLeft = totalLeft;
-
-
-    minusSlide--
+function whatMinusSlideNumber(minusSlide,sourceMinus, countryMinus, categoryMinus, languageMinus, tagsMinus){
 
     if(minusSlide === 1){
-      slider.prevTagBtn.style.opacity = "0"
-    }
-    if(minusSlide < sliderContentChangeLength){
-      slider.nextTagBtn.style.opacity = "1"
-
-    }
-
-
-
-    if(minusSlide === 2){
-
-      if(countryMinusSlide> 1 || categoryMinusSlide > 1){
-        sourceSlider.slider.style.opacity ="0";
-
-      }else{
-        sourceSlider.slider.style.opacity ="1";
-
+      if(slider.inputKeyword.value === ""){
+          currentTag.inputTag.innerHTML = ""
       }
-      sourceContentChangeWidth = sourceSlider.sourceContentChange.offsetWidth;
-
-    }else {
-      sourceSlider.slider.style.opacity ="0"
     }
 
-    if(minusSlide === 3){
-      if(sourceMinusSlide>1 || slider.inputKeyword.value !== "" || languageMinusSlide>1){
-        countrySlider.slider.style.opacity = "0";
+    if(sliderContentChangeLength > minusSlide){
 
-      }else{
-        countrySlider.slider.style.opacity = "1";
+      slider.sliderContentChange.style.marginLeft = totalLeft;
+      minusSlide++
+      if(minusSlide === 2){
 
+
+        // När minusSlide är 2 så visas sourceSlider längst fram och de andra längre bak.
+        checkZIndex(sourceSlider.children.length, sourceSlider.children, countrySlider.children.length, countrySlider.children, categorySlider.children.length, categorySlider.children, languageSlider.children.length, languageSlider.children )
+
+        if(countryMinus> 1 || categoryMinus > 1 ){
+          sourceSlider.slider.style.opacity ="0";
+
+        }else{
+          sourceSlider.slider.style.opacity ="1";
+
+        }
+
+        // sourceContentChangeWidth = sourceSlider.sourceContentChange.offsetWidth;
+      }else {
+        sourceSlider.slider.style.opacity ="0"
       }
 
+      if(minusSlide === 3){
 
-      sourceContentChangeWidth = countrySlider.countryContentChange.offsetWidth;
+        // När minusSlide är 3 så visas countrySlider längst fram och de andra längre bak.
+            checkZIndex( countrySlider.children.length, countrySlider.children, categorySlider.children.length, categorySlider.children, languageSlider.children.length, languageSlider.children,sourceSlider.children.length, sourceSlider.children );
 
-    }else{
-      countrySlider.slider.style.opacity = "0"
-    }
+        if(sourceMinus>1 || slider.inputKeyword.value !== "" || languageMinus>1){
+          countrySlider.slider.style.opacity = "0";
 
-    if(minusSlide === 4){
-      if(sourceMinusSlide>1 || slider.inputKeyword.value !== "" || languageMinusSlide>1){
+
+
+        }else{
+          countrySlider.slider.style.opacity = "1";
+        }
+        // countryContentChangeWidth = countrySlider.countryContentChange.offsetWidth;
+
+
+      }else{
+        countrySlider.slider.style.opacity = "0"
+      }
+
+      if(minusSlide === 4){
+
+        // När minusSlide är 4 så visas categorySlider längst fram och de andra längre bak.
+        checkZIndex(  categorySlider.children.length, categorySlider.children, languageSlider.children.length, languageSlider.children,sourceSlider.children.length, sourceSlider.children, countrySlider.children.length, countrySlider.children );
+
+        if(sourceMinus>1 || slider.inputKeyword.value !== "" || languageMinus>1){
+          categorySlider.slider.style.opacity = "0"
+
+        }else{
+          categorySlider.slider.style.opacity = "1"
+
+        }
+
+
+      }else{
         categorySlider.slider.style.opacity = "0"
-
-      }else{
-        categorySlider.slider.style.opacity = "1"
-
       }
-    }else{
-      categorySlider.slider.style.opacity = "0"
-    }
-    if(minusSlide === 5){
-      if(countryMinusSlide> 1 || categoryMinusSlide > 1){
+
+      if(minusSlide === 5){
+
+        // När minusSlide är 5 så visas languageSlider längst fram och de andra längre bak.
+        checkZIndex( languageSlider.children.length, languageSlider.children,sourceSlider.children.length, sourceSlider.children, countrySlider.children.length, countrySlider.children );
+
+
+        if(countryMinus> 1 || categoryMinus > 1){
+          languageSlider.slider.style.opacity = "0"
+
+        }else{
+          languageSlider.slider.style.opacity = "1"
+
+        }
+      }else{
         languageSlider.slider.style.opacity = "0"
-
-      }else{
-        languageSlider.slider.style.opacity = "1"
-
       }
-    }else{
-      languageSlider.slider.style.opacity = "0"
+
     }
-
-  }
-  console.log(minusSlide)
-
-
-})
-
-
-function sourceSwitch(sourceMinusSlide){
-
-  switch (sourceMinusSlide) {
-    case 1:
-        currentTag.sourceTag.innerHTML = " ";
-        sourceCode = null;
-      break;
-    case 2:
-      currentTag.sourceTag.innerHTML = "#CNN";
-
-      sourceCode = 'cnn';
-      break;
-      case 3:
-        currentTag.sourceTag.innerHTML = "#BBC";
-        sourceCode = 'bbc-news';
-        break;
-        case 4:
-          currentTag.sourceTag.innerHTML = "#ABCNews";
-          sourceCode = 'abc-news';
-          break;
-          case 5:
-            currentTag.sourceTag.innerHTML = "#AlJazeera";
-            sourceCode = 'al-jazeera-english';
-            break;
-            case 6:
-              currentTag.sourceTag.innerHTML = "#ESPN";
-              sourceCode = 'espn';
-              break;
-              case 7:
-                currentTag.sourceTag.innerHTML = "#FinancialTimes";
-                sourceCode = 'financial-times';
-                break;
-                case 8:
-                  currentTag.sourceTag.innerHTML = "#FoxNews";
-                  sourceCode = 'fox-news';
-                  break;
-                  case 9:
-                    currentTag.sourceTag.innerHTML = "#DailyMail";
-                    sourceCode = 'daily-mail';
-                    break;
-                    case 10:
-                      currentTag.sourceTag.innerHTML = "#TheGuardian";
-                      sourceCode = 'the-guardian-uk';
-                      break;
-                      case 11:
-                        currentTag.sourceTag.innerHTML = "#TheNewYorkTimes";
-                        sourceCode = 'the-new-york-times';
-                        break;
-                        case 12:
-                          currentTag.sourceTag.innerHTML = "#IGN";
-                          sourceCode = 'ign';
-                          break;
-                          case 13:
-                            currentTag.sourceTag.innerHTML = "#CNNSpanish";
-                            sourceCode = 'cnn-es';
-                            break;
-                            case 14:
-                              currentTag.sourceTag.innerHTML = "#Bloomberg";
-                              sourceCode = 'bloomberg';
-                              break;
-                              case 15:
-                                currentTag.sourceTag.innerHTML = "#CBS";
-                                sourceCode = 'cbs-news';
-                                break;
-                default:
-
-  }
 }
 
 
-function countrySwitch(countryMinusSlide){
-
-  switch (countryMinusSlide) {
-    case 1:
-      currentTag.countryTag.innerHTML = " ";
-      countryCode = null;
-      break;
-    case 2:
-      currentTag.countryTag.innerHTML = "#USA";
-      countryCode = 'us';
-      break;
-    case 3:
-      currentTag.countryTag.innerHTML = "#Canada";
-      countryCode = 'ca';
-      break;
-    case 4:
-      currentTag.countryTag.innerHTML = "#England";
-      countryCode = 'gb';
-      break;
-    case 5:
-    currentTag.countryTag.innerHTML = "#Germany";
-    countryCode = 'de';
-      break;
-    case 6:
-    currentTag.countryTag.innerHTML = "#France";
-    countryCode = 'fr';
-      break;
-    case 7:
-    currentTag.countryTag.innerHTML = "#Australia";
-    countryCode = 'au';
-      break;
-    case 8:
-    currentTag.countryTag.innerHTML = "#NewZeeland";
-    countryCode = 'nz';
-      break;
-    case 9:
-    currentTag.countryTag.innerHTML = "#China";
-    countryCode = 'ch';
-      break;
-    case 10:
-    currentTag.countryTag.innerHTML = "#Japan";
-    countryCode = 'jp';
-      break;
-    case 11:
-    currentTag.countryTag.innerHTML = "#Russia";
-    countryCode = 'ru';
-      break;
-    case 12:
-    currentTag.countryTag.innerHTML = "#Spain";
-    countryCode = 'es';
-      break;
-    case 13:
-    currentTag.countryTag.innerHTML = "#Sweden";
-    countryCode = 'se';
-      break;
-    case 14:
-    currentTag.countryTag.innerHTML = "#Norway";
-    countryCode = 'no';
-      break;
-    case 15:
-    currentTag.countryTag.innerHTML = "#Turkey";
-    countryCode = 'tr';
-      break;
 
 
-    default:
-
-  }
-
-}
-
-
-function categorySwitch(categoryMinusSlide){
-
-  switch (categoryMinusSlide) {
-    case 1:
-      currentTag.categoryTag.innerHTML = " ";
-      categoryCode = null;
-      break;
-    case 2:
-      currentTag.categoryTag.innerHTML = "#Business";
-      categoryCode = 'business';
-      break;
-    case 3:
-      currentTag.categoryTag.innerHTML = "#Entertainment";
-      categoryCode = 'entertainment';
-      break;
-    case 4:
-      currentTag.categoryTag.innerHTML = "#General";
-      categoryCode = 'general';
-      break;
-    case 5:
-    currentTag.categoryTag.innerHTML = "#Health";
-      categoryCode = 'health';
-      break;
-    case 6:
-    currentTag.categoryTag.innerHTML = "#Science";
-      categoryCode = 'science';
-      break;
-    case 7:
-    currentTag.categoryTag.innerHTML = "#Sport";
-      categoryCode = 'sports';
-      break;
-    case 8:
-    currentTag.categoryTag.innerHTML = "#Technology";
-      categoryCode = 'technology';
-      break;
-
-
-
-    default:
-
-  }
-
-}
-
-
-function languageSwitch(languageMinusSlide){
-
-  switch (languageMinusSlide) {
-    case 1:
-      currentTag.languageTag.innerHTML = " ";
-      languageCode = null;
-      break;
-    case 2:
-      currentTag.languageTag.innerHTML = "#Arabic";
-      languageCode = 'ar';
-      break;
-    case 3:
-      currentTag.languageTag.innerHTML = "#English";
-      languageCode = 'en';
-      break;
-    case 4:
-    currentTag.languageTag.innerHTML = "#Spanish";
-    languageCode = 'es';
-      break;
-    case 5:
-    currentTag.languageTag.innerHTML = "#French";
-    languageCode = 'fr';
-      break;
-    case 6:
-    currentTag.languageTag.innerHTML = "#Hebrew";
-    languageCode = 'he';
-      break;
-    case 7:
-    currentTag.languageTag.innerHTML = "#Italian";
-    languageCode = 'it';
-      break;
-    case 8:
-    currentTag.languageTag.innerHTML = "#Dutch";
-    languageCode = 'nl';
-      break;
-    case 9:
-    currentTag.languageTag.innerHTML = "#Norweigan";
-    languageCode = 'no';
-      break;
-    case 10:
-    currentTag.languageTag.innerHTML = "#Portugues";
-    languageCode = 'pt';
-      break;
-    case 11:
-    currentTag.languageTag.innerHTML = "#Russian";
-    languageCode = 'ru';
-      break;
-    case 12:
-    currentTag.languageTag.innerHTML = "#Swedish";
-    languageCode = 'se';
-      break;
-
-    default:
-
-  }
-
-}
 
 function showArrowsOrNot(minusSlide,prevBtn,nextBtn, contentChangeLength ){
 
@@ -646,385 +146,16 @@ function showArrowsOrNot(minusSlide,prevBtn,nextBtn, contentChangeLength ){
 
 }
 
-function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth, sliderContentChange, funktionen, nextBtn, prevBtn){
 
-
-
-  switch (sliderContentChange.id) {
-
-    case "sourceContentChange":
-
-    totalLeft = sourceMinusSlide * contentChangeWidth;
-    totalLeft = totalLeft.toString();
-
-    totalLeft = "-" + totalLeft + "px";
-
-      if(contentChangeLength> sourceMinusSlide){
-
-        sliderContentChange.style.marginLeft = totalLeft;
-        sourceMinusSlide++
-        tagsSlider.tagsNextBtn.style.display = "none";
-        tagsSlider.tagsPrevBtn.style.display = "none";
-        tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
-                showArrowsOrNot(sourceMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
-        funktionen(sourceMinusSlide)
-      }
-      break;
-
-    case "countryContentChange":
-    totalLeft = countryMinusSlide * contentChangeWidth;
-    totalLeft = totalLeft.toString();
-
-    totalLeft = "-" + totalLeft + "px";
-
-      if(contentChangeLength> countryMinusSlide){
-
-        sliderContentChange.style.marginLeft = totalLeft;
-        countryMinusSlide++
-
-        tagsSlider.tagsNextBtn.style.display = "none";
-        tagsSlider.tagsPrevBtn.style.display = "none";
-        tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
-
-        if(countryMinusSlide>1){
-          slider.inputKeyword.disabled = true;
-          slider.inputKeyword.setAttribute("placeholder", "You can not combine that tag")
-
-
-        }else{
-          slider.inputKeyword.disabled = false;
-          slider.inputKeyword.setAttribute("placeholder", "Search by keyword")
-
-
-        }
-        showArrowsOrNot(countryMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
-
-        funktionen(countryMinusSlide)
-      }
-
-      break;
-
-    case "categoryContentChange":
-    totalLeft = categoryMinusSlide * contentChangeWidth;
-    totalLeft = totalLeft.toString();
-
-    totalLeft = "-" + totalLeft + "px";
-
-      if(contentChangeLength> categoryMinusSlide){
-
-        sliderContentChange.style.marginLeft = totalLeft;
-        categoryMinusSlide++
-
-        tagsSlider.tagsNextBtn.style.display = "none";
-        tagsSlider.tagsPrevBtn.style.display = "none";
-        tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
-
-        if(categoryMinusSlide>1){
-          slider.inputKeyword.disabled = true;
-          slider.inputKeyword.setAttribute("placeholder", "You can not combine that tag")
-
-
-        }else{
-          slider.inputKeyword.disabled = false;
-          slider.inputKeyword.setAttribute("placeholder", "Searc keyword or phrase")
-
-
-
-        }
-        showArrowsOrNot(categoryMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
-
-        funktionen(categoryMinusSlide)
-      }
-
-      break;
-    case "languageContentChange":
-    totalLeft = languageMinusSlide * contentChangeWidth;
-    totalLeft = totalLeft.toString();
-
-    totalLeft = "-" + totalLeft + "px";
-
-      if(contentChangeLength> languageMinusSlide){
-
-        sliderContentChange.style.marginLeft = totalLeft;
-        languageMinusSlide++
-        tagsSlider.tagsNextBtn.style.display = "none";
-        tagsSlider.tagsPrevBtn.style.display = "none";
-        tagsSlider.tagsContentChange.children[0].innerHTML = "Delete current tag to be able to scroll"
-
-        showArrowsOrNot(languageMinusSlide, prevBtn, nextBtn, contentChangeLength+1 )
-
-        funktionen(languageMinusSlide)
-      }
-
-
-      break;
-
-    case "tagsSliderContentChange":
-
-          totalLeft = tagsMinusSlide * contentChangeWidth;
-          totalLeft = totalLeft.toString();
-
-          totalLeft = "-" + totalLeft + "px";
-
-
-
-
-
-           // document.getElementById("currentTag").innerHTML = tagsSlider.tagsContentChange.children[tagsMinusSlide].innerHTML
-
-          if(contentChangeLength> tagsMinusSlide){
-
-            sliderContentChange.style.marginLeft = totalLeft;
-            tagsMinusSlide++
-
-            showArrowsOrNot(tagsMinusSlide, prevBtn,nextBtn,contentChangeLength+1)
-
-
-
-          }
-
-
-
-      break;
-
-
-
-    default:
-
-  }
-
-
-
-
-}
-
-sourceSlider.nextBtn.addEventListener("click", function(){
-
-
-
-  let sourceContentChangeLength = sourceSlider.sourceContentChange.children.length;
-  sliderFunctionRight(sourceContentChangeLength, sourceTotalLeft, sourceContentChangeWidth, sourceSlider.sourceContentChange, sourceSwitch, sourceSlider.nextBtn, sourceSlider.prevBtn)
-
-
-
-})
-
-
-sourceSlider.prevBtn.addEventListener("click", function(){
-
-  let sourceContentChangeLength = sourceSlider.sourceContentChange.children.length;
-
-  sourceTotalLeft = sourceMinusSlide * sourceContentChangeWidth;
-
-  sourceTotalLeft = sourceTotalLeft - (sourceContentChangeWidth *2);
-  sourceTotalLeft = sourceTotalLeft.toString();
-
-  sourceTotalLeft = "-" + sourceTotalLeft + "px";
-
-
-
-  if(sourceMinusSlide>1){
-
-
-
-    sourceSlider.sourceContentChange.style.marginLeft = sourceTotalLeft;
-
-
-    sourceMinusSlide--
-
-    if(sourceMinusSlide === 1){
-
-      sourceSlider.prevBtn.style.opacity = "0"
-      tagsSlider.tagsNextBtn.style.display = "block";
-      tagsSlider.tagsPrevBtn.style.display = "block";
-      tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
-
-    }
-    if(sourceMinusSlide < sourceContentChangeLength){
-      sourceSlider.nextBtn.style.opacity = "1"
-
-    }
-    sourceSwitch(sourceMinusSlide)
-
-
-
-
-  }
-
-})
-
-
-countrySlider.countryNextBtn.addEventListener("click",function(){
-
-  let countryContentChangeLength = countrySlider.countryContentChange.children.length;
-
-  sliderFunctionRight(countryContentChangeLength, countryTotalLeft, countryContentChangeWidth, countrySlider.countryContentChange, countrySwitch, countrySlider.countryNextBtn, countrySlider.countryPrevBtn)
-
-
-
-})
-
-countrySlider.countryPrevBtn.addEventListener("click",function(){
-
-  let countryContentChangeLength = countrySlider.countryContentChange.children.length;
-
-  countryTotalLeft = countryMinusSlide * countryContentChangeWidth;
-
-  countryTotalLeft = countryTotalLeft - (countryContentChangeWidth *2);
-  countryTotalLeft = countryTotalLeft.toString();
-
-  countryTotalLeft =  "-" +countryTotalLeft + "px";
-
-
-  if(countryMinusSlide>1){
-
-
-
-    countrySlider.countryContentChange.style.marginLeft = countryTotalLeft;
-
-
-    countryMinusSlide--
-    if(countryMinusSlide>1){
-      slider.inputKeyword.disabled = true;
-
-    }else{
-      slider.inputKeyword.disabled = false;
-
-
-    }
-    if(countryMinusSlide === 1){
-
-      countrySlider.countryPrevBtn.style.opacity = "0";
-      tagsSlider.tagsNextBtn.style.display = "block";
-      tagsSlider.tagsPrevBtn.style.display = "block";
-      tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
-
-    }
-    if(countryMinusSlide < countryContentChangeLength){
-      countrySlider.countryNextBtn.style.opacity = "1"
-
-    }
-    countrySwitch(countryMinusSlide)
-
-
-  }
-
-
-})
-
-categorySlider.categoryNextBtn.addEventListener("click",function(){
-  let categoryContentChangeLength = categorySlider.categoryContentChange.children.length;
-
-  sliderFunctionRight(categoryContentChangeLength, categoryTotalLeft, categoryContentChangeWidth, categorySlider.categoryContentChange, categorySwitch, categorySlider.categoryNextBtn, categorySlider.categoryPrevBtn)
-
-})
-
-categorySlider.categoryPrevBtn.addEventListener("click",function(){
-  let categoryContentChangeLength = categorySlider.categoryContentChange.children.length;
-
-  categoryTotalLeft = categoryMinusSlide * categoryContentChangeWidth;
-
-  categoryTotalLeft = categoryTotalLeft - (categoryContentChangeWidth *2);
-  categoryTotalLeft = categoryTotalLeft.toString();
-
-  categoryTotalLeft =  "-" +categoryTotalLeft + "px";
-
-
-  if(categoryMinusSlide>1){
-
-
-
-    categorySlider.categoryContentChange.style.marginLeft = categoryTotalLeft;
-
-
-    categoryMinusSlide--
-
-
-    if(categoryMinusSlide>1){
-      slider.inputKeyword.disabled = true;
-      slider.inputKeyword.setAttribute("placeholder", "You can not combine that tag")
-
-    }else{
-      slider.inputKeyword.disabled = false;
-      slider.inputKeyword.setAttribute("placeholder", "Search by keyword")
-
-
-    }
-    if(categoryMinusSlide === 1){
-
-      categorySlider.categoryPrevBtn.style.opacity = "0";
-      tagsSlider.tagsNextBtn.style.display = "block";
-      tagsSlider.tagsPrevBtn.style.display = "block";
-      tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
-
-    }
-    if(categoryMinusSlide < categoryContentChangeLength){
-      categorySlider.categoryNextBtn.style.opacity = "1"
-
-    }
-
-    categorySwitch(categoryMinusSlide)
-
-
-  }
-
-})
-
-languageSlider.languangeNextBtn.addEventListener("click",function(){
-
-  let languageContentChangeLength = languageSlider.languageContentChange.children.length;
-
-    sliderFunctionRight(languageContentChangeLength, languageTotalLeft, languageContentChangeWidth, languageSlider.languageContentChange, languageSwitch, languageSlider.languangeNextBtn, languageSlider.languangePrevBtn)
-
-})
-
-
-languageSlider.languangePrevBtn.addEventListener("click",function(){
-
-  let languageContentChangeLength = languageSlider.languageContentChange.children.length;
-  languageTotalLeft = languageMinusSlide * languageContentChangeWidth;
-
-  languageTotalLeft = languageTotalLeft - (languageContentChangeWidth *2);
-  languageTotalLeft = languageTotalLeft.toString();
-
-  languageTotalLeft =  "-" +languageTotalLeft + "px";
-
-
-  if(languageMinusSlide>1){
-
-
-
-    languageSlider.languageContentChange.style.marginLeft = languageTotalLeft;
-
-
-    languageMinusSlide--
-
-     if(languageMinusSlide === 1){
-
-        languageSlider.languangePrevBtn.style.opacity = "0";
-        tagsSlider.tagsNextBtn.style.display = "block";
-        tagsSlider.tagsPrevBtn.style.display = "block";
-        tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
-
-      }
-      if(languageMinusSlide < languageContentChangeLength){
-        languageSlider.languangeNextBtn.style.opacity = "1"
-
-      }
-    languageSwitch(languageMinusSlide)
-
-
-
-  }
-
-});
 
 function clear(){
 
+  canNotShow.style.display = "none"
   document.getElementById("ownCurrentTag").innerHTML = ""
+  slider.sliderContent.style.display = "block"
 
   tagsSlider.tagsContentChange.style.marginLeft = "0";
-  tagsMinusSlide = 1;
+  tagsMinusSlide = 0;
 
   beforeLoggedIn.style.display = "block"
 
@@ -1036,10 +167,18 @@ function clear(){
   currentTag.languageTag.innerHTML = "";
 
   slider.inputKeyword.value = ""
-  slider.inputKeyword.placeholder ="Search by keyword"
+  slider.inputKeyword.placeholder ="Search"
   slider.inputKeyword.disabled = false;
 
-
+  countrySlider.slider.style.opacity = "0";
+  countrySlider.countryContentChange.style.display = "none"
+  categorySlider.slider.style.opacity = "0";
+  categorySlider.categoryContentChange.style.display = "none"
+  sourceSlider.slider.style.opacity = "0";
+  sourceSlider.sourceContentChange.style.display = "none"
+  languageSlider.slider.style.opacity = "0";
+  languageSlider.languageContentChange.style.display = "none"
+  slider.sliderContentChange.style.marginLeft = "0";
   sourceSlider.sourceContentChange.style.marginLeft = "0";
   countrySlider.countryContentChange.style.marginLeft = "0";
   categorySlider.categoryContentChange.style.marginLeft = "0";
@@ -1052,21 +191,39 @@ function clear(){
   categoryMinusSlide = 1;
   languageMinusSlide = 1
 
+  if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
+    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
 
-  showArrowsOrNot(sourceMinusSlide, sourceSlider.nextBtn ,sourceSlider.prevBtn, sourceSlider.sourceContentChange.children.length )
+  }else{
+    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
 
-  tagsSlider.tagsNextBtn.style.display = "block";
-  tagsSlider.tagsPrevBtn.style.display = "block";
-  tagsSlider.tagsContentChange.children[0].innerHTML = "Scroll through your saved tags"
+  }
+
 
 
 }
 
+
+
+
 addTagBtn.addEventListener("click", function () {
+
+
 
   let innerHTML = document.getElementById("currentTag").innerHTML;
 
-  if (document.getElementById("currentTag").innerHTML !== "") {
+  if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
+    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+
+  }else{
+    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+
+  }
+
+
+    if (currentTag.inputTag.innerText !== "" || currentTag.sourceTag.innerText !== "" || currentTag.countryTag.innerText !== "" || currentTag.categoryTag.innerText !== "" || currentTag.languageTag.innerText !== "") {
+
+      console.log("hej")
 
 
     db.ref("users/" + sammaid + "/tags").push(innerHTML)
@@ -1076,19 +233,34 @@ addTagBtn.addEventListener("click", function () {
     div.innerHTML = innerHTML;
     tagsSliderContentChange.appendChild(div)
 
+    for(let i=0; i< tagsSlider.children.length; i++){
 
-    if(tagsMinusSlide < tagsSlider.tagsContentChange.children.length){
-      tagsSlider.tagsNextBtn.style.display ="block"
-    }else{
-      tagsSlider.tagsNextBtn.style.display ="block"
+      if(tagsSlider.children[i] !== undefined){
 
+          tagsSlider.children[i].addEventListener("click",function(){
+
+              let tag = tagsSlider.children[i];
+
+              tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
+
+
+          })
+
+      }
     }
 
 
+
+
+
   }
+
+
     clear()
 
 })
+
+
 deleteCurrentTag.addEventListener("click",function(){
   clear()
 
@@ -1096,94 +268,6 @@ deleteCurrentTag.addEventListener("click",function(){
 
 
 
-tagsSlider.tagsNextBtn.addEventListener("click", function () {
-
-  tagsSlider.tagsPrevBtn.style.display ="block";
-
-  let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
-  sliderFunctionRight(tagsContentChangeLength, tagsTotalLeft, tagsContentChangeWidth, tagsSlider.tagsContentChange, tagsSwitch, tagsSlider.tagsNextBtn, tagsSlider.tagsPrevBtn)
-
-  if (tagsMinusSlide > 1) {
-
-      for(let i=1; i<=tagsContentChangeLength; i++){
-        if(tagsMinusSlide === i){
-
-          document.getElementById("ownCurrentTag").innerHTML =  document.querySelectorAll("#tagsSliderContentChange .tags")[i-1].innerHTML
-
-        }
-      }
-    beforeLoggedIn.style.display = "none"
-    // document.getElementById("currentTag").innerHTML =
-
-  }
-
-
-  for(let i = 0; i< tagsContentChangeLength+1; i++){
-
-
-       if(i === tagsMinusSlide){
-       }
-
-
-
-
-  }
-
-})
-
-
-tagsSlider.tagsPrevBtn.addEventListener("click", function () {
-
-  let tagsContentChangeLength = tagsSlider.tagsContentChange.children.length;
-  tagsTotalLeft = tagsMinusSlide * tagsContentChangeWidth;
-
-  tagsTotalLeft = tagsTotalLeft - (tagsContentChangeWidth * 2);
-  tagsTotalLeft = tagsTotalLeft.toString();
-
-  tagsTotalLeft = "-" + tagsTotalLeft + "px";
-
-
-  if (tagsMinusSlide > 1) {
-
-
-    document.getElementById("ownCurrentTag").innerHTML =  document.querySelectorAll("#tagsSliderContentChange .tags")[i+1].innerHTML
-
-    tagsSlider.tagsContentChange.style.marginLeft = tagsTotalLeft;
-
-
-    tagsMinusSlide--
-
-
-    if (tagsMinusSlide === 1) {
-
-      tagsSlider.tagsPrevBtn.style.opacity = "0"
-
-
-    }
-    if (tagsMinusSlide < tagsContentChangeLength) {
-      tagsSlider.tagsNextBtn.style.opacity = "1"
-
-    }
-
-    if (tagsMinusSlide > 1) {
-
-
-
-    }else{
-
-      document.getElementById("ownCurrentTag").innerHTML = ""
-      beforeLoggedIn.style.display = "block"
-
-    }
-    // languageSwitch(languageMinusSlide)
-
-
-
-  }
-
-
-
-});
 
 let y=2;
 
@@ -1191,13 +275,8 @@ deleteOwnTag.addEventListener("click",function(){
 
 
 
+    console.log("length", tagsSlider.children.length)
 
-      if(document.querySelectorAll("#tagsSliderContentChange .tags").length === tagsMinusSlide){
-
-        document.getElementById("ownCurrentTag").innerHTML = document.querySelectorAll("#tagsSliderContentChange .tags")[tagsMinusSlide-2].innerHTML;
-          }else{
-            document.getElementById("ownCurrentTag").innerHTML = document.querySelectorAll("#tagsSliderContentChange .tags")[tagsMinusSlide].innerHTML;
-          }
 
 
     db.ref("/users/"+ id + "/tags/").once("value",function(snapshot){
@@ -1205,37 +284,26 @@ deleteOwnTag.addEventListener("click",function(){
 
           let obj = snapshot.val()
 
+          console.log(tagsSlider.children[tagsMinusSlide])
+
         let found = false;
         let proppet = ""
-        let tag = tagsSlider.tagsContentChange.children[tagsMinusSlide-1];
-        let totalLeft;
+        let tag = tagsSlider.children[tagsMinusSlide];
         for(let prop in obj){
 
 
-           totalLeft = (tagsMinusSlide-1) * 300;
+
+          if(tag.innerHTML !== undefined){
+            if(tag.innerHTML === obj[prop]){
+
+                found = true;
+
+                proppet = prop
+              // tagsSlider.tagsContentChange.removeChild(tagsSlider.tagsContentChange.children[tagsMinusSlide-1])
 
 
-
-
-
-
-          if(tag.innerHTML === obj[prop]){
-
-              found = true;
-
-              proppet = prop
-            // tagsSlider.tagsContentChange.removeChild(tagsSlider.tagsContentChange.children[tagsMinusSlide-1])
-
-
+            }
           }
-
-
-
-
-            // db.ref("/users/"+ id + "/tags/"+ prop).remove()
-            // tagsSlider.tagsContentChange.children[tagsMinusSlide-1].remove()
-            // tagsSlider.tagsContentChange.style.marginLeft = totalLeft;
-
 
 
 
@@ -1250,18 +318,23 @@ deleteOwnTag.addEventListener("click",function(){
 
 
 
+            console.log(tagsMinusSlide)
+            console.log(tagsSlider.children.length)
 
-          if(tagsMinusSlide === tagsSlider.tagsContentChange.children.length +1){
+          if(tagsMinusSlide === tagsSlider.children.length){
 
-            totalLeft = totalLeft -300
-            totalLeft = totalLeft.toString();
+            let totalLeft;
 
-            totalLeft = "-"+ totalLeft + "px";
-             tagsSlider.tagsContentChange.style.marginLeft = totalLeft;
+            totalLeft = (tagsMinusSlide-1) * tagsSliderContentChangeWidth;
+            totalLeft = totalLeft.toString()
 
-             tagsMinusSlide--
+              console.log(totalLeft)
 
 
+             tagsSlider.tagsContentChange.style.marginLeft = "-"+totalLeft + "px";
+
+
+            tagsMinusSlide--
 
 
 
@@ -1273,6 +346,21 @@ deleteOwnTag.addEventListener("click",function(){
 
 
           }
+          if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
+            tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+
+          }else{
+            tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+
+          }
+
+          if(tagsSlider.children.length === 1){
+
+            slider.sliderContent.style.display = "block"
+
+          }
+          document.getElementById("ownCurrentTag").innerHTML =  tagsSlider.children[tagsMinusSlide].innerHTML
+
           found = false;
         }
 
@@ -1284,83 +372,929 @@ deleteOwnTag.addEventListener("click",function(){
 
 
 
+
+
 })
 
 
-let sliderContentChangeClick = sliderContentChange.children;
-
-
-for(let g = 0; g< sliderContentChangeClick.length; g++){
-
-  if(sliderContentChangeClick[g] !== undefined){
-    sliderContentChangeClick[g].addEventListener("click",function(){
-
-      console.log(sliderContentChangeClick[g])
-
-        console.log(g)
-
-        if(g === 0){
-
-          slider.sliderContentChange.style.marginLeft = "0px";
-          minusSlide=1;
-
-          sourceSlider.slider.style.opacity ="0";
-          countrySlider.slider.style.opacity = "0";
-          categorySlider.slider.style.opacity = "0"
-          languageSlider.slider.style.opacity = "0"
-
-
-
-        }else if(g === 1){
-          slider.sliderContentChange.style.marginLeft = "-300px";
-          minusSlide=2;
-          sourceSlider.slider.style.opacity ="1";
-
-          countrySlider.slider.style.opacity = "0";
-          categorySlider.slider.style.opacity = "0"
-          languageSlider.slider.style.opacity = "0"
 
 
 
 
-        }else if( g===2){
-          slider.sliderContentChange.style.marginLeft = "-600px";
+function contentChangeClick(tag, length, i, contentChange, minus, offsetWidth){
 
-          minusSlide = 3;
-          sourceSlider.slider.style.opacity ="0";
-          categorySlider.slider.style.opacity = "0"
-          languageSlider.slider.style.opacity = "0"
 
-          countrySlider.slider.style.opacity = "1";
 
-        }else if( g=== 3){
-          slider.sliderContentChange.style.marginLeft = "-900px";
+    let totalLeft = offsetWidth;
 
-          minusSlide = 4;
-          categorySlider.slider.style.opacity = "1"
+    switch (i) {
+      case 0:
+          contentChange.style.marginLeft = "0"
+          minus = 1;
 
+          switch (contentChange.id) {
+            case "sliderContentChange":
+                  minusSlide = minus;
+                          sourceSlider.slider.style.opacity ="0";
+                           countrySlider.slider.style.opacity = "0";
+                           categorySlider.slider.style.opacity = "0"
+                           languageSlider.slider.style.opacity = "0"
+              break;
+            case "sourceContentChange":
+                  sourceMinusSlide = minus;
+
+              break;
+              case "countryContentChange":
+                    countryMinusSlide = minus;
+                break;
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+
+            default:
+
+          }
+
+
+
+
+      break;
+
+      case 1:
+            totalLeft = "-" + totalLeft.toString() + "px"
+            contentChange.style.marginLeft = totalLeft;
+            minus = 2;
+
+            switch (contentChange.id) {
+              case "sliderContentChange":
+                    minusSlide = minus;
+                    checkZIndex(sourceSlider.children.length, sourceSlider.children, countrySlider.children.length, countrySlider.children, categorySlider.children.length, categorySlider.children, languageSlider.children.length, languageSlider.children )
+
+                    sourceSlider.slider.style.opacity ="1";
                     countrySlider.slider.style.opacity = "0";
-                    sourceSlider.slider.style.opacity ="0";
+                    categorySlider.slider.style.opacity = "0"
                     languageSlider.slider.style.opacity = "0"
+                break;
+              case "sourceContentChange":
+                    sourceMinusSlide = minus;
+                break;
+                case "countryContentChange":
+                      countryMinusSlide = minus;
+                  break;
+                  case "categoryContentChange":
+
+                      categoryMinusSlide = minus;
+                      break;
+                  case "languageContentChange":
+
+                      languageMinusSlide = minus;
+                      break;
+              default:
+
+            }
+        break;
+      case 2:
+          let twoTotalLeft = totalLeft * 2;
+
+          twoTotalLeft = "-" + twoTotalLeft.toString() + "px"
+          contentChange.style.marginLeft = twoTotalLeft;
+          minus = 3;
+
+          switch (contentChange.id) {
+            case "sliderContentChange":
+                  minusSlide = minus;
+                  checkZIndex( countrySlider.children.length, countrySlider.children, categorySlider.children.length, categorySlider.children, languageSlider.children.length, languageSlider.children,sourceSlider.children.length, sourceSlider.children );
+
+                  sourceSlider.slider.style.opacity ="0";
+                          categorySlider.slider.style.opacity = "0"
+                          languageSlider.slider.style.opacity = "0"
+
+                          countrySlider.slider.style.opacity = "1";
+              break;
+            case "sourceContentChange":
+                  sourceMinusSlide = minus;
+              break;
+              case "countryContentChange":
+                    countryMinusSlide = minus;
+                break;
+                case "categoryContentChange":
+
+                    categoryMinusSlide = minus;
+                    break;
+                case "languageContentChange":
+
+                    languageMinusSlide = minus;
+                    break;
+            default:
+
+          }
+
+        break;
+      case 3:
+
+        let threeTotalLeft = totalLeft *3;
+        threeTotalLeft = "-" + threeTotalLeft.toString() + "px"
+        contentChange.style.marginLeft = threeTotalLeft;
+        minus = 4;
+
+        switch (contentChange.id) {
+          case "sliderContentChange":
+                minusSlide = minus;
+
+                checkZIndex(  categorySlider.children.length, categorySlider.children, languageSlider.children.length, languageSlider.children,sourceSlider.children.length, sourceSlider.children, countrySlider.children.length, countrySlider.children );
+
+                          categorySlider.slider.style.opacity = "1"
+
+                                    countrySlider.slider.style.opacity = "0";
+                                    sourceSlider.slider.style.opacity ="0";
+                                    languageSlider.slider.style.opacity = "0"
+            break;
+          case "sourceContentChange":
+                sourceMinusSlide = minus;
+            break;
+            case "countryContentChange":
+                  countryMinusSlide = minus;
+              break;
+              case "categoryContentChange":
+
+                  categoryMinusSlide = minus;
+                  break;
+              case "languageContentChange":
+
+                  languageMinusSlide = minus;
+                  break;
+          default:
+
+        }
+
+        break;
+      case 4:
+
+      let fourTotalLeft = totalLeft *4;
+      fourTotalLeft = "-" + fourTotalLeft.toString() + "px"
+      contentChange.style.marginLeft = fourTotalLeft;
+      minus = 5;
+
+      switch (contentChange.id) {
+
+        case "sliderContentChange":
+              minusSlide = minus;
+              checkZIndex( languageSlider.children.length, languageSlider.children,sourceSlider.children.length, sourceSlider.children, countrySlider.children.length, countrySlider.children );
+                        languageSlider.slider.style.opacity = "1"
+                        categorySlider.slider.style.opacity = "0"
+
+                                  countrySlider.slider.style.opacity = "0";
+                                  sourceSlider.slider.style.opacity ="0";
+          break;
+        case "sourceContentChange":
+              sourceMinusSlide = minus;
+          break;
+
+          case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+        default:
+
+      }
+
+        break;
+      case 5:
+
+      let fiveTotalLeft = totalLeft *5;
+      fiveTotalLeft = "-" + fiveTotalLeft.toString() + "px"
+      contentChange.style.marginLeft = fiveTotalLeft;
+      minus = 6;
+
+      switch (contentChange.id) {
+        case "sliderContentChange":
+              minusSlide = minus;
+          break;
+        case "sourceContentChange":
+              sourceMinusSlide = minus;
+          break;
+          case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+        default:
+
+      }
+
+        break;
+      case 6:
+
+      let sixTotalLeft = totalLeft *6;
+      sixTotalLeft = "-" + sixTotalLeft.toString() + "px"
+      contentChange.style.marginLeft = sixTotalLeft;
+      minus = 7;
+
+      switch (contentChange.id) {
+        case "sliderContentChange":
+              minusSlide = minus;
+          break;
+        case "sourceContentChange":
+              sourceMinusSlide = minus;
+          break;
+
+          case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+        default:
+
+      }
+
+        break;
+      case 7:
+
+      let sevenTotalLeft = totalLeft *7;
+      sevenTotalLeft = "-" + sevenTotalLeft.toString() + "px"
+      contentChange.style.marginLeft = sevenTotalLeft;
+      minus = 8;
+
+      switch (contentChange.id) {
+        case "sliderContentChange":
+              minusSlide = minus;
+          break;
+        case "sourceContentChange":
+              sourceMinusSlide = minus;
+          break;
+
+          case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+        default:
+
+      }
+
+        break;
+      case 8:
+
+      let eightTotalLeft = totalLeft *8;
+      eightTotalLeft = "-" + eightTotalLeft.toString() + "px"
+      contentChange.style.marginLeft = eightTotalLeft;
+      minus = 9;
+
+      switch (contentChange.id) {
+        case "sliderContentChange":
+              minusSlide = minus;
+          break;
+        case "sourceContentChange":
+              sourceMinusSlide = minus;
+          break;
+          case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+        default:
+
+      }
+
+        break;
+      case 9:
+
+      let nineTotalLeft = totalLeft *9;
+      nineTotalLeft = "-" + nineTotalLeft.toString() + "px"
+      contentChange.style.marginLeft = nineTotalLeft;
+      minus = 10;
+
+      switch (contentChange.id) {
+        case "sliderContentChange":
+              minusSlide = minus;
+          break;
+        case "sourceContentChange":
+              sourceMinusSlide = minus;
+          break;
+
+          case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+        default:
+
+      }
+
+        break;
+      case 10:
+
+      let tenTotalLeft = totalLeft *10;
+      tenTotalLeft = "-" + tenTotalLeft.toString() + "px"
+      contentChange.style.marginLeft = tenTotalLeft;
+      minus = 11;
+
+
+      switch (contentChange.id) {
+        case "sliderContentChange":
+              minusSlide = minus;
+          break;
+        case "sourceContentChange":
+              sourceMinusSlide = minus;
+          break;
+
+          case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+        default:
+
+      }
+
+        break;
+      case 11:
+
+        let elevenTotalLeft = totalLeft *11;
+        elevenTotalLeft = "-" + elevenTotalLeft.toString() + "px"
+        contentChange.style.marginLeft = elevenTotalLeft;
+        minus = 12;
+
+        switch (contentChange.id) {
+          case "sliderContentChange":
+                minusSlide = minus;
+            break;
+          case "sourceContentChange":
+                sourceMinusSlide = minus;
+            break;
+          case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+          default:
+
+        }
+
+        break;
+      case 12:
+
+      let twelveTotalLeft = totalLeft *12;
+      twelveTotalLeft = "-" + twelveTotalLeft.toString() + "px"
+      contentChange.style.marginLeft = twelveTotalLeft;
+      minus = 13;
+
+
+      switch (contentChange.id) {
+        case "sliderContentChange":
+              minusSlide = minus;
+          break;
+        case "sourceContentChange":
+              sourceMinusSlide = minus;
+          break;
+        case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+        default:
+
+      }
+
+        break;
+      case 13:
+
+      let thirteenTotalLeft = totalLeft *13;
+      thirteenTotalLeft = "-" + thirteenTotalLeft.toString() + "px"
+      contentChange.style.marginLeft = thirteenTotalLeft;
+      minus = 14;
+
+      switch (contentChange.id) {
+        case "sliderContentChange":
+              minusSlide = minus;
+          break;
+        case "sourceContentChange":
+              sourceMinusSlide = minus;
+          break;
+        case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+        default:
+
+      }
+
+        break;
+      case 14:
+
+      let fifteenTotalLeft = totalLeft *14;
+      fifteenTotalLeft = "-" + fifteenTotalLeft.toString() + "px"
+      contentChange.style.marginLeft = fifteenTotalLeft;
+      minus = 15;
+
+      switch (contentChange.id) {
+        case "sliderContentChange":
+              minusSlide = minus;
+          break;
+        case "sourceContentChange":
+              sourceMinusSlide = minus;
+          break;
+          case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+        default:
+
+      }
+
+        break;
+      case 15:
+
+      let sixteenTotalLeft = totalLeft *15;
+      sixteenTotalLeft = "-" + sixteenTotalLeft.toString() + "px"
+      contentChange.style.marginLeft = sixteenTotalLeft;
+      minus = 16;
+
+      switch (contentChange.id) {
+        case "sliderContentChange":
+              minusSlide = minus;
+          break;
+        case "sourceContentChange":
+              sourceMinusSlide = minus;
+          break;
+          case "countryContentChange":
+                countryMinusSlide = minus;
+            break;
+
+            case "categoryContentChange":
+
+                categoryMinusSlide = minus;
+                break;
+            case "languageContentChange":
+
+                languageMinusSlide = minus;
+                break;
+        default:
+
+      }
+
+        break;
+
+
+
+      }
+
+      minusFunction(minusSlide,sourceMinusSlide, countryMinusSlide, categoryMinusSlide, languageMinusSlide)
 
 
 
 
-        }else if(g === 4){
-          slider.sliderContentChange.style.marginLeft = "-1200px";
-          minusSlide = 5;
-          languageSlider.slider.style.opacity = "1"
-          categorySlider.slider.style.opacity = "0"
 
-                    countrySlider.slider.style.opacity = "0";
-                    sourceSlider.slider.style.opacity ="0";
+}
+
+function showOrNot(slider, contentChange){
+
+
+
+}
+
+function minusFunction(minusSlide,sourceMinusSlide, countryMinusSlide,categoryMinusSlide,languageMinusSlide){
+
+  console.log("sourceMinusSlide: ", sourceMinusSlide);
+  console.log("countryMinusSlide: ", countryMinusSlide )
+  console.log("categoryMinusSlide: ", categoryMinusSlide )
+  console.log("languageMinusSlide: ", languageMinusSlide )
+  console.log("minusSlide: ", minusSlide )
+
+
+sourceSwitch(sourceMinusSlide)
+countrySwitch(countryMinusSlide)
+categorySwitch(categoryMinusSlide)
+languageSwitch(languageMinusSlide)
+
+  if(minusSlide !==5){
+    languageSlider.slider.style.opacity = "0";
+    languageSlider.languageContentChange.style.display = "none"
+  }else{
+    languageSlider.slider.style.opacity = "1";
+    languageSlider.languageContentChange.style.display = "block"
+
+  }
+
+  if(minusSlide !==4){
+    categorySlider.slider.style.opacity = "0";
+    categorySlider.categoryContentChange.style.display = "none"
+  }else{
+    categorySlider.slider.style.opacity = "1";
+    categorySlider.categoryContentChange.style.display = "block"
+
+  }
+
+  if(minusSlide !==3){
+    countrySlider.slider.style.opacity = "0";
+    countrySlider.countryContentChange.style.display = "none"
+
+  }else{
+    countrySlider.slider.style.opacity = "1";
+    countrySlider.countryContentChange.style.display = "block"
+
+  }
+  if(minusSlide !==2){
+    sourceSlider.slider.style.opacity = "0";
+    sourceSlider.sourceContentChange.style.display = "none"
+
+  }else{
+    sourceSlider.slider.style.opacity = "1";
+    sourceSlider.sourceContentChange.style.display = "block"
+
+  }
+
+  if(sourceMinusSlide>1 || languageMinusSlide > 1 || slider.children[0].value !== ""){
+
+    countrySlider.slider.style.opacity = "0";
+    countrySlider.countryContentChange.style.display = "none"
+
+      if(minusSlide === 3 || minusSlide === 4){
+        canNotShow.style.display = "block"
+        if(sourceMinusSlide>1 && languageMinusSlide >1 && slider.children[0].value !== ""){
+
+            if(minusSlide === 3){
+              canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename, Language or Key press clear to reset your tag</h4>"
+
+            }else{
+              canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename, Language or Key press clear to reset your tag</h4>"
+
+            }
+
+        }
+        else if(sourceMinusSlide>1 && languageMinusSlide >1){
+          if(minusSlide === 3){
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename or Language press clear to reset your tag</h4>"
+
+          }else{
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename or Language press clear to reset your tag</h4>"
+
+          }
+
+        }else if(languageMinusSlide>1 && slider.children[0].value !== ""){
+          if(minusSlide === 3){
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Language or Key press clear to reset your tag</h4>"
+
+          }else{
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Language or Key press clear to reset your tag</h4>"
+
+          }
+
+        }else if(sourceMinusSlide>1 && slider.children[0].value !== ""){
+          if(minusSlide === 3){
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename or Key press clear to reset your tag</h4>"
+
+          }else{
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename or Key press clear to reset your tag</h4>"
+
+          }
+
+
+        }else if(slider.children[0].value !== ""){
+          if(minusSlide === 3){
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Key press clear to reset your tag</h4>"
+
+          }else{
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename press clear to reset your tag</h4>"
+
+          }
+
+        }
+        else if(sourceMinusSlide>1){
+
+          if(minusSlide === 3){
+
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename press clear to reset your tag</h4>"
+
+          }else{
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename press clear to reset your tag</h4>"
+
+          }
+        }else if(languageMinusSlide >1){
+          if(minusSlide === 3){
+
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Language press clear to reset your tag</h4>"
+
+          }else{
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Language press clear to reset your tag</h4>"
+
+          }
+
+        }else if(    slider.children[0].value !== ""){
+          if(minusSlide === 3){
+
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Key press clear to reset your tag</h4>"
+          }else{
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Key press clear to reset your tag</h4>"
+
+          }
+
+        }
+
+      }else{
+        canNotShow.innerHTML= ""
+      }
+
+
+    categorySlider.slider.style.opacity = "0";
+    categorySlider.categoryContentChange.style.display = "none"
+  }
+
+  if(countryMinusSlide >1 || categoryMinusSlide >1){
+    sourceSlider.slider.style.opacity = "0";
+    sourceSlider.sourceContentChange.style.display = "none"
+    languageSlider.slider.style.opacity = "0";
+    languageSlider.languageContentChange.style.display = "none"
+
+    slider.inputKeyword.disabled = true
+    slider.inputKeyword.placeholder = "Clear tag"
+
+    if(minusSlide === 1 || minusSlide === 2 || minusSlide === 5){
+      canNotShow.style.display = "block"
+      if(countryMinusSlide >1 && categoryMinusSlide >1){
+
+        if(minusSlide ===1){
+          canNotShow.innerHTML = "<h4>Sorry you can not combine Key with Country or Category press clear to reset your tag</h4>"
+
+        }else if(minusSlide === 2){
+          canNotShow.innerHTML = "<h4>Sorry you can not combine Sourcename with Country or Category press clear to reset your tag</h4>"
+
+        }else{
+          canNotShow.innerHTML = "<h4>Sorry you can not combine Language with Country or Category press clear to reset your tag</h4>"
+
+        }
+
+      }  else if(countryMinusSlide>1){
+
+          if(minusSlide === 1){
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Key with Country press clear to reset your tag</h4>"
+
+          }else if(minusSlide=== 2){
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Sourcename with Country press clear to reset your tag</h4>"
+
+          }else{
+            canNotShow.innerHTML = "<h4>Sorry you can not combine Language with Country press clear to reset your tag</h4>"
+
+          }
+
+        }else if(categoryMinusSlide>1){
+
+            if(minusSlide === 1){
+              canNotShow.innerHTML = "<h4>Sorry you can not combine Key with Category press clear to reset your tag</h4>"
+
+            }else if(minusSlide === 2){
+              canNotShow.innerHTML = "<h4>Sorry you can not combine Sourcename with Category press clear to reset your tag</h4>"
+
+            }else {
+              canNotShow.innerHTML = "<h4>Sorry you can not combine Language with Category press clear to reset your tag</h4>"
+
+            }
+
 
         }
 
 
-    })
+    }else{
+      canNotShow.innerHTML= ""
+    }
+
+
+
+  }else{
+    slider.inputKeyword.disabled = false
+    slider.inputKeyword.placeholder = "Search"
+
+  }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+for(let i=0; i< sourceSlider.children.length; i++){
+
+
+
+    if(sourceSlider.children[i] !== undefined){
+      sourceSlider.children[i].addEventListener("click",function(){
+
+          let tag = sourceSlider.children[i];
+          contentChangeClick(tag, sourceSlider.children.length, i, sourceSlider.sourceContentChange, sourceMinusSlide, sourceContentChangeWidth )
+
+        })
+
   }
 }
+
+for(let i=0; i< countrySlider.children.length; i++){
+
+
+
+    if(countrySlider.children[i] !== undefined){
+      countrySlider.children[i].addEventListener("click",function(){
+
+          let tag = countrySlider.children[i];
+          contentChangeClick(tag, countrySlider.children.length, i, countrySlider.countryContentChange, countryMinusSlide, countryContentChangeWidth)
+
+        })
+
+  }
+}
+
+for(let i=0; i< categorySlider.children.length; i++){
+
+
+
+    if(categorySlider.children[i] !== undefined){
+      categorySlider.children[i].addEventListener("click",function(){
+
+          let tag = categorySlider.children[i];
+          contentChangeClick(tag, categorySlider.children.length, i, categorySlider.categoryContentChange, categoryMinusSlide, categoryContentChangeWidth)
+
+        })
+
+  }
+}
+
+for(let i=0; i< languageSlider.children.length; i++){
+
+
+
+    if(languageSlider.children[i] !== undefined){
+      languageSlider.children[i].addEventListener("click",function(){
+
+          let tag = languageSlider.children[i];
+          contentChangeClick(tag, languageSlider.children.length, i, languageSlider.languageContentChange, languageMinusSlide, languageContentChangeWidth)
+
+        })
+
+  }
+}
+
+
+for( let i =0; i< slider.children.length; i++){
+
+
+  if(slider.children[i] !== undefined){
+
+      slider.children[i].addEventListener("click",function(){
+
+          let tag = slider.children[i];
+
+          contentChangeClick(tag, slider.children.length, i, slider.sliderContentChange, minusSlide, sliderContentChangeWidth)
+
+
+      })
+
+  }
+
+
+}
+
+
+
+function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidth){
+
+  let totalLeft = offsetWidth;
+
+  let nummer = i;
+
+  tagsMinusSlide = nummer
+  console.log(tagsMinusSlide)
+  totalLeft =  (nummer * totalLeft).toString()
+
+  contentChange.style.marginLeft = "-" + totalLeft + "px"
+
+  if(contentChange.children[i].innerText !== "Your tags"){
+  document.getElementById("ownCurrentTag").innerHTML =  contentChange.children[i].innerHTML
+}else{
+  document.getElementById("ownCurrentTag").innerHTML =  ""
+
+}
+
+  if(tagsMinusSlide> 0){
+    slider.sliderContent.style.display = "none"
+    sourceSlider.slider.style.opacity = "0";
+    sourceSlider.sourceContentChange.style.display = "none"
+    languageSlider.slider.style.opacity = "0";
+    languageSlider.languageContentChange.style.display = "none"
+    countrySlider.slider.style.opacity = "0";
+    countrySlider.countryContentChange.style.display = "none"
+    categorySlider.slider.style.opacity = "0";
+    categorySlider.categoryContentChange.style.display = "none"
+
+    currentTag.inputTag.innerHTML = "";
+    currentTag.sourceTag.innerHTML = "";
+    currentTag.countryTag.innerHTML = "";
+    currentTag.categoryTag.innerHTML = "";
+    currentTag.languageTag.innerHTML = "";
+
+  }else{
+    slider.sliderContent.style.display = "block"
+    clear()
+
+  }
+
+  console.log(tagsMinusSlide)
+
+}
+
+
+
 
 
 function tagsSwitch(){
