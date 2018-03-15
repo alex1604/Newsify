@@ -16,7 +16,16 @@
         justify-content: center;
       }
 
+      #canNotShow{
 
+          height: 40px;
+          width: 100%;
+          top:330px;
+          position: absolute;
+          display: none;
+          color:black;
+          text-align: center;
+      }
 
       header{
         padding-top: 50px;
@@ -29,7 +38,9 @@
       }
 
 
-
+      .zIndex{
+        z-index: 500;
+      }
 
       .slider{
         width: 100%;
@@ -39,12 +50,13 @@
         display: flex;
         justify-content: center;
         margin-top: 10px;
+        font-size: 0.8em;
         background: #333644;
 
       }
 
       #sliderContent, #tagsSlider{
-        width: 300px;
+        width: 100px;
         white-space: nowrap;
         position: relative;
       }
@@ -63,7 +75,7 @@
 
     .tags {
         height: 30px;
-        width: 300px;
+        width: 100px;
         padding:0;
         margin:0;
         text-align: center;
@@ -98,7 +110,7 @@ line-height: 30px;
 
 
       #sliderContentChange, #tagsSliderContentChange{
-        width:300px;
+        width:100px;
         margin-left: 0;
         transition-property: margin-left;
         transition-duration: 0.5s;
@@ -109,7 +121,7 @@ line-height: 30px;
       #sourceContentChange, #countryContentChange, #categoryContentChange, #languageContentChange {
         transition-property: margin-left;
         transition-duration: 0.5s;
-        width:300px;
+        width:100px;
       }
 
       #languageContentChange .tags, #sourceContentChange .tags, #countryContentChange .tags ,#categoryContentChange .tags {
@@ -155,11 +167,13 @@ line-height: 30px;
       }
 
 
-
+      #searchInput{
+        color:black;
+      }
 
 
       #sliderContent{
-        width:300px;
+        width:100px;
 
         white-space: nowrap;
         background: #C65F63;
@@ -178,7 +192,7 @@ line-height: 30px;
 
       #sliderContent > div > div {
           display: inline-block;
-          width: 300px;
+          width: 100px;
           height: 17px;
           padding:7px 0px;
           text-align: center;
@@ -211,7 +225,7 @@ line-height: 30px;
      .currentTag{
        position: relative;
        top:50px;
-       
+
        text-align: center;
      }
 

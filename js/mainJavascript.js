@@ -276,6 +276,8 @@ db.ref("/users/" + userID + "/photoURL").set(userPicture);
 
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
 
+
+
         let obj = snapshot.val()
 
         let tagsSliderContentChange = document.getElementById("tagsSliderContentChange")
@@ -288,6 +290,37 @@ db.ref("/users/" + userID + "/photoURL").set(userPicture);
 
 
         }
+
+
+        for(let i=0; i< tagsSlider.children.length; i++){
+
+          if(tagsSlider.children[i] !== undefined){
+
+              tagsSlider.children[i].addEventListener("click",function(){
+
+                  let tag = tagsSlider.children[i];
+
+                  tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
+
+
+              })
+
+          }
+        }
+
+        console.log(tagsSlider.children.length)
+
+
+        if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
+          tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+
+        }else{
+          tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+
+        }
+
+        console.log(tagsSlider.children[0].innerHTML)
+
       })
     }
   })
@@ -305,7 +338,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     whenLoggedIn.style.display = "block"
 
     document.getElementById("tagsSliderContentChange").innerHTML = "";
-    document.getElementById("tagsSliderContentChange").innerHTML = "<ul class='tags'>Scroll through your saved tags</ul>";
+    document.getElementById("tagsSliderContentChange").innerHTML = "<ul class='tags'>" +tagsSlider.children.length+ " saved tags</ul>";
 
 
     tagsContentChangeWidth = tagsSlider.tagsContentChange.offsetWidth;
