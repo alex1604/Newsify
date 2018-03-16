@@ -503,7 +503,7 @@ var callback = function () {
         fetch(req)
           .then(function (response) {
             return response.json();
-            console.log(response.json());
+            
           }).then(function (object) {
             let articles = object.articles;
 

@@ -20,16 +20,6 @@ let tagsContentChangeWidth = ""
 let login = document.getElementById("googleLogo");
 let loginFb = document.getElementById("facebookLogo");
 
-var config = {
-  apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
-  authDomain: "newschaos-e8558.firebaseapp.com",
-  databaseURL: "https://newschaos-e8558.firebaseio.com",
-  projectId: "newschaos-e8558",
-  storageBucket: "newschaos-e8558.appspot.com",
-  messagingSenderId: "695749409670"
-};
-firebase.initializeApp(config);
-
 const db = firebase.database()
 
 
@@ -156,10 +146,10 @@ passLogo.addEventListener('click', function () {
       const passName = document.getElementById('signUpName').value;
       
 
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-        .catch(function () {
-          alert('Error signing you up');
-          console.log('Error signing up');
+      firebase.auth().createUserWithEmailAndPassword(passEmail, password)
+        .catch(function (error) {
+          alert('Error signing you up' + error.code + '--' + error.message);
+          console.log('Error signing up: ' + error.message);
 
         })
     } else {
@@ -178,10 +168,10 @@ passLogo.addEventListener('click', function () {
       const passName = document.getElementById('signUpName').value;
       
 
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .catch(function () {
-          alert('Error logging you in');
-          console.log('Error logging in');
+      firebase.auth().signInWithEmailAndPassword(passEmail, password)
+        .catch(function (error) {
+          alert('Error logging you in' + error.code + '--' + error.message);
+          console.log('Error logging in: '  + error.message);
         })
     } else {
       let p = document.createElement('p');
