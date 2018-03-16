@@ -15,6 +15,10 @@
   left: 1500px;
 }
 
+.commentUsername {
+    color: dodgerblue;
+}
+
 /* Jon */
 .loggedIn {
   display: flex;
@@ -53,6 +57,17 @@ textarea {
 .commentText {
     height: auto;
     max-width: 300px;
-    max-height: 30px;
+    max-height: 100%;
     color: white;
+}
+
+.writeBox {
+    color: white;
+}
+
+.commentWhole {
+  margin: 20px;
+}
+.sumUp {
+  max-height:100px;
 }

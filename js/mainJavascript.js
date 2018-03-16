@@ -139,11 +139,11 @@ passLogo.addEventListener('click', function () {
 
   let closeModal = document.getElementById('closeModal');
   closeModal.addEventListener('click', function () {
-    passModal.style.display = 'none';
     passModal.style.zIndex = '0';
     document.getElementById('signUpEmail').value = '';
     document.getElementById('signUpPass').value = '';
     document.getElementById('signUpPass2').value = '';
+    passModal.style.display = 'none';
   });
 
 
@@ -741,7 +741,7 @@ var browseNews = function (array, number) {
               saveDescription: event.target.parentNode.parentNode.parentNode.children[2].innerText,
               saveTitle: event.target.parentNode.parentNode.parentNode.children[1].innerText,
               saveUrl: targetUrl,
-              saveUrlImage: event.target.parentNode.parentNode.parentNode.parentNode.children[1].firstChild.src,
+              saveUrlImage: event.target.parentNode.parentNode.parentNode.parentNode.children[0].firstChild.src,
               comments: {
               }
             })
@@ -753,7 +753,10 @@ var browseNews = function (array, number) {
         writeBox.className = "writeBox";
         writeBox.addEventListener("keyup", function (event) {
           //Comments if user clicks enter
-          if (event.key == "Enter" && localStorage.getItem("username") !== null){
+          if (event.shiftKey == true){
+            return;
+          }
+          else if (event.key == "Enter" && localStorage.getItem("username") !== null){
             //console.log(event.target);
             let text = event.target.parentElement.children[3].value;
             event.target.parentElement.children[3].value = "";
