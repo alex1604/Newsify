@@ -488,4 +488,7 @@ line-height: 30px;
       justify-content: space-around;
       align-items: center;
     }
+    #passLogo i{
+      cursor:pointer;
+    }
     /* end of Save,share and comment links*/
