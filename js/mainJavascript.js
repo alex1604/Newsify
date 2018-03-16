@@ -372,6 +372,37 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
 
         }
+        for(let i=0; i< tagsSlider.children.length; i++){
+
+          if(tagsSlider.children[i] !== undefined){
+
+              tagsSlider.children[i].addEventListener("click",function(){
+
+                console.log(tagsSlider.childre)
+
+                  let tag = tagsSlider.children[i];
+
+                  tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
+
+              })
+
+          }
+
+        }
+
+        if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
+
+          tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+
+        }else{
+
+          tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+
+        }
+
+        console.log(tagsSlider.children[0].innerHTML)
+
+
       })
     }
   })
