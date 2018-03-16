@@ -20,6 +20,8 @@ let tagsContentChangeWidth = ""
 let login = document.getElementById("googleLogo");
 let loginFb = document.getElementById("facebookLogo");
 
+
+
 var config = {
   apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
   authDomain: "newschaos-e8558.firebaseapp.com",
@@ -514,9 +516,11 @@ var browseNews = function (array, number) {
               let commentText = document.createElement("div");
               let commentUsername = document.createElement("div");
               let commentUserPicture = document.createElement("img");
+              
+              
               commentText.innerText = snapshot.val()[item].comments[comment].content;
               commentText.className = "commentText";
-              commentUsername.innerText = snapshot.val()[item].comments[comment].username;
+              commentUsername.innerText = snapshot.val()[item].comments[comment].username + ": ";
               commentUsername.className = "commentUsername";
               commentUserPicture.src = snapshot.val()[item].comments[comment].photoURL;
               commentUserPicture.className = "commentUserPicture";
