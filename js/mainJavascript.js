@@ -128,14 +128,14 @@ loginFb.addEventListener("click", function () {
 
 let passLogo = document.getElementById('passLogo');
 let passModal = document.getElementById('passModal');
+
 passModal.style.display = "none";
 passLogo.addEventListener('click', function () {
   console.log("passlogo");
-  let email = '';
-  let password = '';
-  let name = '';
+ 
   passModal.style.display = '';
   passModal.style.zIndex = "1";
+
 
   let closeModal = document.getElementById('closeModal');
   closeModal.addEventListener('click', function () {
@@ -145,56 +145,22 @@ passLogo.addEventListener('click', function () {
     document.getElementById('signUpPass2').value = '';
     passModal.style.display = 'none';
   });
-
+});
 
   let createAccount = document.getElementById('createAccount');
   createAccount.addEventListener('click', function () {
-    if (document.getElementById('signUpPass').value == document.getElementById('signUpPass2').value) {
-      password = document.getElementById('signUpPass2').value;
-      email = document.getElementById('signUpEmail').value;
-      name = document.getElementById('signUpName').value;
 
+    if (document.getElementById('signUpPass').value == document.getElementById('signUpPass2').value && document.getElementById('signUpEmail').value != '' && document.getElementById('signUpName').value != '') {
+      const password = document.getElementById('signUpPass2').value;
+      const passEmail = document.getElementById('signUpEmail').value;
+      const passName = document.getElementById('signUpName').value;
+      
 
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(function () {
-          passModal.style.display = 'none';
-          passModal.style.zIndex = '0';
-          document.getElementById('signUpEmail').value = '';
-          document.getElementById('signUpPass').value = '';
-          document.getElementById('signUpPass2').value = '';
-
-          var user = firebase.auth().currentUser;
-
-              if (user) {
-                firebaseInsertUserWithEmail(user,name,email);
-              }
-
-          alert('You were successfully logged in');
-          console.log('Success logging user in with email and password');
-        })
+      firebase.auth().createUserWithEmailAndPassword(email, password)
         .catch(function () {
-          firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(function () {
-              passModal.style.display = 'none';
-              passModal.style.zIndex = '0';
-              document.getElementById('signUpEmail').value = '';
-              document.getElementById('signUpPass').value = '';
-              document.getElementById('signUpPass2').value = '';
-              alert('You were successfully registered on the site');
-              console.log('Success registering with email and password');
+          alert('Error signing you up');
+          console.log('Error signing up');
 
-              var user = firebase.auth().currentUser;
-
-              if (user) {
-                firebaseInsertUserWithEmail(user,name,email);
-              }
-            })
-            .catch(function (error) {
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              alert('There was an error creating your account: ' + errorMessage);
-              console.log('There was an error creating your account: ' + errorMessage);
-            })
         })
     } else {
       let p = document.createElement('p');
@@ -205,9 +171,37 @@ passLogo.addEventListener('click', function () {
     }
 
   });
+  loginPass.addEventListener('click', function(){
+    if (document.getElementById('signUpPass').value == document.getElementById('signUpPass2').value && document.getElementById('signUpEmail').value != '' && document.getElementById('signUpName').value != '') {
+      const password = document.getElementById('signUpPass2').value;
+      const passEmail = document.getElementById('signUpEmail').value;
+      const passName = document.getElementById('signUpName').value;
+      
 
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .catch(function () {
+          alert('Error logging you in');
+          console.log('Error logging in');
+        })
+    } else {
+      let p = document.createElement('p');
+      p.innerHTML = 'The passwords are not the same';
+      p.style.color = 'red';
+      let form = document.getElementsByTagName('form')[0];
+      form.appendChild.lastChild(p);
+    }
+  });
 
-});
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+        console.log(firebaseUser);
+        let user = firebase.auth().currentUser;
+        user = user.id;
+        firebaseInsertUserWithEmail(user, passName, passEmail);
+      } else {
+        console.log('not logged in');
+      }
+    });
 
 
 let loginHeader = function (user) {
@@ -417,7 +411,6 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
     let obj = snapshot.val()
     for (let prop in obj) {
       allUsers.push(prop)
-
     }
 
 
