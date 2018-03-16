@@ -1,6 +1,6 @@
 .userPicture{
     margin: 0 auto;
-    width:70px;
+    width:30px;
     margin-top: 0;
     border-radius: 50%;
     margin-bottom: 10px;
@@ -26,4 +26,33 @@
 .userName {
   margin-bottom: 10px;
   text-align: center;
+}
+
+textarea {
+    background-color: darkslategray;;
+    width: 300px;
+    height: 30px;
+}
+.commentButton {
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+
+
+.commentField {
+    max-height: 210px;
+    max-width: auto;
+    width: 100%;
+    background-color: green;
+    white-space: nowrap;
+    text-overflow: hidden;
+    overflow: scroll;
+    background-color: darkslategray;;
+}
+
+.commentText {
+    height: auto;
+    max-width: 300px;
+    max-height: 30px;
+    color: white;
 }

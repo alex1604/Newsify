@@ -33,7 +33,7 @@ console.log("erikJS");
                eventText.innerHTML = event1Text;
        
      });
-        
+       /* 
         var whenScroll = function(evt) {
               if(footer.style.display === "block") {
                   footer.style.display = "none";
@@ -41,7 +41,7 @@ console.log("erikJS");
                   footer.style.display = "block";
               }
           }
-           
+        */   
         window.addEventListener("scroll", whenScroll)
 };
       

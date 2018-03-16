@@ -510,6 +510,7 @@ var browseNews = function (array, number) {
           if (snapshot.val()[item].saveUrl == targetUrl){
             for (var comment in snapshot.val()[item].comments){
               let commentWhole = document.createElement("div");
+              commentWhole.className = "commentWhole";
               let commentText = document.createElement("div");
               let commentUsername = document.createElement("div");
               let commentUserPicture = document.createElement("img");
@@ -551,6 +552,7 @@ var browseNews = function (array, number) {
             event.target.parentElement.children[3].value = "";
             if (text !== ""){
               let commentWhole = document.createElement("div");
+                commentWhole.className = "commentWhole";
               let commentText = document.createElement("div");
               let commentUsername = document.createElement("div");
               let commentUserPicture = document.createElement("img");
