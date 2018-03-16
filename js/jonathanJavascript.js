@@ -383,6 +383,14 @@ deleteOwnTag.addEventListener("click",function(){
           document.getElementById("ownCurrentTag").innerHTML =  tagsSlider.children[tagsMinusSlide].innerHTML
 
           found = false;
+        }else{
+          showAWhile.style.display = "block"
+          showAWhile.innerHTML = "<h5>Press the saved tag that you want to delete and then press delete</h5>"
+          function displayNone(){
+            showAWhile.style.display = "none"
+
+          }
+          setTimeout(displayNone, 3000);
         }
 
     })
