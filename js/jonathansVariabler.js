@@ -399,7 +399,6 @@ slider.inputKeyword.addEventListener("keydown",function(e){
 
 slider.inputKeyword.addEventListener("keypress",function(e){
 
-  console.log(e.key)
   if(e.key !== "Backspace"  && e.key !== "Tab" && e.key !== "Escape" && e.key !== "Shift" && e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.key !== "ArrowUp" && e.key !== "ArrowDown"){
       if(e.key !== "Enter" ){
 

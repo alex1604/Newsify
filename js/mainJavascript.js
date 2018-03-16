@@ -400,7 +400,7 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
         }
 
-        console.log(tagsSlider.children[0].innerHTML)
+        //console.log(tagsSlider.children[0].innerHTML)
 
 
       })
@@ -631,6 +631,13 @@ var createNews = function () {
   commentIcon.className = 'far fa-comment';
   commentArticle.appendChild(commentIcon);
   let commentArticleText = document.createElement('span');
+  firebase.database().ref("/Articles/").once("value", function(snapshot){
+    console.log(shareArticle.href);
+    var snap = snapshot.val();
+    for (var item in snap){
+      //console.log(snap[item]);
+    }
+  })
   commentArticleText.className = 'newsFooterSpan';
   commentArticleText.innerText = 'Comment';
   commentArticle.appendChild(commentArticleText);
