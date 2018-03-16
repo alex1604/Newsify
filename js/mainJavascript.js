@@ -127,21 +127,23 @@ loginFb.addEventListener("click", function () {
 });
 
 let passLogo = document.getElementById('passLogo');
+let passModal = document.getElementById('passModal');
+passModal.style.display = "none";
 passLogo.addEventListener('click', function () {
-  let passModal = document.getElementById('passModal');
+  console.log("passlogo");
   let email = '';
   let password = '';
   let name = '';
-  passModal.style.opacity = '1';
-  passModal.style.zIndex = '1';
+  passModal.style.display = '';
+  passModal.style.zIndex = "1";
 
   let closeModal = document.getElementById('closeModal');
   closeModal.addEventListener('click', function () {
-    passModal.style.opacity = '0';
     passModal.style.zIndex = '0';
     document.getElementById('signUpEmail').value = '';
     document.getElementById('signUpPass').value = '';
     document.getElementById('signUpPass2').value = '';
+    passModal.style.display = 'none';
   });
 
 
@@ -151,11 +153,11 @@ passLogo.addEventListener('click', function () {
       password = document.getElementById('signUpPass2').value;
       email = document.getElementById('signUpEmail').value;
       name = document.getElementById('signUpName').value;
-      
+
 
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function () {
-          passModal.style.opacity = '0';
+          passModal.style.display = 'none';
           passModal.style.zIndex = '0';
           document.getElementById('signUpEmail').value = '';
           document.getElementById('signUpPass').value = '';
@@ -173,7 +175,7 @@ passLogo.addEventListener('click', function () {
         .catch(function () {
           firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(function () {
-              passModal.style.opacity = '0';
+              passModal.style.display = 'none';
               passModal.style.zIndex = '0';
               document.getElementById('signUpEmail').value = '';
               document.getElementById('signUpPass').value = '';
@@ -206,6 +208,7 @@ passLogo.addEventListener('click', function () {
 
 
 });
+
 
 let loginHeader = function (user) {
   /*// This gives you a Google Access Token. You can use it to access the Google API.
@@ -248,7 +251,7 @@ let loginHeader = function (user) {
   loginPopup.style.display = "none";
 }
 
-let id = ""
+let id = "";
 
 
 let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMail) {
@@ -369,6 +372,37 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
 
         }
+        for(let i=0; i< tagsSlider.children.length; i++){
+
+          if(tagsSlider.children[i] !== undefined){
+
+              tagsSlider.children[i].addEventListener("click",function(){
+
+                console.log(tagsSlider.childre)
+
+                  let tag = tagsSlider.children[i];
+
+                  tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
+
+              })
+
+          }
+
+        }
+
+        if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
+
+          tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+
+        }else{
+
+          tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+
+        }
+
+        console.log(tagsSlider.children[0].innerHTML)
+
+
       })
     }
   })
@@ -489,6 +523,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
     loginHeader(user);
+    console.log()
     var search = firebase.database().ref("users/").orderByChild(user.uid);
     sammaid = user.uid;
     firebaseInsertUser(user.uid, user.displayName, user.photoURL, user.email)
@@ -623,7 +658,7 @@ var createNews = function () {
   articleImage.appendChild(img);
 
   mainContent.appendChild(pinkAndTitle);
-  mainContent.appendChild(articleImage);
+  mainContent.prepend(articleImage);
 
   article.appendChild(blackLine);
   article.appendChild(mainContent);
@@ -685,6 +720,7 @@ var browseNews = function (array, number) {
                 let commentText = document.createElement("div");
                 let commentUsername = document.createElement("div");
                 let commentUserPicture = document.createElement("img");
+                commentWhole.className = "commentWhole";
                 commentText.innerText = snapshot.val()[item].comments[comment].content;
                 commentText.className = "commentText";
                 commentUsername.innerText = snapshot.val()[item].comments[comment].username;
@@ -705,7 +741,7 @@ var browseNews = function (array, number) {
               saveDescription: event.target.parentNode.parentNode.parentNode.children[2].innerText,
               saveTitle: event.target.parentNode.parentNode.parentNode.children[1].innerText,
               saveUrl: targetUrl,
-              saveUrlImage: event.target.parentNode.parentNode.parentNode.parentNode.children[1].firstChild.src,
+              saveUrlImage: event.target.parentNode.parentNode.parentNode.parentNode.children[0].firstChild.src,
               comments: {
               }
             })
@@ -717,7 +753,10 @@ var browseNews = function (array, number) {
         writeBox.className = "writeBox";
         writeBox.addEventListener("keyup", function (event) {
           //Comments if user clicks enter
-          if (event.key == "Enter") {
+          if (event.shiftKey == true){
+            return;
+          }
+          else if (event.key == "Enter" && localStorage.getItem("username") !== null){
             //console.log(event.target);
             let text = event.target.parentElement.children[3].value;
             event.target.parentElement.children[3].value = "";
@@ -726,6 +765,7 @@ var browseNews = function (array, number) {
               let commentText = document.createElement("div");
               let commentUsername = document.createElement("div");
               let commentUserPicture = document.createElement("img");
+              commentWhole.className = "commentWhole";
               commentText.innerText = text;
               commentText.className = "commentText";
               commentUsername.innerText = localStorage.getItem("username");
@@ -757,11 +797,12 @@ var browseNews = function (array, number) {
         commentButton.addEventListener("click", function (event) {
           let text = event.target.parentElement.children[3].value;
           event.target.parentElement.children[3].value = "";
-          if (text !== "") {
+          if (text !== "" && localStorage.getItem("username" !== null)){
             let commentWhole = document.createElement("div");
             let commentText = document.createElement("div");
             let commentUsername = document.createElement("div");
             let commentUserPicture = document.createElement("img");
+            commentWhole.className = "commentWhole";
             commentText.innerText = text;
             commentText.className = "commentText";
             commentUsername.innerText = localStorage.getItem("username");
