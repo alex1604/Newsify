@@ -497,6 +497,27 @@ line-height: 30px;
       width:70px;
       margin-top: 0;
     }
+    #logginButtons{
+      display:flex;
+      flex-direction:row;
+      justify-content: space-around;
+    }
+    #createAccount{
+      height:40px;
+      width:150px;
+      background-color:white;
+      color: black;
+      font-size:16px;
+      border: 1px solid black;
+    }
+    #loginPass{
+      height:40px;
+      width:150px;
+      background-color:#04B431;
+      color: white;
+      font-size:18px;
+      border: 1px solid black;
+    }
     #passModal{
       height:60vh;
       width:50vw;
@@ -504,8 +525,8 @@ line-height: 30px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: blanchedalmond;
-      border-radius: 15px;
+      background-color:white;
+      border: 1px solid gray;
       color:gray;
       font-size:26px;
     }
@@ -518,5 +539,20 @@ line-height: 30px;
     }
     #passLogo i{
       cursor:pointer;
+    }
+    #loginPass:hover{
+      cursor:pointer;
+      background-color:#04B45F;
+    }
+    #createAccount:hover{
+      cursor:pointer;
+      background-color:#D8D8D8;
+    }
+    #signUpEmail, #signUpPass{
+      width: 300px;
+      height:30px;
+      font-size:16px;
+      border:none;
+      border-bottom: 1px solid gray;
     }
     /* end of Save,share and comment links*/
