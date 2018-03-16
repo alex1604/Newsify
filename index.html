@@ -66,10 +66,10 @@
     <div id = "passModal">
       <h3>Create an account in one single step.</h3><i class="fas fa-times fa-2x" id='closeModal'></i>
       <form>
-        <label for = "SignUpName">Name: </label><input type = "text" autocomplete="name" id= "SignUpName">
-        <label for = "SignUpEmail">Email: </label><input type = "text" autocomplete="email" id= "SignUpEmail">
-        <label for = "SignUpPass">Create password: </label><input type = "new-password" id= "SignUpPass">
-        <label for = "SignUpPass2">Repeat password :</label><input type = "new-password" id= "SignUpPass2">
+        <label for = "signUpName">Name: </label><input type = "text" autocomplete="name" id= "signUpName">
+        <label for = "signUpEmail">Email: </label><input type = "text" autocomplete="email" id= "signUpEmail">
+        <label for = "signUpPass">Create password: </label><input type = "new-password" id= "signUpPass">
+        <label for = "signUpPass2">Repeat password :</label><input type = "new-password" id= "signUpPass2">
         <button type="submit" id="createAccount">Create Account</button>
         <button type="submit" id="loginPass">Log in</button>
 
@@ -369,8 +369,19 @@
 
 
 
-<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
-
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
+    authDomain: "newschaos-e8558.firebaseapp.com",
+    databaseURL: "https://newschaos-e8558.firebaseio.com",
+    projectId: "newschaos-e8558",
+    storageBucket: "newschaos-e8558.appspot.com",
+    messagingSenderId: "695749409670"
+  };
+  firebase.initializeApp(config);
+</script>
 <!--Main javascript fil. Där alla variabler ska skrivas och som vi kan använda oss av. Eller om vi har någon stor funktion som ska användas över hela sidan. t.ex firebase.
 DEN ENDA GÅNGEN NI KAN SNAPA EN VARIABEL ÄR -> när ni skapar den i en FUNKTION så att den inte krockar med andra variabler.  -->
 
