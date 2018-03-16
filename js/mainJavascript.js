@@ -19,6 +19,7 @@ let tagsContentChangeWidth = ""
 
 let login = document.getElementById("googleLogo");
 let loginFb = document.getElementById("facebookLogo");
+let loginEmail = document.getElementById("emailLogo");
 
 var config = {
   apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
@@ -125,6 +126,10 @@ loginFb.addEventListener("click", function () {
         }
       });
     });
+
+    loginEmail.addEventListener("click", function(event){
+      console.log("loginEmail button");
+    })
 
 let loginHeader = function (user) {
   /*// This gives you a Google Access Token. You can use it to access the Google API.
@@ -449,7 +454,7 @@ var createNews = function () {
   articleImage.appendChild(img);
 
   mainContent.appendChild(pinkAndTitle);
-  mainContent.appendChild(articleImage);
+  mainContent.prepend(articleImage);
 
   article.appendChild(blackLine);
   article.appendChild(mainContent);
