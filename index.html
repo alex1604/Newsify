@@ -53,34 +53,47 @@
       </div>
       <div id="facebookLogo">
         <i class="fab fa-facebook"></i>
-      </div>
-      <div id = "emailLogo">
-        <i class = "fab fa-email"></i>
-      </div>
+        </div>
+        <div id="passLogo">
+          <i class="fas fa-envelope fa-3x"></i>
+        </div>
+    </div>
+
+    <div id = "passModal">
+      <h3>Create an account in one single step.</h3><i class="fas fa-times fa-2x" id='closeModal'></i>
+      <form>
+        <label for = "SignUpName">Name: </label><input type = "text" id= "SignUpName">
+        <label for = "SignUpEmail">Email: </label><input type = "text" id= "SignUpEmail">
+        <label for = "SignUpPass">Create password: </label><input type = "password" id= "SignUpPass">
+        <label for = "SignUpPass2">Repeat password :</label><input type = "password" id= "SignUpPass2">
+        <button type="submit" id="createAccount">Create Account</button>
+      </form>
     </div>
 
     <div id="whenLoggedIn">
 
+      <div class="slider">
+
+
+
+
+
+            <div id="tagsSlider">
+
+                <div id="tagsSliderContentChange">
+
+                </div>
+
+            </div>
+
+
+
+
+      </div>
 
         <button id="deleteOwnTag">Delete tag</button>
         <button id="showFavourites">Show Favourites</button>
-          <div class="slider">
-
-            <div id="tagsPrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
-
-
-                <div id="tagsSlider">
-
-                    <div id="tagsSliderContentChange">
-
-                    </div>
-
-                </div>
-                <div id="tagsNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
-
-
-
-          </div>
+        <button id="suggestedNews">Suggested News</button>
 
         </div>
 
@@ -93,13 +106,12 @@
   <div id="beforeLoggedIn">
     <div class="slider">
 
-      <div id="prevInput" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
 
       <div id="sliderContent">
 
         <div id="sliderContentChange">
-          <input class="tags" id="inputKeyword" type="text" name="" value="" placeholder="Search by keyword"><ul class="tags">
+          <input class="tags" id="inputKeyword" type="text" name="" value="" placeholder="Search"><ul class="tags">
             Source Name
           </ul><ul class="tags">
             Country
@@ -112,7 +124,11 @@
         </div>
 
       </div>
-      <div id="nextInput" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
+
+
+      <div id="canNotShow">
+
+      </div>
 
 
 
@@ -121,7 +137,6 @@
 
     <div class="slider" id="sourceSlider">
 
-      <div id="prevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
       <div id="sliderContent">
 
@@ -162,13 +177,11 @@
 
       </div>
 
-      <div id="nextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
     </div>
 
     <div class="slider"  id="countrySlider">
 
-      <div id="countryPrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
       <div id="sliderContent">
 
@@ -177,7 +190,7 @@
           <ul class="tags">
             All
           </ul><ul class="tags">
-            United States Of America
+            USA
           </ul><ul class="tags">
             Canada
           </ul><ul class="tags">
@@ -210,12 +223,10 @@
 
       </div>
 
-      <div id="countryNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
     </div>
     <div class="slider"  id="categorySlider">
 
-      <div id="categoryPrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
       <div id="sliderContent">
 
@@ -243,12 +254,10 @@
 
       </div>
 
-      <div id="categoryNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
     </div>
     <div class="slider"  id="languageSlider">
 
-      <div id="languangePrevBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
       <div id="sliderContent">
 
@@ -284,7 +293,6 @@
 
       </div>
 
-      <div id="languangeNextBtn" class="nextPrevBtn"><img src="img/play-button.png" alt=""></div>
 
     </div>
 
@@ -361,6 +369,7 @@ DEN ENDA GÅNGEN NI KAN SNAPA EN VARIABEL ÄR -> när ni skapar den i en FUNKTIO
 
 
 <!--Jonathans javascriptfil -->
+<script type="text/javascript" src="js/jonathansVariabler.js"></script>
 <script type="text/javascript" src="js/jonathanJavascript.js"></script>
 
 <!--Alejandros javascriptfil -->
