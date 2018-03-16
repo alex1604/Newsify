@@ -57,7 +57,11 @@ textarea {
 .commentText {
     height: auto;
     max-width: 300px;
+<<<<<<< HEAD
     max-height: 30px;
+=======
+    max-height: 100%;
+>>>>>>> 99c78b97c1493df4ef4c931edac66af87876d7e2
     color: white;
 }
 
@@ -65,6 +69,7 @@ textarea {
     color: white;
 }
 
+<<<<<<< HEAD
 .commentUserPicture {
     margin-left: 20px;
     margin-top: 3px;
@@ -77,3 +82,11 @@ textarea {
 .commentText {
     margin-left: 20px;
 }
+=======
+.commentWhole {
+  margin: 20px;
+}
+.sumUp {
+  max-height:100px;
+}
+>>>>>>> 99c78b97c1493df4ef4c931edac66af87876d7e2
