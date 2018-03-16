@@ -632,14 +632,19 @@ var createNews = function () {
   commentArticle.appendChild(commentIcon);
   let commentArticleText = document.createElement('span');
   firebase.database().ref("/Articles/").once("value", function(snapshot){
-    console.log(shareArticle.href);
+    var commentCount = 0;
     var snap = snapshot.val();
     for (var item in snap){
-      //console.log(snap[item]);
+      if (snap[item].saveUrl == shareArticle.href){
+        for(var comment in snap[item].comments){
+            commentCount += 1;
+        }
+      }
     }
+    commentArticleText.innerText = "Comment" + " (" + commentCount + ")";
   })
   commentArticleText.className = 'newsFooterSpan';
-  commentArticleText.innerText = 'Comment';
+  //commentArticleText.innerText = 'Comment';
   commentArticle.appendChild(commentArticleText);
   // end of save,share,comment
 
