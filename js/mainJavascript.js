@@ -713,7 +713,7 @@ var browseNews = function (array, number) {
         commentField.className = "commentField";
         event.target.parentElement.parentElement.append(commentField);
         let targetUrl = event.target.parentNode.parentNode.children[1].href;
-<<<<<<< HEAD
+
       db.ref("/Articles/").once("value", function(snapshot){
         var found = "unfound";
         for (var item in snapshot.val()){
@@ -737,7 +737,7 @@ var browseNews = function (array, number) {
               commentWhole.appendChild(commentUsername);
               commentWhole.appendChild(commentText);
               event.target.parentElement.parentElement.children[5].prepend(commentWhole);
-=======
+
         db.ref("/Articles/").once("value", function (snapshot) {
           var found = "unfound";
           for (var item in snapshot.val()) {
@@ -761,7 +761,7 @@ var browseNews = function (array, number) {
                 event.target.parentElement.parentElement.children[5].prepend(commentWhole);
               }
               found = "found";
->>>>>>> 99c78b97c1493df4ef4c931edac66af87876d7e2
+
             }
           }
           if (found == "unfound") {
