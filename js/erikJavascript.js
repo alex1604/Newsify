@@ -42,6 +42,6 @@ console.log("erikJS");
               }
           }
         */   
-        window.addEventListener("scroll", whenScroll)
+       // window.addEventListener("scroll", whenScroll)
 };
       
