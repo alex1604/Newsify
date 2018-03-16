@@ -449,7 +449,16 @@ var callback = function () {
           browseNews(myArticles, amount);
         })
         .catch(function () {
+
+          showAWhile.style.display = "block"
+          showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
+          function displayNone(){
+            showAWhile.style.display = "none"
+
+          }
+          setTimeout(displayNone, 2000);
           console.log('failed');
+          clear()
         });
     } else {
       getAllNews();

@@ -97,6 +97,8 @@ let sliderContentChangeLength = sliderContentChange.children.length;
 
 let canNotShow = document.getElementById("canNotShow")
 
+let showAWhile = document.getElementById("ShowAWhile")
+
 //Tillhör previousTagBtn och nextTagBtn
 let minusSlide = 1;
 let totalLeft = "";

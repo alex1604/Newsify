@@ -226,12 +226,22 @@ addTagBtn.addEventListener("click", function () {
       console.log("hej")
 
 
-    db.ref("users/" + sammaid + "/tags").push(innerHTML)
     let div = document.createElement("div");
 
     div.className = "tags";
     div.innerHTML = innerHTML;
+    for(let i =0; i< div.children.length; i++){
+        console.log(div.children[i])
+        console.log(Math.random().toFixed(2))
+        div.children[i].setAttribute("id", Math.random().toFixed(2))
+    }
+    db.ref("users/" + sammaid + "/tags").push(div.innerHTML)
+
     tagsSliderContentChange.appendChild(div)
+
+
+    console.log(div.children)
+
 
     for(let i=0; i< tagsSlider.children.length; i++){
 
@@ -248,6 +258,17 @@ addTagBtn.addEventListener("click", function () {
 
       }
     }
+
+    showAWhile.style.display = "block"
+    showAWhile.innerHTML = "<h2>Added "+ innerHTML + " successfully!</h2>"
+    function displayNone(){
+      showAWhile.style.display = "none"
+
+    }
+    setTimeout(displayNone, 2000);
+
+
+
 
 
 
@@ -1260,7 +1281,72 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
   contentChange.style.marginLeft = "-" + totalLeft + "px"
 
   if(contentChange.children[i].innerText !== "Your tags"){
-  document.getElementById("ownCurrentTag").innerHTML =  contentChange.children[i].innerHTML
+
+      console.log(contentChange.children.length)
+      let length = contentChange.children[i].children.length
+      let string = ""
+      for(let x = 0; x< length; x++ ){
+
+        if(x === 0){
+          let ownInputTag = document.createElement("span");
+          ownInputTag.setAttribute("id", "ownInputTag");
+          ownInputTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+
+
+          string += "<span id='ownInputTag'>"+ownInputTag.innerHTML+"</span>"
+          console.log(contentChange.children[i].children[x])
+
+        }
+        if(x === 1){
+          let ownSourceTag = document.createElement("span");
+          ownSourceTag.setAttribute("id", "ownSourceTag");
+          ownSourceTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+
+
+          string += "<span id='ownSourceTag'>"+ownSourceTag.innerHTML+"</span>"
+        }
+
+        if(x === 2){
+          let ownCountryTag = document.createElement("span");
+          ownCountryTag.setAttribute("id", "ownCountryTag");
+          ownCountryTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+
+
+          string += "<span id='ownCountryTag'>"+ownCountryTag.innerHTML+"</span>"
+        }
+
+        if(x === 3){
+          let ownCategoryTag = document.createElement("span");
+          ownCategoryTag.setAttribute("id", "ownCategoryTag");
+          ownCategoryTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+
+
+          string += "<span id='ownCategoryTag'>"+ownCategoryTag.innerHTML+"</span>"
+        }
+        if(x=== 4){
+          let ownLanguageTag = document.createElement("span");
+          ownLanguageTag.setAttribute("id", "ownLanguageTag");
+          ownLanguageTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+
+
+          string += "<span id='ownLanguageTag'>"+ownLanguageTag.innerHTML+"</span>"
+        }
+      }
+
+      console.log(string)
+
+      console.log(contentChange.children[i].innerHTML)
+
+    // let ownSourceTag = document.createElement("span");
+    // ownSourceTag.innerText = contentChange.children[i].children[1].innerHTML
+    // ownSourceTag.setAttribute("id", "ownSourceTag")
+
+      // contentChange.children[i].children[0].setAttribute("id","ownInputTag")
+      // contentChange.children[i].children[1].setAttribute("id","ownSourceTag")
+
+
+
+  document.getElementById("ownCurrentTag").innerHTML =  string
 }else{
   document.getElementById("ownCurrentTag").innerHTML =  ""
 
