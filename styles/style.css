@@ -26,7 +26,17 @@
           color:black;
           text-align: center;
       }
-
+      #ShowAWhile{
+        display: none;
+        width:100%;
+        padding:20px;
+        top:230px;
+        text-align: center;
+        z-index: 1000;
+        position: absolute;
+        background: green;
+        color:white;
+      }
       header{
         padding-top: 50px;
         /* box-shadow: inset 0 20px 150px 1px rgba(20, 58, 82,0.5); */
