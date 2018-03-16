@@ -132,7 +132,6 @@ passLogo.addEventListener('click', function () {
     passModal.style.zIndex = '0';
     document.getElementById('signUpEmail').value = '';
     document.getElementById('signUpPass').value = '';
-    document.getElementById('signUpPass2').value = '';
     passModal.style.display = 'none';
   });
 });
@@ -140,10 +139,9 @@ passLogo.addEventListener('click', function () {
   let createAccount = document.getElementById('createAccount');
   createAccount.addEventListener('click', function () {
 
-    if (document.getElementById('signUpPass').value == document.getElementById('signUpPass2').value && document.getElementById('signUpEmail').value != '' && document.getElementById('signUpName').value != '') {
-      const password = document.getElementById('signUpPass2').value;
+    if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '' ) {
+      const password = document.getElementById('signUpPass').value;
       const passEmail = document.getElementById('signUpEmail').value;
-      const passName = document.getElementById('signUpName').value;
       
 
       firebase.auth().createUserWithEmailAndPassword(passEmail, password)
@@ -162,10 +160,9 @@ passLogo.addEventListener('click', function () {
 
   });
   loginPass.addEventListener('click', function(){
-    if (document.getElementById('signUpPass').value == document.getElementById('signUpPass2').value && document.getElementById('signUpEmail').value != '' && document.getElementById('signUpName').value != '') {
-      const password = document.getElementById('signUpPass2').value;
+    if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '') {
+      const password = document.getElementById('signUpPass').value;
       const passEmail = document.getElementById('signUpEmail').value;
-      const passName = document.getElementById('signUpName').value;
       
 
       firebase.auth().signInWithEmailAndPassword(passEmail, password)
