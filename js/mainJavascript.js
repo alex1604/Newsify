@@ -19,7 +19,6 @@ let tagsContentChangeWidth = ""
 
 let login = document.getElementById("googleLogo");
 let loginFb = document.getElementById("facebookLogo");
-let loginEmail = document.getElementById("emailLogo");
 
 var config = {
   apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
@@ -128,17 +127,19 @@ loginFb.addEventListener("click", function () {
 });
 
 let passLogo = document.getElementById('passLogo');
+let passModal = document.getElementById('passModal');
+passModal.style.display = "none";
 passLogo.addEventListener('click', function () {
-  let passModal = document.getElementById('passModal');
+  console.log("passlogo");
   let email = '';
   let password = '';
   let name = '';
-  passModal.style.opacity = '1';
-  passModal.style.zIndex = '1';
+  passModal.style.display = '';
+  passModal.style.zIndex = "1";
 
   let closeModal = document.getElementById('closeModal');
   closeModal.addEventListener('click', function () {
-    passModal.style.opacity = '0';
+    passModal.style.display = 'none';
     passModal.style.zIndex = '0';
     document.getElementById('signUpEmail').value = '';
     document.getElementById('signUpPass').value = '';
@@ -156,7 +157,7 @@ passLogo.addEventListener('click', function () {
 
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function () {
-          passModal.style.opacity = '0';
+          passModal.style.display = 'none';
           passModal.style.zIndex = '0';
           document.getElementById('signUpEmail').value = '';
           document.getElementById('signUpPass').value = '';
@@ -174,7 +175,7 @@ passLogo.addEventListener('click', function () {
         .catch(function () {
           firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(function () {
-              passModal.style.opacity = '0';
+              passModal.style.display = 'none';
               passModal.style.zIndex = '0';
               document.getElementById('signUpEmail').value = '';
               document.getElementById('signUpPass').value = '';
@@ -208,9 +209,6 @@ passLogo.addEventListener('click', function () {
 
 });
 
-    loginEmail.addEventListener("click", function(event){
-      console.log("loginEmail button");
-    })
 
 let loginHeader = function (user) {
   /*// This gives you a Google Access Token. You can use it to access the Google API.
@@ -253,7 +251,7 @@ let loginHeader = function (user) {
   loginPopup.style.display = "none";
 }
 
-let id = ""
+let id = "";
 
 
 let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMail) {
@@ -494,6 +492,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
     loginHeader(user);
+    console.log()
     var search = firebase.database().ref("users/").orderByChild(user.uid);
     sammaid = user.uid;
     firebaseInsertUser(user.uid, user.displayName, user.photoURL, user.email)
