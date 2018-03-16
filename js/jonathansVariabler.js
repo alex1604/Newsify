@@ -380,9 +380,9 @@ slider.inputKeyword.addEventListener("keydown",function(e){
 
 
 
-  if(e.key === "Backspace"){
-    currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
+  if(e.key === "Backspace" ){
 
+    currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
 
       if(currentTag.inputTag.innerText === "#"){
         console.log("Hefoksdofkdosfkosdf")
@@ -397,18 +397,21 @@ slider.inputKeyword.addEventListener("keydown",function(e){
 
 slider.inputKeyword.addEventListener("keypress",function(e){
 
-  if(e.key !== "Enter"){
+  console.log(e.key)
+  if(e.key !== "Backspace"  && e.key !== "Tab" && e.key !== "Escape" && e.key !== "Shift" && e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.key !== "ArrowUp" && e.key !== "ArrowDown"){
+      if(e.key !== "Enter" ){
 
-    if(currentTag.inputTag.innerHTML.length === 0){
-      currentTag.inputTag.innerHTML += "#"+e.key;
+        if(currentTag.inputTag.innerHTML.length === 0){
+          currentTag.inputTag.innerHTML += "#"+e.key;
 
-    }else{
-      currentTag.inputTag.innerHTML += e.key;
+        }else{
+          currentTag.inputTag.innerHTML += e.key;
 
+        }
+
+
+      }
     }
-
-
-  }
 })
 
 
