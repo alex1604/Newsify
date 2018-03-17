@@ -591,7 +591,7 @@ var createNews = function () {
   saveIcon.className = 'far fa-star';
   saveToFavourites.appendChild(saveIcon);
   let saveToFavouritesText = document.createElement('span');
-  saveToFavouritesText.className = 'newsFooterSpan';
+  saveToFavouritesText.className = 'newsFooterSpan showFavouriteList';
   saveToFavouritesText.innerText = 'Save';
   saveToFavourites.appendChild(saveToFavouritesText);
 
