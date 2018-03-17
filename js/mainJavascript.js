@@ -116,81 +116,6 @@ loginFb.addEventListener("click", function () {
   });
 });
 
-let passLogo = document.getElementById('passLogo');
-let passModal = document.getElementById('passModal');
-
-passModal.style.display = "none";
-passLogo.addEventListener('click', function () {
-  console.log("passlogo");
- 
-  passModal.style.display = '';
-  passModal.style.zIndex = "1";
-
-
-  let closeModal = document.getElementById('closeModal');
-  closeModal.addEventListener('click', function () {
-    passModal.style.zIndex = '0';
-    document.getElementById('signUpEmail').value = '';
-    document.getElementById('signUpPass').value = '';
-    passModal.style.display = 'none';
-  });
-});
-
-  let createAccount = document.getElementById('createAccount');
-  createAccount.addEventListener('click', function () {
-
-    if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '' ) {
-      const password = document.getElementById('signUpPass').value;
-      const passEmail = document.getElementById('signUpEmail').value;
-      
-
-      firebase.auth().createUserWithEmailAndPassword(passEmail, password)
-        .catch(function (error) {
-          alert('Error signing you up' + error.code + '--' + error.message);
-          console.log('Error signing up: ' + error.message);
-
-        })
-    } else {
-      let p = document.createElement('p');
-      p.innerHTML = 'The passwords are not the same';
-      p.style.color = 'red';
-      let form = document.getElementsByTagName('form')[0];
-      form.appendChild.lastChild(p);
-    }
-
-  });
-  loginPass.addEventListener('click', function(){
-    if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '') {
-      const password = document.getElementById('signUpPass').value;
-      const passEmail = document.getElementById('signUpEmail').value;
-      
-
-      firebase.auth().signInWithEmailAndPassword(passEmail, password)
-        .catch(function (error) {
-          alert('Error logging you in' + error.code + '--' + error.message);
-          console.log('Error logging in: '  + error.message);
-        })
-    } else {
-      let p = document.createElement('p');
-      p.innerHTML = 'The passwords are not the same';
-      p.style.color = 'red';
-      let form = document.getElementsByTagName('form')[0];
-      form.appendChild.lastChild(p);
-    }
-  });
-
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-      if (firebaseUser) {
-        console.log(firebaseUser);
-        let user = firebase.auth().currentUser;
-        user = user.id;
-        firebaseInsertUserWithEmail(user, passName, passEmail);
-      } else {
-        console.log('not logged in');
-      }
-    });
-
-
 let loginHeader = function (user) {
   /*// This gives you a Google Access Token. You can use it to access the Google API.
   var token = result.credential.accessToken;
@@ -878,3 +803,63 @@ var getAllNews = function () {
       console.log('failed', error);
     });
 }
+
+let passLogo = document.getElementById('passLogo');
+let passModal = document.getElementById('passModal');
+
+passModal.style.display = "none";
+passLogo.addEventListener('click', function () {
+  console.log("passlogo");
+ 
+  passModal.style.display = '';
+  passModal.style.zIndex = "1";
+
+
+  let closeModal = document.getElementById('closeModal');
+  closeModal.addEventListener('click', function () {
+    passModal.style.zIndex = '0';
+    document.getElementById('signUpEmail').value = '';
+    document.getElementById('signUpPass').value = '';
+    passModal.style.display = 'none';
+  });
+
+  let createAccount = document.getElementById('createAccount');
+  createAccount.addEventListener('click', function () {
+
+    if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '' ) {
+      const password = document.getElementById('signUpPass').value;
+      const passEmail = document.getElementById('signUpEmail').value;
+      
+
+      firebase.auth().createUserWithEmailAndPassword(passEmail, password)
+        .catch(function (error) {
+          alert('Error signing you up' + error.code + '--' + error.message);
+          console.log('Error signing up: ' + error.message);
+        });
+    }
+  });
+
+  loginPass.addEventListener('click', function(){
+    if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '') {
+      const password = document.getElementById('signUpPass').value;
+      const passEmail = document.getElementById('signUpEmail').value;
+      
+
+      firebase.auth().signInWithEmailAndPassword(passEmail, password)
+        .catch(function (error) {
+          alert('Error logging you in' + error.code + '--' + error.message);
+          console.log('Error logging in: '  + error.message);
+        });
+    }
+  });
+});
+/*firebase.auth().onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+        console.log(firebaseUser);
+        let user = firebase.auth().currentUser;
+        user = user.id;
+        firebaseInsertUserWithEmail(user, passName, passEmail);
+      } else {
+        console.log('not logged in');
+      }
+    });*/
