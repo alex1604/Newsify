@@ -814,6 +814,20 @@ passLogo.addEventListener('click', function () {
   passModal.style.display = '';
   passModal.style.zIndex = "1";
 
+  let registerModal = document.getElementById('chooseRegister');
+  let loginModal = document.getElementById('chooseLogin');
+  
+  let nameField = document.getElementById('signUpName');
+  
+  registerModal.addEventListener('click', function(){
+    nameField.disabled = false;
+    nameField.style.display = 'inherit';
+  });
+
+  loginModal.addEventListener('click', function(){
+    nameField.disabled = true;
+    nameField.style.display = 'none';
+  })
 
   let closeModal = document.getElementById('closeModal');
   closeModal.addEventListener('click', function () {
@@ -821,6 +835,8 @@ passLogo.addEventListener('click', function () {
     document.getElementById('signUpEmail').value = '';
     document.getElementById('signUpPass').value = '';
     passModal.style.display = 'none';
+    nameField.disabled = 'true';
+    nameField.style.display = 'none';
   });
 
   let createAccount = document.getElementById('createAccount');
@@ -829,12 +845,24 @@ passLogo.addEventListener('click', function () {
     if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '' ) {
       const password = document.getElementById('signUpPass').value;
       const passEmail = document.getElementById('signUpEmail').value;
+      const passName = document.getElementById('signUpName').value;
+      
       
 
-      firebase.auth().createUserWithEmailAndPassword(passEmail, password)
-        .catch(function (error) {
-          alert('Error signing you up' + error.code + '--' + error.message);
-          console.log('Error signing up: ' + error.message);
+      admin.auth().createUser({
+        email: passEmail,
+        emailVerified: false,
+        password: password,
+        displayName: passName,
+        photoURL: "img/default_user.png",
+        disabled: false
+      })
+        .then(function(userRecord) {
+          // See the UserRecord reference doc for the contents of userRecord.
+          console.log("Successfully created new user:", userRecord.uid);
+        })
+        .catch(function(error) {
+          console.log("Error creating new user:", error);
         });
     }
   });
