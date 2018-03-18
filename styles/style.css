@@ -16,8 +16,47 @@
         justify-content: center;
       }
 
+      #canNotShow{
 
+          height: 40px;
+          width: 100%;
+          top:280px;
+          position: absolute;
+          display: none;
+          color:black;
+          text-align: center;
+      }
+      #ShowAWhile{
+        display: none;
+        width:100%;
+        padding:10px;
+        top:230px;
 
+        text-align: center;
+        z-index: 1000;
+        position: absolute;
+        color:rgba(255,255,255,0.8);
+      }
+
+      #buttons button{
+          width:100px;
+          text-align: center;
+          margin:0;
+          padding-bottom: 2px;
+          background: #333644;
+          color:rgba(255,255,255,0.7);
+          border:none;
+          border-bottom: 2px solid white;
+          margin-left: 10px;
+      }
+
+      #buttons{
+        background: #333644;
+        display: flex;
+        justify-content: flex-start;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
       header{
         padding-top: 50px;
         /* box-shadow: inset 0 20px 150px 1px rgba(20, 58, 82,0.5); */
@@ -25,12 +64,16 @@
 
         color:rgba(255,255,255,0.7);
         padding-bottom:10px;
+
         margin-bottom: 15px;
         width: 100%;
+
       }
 
 
-
+      .zIndex{
+        z-index: 500;
+      }
 
       .slider{
         width: 100%;
@@ -39,13 +82,14 @@
         overflow: hidden ;
         display: flex;
         justify-content: center;
-        margin-top: 10px;
-        background: rgba(0,0,0,0.1);
+        margin-top: 0px;
+        font-size: 0.8em;
+        background: #333644;
 
       }
 
       #sliderContent, #tagsSlider{
-        width: 300px;
+        width: 100px;
         white-space: nowrap;
         position: relative;
       }
@@ -64,7 +108,7 @@
 
     .tags {
         height: 30px;
-        width: 300px;
+        width: 100px;
         padding:0;
         margin:0;
         text-align: center;
@@ -99,7 +143,7 @@ line-height: 30px;
 
 
       #sliderContentChange, #tagsSliderContentChange{
-        width:300px;
+        width:100px;
         margin-left: 0;
         transition-property: margin-left;
         transition-duration: 0.5s;
@@ -110,7 +154,7 @@ line-height: 30px;
       #sourceContentChange, #countryContentChange, #categoryContentChange, #languageContentChange {
         transition-property: margin-left;
         transition-duration: 0.5s;
-        width:300px;
+        width:100px;
       }
 
       #languageContentChange .tags, #sourceContentChange .tags, #countryContentChange .tags ,#categoryContentChange .tags {
@@ -156,11 +200,13 @@ line-height: 30px;
       }
 
 
-
+      #searchInput{
+        color:black;
+      }
 
 
       #sliderContent{
-        width:300px;
+        width:100px;
 
         white-space: nowrap;
         background: #C65F63;
@@ -179,7 +225,7 @@ line-height: 30px;
 
       #sliderContent > div > div {
           display: inline-block;
-          width: 300px;
+          width: 100px;
           height: 17px;
           padding:7px 0px;
           text-align: center;
@@ -212,6 +258,7 @@ line-height: 30px;
      .currentTag{
        position: relative;
        top:50px;
+
        text-align: center;
      }
 
@@ -282,7 +329,7 @@ line-height: 30px;
 
 
 
-    .fa-google, .fa-facebook{
+    .fa-google, .fa-facebook, .fa-envelope{
       margin:10px 0;
       font-size: 3em;
       color:white;
@@ -447,5 +494,69 @@ line-height: 30px;
     }
     .newsFooterSpan{
       margin-left: 5px;
+    }
+    .fa-envelope{
+      color: white;
+      margin: 0 auto;
+      width:70px;
+      margin-top: 0;
+    }
+    #logginButtons{
+      display:flex;
+      flex-direction:row;
+      justify-content: space-around;
+    }
+    #createAccount{
+      height:40px;
+      width:150px;
+      background-color:white;
+      color: black;
+      font-size:16px;
+      border: 1px solid black;
+    }
+    #loginPass{
+      height:40px;
+      width:150px;
+      background-color:#04B431;
+      color: white;
+      font-size:18px;
+      border: 1px solid black;
+    }
+    #passModal{
+      height:60vh;
+      width:50vw;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color:white;
+      border: 1px solid gray;
+      color:gray;
+      font-size:26px;
+    }
+    #passModal > form{
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+    #passLogo i{
+      cursor:pointer;
+    }
+    #loginPass:hover{
+      cursor:pointer;
+      background-color:#04B45F;
+    }
+    #createAccount:hover{
+      cursor:pointer;
+      background-color:#D8D8D8;
+    }
+    #signUpEmail, #signUpPass{
+      width: 300px;
+      height:30px;
+      font-size:16px;
+      border:none;
+      border-bottom: 1px solid gray;
     }
     /* end of Save,share and comment links*/

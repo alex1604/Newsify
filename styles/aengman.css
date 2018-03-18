@@ -1,16 +1,25 @@
 .userPicture{
     margin: 0 auto;
-    width:70px;
+    width:30px;
     margin-top: 0;
     border-radius: 50%;
     margin-bottom: 10px;
     box-shadow: 0 0 20px;
-
+}
+.commentUserPicture {
+  width: 30px;
+  height: 30px;
+}
+.commentDropDown {
+  position: relative;
+  left: 1500px;
 }
 
-/*Jonathan css */
+.commentUsername {
+    color: dodgerblue;
+}
 
-
+/* Jon */
 .loggedIn {
   display: flex;
   justify-content: center;
@@ -18,7 +27,47 @@
   text-align: center;
 }
 
-.userName{
-  margin-bottom:  10px;
+.userName {
+  margin-bottom: 10px;
   text-align: center;
+}
+
+textarea {
+    background-color: darkslategray;;
+    width: 300px;
+    height: 30px;
+}
+.commentButton {
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+
+
+.commentField {
+    max-height: 210px;
+    max-width: auto;
+    width: 100%;
+    background-color: green;
+    white-space: nowrap;
+    text-overflow: hidden;
+    overflow: scroll;
+    background-color: darkslategray;;
+}
+
+.commentText {
+    height: auto;
+    max-width: 300px;
+    max-height: 100%;
+    color: white;
+}
+
+.writeBox {
+    color: white;
+}
+
+.commentWhole {
+  margin: 20px;
+}
+.sumUp {
+  max-height:100px;
 }
