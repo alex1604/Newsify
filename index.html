@@ -449,15 +449,6 @@
       messagingSenderId: "695749409670"
     };
     firebase.initializeApp(config);
-
-    var admin = require('firebase-admin');
-
-    var serviceAccount = require('resources/newschaos-df665a417655.json');
-
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-      databaseURL: 'https://newschaos-e8558.firebaseio.com/'
-    });
   </script>
   <!--Main javascript fil. Där alla variabler ska skrivas och som vi kan använda oss av. Eller om vi har någon stor funktion som ska användas över hela sidan. t.ex firebase.
 DEN ENDA GÅNGEN NI KAN SNAPA EN VARIABEL ÄR -> när ni skapar den i en FUNKTION så att den inte krockar med andra variabler.  -->

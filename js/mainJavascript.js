@@ -881,6 +881,7 @@ passLogo.addEventListener('click', function () {
     }
   });
 });
+
 /*firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
         console.log(firebaseUser);
