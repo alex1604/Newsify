@@ -34,6 +34,10 @@ console.log("erikJS");
        
      });
 
+
+       /* 
+
+
        /* 
 
         var whenScroll = function(evt) {

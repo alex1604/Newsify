@@ -20,6 +20,20 @@ let tagsContentChangeWidth = ""
 let login = document.getElementById("googleLogo");
 let loginFb = document.getElementById("facebookLogo");
 
+
+
+
+var config = {
+  apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
+  authDomain: "newschaos-e8558.firebaseapp.com",
+  databaseURL: "https://newschaos-e8558.firebaseio.com",
+  projectId: "newschaos-e8558",
+  storageBucket: "newschaos-e8558.appspot.com",
+  messagingSenderId: "695749409670"
+};
+firebase.initializeApp(config);
+
+
 const db = firebase.database()
 
 
@@ -616,6 +630,31 @@ var browseNews = function (array, number) {
         commentField.className = "commentField";
         event.target.parentElement.parentElement.append(commentField);
         let targetUrl = event.target.parentNode.parentNode.children[1].href;
+
+      db.ref("/Articles/").once("value", function(snapshot){
+        var found = "unfound";
+        for (var item in snapshot.val()){
+          if (snapshot.val()[item].saveUrl == targetUrl){
+            for (var comment in snapshot.val()[item].comments){
+              let commentWhole = document.createElement("div");
+              commentWhole.className = "commentWhole";
+              let commentText = document.createElement("div");
+              let commentUsername = document.createElement("div");
+              let commentUserPicture = document.createElement("img");
+              
+              
+              commentText.innerText = snapshot.val()[item].comments[comment].content;
+              commentText.className = "commentText";
+              commentUsername.innerText = snapshot.val()[item].comments[comment].username + ": ";
+              commentUsername.className = "commentUsername";
+              commentUserPicture.src = snapshot.val()[item].comments[comment].photoURL;
+              commentUserPicture.className = "commentUserPicture";
+              commentUserPicture.alt = "Userpic";
+              commentWhole.appendChild(commentUserPicture);
+              commentWhole.appendChild(commentUsername);
+              commentWhole.appendChild(commentText);
+              event.target.parentElement.parentElement.children[5].prepend(commentWhole);
+
         db.ref("/Articles/").once("value", function (snapshot) {
           var found = "unfound";
           for (var item in snapshot.val()) {
@@ -639,6 +678,7 @@ var browseNews = function (array, number) {
                 event.target.parentElement.parentElement.children[5].prepend(commentWhole);
               }
               found = "found";
+
             }
           }
           if (found == "unfound") {
@@ -667,6 +707,7 @@ var browseNews = function (array, number) {
             event.target.parentElement.children[3].value = "";
             if (text !== "") {
               let commentWhole = document.createElement("div");
+                commentWhole.className = "commentWhole";
               let commentText = document.createElement("div");
               let commentUsername = document.createElement("div");
               let commentUserPicture = document.createElement("img");
