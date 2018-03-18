@@ -497,7 +497,7 @@ line-height: 30px;
       width:70px;
       margin-top: 0;
     }
-    #logginButtons{
+    /* #logginButtons{
       display:flex;
       flex-direction:row;
       justify-content: space-around;
@@ -588,5 +588,5 @@ line-height: 30px;
     }
     #signUpName{
       display:none;
-    }
+    } */
     /* end of Save,share and comment links*/
