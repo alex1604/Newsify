@@ -23,6 +23,15 @@ let currentTag = {
 
 }
 
+
+let ownCurrentTag = {
+  ownCurrentTag: document.getElementById("ownCurrentTag"),
+  ownInputTag : document.getElementById("ownInputTag"),
+  ownSourceTag : document.getElementById("ownSourceTag"),
+  ownCountryTag : document.getElementById("ownCountryTag"),
+  ownLanguageTag : document.getElementById("ownLanguageTag")
+}
+
 let previousTagBtn = document.getElementById("prev");
 let nextTagBtn = document.getElementById("next");
 let sliderContent = document.getElementById("sliderContent");
@@ -128,6 +137,8 @@ let languageTotalLeft = "";
 
 let tagsMinusSlide = 0;
 let tagsTotalLeft = "";
+
+
 
 
 
