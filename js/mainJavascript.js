@@ -292,31 +292,31 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
 
         }
-        for(let i=0; i< tagsSlider.children.length; i++){
+        for (let i = 0; i < tagsSlider.children.length; i++) {
 
-          if(tagsSlider.children[i] !== undefined){
+          if (tagsSlider.children[i] !== undefined) {
 
-              tagsSlider.children[i].addEventListener("click",function(){
+            tagsSlider.children[i].addEventListener("click", function () {
 
-                console.log(tagsSlider.childre)
+              console.log(tagsSlider.childre)
 
-                  let tag = tagsSlider.children[i];
+              let tag = tagsSlider.children[i];
 
-                  tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
+              tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
 
-              })
+            })
 
           }
 
         }
 
-        if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
+        if (tagsSlider.children.length === 1 || tagsSlider.children.length > 2) {
 
-          tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tags</ul>";
 
-        }else{
+        } else {
 
-          tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</ul>";
 
         }
 
@@ -384,18 +384,18 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
         }
 
 
-        for(let i=0; i< tagsSlider.children.length; i++){
+        for (let i = 0; i < tagsSlider.children.length; i++) {
 
-          if(tagsSlider.children[i] !== undefined){
+          if (tagsSlider.children[i] !== undefined) {
 
-              tagsSlider.children[i].addEventListener("click",function(){
+            tagsSlider.children[i].addEventListener("click", function () {
 
-                  let tag = tagsSlider.children[i];
+              let tag = tagsSlider.children[i];
 
-                  tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
+              tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
 
 
-              })
+            })
 
           }
         }
@@ -403,11 +403,11 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
         console.log(tagsSlider.children.length)
 
 
-        if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
-          tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+        if (tagsSlider.children.length === 1 || tagsSlider.children.length > 2) {
+          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tags</ul>";
 
-        }else{
-          tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+        } else {
+          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</ul>";
 
         }
 
@@ -430,7 +430,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     whenLoggedIn.style.display = "block"
 
     document.getElementById("tagsSliderContentChange").innerHTML = "";
-    document.getElementById("tagsSliderContentChange").innerHTML = "<ul class='tags'>" +tagsSlider.children.length+ " saved tags</ul>";
+    document.getElementById("tagsSliderContentChange").innerHTML = "<ul class='tags'>" + tagsSlider.children.length + " saved tags</ul>";
 
 
     tagsContentChangeWidth = tagsSlider.tagsContentChange.offsetWidth;
@@ -698,10 +698,10 @@ var browseNews = function (array, number) {
         writeBox.className = "writeBox";
         writeBox.addEventListener("keyup", function (event) {
           //Comments if user clicks enter
-          if (event.shiftKey == true){
+          if (event.shiftKey == true) {
             return;
           }
-          else if (event.key == "Enter" && localStorage.getItem("username") !== null){
+          else if (event.key == "Enter" && localStorage.getItem("username") !== null) {
             //console.log(event.target);
             let text = event.target.parentElement.children[3].value;
             event.target.parentElement.children[3].value = "";
@@ -743,7 +743,7 @@ var browseNews = function (array, number) {
         commentButton.addEventListener("click", function (event) {
           let text = event.target.parentElement.children[3].value;
           event.target.parentElement.children[3].value = "";
-          if (text !== "" && localStorage.getItem("username" !== null)){
+          if (text !== "" && localStorage.getItem("username" !== null)) {
             let commentWhole = document.createElement("div");
             let commentText = document.createElement("div");
             let commentUsername = document.createElement("div");
@@ -845,16 +845,30 @@ var getAllNews = function () {
     });
 }
 
-let passLogo = document.getElementById('passLogo');
+/*let passLogo = document.getElementById('passLogo');
 let passModal = document.getElementById('passModal');
 
 passModal.style.display = "none";
 passLogo.addEventListener('click', function () {
   console.log("passlogo");
- 
+
   passModal.style.display = '';
   passModal.style.zIndex = "1";
 
+  let registerModal = document.getElementById('chooseRegister');
+  let loginModal = document.getElementById('chooseLogin');
+
+  let nameField = document.getElementById('signUpName');
+
+  registerModal.addEventListener('click', function () {
+    nameField.disabled = false;
+    nameField.style.display = 'inherit';
+  });
+
+  loginModal.addEventListener('click', function () {
+    nameField.disabled = true;
+    nameField.style.display = 'none';
+  })
 
   let closeModal = document.getElementById('closeModal');
   closeModal.addEventListener('click', function () {
@@ -862,38 +876,61 @@ passLogo.addEventListener('click', function () {
     document.getElementById('signUpEmail').value = '';
     document.getElementById('signUpPass').value = '';
     passModal.style.display = 'none';
+    nameField.disabled = 'true';
+    nameField.style.display = 'none';
   });
 
   let createAccount = document.getElementById('createAccount');
   createAccount.addEventListener('click', function () {
 
-    if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '' ) {
-      const password = document.getElementById('signUpPass').value;
-      const passEmail = document.getElementById('signUpEmail').value;
-      
-
-      firebase.auth().createUserWithEmailAndPassword(passEmail, password)
-        .catch(function (error) {
-          alert('Error signing you up' + error.code + '--' + error.message);
-          console.log('Error signing up: ' + error.message);
-        });
-    }
-  });
-
-  loginPass.addEventListener('click', function(){
     if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '') {
       const password = document.getElementById('signUpPass').value;
       const passEmail = document.getElementById('signUpEmail').value;
-      
+      const passName = document.getElementById('signUpName').value;
+
+      firebase.auth().createUserWithEmailAndPassword(passEmail, password)
+      .then(function (user) {
+        // [END createwithemail]
+        // callSomeFunction(); Optional
+        //var user = firebase.auth().currentUser;
+        user.updateProfile({
+          displayName: passName,
+          photoURL: '../img/user_default.png',
+        }).then(function () {
+          // Update successful.
+        }, function (error) {
+          // An error happened.
+        });
+      }, function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else {
+          console.error(error);
+        }
+        // [END_EXCLUDE]
+      });
+    }
+  });
+
+  loginPass.addEventListener('click', function () {
+    if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '') {
+      const password = document.getElementById('signUpPass').value;
+      const passEmail = document.getElementById('signUpEmail').value;
+
 
       firebase.auth().signInWithEmailAndPassword(passEmail, password)
         .catch(function (error) {
           alert('Error logging you in' + error.code + '--' + error.message);
-          console.log('Error logging in: '  + error.message);
+          console.log('Error logging in: ' + error.message);
         });
     }
   });
-});
+});*/
+
 /*firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
         console.log(firebaseUser);
