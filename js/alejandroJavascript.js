@@ -188,7 +188,7 @@ var callback = function () {
     getWeather(ltd, lng, urlWeather);
   }
 
-  //getLocation();
+  getLocation();
   //raden är kommenterat pga begränsat antal anrop till API:t
 
   /*console.log('Hello');
@@ -543,6 +543,12 @@ var callback = function () {
   // (inputTag) ^(inputTag">#).+\<
   suggestedNews.addEventListener('click', getSuggestedNews);
 
+  let loginBtn = document.getElementsByClassName('popupButton')[0];
+  loginBtn.addEventListener('click', function(){
+    document.getElementById('weatherCast').style.opacity = '1';
+    
+  });
+  
 }
 
 window.addEventListener('load', callback);
