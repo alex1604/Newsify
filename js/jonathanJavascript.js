@@ -253,6 +253,7 @@ addTagBtn.addEventListener("click", function () {
     }
 
     showAWhile.style.display = "block"
+    showAWhile.style.backgroundColor = "#00cc00"
     showAWhile.innerHTML = "<h2>Added "+ innerHTML + " successfully!</h2>"
     function displayNone(){
       showAWhile.style.display = "none"
@@ -361,6 +362,7 @@ deleteOwnTag.addEventListener("click",function(){
           found = false;
         }else{
           showAWhile.style.display = "block"
+          showAWhile.style.backgroundColor = "#ff3333"
           showAWhile.innerHTML = "<h5>Press the saved tag that you want to delete and then press delete</h5>"
           function displayNone(){
             showAWhile.style.display = "none"

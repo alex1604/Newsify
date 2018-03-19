@@ -378,20 +378,19 @@ function languageSwitch(languageMinusSlide){
 
 
 
+
+
 slider.inputKeyword.addEventListener("keydown",function(e){
 
 
 
   if(e.key === "Backspace" ){
-
     currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
 
       if(currentTag.inputTag.innerText === "#"){
           currentTag.inputTag.innerText = ""
       }
   }
-
-
 
 })
 

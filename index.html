@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Projektgrupp</title>
@@ -14,40 +15,44 @@
   <link rel="stylesheet" type="text/css" href="./styles/stylesFooter.css">
 
 </head>
+
 <body>
 
   <div id="ShowAWhile">
 
   </div>
 
-    <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId            : '210487799499825',
-            autoLogAppEvents : true,
-            xfbml            : true,
-            version          : 'v2.12'
-          });
-        };
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '210487799499825',
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v2.12'
+      });
+    };
 
-        (function(d, s, id){
-           var js, fjs = d.getElementsByTagName(s)[0];
-           if (d.getElementById(id)) {return;}
-           js = d.createElement(s); js.id = id;
-           js.src = "https://connect.facebook.net/en_US/sdk.js";
-           fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
-      </script>
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
 
-  <header id = "header">
+  <header id="header">
     <div id="weatherCast">
       <i id="weather" class="wi wi-day-cloudy"></i>
       <div id="weatherLocation">Northville, Greenland</div>
-      <div id="weatherTemp"><p id="min">-40ºC /</p><p id="max"> -20ºC</p></div>
+      <div id="weatherTemp">
+        <p id="min">-40ºC /</p>
+        <p id="max"> -20ºC</p>
+      </div>
     </div>
 
-    <div id = "loginPopup">
-      <button class = "popupButton">Log in</button>
+    <div id="loginPopup">
+      <button class="popupButton">Log in</button>
     </div>
     <h5>Follow the news you actually want to follow</h5>
 
@@ -57,22 +62,34 @@
       </div>
       <div id="facebookLogo">
         <i class="fab fa-facebook"></i>
-        </div>
-        <div id="passLogo">
-          <i class="fas fa-envelope fa-3x"></i>
-        </div>
+      </div>
+      <!-- <div id="passLogo">
+        <i class="fas fa-envelope fa-3x"></i>
+      </div> -->
     </div>
 
-    <div id = "passModal">
-      <h3>Create an account in one single step.</h3><i class="fas fa-times fa-2x" id='closeModal'></i>
+    <!--<div id="passModal">
+      <i class="fas fa-times" id='closeModal'></i>
       <form>
-        <label for = "SignUpName">Name: </label><input type = "text" id= "SignUpName">
-        <label for = "SignUpEmail">Email: </label><input type = "text" id= "SignUpEmail">
-        <label for = "SignUpPass">Create password: </label><input type = "password" id= "SignUpPass">
-        <label for = "SignUpPass2">Repeat password :</label><input type = "password" id= "SignUpPass2">
-        <button type="submit" id="createAccount">Create Account</button>
+        <div id="chooseLoginMethod">
+          <div id="chooseRegister">Register</div>
+          <div id="chooseLogin">Log in </div>
+        </div>
+          
+          <input type="text" autocomplete="name" placeholder="Your name"
+            id="signUpName" disabled>
+        
+        <input type="text" autocomplete="email" placeholder="Your email"
+          id="signUpEmail">
+        
+        <input type="password" placeholder="Your password"
+          id="signUpPass">
+        <div id="loginButtons">
+          <button type="submit" id="createAccount">Create Account</button>
+          <button type="submit" id="loginPass">Log in</button>
+        </div>
       </form>
-    </div>
+    </div> -->
 
     <div id="whenLoggedIn">
 
@@ -82,28 +99,29 @@
 
 
 
-            <div id="tagsSlider">
+        <div id="tagsSlider">
 
-                <div id="tagsSliderContentChange">
+          <div id="tagsSliderContentChange">
 
-                </div>
+          </div>
 
-            </div>
+        </div>
 
 
 
 
       </div>
 
-        <button id="deleteOwnTag">Delete tag</button>
-        <button id="showFavourites">Show Favourites</button>
-        <button id="suggestedNews">Suggested News</button>
 
-        </div>
+    </div>
 
-    </header>
+  </header>
 
-
+  <div id="buttons">
+    <button id="deleteOwnTag">Delete tag</button>
+    <button id="showFavouriteList">Show Favourites <span id="addNumberCount"></span></button>
+    <button id="suggestedNews">Suggested News</button>
+  </div>
 
 
 
@@ -115,13 +133,17 @@
       <div id="sliderContent">
 
         <div id="sliderContentChange">
-          <input class="tags" id="inputKeyword" type="text" name="" value="" placeholder="Search"><ul class="tags">
+          <input class="tags" id="inputKeyword" type="text" name="" value="" placeholder="Search">
+          <ul class="tags">
             Source Name
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Country
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Category
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Languages
           </ul>
 
@@ -144,36 +166,50 @@
 
       <div id="sliderContent">
 
-        <div  id="sourceContentChange">
+        <div id="sourceContentChange">
           <ul class="tags">
             All
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             CNN
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             BBC News
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             ABC News
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Al Jazeera English
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             ESPN
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Financial Times
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Fox News
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Daily Mail
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             The Guardian (Uk)
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             The New York Times
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             IGN
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             CNN Spanish
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Bloomberg
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             CBS
           </ul>
 
@@ -184,42 +220,56 @@
 
     </div>
 
-    <div class="slider"  id="countrySlider">
+    <div class="slider" id="countrySlider">
 
 
       <div id="sliderContent">
 
-        <div id="countryContentChange" >
+        <div id="countryContentChange">
 
           <ul class="tags">
             All
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             USA
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Canada
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             England
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Germany
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             France
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Australia
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             New Zeeland
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             China
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Japan
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Russia
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Spain
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Sweden
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Norway
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Turkey
           </ul>
 
@@ -229,28 +279,35 @@
 
 
     </div>
-    <div class="slider"  id="categorySlider">
+    <div class="slider" id="categorySlider">
 
 
       <div id="sliderContent">
 
-        <div id="categoryContentChange" >
+        <div id="categoryContentChange">
 
           <ul class="tags">
             All
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Business
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Entertainment
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             General
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Health
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Science
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Sport
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Technology
           </ul>
 
@@ -260,36 +317,47 @@
 
 
     </div>
-    <div class="slider"  id="languageSlider">
+    <div class="slider" id="languageSlider">
 
 
       <div id="sliderContent">
 
-        <div id="languageContentChange" >
+        <div id="languageContentChange">
 
           <ul class="tags">
             All
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Arabic
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             English
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Spanish
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             French
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Hebrew
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Italian
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Dutch
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Norweigan
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Portugues
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Russian
-          </ul><ul class="tags">
+          </ul>
+          <ul class="tags">
             Swedish
           </ul>
 
@@ -305,99 +373,113 @@
 
   <div class="currentTag">
 
-                <button class="Btn" id="addTag">Add tag</button>
+    <button class="Btn" id="addTag">Add tag</button>
 
-            <button class="Btn" id="searchBtn">Search</button>
+    <button class="Btn" id="searchBtn">Search</button>
 
-            <button class="Btn" id="deleteTag">Clear tag</button>
+    <button class="Btn" id="deleteTag">Clear tag</button>
 
-            <h5>Your current tag is </h5>
+    <h5>Your current tag is </h5>
 
-            <div id="currentTag">
+    <div id="currentTag">
 
-              <span id="inputTag"></span>
-              <span id="sourceTag"></span>
-              <span id="countryTag"></span>
-              <span id="categoryTag"></span>
-              <span id="languageTag"></span>
+      <span id="inputTag"></span>
+      <span id="sourceTag"></span>
+      <span id="countryTag"></span>
+      <span id="categoryTag"></span>
+      <span id="languageTag"></span>
 
-            </div>
+    </div>
 
-            <div id="ownCurrentTag">
+    <div id="ownCurrentTag">
 
-            </div>
-</div>
-
-
-
-
-
-
-
-
-
-</div>
-
-<div id="newsContainer">
-
-  <main>
-  </main>
-  <div id="iframe">
-    <!-- <iframe id="contact" src="https://www.bloomberg.com/news/articles/2018-02-28/eu-says-n-ireland-could-remain-in-customs-union-brexit-update"  allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
-    <!-- <iframe id="contact" src="https://www.bloomberg.com/news/articles/2018-02-28/eu-says-n-ireland-could-remain-in-customs-union-brexit-update/" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
+    </div>
   </div>
-</div>
-
-<div id="footer">
-
-     <i class="fas fa-university"></i>
-     <div id="divHistory"></div>
-          <div id="eventYear"></div>
-          <div id="eventText"></div>
-
-        <h3>Newsify</h3>
-
-     <div id="divHistory">
-          <div id="div1"></div>
-          <div id="div2"></div>
-         </div>
-
-
-     <div id="time">TIME</div>
-</div>
 
 
 
 
-<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
 
-<!--Main javascript fil. Där alla variabler ska skrivas och som vi kan använda oss av. Eller om vi har någon stor funktion som ska användas över hela sidan. t.ex firebase.
+
+
+
+
+  </div>
+
+  <div id="newsContainer">
+
+    <main>
+    </main>
+    <div id="iframe">
+      <!-- <iframe id="contact" src="https://www.bloomberg.com/news/articles/2018-02-28/eu-says-n-ireland-could-remain-in-customs-union-brexit-update"  allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
+      <!-- <iframe id="contact" src="https://www.bloomberg.com/news/articles/2018-02-28/eu-says-n-ireland-could-remain-in-customs-union-brexit-update/" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
+    </div>
+  </div>
+
+  <div id="footer">
+
+    <i class="fas fa-university"></i>
+    <div id="divHistory"></div>
+    <div id="eventYear"></div>
+    <div id="eventText"></div>
+
+    <h3>Newsify</h3>
+
+    <div id="divHistory">
+      <div id="div1"></div>
+      <div id="div2"></div>
+    </div>
+
+
+    <div id="time">TIME</div>
+  </div>
+
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
+      authDomain: "newschaos-e8558.firebaseapp.com",
+      databaseURL: "https://newschaos-e8558.firebaseio.com",
+      projectId: "newschaos-e8558",
+      storageBucket: "newschaos-e8558.appspot.com",
+      messagingSenderId: "695749409670"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <!--Main javascript fil. Där alla variabler ska skrivas och som vi kan använda oss av. Eller om vi har någon stor funktion som ska användas över hela sidan. t.ex firebase.
 DEN ENDA GÅNGEN NI KAN SNAPA EN VARIABEL ÄR -> när ni skapar den i en FUNKTION så att den inte krockar med andra variabler.  -->
 
-<script type="text/javascript" src="js/mainJavascript.js"></script>
+  <script type="text/javascript" src="js/mainJavascript.js"></script>
 
-<!-- Egen javascriptfil för klockan i footern -->
-<script type="text/javascript" src="js/clockJavascript.js"></script>
+  <!-- Egen javascriptfil för klockan i footern -->
+  <script type="text/javascript" src="js/clockJavascript.js"></script>
 
 
-<!--Jonathans javascriptfil -->
-<script type="text/javascript" src="js/jonathansVariabler.js"></script>
-<script type="text/javascript" src="js/jonathanJavascript.js"></script>
+  <!--Jonathans javascriptfil -->
+  <script type="text/javascript" src="js/jonathansVariabler.js"></script>
+  <script type="text/javascript" src="js/jonathanJavascript.js"></script>
 
-<!--Alejandros javascriptfil -->
-<script type="text/javascript" src="js/alejandroJavascript.js"></script>
-<!--Albins javascriptfil -->
+  <!--Alejandros javascriptfil -->
+  <script type="text/javascript" src="js/alejandroJavascript.js"></script>
+  <!--Albins javascriptfil -->
 
-<script type="text/javascript" src="js/albinJavascript.js"></script>
-<!--Jonas javascriptfil -->
+  <script type="text/javascript" src="js/albinJavascript.js"></script>
+  <!--Jonas javascriptfil -->
 
-<script type="text/javascript" src="js/jonasJavascript.js"></script>
-<!--Eriks javascriptfil -->
+  <script type="text/javascript" src="js/jonasJavascript.js"></script>
+  <!--Eriks javascriptfil -->
 
-<!--<script type="text/javascript" src="js/erikJavascript.js"></script>-->
+
+  <script type="text/javascript" src="js/erikJavascript.js"></script>
+
 
 
 
 
 </body>
+
 </html>
