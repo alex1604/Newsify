@@ -28,102 +28,102 @@ var callback = function () {
     switch (dayIcon) {
       case 1:
         weather.classList.add('wi-day-sunny');
-        
+
         break;
       case 2:
         weather.classList.add('wi-day-sunny-overcast');
-        
+
       case 3:
         weather.classList.add('wi-day-cloudy-high');
-        
+
         break;
       case 4:
         weather.classList.add('wi-day-cloudy');
-        
+
         break;
       case 5:
         weather.classList.add('wi-day-haze');
-        
+
         break;
       case 6:
         weather.classList.add('wi-day-cloud');
-        
+
         break;
       case 7:
         weather.classList.add('wi-cloudy');
-        
+
         break;
       case 8:
         weather.classList.add('wi-cloudy');
-        
+
         break;
       case 11:
         weather.classList.add('wi-fog');
-        
+
         break;
       case 12:
         weather.classList.add('wi-day-showers');
-        
+
         break;
       case 13:
         weather.classList.add('wi-day-showers');
-        
+
         break;
       case 14:
         weather.classList.add('wi-day-showers');
-        
+
         break;
       case 15:
         weather.classList.add('wi-day-storm-showers');
-        
+
         break;
       case 16:
         weather.classList.add('wi-day-storm-showers');
-        
+
         break;
       case 17:
         weather.classList.add('wi-day-storm-showers');
-        
+
         break;
       case 18:
         weather.classList.add('wi-day-rain-mix');
-        
+
         break;
       case 19:
         weather.classList.add('wi-day-cloudy-windy');
-        
+
         break;
       case 20:
         weather.classList.add('wi-day-cloudy-windy');
-        
+
         break;
       case 21:
         weather.classList.add('wi-day-cloudy-windy');
-        
+
         break;
       case 22:
         weather.classList.add('wi-day-snow');
-        
+
         break;
       case 23:
         weather.classList.add('wi-day-snow');
-        
+
         break;
       case 24:
         weather.classList.add('wi-snowflake-cold');
-        
+
         break;
       case 25:
         weather.classList.add('wi-day-sleet');
-        
+
         break;
       case 26:
         weather.classList.add('wi-day-hail');
-        
+
         break;
       case 29:
         weather.classList.add('wi-day-snow-thunderstorm');
-        
+
         break;
     }
 
@@ -442,7 +442,99 @@ var callback = function () {
 
           showAWhile.style.display = "block"
           showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
-          function displayNone(){
+          function displayNone() {
+            showAWhile.style.display = "none"
+
+          }
+          setTimeout(displayNone, 2000);
+          console.log('failed');
+          clear()
+        });
+    } else {
+      getAllNews();
+    }
+    url = '';
+  }
+
+  var getSomeNewsFromOwnTags = function (queryString, category, country, language, source) {
+
+    let tagCode = document.getElementById('ownInputTag').innerHTML.slice(1);
+    let url = urlBase + question;
+
+    searchArray.push(tagCode);
+
+    searchArray.push(categoryCode);
+
+    searchArray.push(countryCode);
+
+    searchArray.push(languageCode);
+
+    searchArray.push(sourceCode);
+
+    completeSearchArray.push(queryString);
+    completeSearchArray.push(category);
+    completeSearchArray.push(country);
+    completeSearchArray.push(language);
+    completeSearchArray.push(source);
+
+    for (i = 0; i < completeSearchArray.length; i++) {
+      let count = 0;
+      if (searchArray[i] != '' && searchArray[i] != null) {
+        if (count != 0) {
+          completeSearchArray[i] += searchArray[i];
+          completeSearchArray[i] = '&' + completeSearchArray[i] + '&';
+          url += completeSearchArray[i];
+        } else {
+          completeSearchArray[i] += searchArray[i];
+          completeSearchArray[i] += '&';
+          url += completeSearchArray[i];
+          count++;
+        }
+      }
+      count = 0;
+    }
+    completeSearchArray = [];
+    searchArray = [];
+    url += key;
+    if (url !== 'https://newsapi.org/v2/top-headlines?apiKey=ca2d5b8c76a84ec68544ecdeadf04043') {
+
+      let req = new Request(url);
+
+      fetch(req)
+        .then(function (response) {
+
+          return response.json();
+
+        }).then(function (object) {
+
+          let articles = object.articles;
+
+
+          let myArticles = [];
+          let amount = 12;
+
+          for (article in articles) {
+
+            if (amount > 0) {
+
+              myArticles.push(articles[article]);
+
+            } else {
+              break;
+            }
+            amount--;
+          }
+          while (main.hasChildNodes()) {
+            main.removeChild(main.lastChild);
+          }
+          amount = myArticles.length;
+          browseNews(myArticles, amount);
+        })
+        .catch(function () {
+
+          showAWhile.style.display = "block"
+          showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
+          function displayNone() {
             showAWhile.style.display = "none"
 
           }
@@ -522,17 +614,50 @@ var callback = function () {
   // När man är klar med att välja taggar, rubriker, land och språk, sker följande funktionen:
   // when click on search Button:
 
-  searchBtn.addEventListener('click', (x) => getSomeNews(queryString, category, country, language, source));
+  searchBtn.addEventListener('click', function () {
+
+    var childDivs = document.getElementById('ownCurrentTag').getElementsByTagName('span');
+    let boo = false;
+    let noNews = true;
+    for (i = 0; i < childDivs.length; i++) {
+      let childDiv = childDivs[i];
+      if (childDiv.innerHTML != '') {
+        boo = true;
+        noNews = false;
+        break
+      }
+    }
+
+    var childDivsRegular = document.getElementById('currentTag').getElementsByTagName('span');
+
+    for (i = 0; i < childDivsRegular.length; i++) {
+      let childDivRegular = childDivsRegular[i];
+      if (childDivRegular.innerHTML != '') {
+        boo = false;
+        noNews = false;
+        break
+      }
+    }
+
+    if (boo == true) {
+      getSomeNewsFromOwnTags(queryString, category, country, language, source);
+    } else if (boo == false){
+      getSomeNews(queryString, category, country, language, source);
+    } else if (noNews == true){
+      getAllNews();
+    }
+  });
+
   // Regular expression for suggested articles from database ^#.+\<
   // (inputTag) ^(inputTag">#).+\<
   suggestedNews.addEventListener('click', getSuggestedNews);
 
   let loginBtn = document.getElementsByClassName('popupButton')[0];
-  loginBtn.addEventListener('click', function(){
+  loginBtn.addEventListener('click', function () {
     document.getElementById('weatherCast').style.opacity = '1';
-    
+
   });
-  
+
 }
 
 window.addEventListener('load', callback);
