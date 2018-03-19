@@ -93,15 +93,10 @@ loginFb.addEventListener("click", function () {
       firebase.auth().signInWithRedirect(fbProvider);
       firebase.auth().getRedirectResult().then(function (result) {
         if (result.credential) {
-          console.log(result);
           uid = response.publicProfile.id;
-          console.log(uid + ' first');
           uemail = response.additionalUserInfo.profile.email;
-          console.log(uemail + ' first');
           uname = response.additionalUserInfo.profile.name;
-          console.log(uname + ' first');
           upicture = response.additionalUserInfo.profile.picture.data.url;
-          console.log(upicture);
           firebaseInsertUserFacebook(uid, uname, upicture, uemail);
         }
       })
@@ -115,6 +110,88 @@ loginFb.addEventListener("click", function () {
     }
   });
 });
+
+/*
+let passLogo = document.getElementById('passLogo');
+let passModal = document.getElementById('passModal');
+passModal.style.display = "none";
+passLogo.addEventListener('click', function () {
+  let email = '';
+  let password = '';
+  let name = '';
+  passModal.style.display = '';
+  passModal.style.zIndex = "1";
+
+  let closeModal = document.getElementById('closeModal');
+  closeModal.addEventListener('click', function () {
+    passModal.style.zIndex = '0';
+    document.getElementById('signUpEmail').value = '';
+    document.getElementById('signUpPass').value = '';
+    document.getElementById('signUpPass2').value = '';
+    passModal.style.display = 'none';
+  });
+
+
+  let createAccount = document.getElementById('createAccount');
+  createAccount.addEventListener('click', function () {
+    if (document.getElementById('signUpPass').value == document.getElementById('signUpPass2').value) {
+      password = document.getElementById('signUpPass2').value;
+      email = document.getElementById('signUpEmail').value;
+      name = document.getElementById('signUpName').value;
+
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(function () {
+          passModal.style.display = 'none';
+          passModal.style.zIndex = '0';
+          document.getElementById('signUpEmail').value = '';
+          document.getElementById('signUpPass').value = '';
+          document.getElementById('signUpPass2').value = '';
+
+          var user = firebase.auth().currentUser;
+
+              if (user) {
+                firebaseInsertUserWithEmail(user,name,email);
+              }
+
+          alert('You were successfully logged in');
+        })
+        .catch(function () {
+          firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(function () {
+              passModal.style.display = 'none';
+              passModal.style.zIndex = '0';
+              document.getElementById('signUpEmail').value = '';
+              document.getElementById('signUpPass').value = '';
+              document.getElementById('signUpPass2').value = '';
+              alert('You were successfully registered on the site');
+
+              var user = firebase.auth().currentUser;
+
+              if (user) {
+                firebaseInsertUserWithEmail(user,name,email);
+              }
+            })
+            .catch(function (error) {
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              alert('There was an error creating your account: ' + errorMessage);
+              console.log('There was an error creating your account: ' + errorMessage);
+            })
+        })
+    } else {
+      let p = document.createElement('p');
+      p.innerHTML = 'The passwords are not the same';
+      p.style.color = 'red';
+      let form = document.getElementsByTagName('form')[0];
+      form.appendChild.lastChild(p);
+    }
+
+  });
+
+
+});
+*/
 
 let loginHeader = function (user) {
   /*// This gives you a Google Access Token. You can use it to access the Google API.
@@ -140,9 +217,9 @@ let loginHeader = function (user) {
       var header = document.getElementById("header");
       header.removeChild(header.lastChild);
     })
-      .then(function () {
+      /*.then(function () {
         FB.logout();
-      })
+      })*/
       .catch(function (error) {
         console.log("error: " + error);
       })
@@ -284,9 +361,11 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
             tagsSlider.children[i].addEventListener("click", function () {
 
+
               console.log(tagsSlider.childre)
 
               let tag = tagsSlider.children[i];
+
 
               tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
 
@@ -306,7 +385,7 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
         }
 
-        console.log(tagsSlider.children[0].innerHTML)
+        //console.log(tagsSlider.children[0].innerHTML)
 
 
       })
@@ -386,8 +465,6 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
           }
         }
 
-        console.log(tagsSlider.children.length)
-
 
         if (tagsSlider.children.length === 1 || tagsSlider.children.length > 2) {
           tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tags</ul>";
@@ -396,8 +473,6 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
           tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</ul>";
 
         }
-
-        console.log(tagsSlider.children[0].innerHTML)
 
       })
     }
@@ -428,7 +503,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
     loginHeader(user);
-    console.log()
     var search = firebase.database().ref("users/").orderByChild(user.uid);
     sammaid = user.uid;
     firebaseInsertUser(user.uid, user.displayName, user.photoURL, user.email)
@@ -536,8 +610,20 @@ var createNews = function () {
   commentIcon.className = 'far fa-comment';
   commentArticle.appendChild(commentIcon);
   let commentArticleText = document.createElement('span');
+  firebase.database().ref("/Articles/").once("value", function(snapshot){
+    var commentCount = 0;
+    var snap = snapshot.val();
+    for (var item in snap){
+      if (snap[item].saveUrl == shareArticle.href){
+        for(var comment in snap[item].comments){
+            commentCount += 1;
+        }
+      }
+    }
+    commentArticleText.innerText = "Comment" + " (" + commentCount + ")";
+  })
   commentArticleText.className = 'newsFooterSpan';
-  commentArticleText.innerText = 'Comment';
+  //commentArticleText.innerText = 'Comment';
   commentArticle.appendChild(commentArticleText);
   // end of save,share,comment
 
@@ -661,8 +747,10 @@ var browseNews = function (array, number) {
           if (event.shiftKey == true) {
             return;
           }
+
           else if (event.key == "Enter" && localStorage.getItem("username") !== null) {
             //console.log(event.target);
+
             let text = event.target.parentElement.children[3].value;
             event.target.parentElement.children[3].value = "";
             if (text !== "") {
@@ -699,10 +787,11 @@ var browseNews = function (array, number) {
           }
         });
         let commentButton = document.createElement("button");
-        commentButton.addEventListener("click", function (event) {
-          let text = event.target.parentElement.children[3].value;
+        commentButton.addEventListener("click", function (event) {  let text = event.target.parentElement.children[3].value;
           event.target.parentElement.children[3].value = "";
+
           if (text !== "" && localStorage.getItem("username" !== null)) {
+
             let commentWhole = document.createElement("div");
             let commentText = document.createElement("div");
             let commentUsername = document.createElement("div");
@@ -795,7 +884,6 @@ var getAllNews = function () {
         amount--;
       }
       amount = myArticles.length;
-      //console.log(myArticles)
 
       browseNews(myArticles, amount);
     })
