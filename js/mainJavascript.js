@@ -781,7 +781,6 @@ var browseNews = function (array, number) {
         commentButton.addEventListener("click", function (event) {  let text = event.target.parentElement.children[3].value;
           event.target.parentElement.children[3].value = "";
           if (text !== "") {
-            event.target.parentElement.children[5].prepend(commentWhole);
             firebase.database().ref("/Articles/").once("value", function (snapshot) {
               let snap = snapshot.val();
               for (var item in snap) {
