@@ -65,7 +65,7 @@
 
       }
 
-      #sliderContent, #tagsSlider{
+      .sliderContent, #tagsSlider{
         width: 100px;
         white-space: nowrap;
         position: relative;
@@ -182,7 +182,7 @@ line-height: 30px;
       }
 
 
-      #sliderContent{
+      .sliderContent{
         width:100px;
 
         white-space: nowrap;
@@ -200,7 +200,7 @@ line-height: 30px;
 
 
 
-      #sliderContent > div > div {
+      .sliderContent > div > div {
           display: inline-block;
           width: 100px;
           height: 17px;
