@@ -438,6 +438,7 @@ line-height: 30px;
       position:absolute;
       right:-2%;
       top:80px;
+      opacity: 0;
     }
     #weatherCast2{
       display:flex;
@@ -594,3 +595,23 @@ line-height: 30px;
       display:none;
     } */
     /* end of Save,share and comment links*/
+    #loginPopup > button{
+      height: 50px;
+      width: 100px;
+      font-size:20px;
+      background-color: skyblue;
+      color:darkslategrey;
+      font-weight: bold;
+      border-radius: 10px;
+    }
+    #loginPopup{
+      position: absolute;
+      top: 7%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #loginPopup:hover > button{
+      cursor:pointer;
+      background-color: darkcyan;
+      color: white;
+    }

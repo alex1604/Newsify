@@ -795,7 +795,7 @@ var browseNews = function (array, number) {
 
   for (let x of fbBtn) {
     x.addEventListener('click', function () {
-      let fbUrl = x.name;
+      let fbUrl = x.href;
       FB.ui({
         method: 'share',
         href: fbUrl,
