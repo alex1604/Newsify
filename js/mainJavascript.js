@@ -141,7 +141,10 @@ let loginHeader = function (user) {
       header.removeChild(header.lastChild);
     })
       .then(function () {
-        FB.logout();
+        FB.logout()
+        .then(function(response){
+          
+        });
       })
       .catch(function (error) {
         console.log("error: " + error);
