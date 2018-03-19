@@ -40,16 +40,16 @@ var outputSaved = [];
   let saveArticle = document.querySelector('#newsContainer');
   saveArticle.addEventListener('click', function(event){
     //console.log(storedUser.uid);
-    
-        // save article to database 
+
+        // save article to database
         // checks if userID is not null
-        
+
     if (storedUser !== null){
       console.log(event.target.parentElement.parentElement.parentElement);
     // this is so the click event only occurs if its on that specific class
         if(event.target.parentElement.classList.contains('saveToFavourite')){
           //console.log(storedUser);
-  
+
           // get data from the articles shown on screen
           
           var saveTitle = event.target.parentElement.parentElement.parentElement.children[1].textContent;
@@ -71,8 +71,9 @@ var outputSaved = [];
                     console.log(userFavourites);
                       // if article already exists it should not reupload
                       if (userFavourites){
-                        console.log('it already exists in userprofile');               
+                        //console.log('it already exists in userprofile');
                       } else {
+
                         console.log('added it only to userprofile');
                         firebase.database().ref("users/" + storedUser.uid + "/favourites").push(saveUrl);
                         /*
@@ -89,6 +90,7 @@ var outputSaved = [];
               });
                 } else {
                   // add article to database and to userprofile
+
                   firebase.database().ref('Articles').push(newsObject); 
                   
                   firebase.database().ref("users/" + storedUser.uid + "/favourites").push(saveUrl);
@@ -106,14 +108,14 @@ var outputSaved = [];
 
                 }
             });
-      
+
           }
 
     } else {
      console.log('Need to be logged in to save')
     }
-  
- 
+
+
 
   event.preventDefault();
 });
@@ -135,7 +137,7 @@ showFavourites.addEventListener('click', event => {
   
   firebase.database().ref("users/" + storedUser.uid + "/favourites").on('value', snapshot => {
     //console.log('On value: hämtar .');
-    
+
     let data = snapshot.val();
     var favArray = [];
     //console.log(data);
@@ -144,9 +146,10 @@ showFavourites.addEventListener('click', event => {
     main.innerHTML = "";
     //console.log(allArticles);
     for( let article in data ) {
-        
-      
+
+
         let r = data[article];
+
         //console.log(r);
   
         //console.log(`Article ${r.saveTitle} egenskaper är: `, data[article]);
@@ -167,6 +170,7 @@ showFavourites.addEventListener('click', event => {
        //console.log(myArrayFiltered);
        
       });
+
     //console.log(pages);
     if(favArray.length === 0){
       
@@ -190,6 +194,7 @@ showFavourites.addEventListener('click', event => {
       outputSaved.push(obj);
     }
 
+
     //console.log(outputSaved);
     //console.log(favArray);
     var myArrayFilteredOutput = outputSaved.filter(function (el) {
@@ -212,6 +217,7 @@ showFavourites.addEventListener('click', event => {
     console.log(saveText.length);
     
     for (var i = changeIcon.length -1 ; i >= 0; --i) {
+
 
       changeIcon[i].className = changeIcon[i].className.replace('far fa-star', 'fas fa-times-circle');
       changeClassToRemove[i].className = changeClassToRemove[i].className.replace('newsFooter saveToFavourite', 'newsFooter saveToFavourite remove');

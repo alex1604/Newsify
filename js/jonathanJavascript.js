@@ -223,7 +223,6 @@ addTagBtn.addEventListener("click", function () {
 
     if (currentTag.inputTag.innerText !== "" || currentTag.sourceTag.innerText !== "" || currentTag.countryTag.innerText !== "" || currentTag.categoryTag.innerText !== "" || currentTag.languageTag.innerText !== "") {
 
-      console.log("hej")
 
 
     let div = document.createElement("div");
@@ -231,17 +230,11 @@ addTagBtn.addEventListener("click", function () {
     div.className = "tags";
     div.innerHTML = innerHTML;
     for(let i =0; i< div.children.length; i++){
-        console.log(div.children[i])
-        console.log(Math.random().toFixed(2))
         div.children[i].setAttribute("id", Math.random().toFixed(2))
     }
     db.ref("users/" + sammaid + "/tags").push(div.innerHTML)
 
     tagsSliderContentChange.appendChild(div)
-
-
-    console.log(div.children)
-
 
     for(let i=0; i< tagsSlider.children.length; i++){
 
@@ -295,19 +288,10 @@ let y=2;
 
 deleteOwnTag.addEventListener("click",function(){
 
-
-
-    console.log("length", tagsSlider.children.length)
-
-
-
     db.ref("/users/"+ id + "/tags/").once("value",function(snapshot){
 
 
           let obj = snapshot.val()
-
-          console.log(tagsSlider.children[tagsMinusSlide])
-
         let found = false;
         let proppet = ""
         let tag = tagsSlider.children[tagsMinusSlide];
@@ -338,20 +322,12 @@ deleteOwnTag.addEventListener("click",function(){
 
           db.ref("/users/"+ id + "/tags/"+ proppet).remove()
 
-
-
-            console.log(tagsMinusSlide)
-            console.log(tagsSlider.children.length)
-
           if(tagsMinusSlide === tagsSlider.children.length){
 
             let totalLeft;
 
             totalLeft = (tagsMinusSlide-1) * tagsSliderContentChangeWidth;
             totalLeft = totalLeft.toString()
-
-              console.log(totalLeft)
-
 
              tagsSlider.tagsContentChange.style.marginLeft = "-"+totalLeft + "px";
 
@@ -968,13 +944,6 @@ function showOrNot(slider, contentChange){
 
 function minusFunction(minusSlide,sourceMinusSlide, countryMinusSlide,categoryMinusSlide,languageMinusSlide){
 
-  console.log("sourceMinusSlide: ", sourceMinusSlide);
-  console.log("countryMinusSlide: ", countryMinusSlide )
-  console.log("categoryMinusSlide: ", categoryMinusSlide )
-  console.log("languageMinusSlide: ", languageMinusSlide )
-  console.log("minusSlide: ", minusSlide )
-
-
 sourceSwitch(sourceMinusSlide)
 countrySwitch(countryMinusSlide)
 categorySwitch(categoryMinusSlide)
@@ -1285,14 +1254,12 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
   let nummer = i;
 
   tagsMinusSlide = nummer
-  console.log(tagsMinusSlide)
   totalLeft =  (nummer * totalLeft).toString()
 
   contentChange.style.marginLeft = "-" + totalLeft + "px"
 
   if(contentChange.children[i].innerText !== "Your tags"){
 
-      console.log(contentChange.children.length)
       let length = contentChange.children[i].children.length
       let string = ""
       for(let x = 0; x< length; x++ ){
@@ -1304,8 +1271,6 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 
 
           string += "<span id='ownInputTag'>"+ownInputTag.innerHTML+"</span>"
-          console.log(contentChange.children[i].children[x])
-
         }
         if(x === 1){
           let ownSourceTag = document.createElement("span");
@@ -1342,10 +1307,6 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
           string += "<span id='ownLanguageTag'>"+ownLanguageTag.innerHTML+"</span>"
         }
       }
-
-      console.log(string)
-
-      console.log(contentChange.children[i].innerHTML)
 
     // let ownSourceTag = document.createElement("span");
     // ownSourceTag.innerText = contentChange.children[i].children[1].innerHTML
@@ -1384,8 +1345,6 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
     clear()
 
   }
-
-  console.log(tagsMinusSlide)
 
 }
 
