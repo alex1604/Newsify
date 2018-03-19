@@ -28,102 +28,102 @@ var callback = function () {
     switch (dayIcon) {
       case 1:
         weather.classList.add('wi-day-sunny');
-        
+        weather2.classList.add('wi-day-sunny');
         break;
       case 2:
         weather.classList.add('wi-day-sunny-overcast');
-        
+        weather2.classList.add('wi-day-sunny-overcast');
       case 3:
         weather.classList.add('wi-day-cloudy-high');
-        
+        weather2.classList.add('wi-day-cloudy-high');
         break;
       case 4:
         weather.classList.add('wi-day-cloudy');
-        
+        weather2.classList.add('wi-day-cloudy');
         break;
       case 5:
         weather.classList.add('wi-day-haze');
-        
+        weather2.classList.add('wi-day-haze');
         break;
       case 6:
         weather.classList.add('wi-day-cloud');
-        
+        weather2.classList.add('wi-day-cloud');
         break;
       case 7:
         weather.classList.add('wi-cloudy');
-        
+        weather2.classList.add('wi-cloudy');
         break;
       case 8:
         weather.classList.add('wi-cloudy');
-        
+        weather2.classList.add('wi-cloudy');
         break;
       case 11:
         weather.classList.add('wi-fog');
-        
+        weather2.classList.add('wi-fog');
         break;
       case 12:
         weather.classList.add('wi-day-showers');
-        
+        weather2.classList.add('wi-day-showers');
         break;
       case 13:
         weather.classList.add('wi-day-showers');
-        
+        weather2.classList.add('wi-day-showers');
         break;
       case 14:
         weather.classList.add('wi-day-showers');
-        
+        weather2.classList.add('wi-day-showers');
         break;
       case 15:
         weather.classList.add('wi-day-storm-showers');
-        
+        weather2.classList.add('wi-day-storm-showers');
         break;
       case 16:
         weather.classList.add('wi-day-storm-showers');
-        
+        weather2.classList.add('wi-day-storm-showers');
         break;
       case 17:
         weather.classList.add('wi-day-storm-showers');
-        
+        weather2.classList.add('wi-day-storm-showers');
         break;
       case 18:
         weather.classList.add('wi-day-rain-mix');
-        
+        weather2.classList.add('wi-day-rain-mix');
         break;
       case 19:
         weather.classList.add('wi-day-cloudy-windy');
-        
+        weather2.classList.add('wi-day-cloudy-windy');
         break;
       case 20:
         weather.classList.add('wi-day-cloudy-windy');
-        
+        weather2.classList.add('wi-day-cloudy-windy');
         break;
       case 21:
         weather.classList.add('wi-day-cloudy-windy');
-        
+        weather2.classList.add('wi-day-cloudy-windy');
         break;
       case 22:
         weather.classList.add('wi-day-snow');
-        
+        weather2.classList.add('wi-day-snow');
         break;
       case 23:
         weather.classList.add('wi-day-snow');
-        
+        weather2.classList.add('wi-day-snow');
         break;
       case 24:
         weather.classList.add('wi-snowflake-cold');
-        
+        weather2.classList.add('wi-snowflake-cold');
         break;
       case 25:
         weather.classList.add('wi-day-sleet');
-        
+        weather2.classList.add('wi-day-sleet');
         break;
       case 26:
         weather.classList.add('wi-day-hail');
-        
+        weather2.classList.add('wi-day-hail');
         break;
       case 29:
         weather.classList.add('wi-day-snow-thunderstorm');
-        
+        weather2.classList.add('wi-day-snow-thunderstorm');
         break;
     }
 
@@ -157,7 +157,7 @@ var callback = function () {
             weatherResponse = object;
             browseWeather(weatherResponse, weatherLocation);
           }).catch(function (fail) {
-            console.log('we can`t process this request right now: ' + fail);
+            console.log('we can`t process this request right now');
           });
       }).catch(function (fail) {
         console.log('errorLocation');
@@ -490,7 +490,6 @@ var callback = function () {
         fetch(req)
           .then(function (response) {
             return response.json();
-
           }).then(function (object) {
             let articles = object.articles;
 
@@ -527,12 +526,6 @@ var callback = function () {
   // (inputTag) ^(inputTag">#).+\<
   suggestedNews.addEventListener('click', getSuggestedNews);
 
-  let loginBtn = document.getElementsByClassName('popupButton')[0];
-  loginBtn.addEventListener('click', function(){
-    document.getElementById('weatherCast').style.opacity = '1';
-    
-  });
-  
 }
 
 window.addEventListener('load', callback);
