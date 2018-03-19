@@ -712,24 +712,27 @@ var browseNews = function (array, number) {
           var found = "unfound";
           for (var item in snapshot.val()) {
             if (snapshot.val()[item].saveUrl == targetUrl) {
-              for (var comment in snapshot.val()[item].comments) {
+              let realtimeCommentCount = 0;
+              db.ref("/Articles/" + item + "/" + "comments").on("child_added", function(snapshot){
+                realtimeCommentCount += 1;
+                event.target.innerText = "Comment (" +  realtimeCommentCount + ")";
                 let commentWhole = document.createElement("div");
                 let commentText = document.createElement("div");
                 let commentUsername = document.createElement("div");
                 let commentUserPicture = document.createElement("img");
                 commentWhole.className = "commentWhole";
-                commentText.innerText = snapshot.val()[item].comments[comment].content;
+                commentText.innerText = snapshot.val().content;
                 commentText.className = "commentText";
-                commentUsername.innerText = snapshot.val()[item].comments[comment].username;
+                commentUsername.innerText = snapshot.val().username;
                 commentUsername.className = "commentUsername";
-                commentUserPicture.src = snapshot.val()[item].comments[comment].photoURL;
+                commentUserPicture.src = snapshot.val().photoURL;
                 commentUserPicture.className = "commentUserPicture";
                 commentUserPicture.alt = "Userpic";
                 commentWhole.appendChild(commentUserPicture);
                 commentWhole.appendChild(commentUsername);
                 commentWhole.appendChild(commentText);
                 event.target.parentElement.parentElement.children[5].prepend(commentWhole);
-              }
+              })
               found = "found";
             }
           }
@@ -758,22 +761,6 @@ var browseNews = function (array, number) {
             let text = event.target.parentElement.children[3].value;
             event.target.parentElement.children[3].value = "";
             if (text !== "") {
-              let commentWhole = document.createElement("div");
-              let commentText = document.createElement("div");
-              let commentUsername = document.createElement("div");
-              let commentUserPicture = document.createElement("img");
-              commentWhole.className = "commentWhole";
-              commentText.innerText = text;
-              commentText.className = "commentText";
-              commentUsername.innerText = localStorage.getItem("username");
-              commentUsername.className = "commentUsername";
-              commentUserPicture.src = localStorage.getItem("photoURL");
-              commentUserPicture.className = "commentUserPicture";
-              commentUserPicture.alt = "Userpic";
-              commentWhole.appendChild(commentUserPicture);
-              commentWhole.appendChild(commentUsername);
-              commentWhole.appendChild(commentText);
-              event.target.parentElement.children[5].prepend(commentWhole);
               firebase.database().ref("/Articles/").once("value", function (snapshot) {
                 let snap = snapshot.val();
                 for (var item in snap) {
@@ -794,21 +781,6 @@ var browseNews = function (array, number) {
         commentButton.addEventListener("click", function (event) {  let text = event.target.parentElement.children[3].value;
           event.target.parentElement.children[3].value = "";
           if (text !== "") {
-            let commentWhole = document.createElement("div");
-            let commentText = document.createElement("div");
-            let commentUsername = document.createElement("div");
-            let commentUserPicture = document.createElement("img");
-            commentWhole.className = "commentWhole";
-            commentText.innerText = text;
-            commentText.className = "commentText";
-            commentUsername.innerText = localStorage.getItem("username");
-            commentUsername.className = "commentUsername";
-            commentUserPicture.src = localStorage.getItem("photoURL");
-            commentUserPicture.className = "commentUserPicture";
-            commentUserPicture.alt = "Userpic";
-            commentWhole.appendChild(commentUserPicture);
-            commentWhole.appendChild(commentUsername);
-            commentWhole.appendChild(commentText);
             event.target.parentElement.children[5].prepend(commentWhole);
             firebase.database().ref("/Articles/").once("value", function (snapshot) {
               let snap = snapshot.val();
