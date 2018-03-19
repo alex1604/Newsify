@@ -217,9 +217,12 @@ let loginHeader = function (user) {
       var header = document.getElementById("header");
       header.removeChild(header.lastChild);
     })
-      /*.then(function () {
-        FB.logout();
-      })*/
+      .then(function () {
+        FB.logout()
+        .then(function(response){    
+        });
+      })
+
       .catch(function (error) {
         console.log("error: " + error);
       })
