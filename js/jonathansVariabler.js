@@ -387,7 +387,6 @@ slider.inputKeyword.addEventListener("keydown",function(e){
     currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
 
       if(currentTag.inputTag.innerText === "#"){
-        console.log("Hefoksdofkdosfkosdf")
           currentTag.inputTag.innerText = ""
       }
   }

@@ -103,15 +103,10 @@ loginFb.addEventListener("click", function () {
       firebase.auth().signInWithRedirect(fbProvider);
       firebase.auth().getRedirectResult().then(function (result) {
         if (result.credential) {
-          console.log(result);
           uid = response.publicProfile.id;
-          console.log(uid + ' first');
           uemail = response.additionalUserInfo.profile.email;
-          console.log(uemail + ' first');
           uname = response.additionalUserInfo.profile.name;
-          console.log(uname + ' first');
           upicture = response.additionalUserInfo.profile.picture.data.url;
-          console.log(upicture);
           firebaseInsertUserFacebook(uid, uname, upicture, uemail);
         }
       })
@@ -130,7 +125,6 @@ let passLogo = document.getElementById('passLogo');
 let passModal = document.getElementById('passModal');
 passModal.style.display = "none";
 passLogo.addEventListener('click', function () {
-  console.log("passlogo");
   let email = '';
   let password = '';
   let name = '';
@@ -170,7 +164,6 @@ passLogo.addEventListener('click', function () {
               }
 
           alert('You were successfully logged in');
-          console.log('Success logging user in with email and password');
         })
         .catch(function () {
           firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -181,7 +174,6 @@ passLogo.addEventListener('click', function () {
               document.getElementById('signUpPass').value = '';
               document.getElementById('signUpPass2').value = '';
               alert('You were successfully registered on the site');
-              console.log('Success registering with email and password');
 
               var user = firebase.auth().currentUser;
 
@@ -378,8 +370,6 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
               tagsSlider.children[i].addEventListener("click",function(){
 
-                console.log(tagsSlider.childre)
-
                   let tag = tagsSlider.children[i];
 
                   tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
@@ -481,8 +471,6 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
           }
         }
 
-        console.log(tagsSlider.children.length)
-
 
         if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
           tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
@@ -491,8 +479,6 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
           tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
 
         }
-
-        console.log(tagsSlider.children[0].innerHTML)
 
       })
     }
@@ -523,7 +509,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
     loginHeader(user);
-    console.log()
     var search = firebase.database().ref("users/").orderByChild(user.uid);
     sammaid = user.uid;
     firebaseInsertUser(user.uid, user.displayName, user.photoURL, user.email)
@@ -769,7 +754,7 @@ var browseNews = function (array, number) {
             return;
           }
           else if (event.key == "Enter" && localStorage.getItem("username") !== null){
-            //console.log(event.target);
+
             let text = event.target.parentElement.children[3].value;
             event.target.parentElement.children[3].value = "";
             if (text !== "") {
@@ -902,7 +887,6 @@ var getAllNews = function () {
         amount--;
       }
       amount = myArticles.length;
-      //console.log(myArticles)
 
       browseNews(myArticles, amount);
     })

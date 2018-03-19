@@ -145,23 +145,16 @@ var callback = function () {
       .then(function (response) {
         return response.json();
       }).then(function (object) {
-        //console.log(object);
         locationKey = object.Key;
         countryKey = object.Country.EnglishName;
         weatherLocation = object.LocalizedName + ' , ' + countryKey;
-        //console.log(locationKey);
-        //console.log(countryKey);
-        //console.log(weatherLocation);
         let urlWeather2 = 'https://dataservice.accuweather.com/forecasts/v1/daily/1day/' + locationKey + '?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq';
-        //console.log(urlWeather2);
         let reqWeather2 = new Request(urlWeather2);
         fetch(reqWeather2)
           .then(function (response) {
             return response.json();
-            //console.log(response);
           }).then(function (object) {
             weatherResponse = object;
-            //console.log(weatherResponse);
             browseWeather(weatherResponse, weatherLocation);
           }).catch(function (fail) {
             console.log('we can`t process this request right now');
@@ -374,7 +367,6 @@ var callback = function () {
   var getSomeNews = function (queryString, category, country, language, source) {
 
     let tagCode = document.getElementById('inputTag').innerHTML.slice(1);
-    console.log(document.getElementById('inputTag'));
     let url = urlBase + question;
 
     searchArray.push(tagCode);
@@ -412,8 +404,6 @@ var callback = function () {
     completeSearchArray = [];
     searchArray = [];
     url += key;
-    console.log(url);
-
     if (url !== 'https://newsapi.org/v2/top-headlines?apiKey=ca2d5b8c76a84ec68544ecdeadf04043') {
 
       let req = new Request(url);
@@ -477,12 +467,10 @@ var callback = function () {
     db.ref('users/' + storedUser.uid + '/tags').once('value', function (snapshot) {
       let allData = snapshot.val();
       for (let object in allData) {
-        console.log(allData[object]);
         let exec = myRegExp.exec(allData[object]);
         if (exec != null) {
           myReg.push(exec);
         }
-        console.log(myReg);
       }
       for (let element in myReg) {
         let word = myReg[element][0];
@@ -497,20 +485,17 @@ var callback = function () {
       for (let x in searchWords) {
         url += 'q=' + searchWords[x];
         url += '&' + key;
-        console.log(url);
         let req = new Request(url);
 
         fetch(req)
           .then(function (response) {
             return response.json();
-            console.log(response.json());
           }).then(function (object) {
             let articles = object.articles;
 
             for (article in articles) {
 
               if (articles[article] != null && articles[article] != 'undefined') {
-                console.log(articles[article]);
                 suggestedArticles.push(articles[article]);
               } else {
                 continue;
@@ -530,8 +515,6 @@ var callback = function () {
         url = urlBase + question;
       }
     });
-    console.log(searchWords);
-    console.log(suggestedArticles);
   }
 
 
