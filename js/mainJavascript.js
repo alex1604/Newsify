@@ -226,9 +226,9 @@ let loginHeader = function (user) {
       var header = document.getElementById("header");
       header.removeChild(header.lastChild);
     })
-      .then(function () {
+      /*.then(function () {
         FB.logout();
-      })
+      })*/
       .catch(function (error) {
         console.log("error: " + error);
       })
@@ -791,10 +791,9 @@ var browseNews = function (array, number) {
           }
         });
         let commentButton = document.createElement("button");
-        commentButton.addEventListener("click", function (event) {
-          let text = event.target.parentElement.children[3].value;
+        commentButton.addEventListener("click", function (event) {  let text = event.target.parentElement.children[3].value;
           event.target.parentElement.children[3].value = "";
-          if (text !== "" && localStorage.getItem("username" !== null)){
+          if (text !== "") {
             let commentWhole = document.createElement("div");
             let commentText = document.createElement("div");
             let commentUsername = document.createElement("div");
