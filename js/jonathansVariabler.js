@@ -23,6 +23,15 @@ let currentTag = {
 
 }
 
+
+let ownCurrentTag = {
+  ownCurrentTag: document.getElementById("ownCurrentTag"),
+  ownInputTag : document.getElementById("ownInputTag"),
+  ownSourceTag : document.getElementById("ownSourceTag"),
+  ownCountryTag : document.getElementById("ownCountryTag"),
+  ownLanguageTag : document.getElementById("ownLanguageTag")
+}
+
 let previousTagBtn = document.getElementById("prev");
 let nextTagBtn = document.getElementById("next");
 let sliderContent = document.getElementsByClassName("sliderContent")[0];
@@ -128,6 +137,8 @@ let languageTotalLeft = "";
 
 let tagsMinusSlide = 0;
 let tagsTotalLeft = "";
+
+
 
 
 
@@ -378,20 +389,19 @@ function languageSwitch(languageMinusSlide){
 
 
 
+
+
 slider.inputKeyword.addEventListener("keydown",function(e){
 
 
 
   if(e.key === "Backspace" ){
-
     currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
 
       if(currentTag.inputTag.innerText === "#"){
           currentTag.inputTag.innerText = ""
       }
   }
-
-
 
 })
 

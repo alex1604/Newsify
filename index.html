@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Projektgrupp</title>
@@ -14,40 +15,44 @@
   <link rel="stylesheet" type="text/css" href="./styles/stylesFooter.css">
 
 </head>
+
 <body>
 
   <div id="ShowAWhile">
 
   </div>
 
-    <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId            : '210487799499825',
-            autoLogAppEvents : true,
-            xfbml            : true,
-            version          : 'v2.12'
-          });
-        };
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '210487799499825',
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v2.12'
+      });
+    };
 
-        (function(d, s, id){
-           var js, fjs = d.getElementsByTagName(s)[0];
-           if (d.getElementById(id)) {return;}
-           js = d.createElement(s); js.id = id;
-           js.src = "https://connect.facebook.net/en_US/sdk.js";
-           fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
-      </script>
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
 
-  <header id = "header">
+  <header id="header">
     <div id="weatherCast">
       <i id="weather" class="wi wi-day-cloudy"></i>
       <div id="weatherLocation">Northville, Greenland</div>
-      <div id="weatherTemp"><p id="min">-40ºC /</p><p id="max"> -20ºC</p></div>
+      <div id="weatherTemp">
+        <p id="min">-40ºC /</p>
+        <p id="max"> -20ºC</p>
+      </div>
     </div>
 
-    <div id = "loginPopup">
-      <button class = "popupButton">Log in</button>
+    <div id="loginPopup">
+      <button class="popupButton">Log in</button>
     </div>
     <h5>Follow the news you actually want to follow</h5>
 
@@ -57,22 +62,34 @@
       </div>
       <div id="facebookLogo">
         <i class="fab fa-facebook"></i>
-        </div>
-        <div id="passLogo">
-          <i class="fas fa-envelope fa-3x"></i>
-        </div>
+      </div>
+      <!-- <div id="passLogo">
+        <i class="fas fa-envelope fa-3x"></i>
+      </div> -->
     </div>
 
-    <div id = "passModal">
-      <h3>Create an account in one single step.</h3><i class="fas fa-times fa-2x" id='closeModal'></i>
+    <!--<div id="passModal">
+      <i class="fas fa-times" id='closeModal'></i>
       <form>
-        <label for = "SignUpName">Name: </label><input type = "text" id= "SignUpName">
-        <label for = "SignUpEmail">Email: </label><input type = "text" id= "SignUpEmail">
-        <label for = "SignUpPass">Create password: </label><input type = "password" id= "SignUpPass">
-        <label for = "SignUpPass2">Repeat password :</label><input type = "password" id= "SignUpPass2">
-        <button type="submit" id="createAccount">Create Account</button>
+        <div id="chooseLoginMethod">
+          <div id="chooseRegister">Register</div>
+          <div id="chooseLogin">Log in </div>
+        </div>
+
+          <input type="text" autocomplete="name" placeholder="Your name"
+            id="signUpName" disabled>
+
+        <input type="text" autocomplete="email" placeholder="Your email"
+          id="signUpEmail">
+
+        <input type="password" placeholder="Your password"
+          id="signUpPass">
+        <div id="loginButtons">
+          <button type="submit" id="createAccount">Create Account</button>
+          <button type="submit" id="loginPass">Log in</button>
+        </div>
       </form>
-    </div>
+    </div> -->
 
     <div id="whenLoggedIn">
 
@@ -82,29 +99,30 @@
 
 
 
-            <div id="tagsSlider">
+        <div id="tagsSlider">
 
-                <div id="tagsSliderContentChange">
+          <div id="tagsSliderContentChange">
 
-                </div>
+          </div>
 
-            </div>
+        </div>
 
 
 
 
       </div>
 
-        <button id="deleteOwnTag">Delete tag</button>
-        <button id="showFavourites">Show Favourites</button>
-        <button id="suggestedNews">Suggested News</button>
 
-        </div>
-
-    </header>
+    </div>
 
 
+  </header>
 
+  <div id="buttons">
+    <button id="deleteOwnTag">Delete tag</button>
+    <button id="showFavouriteList">Show Favourites <span id="addNumberCount"></span></button>
+    <button id="suggestedNews">Suggested News</button>
+  </div>
 
 
   <div id="beforeLoggedIn">
@@ -115,13 +133,17 @@
       <div class = "sliderContent">
 
         <div id="sliderContentChange">
-          <input class="tags" id="inputKeyword" type="text" placeholder="Search"><div class="tags">
+          <input class="tags" id="inputKeyword" type="text" placeholder="Search"><!--
+          --><div class="tags">
             Source Name
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Country
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Category
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Languages
           </div>
 
@@ -144,39 +166,52 @@
 
       <div class = "sliderContent">
 
-        <div  id="sourceContentChange">
+        <div id="sourceContentChange">
           <div class="tags">
             All
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             CNN
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             BBC News
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             ABC News
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Al Jazeera English
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             ESPN
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Financial Times
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Fox News
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Daily Mail
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             The Guardian (Uk)
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             The New York Times
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             IGN
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             CNN Spanish
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Bloomberg
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             CBS
           </div>
-
         </div>
 
       </div>
@@ -184,42 +219,56 @@
 
     </div>
 
-    <div class="slider"  id="countrySlider">
+    <div class="slider" id="countrySlider">
 
 
       <div class = "sliderContent">
 
-        <div id="countryContentChange" >
+        <div id="countryContentChange">
 
           <div class="tags">
             All
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             USA
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Canada
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             England
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Germany
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             France
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Australia
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             New Zeeland
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             China
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Japan
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Russia
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Spain
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Sweden
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Norway
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Turkey
           </div>
 
@@ -229,28 +278,35 @@
 
 
     </div>
-    <div class="slider"  id="categorySlider">
+    <div class="slider" id="categorySlider">
 
 
       <div class = "sliderContent">
 
-        <div id="categoryContentChange" >
+        <div id="categoryContentChange">
 
           <div class="tags">
             All
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Business
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Entertainment
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             General
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Health
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Science
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Sport
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Technology
           </div>
 
@@ -260,36 +316,47 @@
 
 
     </div>
-    <div class="slider"  id="languageSlider">
+    <div class="slider" id="languageSlider">
 
 
       <div class = "sliderContent">
 
-        <div id="languageContentChange" >
+        <div id="languageContentChange">
 
           <div class="tags">
             All
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Arabic
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             English
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Spanish
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             French
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Hebrew
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Italian
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Dutch
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Norweigan
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Portugues
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Russian
-          </div><div class="tags">
+          </div><!--
+          --><div class="tags">
             Swedish
           </div>
 
@@ -305,58 +372,66 @@
 
   <div class="currentTag">
 
-                <button class="Btn" id="addTag">Add tag</button>
+    <button class="Btn" id="addTag">Add tag</button>
 
-            <button class="Btn" id="searchBtn">Search</button>
+    <button class="Btn" id="searchBtn">Search</button>
 
-            <button class="Btn" id="deleteTag">Clear tag</button>
+    <button class="Btn" id="deleteTag">Clear tag</button>
 
-            <h5>Your current tag is </h5>
+    <h5>Your current tag is </h5>
 
-            <div id="currentTag">
+    <div id="currentTag">
 
-              <span id="inputTag"></span>
-              <span id="sourceTag"></span>
-              <span id="countryTag"></span>
-              <span id="categoryTag"></span>
-              <span id="languageTag"></span>
+      <span id="inputTag"></span>
+      <span id="sourceTag"></span>
+      <span id="countryTag"></span>
+      <span id="categoryTag"></span>
+      <span id="languageTag"></span>
 
-            </div>
+    </div>
 
-            <div id="ownCurrentTag">
+    <div id="ownCurrentTag">
 
-            </div>
-</div>
-
-<div id="newsContainer">
-
-  <main>
-  </main>
-  <div id="iframe">
-    <!-- <iframe id="contact" src="https://www.bloomberg.com/news/articles/2018-02-28/eu-says-n-ireland-codivd-remain-in-customs-union-brexit-update"  allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
-    <!-- <iframe id="contact" src="https://www.bloomberg.com/news/articles/2018-02-28/eu-says-n-ireland-codivd-remain-in-customs-union-brexit-update/" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
+    </div>
   </div>
-</div>
 
-<div id="footer">
+  <div id="newsContainer">
 
-     <i class="fas fa-university"></i>
-     <div id="divHistory"></div>
-          <div id="eventYear"></div>
-          <div id="eventText"></div>
+    <main>
+    </main>
+    <div id="iframe">
+      <!-- <iframe id="contact" src="https://www.bloomberg.com/news/articles/2018-02-28/eu-says-n-ireland-could-remain-in-customs-union-brexit-update"  allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
+      <!-- <iframe id="contact" src="https://www.bloomberg.com/news/articles/2018-02-28/eu-says-n-ireland-could-remain-in-customs-union-brexit-update/" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
+    </div>
+  </div>
 
-        <h3>Newsify</h3>
+  <div id="footer">
+
+    <i class="fas fa-university"></i>
+    <div id="divHistory"></div>
+    <div id="eventYear"></div>
+    <div id="eventText"></div>
+
+    <div id="time">TIME</div>
+  </div>
 
 
-     <div id="time">TIME</div>
-</div>
 
 
-
-
-<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
-
-<!--Main javascript fil. Där alla variabler ska skrivas och som vi kan använda oss av. Eller om vi har någon stor funktion som ska användas över hela sidan. t.ex firebase.
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA2gS2ewiVDjqM1mPymAIrHEtmwlw4jsT8",
+      authDomain: "newschaos-e8558.firebaseapp.com",
+      databaseURL: "https://newschaos-e8558.firebaseio.com",
+      projectId: "newschaos-e8558",
+      storageBucket: "newschaos-e8558.appspot.com",
+      messagingSenderId: "695749409670"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <!--Main javascript fil. Där alla variabler ska skrivas och som vi kan använda oss av. Eller om vi har någon stor funktion som ska användas över hela sidan. t.ex firebase.
 DEN ENDA GÅNGEN NI KAN SNAPA EN VARIABEL ÄR -> när ni skapar den i en FUNKTION så att den inte krockar med andra variabler.  -->
 
 <script src="js/mainJavascript.js"></script>
@@ -379,10 +454,11 @@ DEN ENDA GÅNGEN NI KAN SNAPA EN VARIABEL ÄR -> när ni skapar den i en FUNKTIO
 <script src="js/jonasJavascript.js"></script>
 <!--Eriks javascriptfil -->
 
-<script type="text/javascript" src="js/erikJavascript.js"></script>
+<script src="js/erikJavascript.js"></script>
 
 
 
 
 </body>
+
 </html>
