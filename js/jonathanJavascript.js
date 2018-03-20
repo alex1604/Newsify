@@ -192,10 +192,10 @@ function clear(){
   languageMinusSlide = 1
 
   if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
-    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+    tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tags</div>";
 
   }else{
-    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+    tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tag</div>";
 
   }
 
@@ -213,10 +213,10 @@ addTagBtn.addEventListener("click", function () {
   let innerHTML = document.getElementById("currentTag").innerHTML;
 
   if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
-    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+    tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tags</div>";
 
   }else{
-    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+    tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tag</div>";
 
   }
 
@@ -229,6 +229,7 @@ addTagBtn.addEventListener("click", function () {
 
     div.className = "tags";
     div.innerHTML = innerHTML;
+    div.style.textAlign = "center"
     for(let i =0; i< div.children.length; i++){
         div.children[i].setAttribute("id", Math.random().toFixed(2))
     }
@@ -345,10 +346,10 @@ deleteOwnTag.addEventListener("click",function(){
 
           }
           if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
-            tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+            tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tags</div>";
 
           }else{
-            tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+            tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tag</div>";
 
           }
 
@@ -1364,10 +1365,7 @@ function tagSwitch(tagsMinusSlide){
     for(let i =0; i< ownCurrentTag.ownCurrentTag.children.length; i++){
         let child = ownCurrentTag.ownCurrentTag.children[i];
 
-        console.log(sourceCode)
-        console.log(countryCode)
-        console.log(categoryCode)
-        console.log(languageCode)
+
 
         if(i === 1){
 
@@ -1433,7 +1431,6 @@ function tagSwitch(tagsMinusSlide){
 
                 let country = child.innerHTML.substring(1, child.length)
 
-                  console.log(country)
                 switch (country) {
 
                   case "USA":
@@ -1491,7 +1488,6 @@ function tagSwitch(tagsMinusSlide){
       if(child.innerHTML !== " "){
 
         let category = child.innerHTML.substring(1, child.length)
-        console.log(category)
 
         switch (category) {
 
@@ -1573,5 +1569,9 @@ function tagSwitch(tagsMinusSlide){
     }
 
 }
+console.log(sourceCode)
+console.log(countryCode)
+console.log(categoryCode)
+console.log(languageCode)
 
 }

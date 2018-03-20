@@ -36,8 +36,7 @@ login.addEventListener("click", function (event) {
   //simple click event on the "login" div
   firebase.auth().signInWithPopup(gmailprovider).then(function (result) {
 
-    //console.log("log-in button");
-
+    console.log("logging in")
     signedInNowOrBefore = "now";
   }).catch(function (error) {
     console.log("Error: " + error);
@@ -374,11 +373,11 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
         if (tagsSlider.children.length === 1 || tagsSlider.children.length > 2) {
 
-          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tags</ul>";
+          tagsSlider.children[0].innerHTML = "<div class='tags'>" + (tagsSlider.children.length - 1) + " saved tags</div>";
 
         } else {
 
-          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</ul>";
+          tagsSlider.children[0].innerHTML = "<div class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</div>";
 
         }
 
@@ -464,10 +463,10 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
 
 
         if (tagsSlider.children.length === 1 || tagsSlider.children.length > 2) {
-          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tags</ul>";
+          tagsSlider.children[0].innerHTML = "<div class='tags'>" + (tagsSlider.children.length - 1) + " saved tags</div>";
 
         } else {
-          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</ul>";
+          tagsSlider.children[0].innerHTML = "<div class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</div>";
 
         }
 
@@ -489,7 +488,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById('weatherCast').style.opacity = '1';
 
     document.getElementById("tagsSliderContentChange").innerHTML = "";
-    document.getElementById("tagsSliderContentChange").innerHTML = "<ul class='tags'>" + tagsSlider.children.length + " saved tags</ul>";
+    document.getElementById("tagsSliderContentChange").innerHTML = "<div class='tags'>" + tagsSlider.children.length + " saved tags</div>";
 
 
     tagsContentChangeWidth = tagsSlider.tagsContentChange.offsetWidth;

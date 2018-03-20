@@ -84,6 +84,8 @@
 
       }
 
+      
+
       #sliderContent, #tagsSlider{
         width: 100px;
         white-space: nowrap;
@@ -135,6 +137,9 @@ line-height: 0px;
         box-sizing:border-box;
         border:none;
       }
+
+
+
 
 
       #sliderContentChange, #tagsSliderContentChange{
