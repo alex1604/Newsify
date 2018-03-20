@@ -702,7 +702,7 @@ var browseNews = function (array, number) {
     }
     readMore[count].href = array[count].url;
     fbShare[count].href = array[count].url;
-    commentArticleArray[count].addEventListener("click", function (event) {
+    commentArticleArray[count].children[1].addEventListener("click", function (event) {
       if (event.target.parentElement.parentElement.children.length == 3) {
         let commentField = document.createElement("div");
         commentField.className = "commentField";
@@ -710,6 +710,21 @@ var browseNews = function (array, number) {
         let targetUrl = event.target.parentNode.parentNode.children[1].href;
         db.ref("/Articles/").once("value", function (snapshot) {
           var found = "unfound";
+          for (var item in snapshot.val()){
+            if (snapshot.val()[item].saveUrl == targetUrl){
+              found = "found";
+            }
+          }
+          if (found == "unfound") {
+            db.ref("/Articles/").push({
+              saveDescription: event.target.parentNode.parentNode.parentNode.children[2].innerText,
+              saveTitle: event.target.parentNode.parentNode.parentNode.children[1].innerText,
+              saveUrl: targetUrl,
+              saveUrlImage: event.target.parentNode.parentNode.parentNode.parentNode.children[0].firstChild.src,
+              comments: {
+              }
+            })
+          }
           for (var item in snapshot.val()) {
             if (snapshot.val()[item].saveUrl == targetUrl) {
               let realtimeCommentCount = 0;
@@ -733,18 +748,7 @@ var browseNews = function (array, number) {
                 commentWhole.appendChild(commentText);
                 event.target.parentElement.parentElement.children[5].prepend(commentWhole);
               })
-              found = "found";
             }
-          }
-          if (found == "unfound") {
-            db.ref("/Articles/").push({
-              saveDescription: event.target.parentNode.parentNode.parentNode.children[2].innerText,
-              saveTitle: event.target.parentNode.parentNode.parentNode.children[1].innerText,
-              saveUrl: targetUrl,
-              saveUrlImage: event.target.parentNode.parentNode.parentNode.parentNode.children[0].firstChild.src,
-              comments: {
-              }
-            })
           }
         })
         let writeBox = document.createElement("textarea");
@@ -780,7 +784,7 @@ var browseNews = function (array, number) {
         let commentButton = document.createElement("button");
         commentButton.addEventListener("click", function (event) {  let text = event.target.parentElement.children[3].value;
           event.target.parentElement.children[3].value = "";
-          if (text !== "") {
+          if (text !== "" && localStorage.getItem("username") !== null) {
             firebase.database().ref("/Articles/").once("value", function (snapshot) {
               let snap = snapshot.val();
               for (var item in snap) {
