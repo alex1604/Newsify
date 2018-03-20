@@ -46,7 +46,6 @@ let slider = {
 
     nextTagBtn: document.getElementById("nextInput"),
     prevTagBtn: document.getElementById("prevInput"),
-    // sliderContent : document.getElementById("sliderContent"),
     sliderContentChange: document.getElementById("sliderContentChange"),
     children: document.getElementById("sliderContentChange").children,
     sourceName : document.getElementById("sourceName"),

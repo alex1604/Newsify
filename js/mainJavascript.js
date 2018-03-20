@@ -707,7 +707,7 @@ var browseNews = function (array, number) {
     }
     readMore[count].href = array[count].url;
     fbShare[count].href = array[count].url;
-    commentArticleArray[count].addEventListener("click", function (event) {
+    commentArticleArray[count].children[1].addEventListener("click", function (event) {
       if (event.target.parentElement.parentElement.children.length == 3) {
         let commentField = document.createElement("div");
         commentField.className = "commentField";
@@ -715,26 +715,8 @@ var browseNews = function (array, number) {
         let targetUrl = event.target.parentNode.parentNode.children[1].href;
         db.ref("/Articles/").once("value", function (snapshot) {
           var found = "unfound";
-          for (var item in snapshot.val()) {
-            if (snapshot.val()[item].saveUrl == targetUrl) {
-              for (var comment in snapshot.val()[item].comments) {
-                let commentWhole = document.createElement("div");
-                let commentText = document.createElement("div");
-                let commentUsername = document.createElement("div");
-                let commentUserPicture = document.createElement("img");
-                commentWhole.className = "commentWhole";
-                commentText.innerText = snapshot.val()[item].comments[comment].content;
-                commentText.className = "commentText";
-                commentUsername.innerText = snapshot.val()[item].comments[comment].username;
-                commentUsername.className = "commentUsername";
-                commentUserPicture.src = snapshot.val()[item].comments[comment].photoURL;
-                commentUserPicture.className = "commentUserPicture";
-                commentUserPicture.alt = "Userpic";
-                commentWhole.appendChild(commentUserPicture);
-                commentWhole.appendChild(commentUsername);
-                commentWhole.appendChild(commentText);
-                event.target.parentElement.parentElement.children[5].prepend(commentWhole);
-              }
+          for (var item in snapshot.val()){
+            if (snapshot.val()[item].saveUrl == targetUrl){
               found = "found";
             }
           }
@@ -748,39 +730,47 @@ var browseNews = function (array, number) {
               }
             })
           }
-        })
-        let writeBox = document.createElement("textarea");
-        writeBox.type = "input";
-        writeBox.placeholder = "Input your comment here";
-        writeBox.className = "writeBox";
-        writeBox.addEventListener("keyup", function (event) {
-          //Comments if user clicks enter
-          if (event.shiftKey == true) {
-            return;
-          }
+          let writeBox = document.createElement("textarea");
+          let commentButton = document.createElement("button");
+          writeBox.type = "input";
+          writeBox.placeholder = "Input your comment here";
+          writeBox.className = "writeBox";
+          commentButton.innerText = "Comment";
+          commentButton.className = "commentButton";
+          event.target.parentElement.parentElement.insertBefore(commentButton, event.target.parentElement.parentElement.children[3]);
+          event.target.parentElement.parentElement.insertBefore(writeBox, event.target.parentElement.parentElement.children[3]);
+          writeBox.addEventListener("keyup", function (event) {
+            //Comments if user clicks enter
+            if (event.shiftKey == true) {
+              return;
+            }
 
-          else if (event.key == "Enter" && localStorage.getItem("username") !== null) {
-            //console.log(event.target);
+            else if (event.key == "Enter" && localStorage.getItem("username") !== null) {
+              //console.log(event.target);
 
+              let text = event.target.parentElement.children[3].value;
+              event.target.parentElement.children[3].value = "";
+              if (text !== "") {
+                firebase.database().ref("/Articles/").once("value", function (snapshot) {
+                  let snap = snapshot.val();
+                  for (var item in snap) {
+                    if (snap[item].saveUrl == event.target.parentElement.children[1].href) {
+                      firebase.database().ref("/Articles/" + item + "/comments/").push({
+                        content: text,
+                        username: localStorage.getItem("username"),
+                        photoURL: localStorage.getItem("photoURL"),
+                        userID: localStorage.getItem("userid"),
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          });
+          commentButton.addEventListener("click", function (event) {
             let text = event.target.parentElement.children[3].value;
             event.target.parentElement.children[3].value = "";
-            if (text !== "") {
-              let commentWhole = document.createElement("div");
-              let commentText = document.createElement("div");
-              let commentUsername = document.createElement("div");
-              let commentUserPicture = document.createElement("img");
-              commentWhole.className = "commentWhole";
-              commentText.innerText = text;
-              commentText.className = "commentText";
-              commentUsername.innerText = localStorage.getItem("username");
-              commentUsername.className = "commentUsername";
-              commentUserPicture.src = localStorage.getItem("photoURL");
-              commentUserPicture.className = "commentUserPicture";
-              commentUserPicture.alt = "Userpic";
-              commentWhole.appendChild(commentUserPicture);
-              commentWhole.appendChild(commentUsername);
-              commentWhole.appendChild(commentText);
-              event.target.parentElement.children[5].prepend(commentWhole);
+            if (text !== "" && localStorage.getItem("username") !== null) {
               firebase.database().ref("/Articles/").once("value", function (snapshot) {
                 let snap = snapshot.val();
                 for (var item in snap) {
@@ -795,50 +785,34 @@ var browseNews = function (array, number) {
                 }
               })
             }
+          });
+          for (var item in snapshot.val()) {
+            if (snapshot.val()[item].saveUrl == targetUrl) {
+              let realtimeCommentCount = 0;
+              db.ref("/Articles/" + item + "/" + "comments").on("child_added", function(snapshot){
+                realtimeCommentCount += 1;
+                event.target.innerText = "Comment (" +  realtimeCommentCount + ")";
+                let commentWhole = document.createElement("div");
+                let commentText = document.createElement("div");
+                let commentUsername = document.createElement("div");
+                let commentUserPicture = document.createElement("img");
+                commentWhole.className = "commentWhole";
+                commentText.innerText = snapshot.val().content;
+                commentText.className = "commentText";
+                commentUsername.innerText = snapshot.val().username;
+                commentUsername.className = "commentUsername";
+                commentUserPicture.src = snapshot.val().photoURL;
+                commentUserPicture.className = "commentUserPicture";
+                commentUserPicture.alt = "Userpic";
+                commentWhole.appendChild(commentUserPicture);
+                commentWhole.appendChild(commentUsername);
+                commentWhole.appendChild(commentText);
+                event.target.parentElement.parentElement.children[5].prepend(commentWhole);
+              })
+            }
           }
-        });
-        let commentButton = document.createElement("button");
-        commentButton.addEventListener("click", function (event) {  let text = event.target.parentElement.children[3].value;
-          event.target.parentElement.children[3].value = "";
-
-          if (text !== "" && localStorage.getItem("username" !== null)) {
-
-            let commentWhole = document.createElement("div");
-            let commentText = document.createElement("div");
-            let commentUsername = document.createElement("div");
-            let commentUserPicture = document.createElement("img");
-            commentWhole.className = "commentWhole";
-            commentText.innerText = text;
-            commentText.className = "commentText";
-            commentUsername.innerText = localStorage.getItem("username");
-            commentUsername.className = "commentUsername";
-            commentUserPicture.src = localStorage.getItem("photoURL");
-            commentUserPicture.className = "commentUserPicture";
-            commentUserPicture.alt = "Userpic";
-            commentWhole.appendChild(commentUserPicture);
-            commentWhole.appendChild(commentUsername);
-            commentWhole.appendChild(commentText);
-            event.target.parentElement.children[5].prepend(commentWhole);
-            firebase.database().ref("/Articles/").once("value", function (snapshot) {
-              let snap = snapshot.val();
-              for (var item in snap) {
-                if (snap[item].saveUrl == event.target.parentElement.children[1].href) {
-                  firebase.database().ref("/Articles/" + item + "/comments/").push({
-                    content: text,
-                    username: localStorage.getItem("username"),
-                    photoURL: localStorage.getItem("photoURL"),
-                    userID: localStorage.getItem("userid"),
-                  })
-                }
-              }
-            })
-          }
-        });
+        })
         //comments if user clicks the comment button
-        commentButton.innerText = "Comment";
-        commentButton.className = "commentButton";
-        event.target.parentElement.parentElement.insertBefore(commentButton, event.target.parentElement.parentElement.children[3]);
-        event.target.parentElement.parentElement.insertBefore(writeBox, event.target.parentElement.parentElement.children[3]);
       }
       else if (event.target.parentElement.parentElement.children.length > 5) {
         while (event.target.parentElement.parentElement.children.length > 3) {
