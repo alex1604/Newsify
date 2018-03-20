@@ -18,13 +18,22 @@
 
       #canNotShow{
 
-          height: 40px;
           width: 100%;
-          top:280px;
+          top:40px;
+          padding:10px 0;
           position: absolute;
           display: none;
-          color:black;
+          color:rgba(255,255,255,0.8);
           text-align: center;
+          background: #C65F63;
+      }
+
+      #canNotShow span{
+        font-size: 0.8em;
+      }
+
+      #beforeLoggedIn {
+        position: relative;
       }
       #ShowAWhile{
         display: none;
@@ -86,7 +95,7 @@
 
 
 
-      .sliderContent, .sliderContentSource, .sliderContentCountry, .sliderContentLanguage, .sliderContentCategory #tagsSlider{
+      .sliderContent, .sliderContentSource, .sliderContentCountry, .sliderContentLanguage, .sliderContentCategory, #tagsSlider{
         width: 100px;
         white-space: nowrap;
         position: relative;
@@ -223,7 +232,7 @@ line-height: 0px;
 
 
 
-      .sliderContent > div > div,.sliderContent > div > div, .sliderContentSource > div > div, .sliderContentCountry > div > div, .sliderContentLanguage > div > div, .sliderContentCategory > div > div {
+      .sliderContent > div > div, .sliderContentSource > div > div,.sliderContentCountry > div > div,.sliderContentLanguage > div > div,.sliderContentCategory > div > div {
           display: inline-block;
           width: 120px;
           height: 17px;

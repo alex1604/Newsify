@@ -1011,48 +1011,48 @@ languageSwitch(languageMinusSlide)
         if(sourceMinusSlide>1 && languageMinusSlide >1 && slider.children[0].value !== ""){
 
             if(minusSlide === 3){
-              canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename, Language or Key press clear to reset your tag</h4>"
+              canNotShow.innerHTML = "<span>Sorry you can not combine Country with Sourcename, Language or Key press clear to reset your tag</span>"
 
             }else{
-              canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename, Language or Key press clear to reset your tag</h4>"
+              canNotShow.innerHTML = "<span>Sorry you can not combine Category with Sourcename, Language or Key press clear to reset your tag</span>"
 
             }
 
         }
         else if(sourceMinusSlide>1 && languageMinusSlide >1){
           if(minusSlide === 3){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename or Language press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Sourcename or Language press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename or Language press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Sourcename or Language press clear to reset your tag</span>"
 
           }
 
         }else if(languageMinusSlide>1 && slider.children[0].value !== ""){
           if(minusSlide === 3){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Language or Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Language or Key press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Language or Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Language or Key press clear to reset your tag</span>"
 
           }
 
         }else if(sourceMinusSlide>1 && slider.children[0].value !== ""){
           if(minusSlide === 3){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename or Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Sourcename or Key press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename or Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Sourcename or Key press clear to reset your tag</span>"
 
           }
 
 
         }else if(slider.children[0].value !== ""){
           if(minusSlide === 3){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Key press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Sourcename press clear to reset your tag</span>"
 
           }
 
@@ -1061,28 +1061,28 @@ languageSwitch(languageMinusSlide)
 
           if(minusSlide === 3){
 
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Sourcename press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Sourcename press clear to reset your tag</span>"
 
           }
         }else if(languageMinusSlide >1){
           if(minusSlide === 3){
 
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Language press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Language press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Language press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Language press clear to reset your tag</span>"
 
           }
 
         }else if(    slider.children[0].value !== ""){
           if(minusSlide === 3){
 
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Key press clear to reset your tag</span>"
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Key press clear to reset your tag</span>"
 
           }
 
@@ -1090,6 +1090,8 @@ languageSwitch(languageMinusSlide)
 
       }else{
         canNotShow.innerHTML= ""
+        canNotShow.style.display = "none"
+
       }
 
 
@@ -1111,39 +1113,39 @@ languageSwitch(languageMinusSlide)
       if(countryMinusSlide >1 && categoryMinusSlide >1){
 
         if(minusSlide ===1){
-          canNotShow.innerHTML = "<h4>Sorry you can not combine Key with Country or Category press clear to reset your tag</h4>"
+          canNotShow.innerHTML = "<span>Sorry you can not combine Key with Country or Category press clear to reset your tag</span>"
 
         }else if(minusSlide === 2){
-          canNotShow.innerHTML = "<h4>Sorry you can not combine Sourcename with Country or Category press clear to reset your tag</h4>"
+          canNotShow.innerHTML = "<span>Sorry you can not combine Sourcename with Country or Category press clear to reset your tag</span>"
 
         }else{
-          canNotShow.innerHTML = "<h4>Sorry you can not combine Language with Country or Category press clear to reset your tag</h4>"
+          canNotShow.innerHTML = "<span>Sorry you can not combine Language with Country or Category press clear to reset your tag</span>"
 
         }
 
       }  else if(countryMinusSlide>1){
 
           if(minusSlide === 1){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Key with Country press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Key with Country press clear to reset your tag</span>"
 
           }else if(minusSlide=== 2){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Sourcename with Country press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Sourcename with Country press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Language with Country press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Language with Country press clear to reset your tag</span>"
 
           }
 
         }else if(categoryMinusSlide>1){
 
             if(minusSlide === 1){
-              canNotShow.innerHTML = "<h4>Sorry you can not combine Key with Category press clear to reset your tag</h4>"
+              canNotShow.innerHTML = "<span>Sorry you can not combine Key with Category press clear to reset your tag</span>"
 
             }else if(minusSlide === 2){
-              canNotShow.innerHTML = "<h4>Sorry you can not combine Sourcename with Category press clear to reset your tag</h4>"
+              canNotShow.innerHTML = "<span>Sorry you can not combine Sourcename with Category press clear to reset your tag</span>"
 
             }else {
-              canNotShow.innerHTML = "<h4>Sorry you can not combine Language with Category press clear to reset your tag</h4>"
+              canNotShow.innerHTML = "<span>Sorry you can not combine Language with Category press clear to reset your tag</span>"
 
             }
 
@@ -1153,6 +1155,8 @@ languageSwitch(languageMinusSlide)
 
     }else{
       canNotShow.innerHTML= ""
+      canNotShow.style.display = "none"
+
     }
 
 
