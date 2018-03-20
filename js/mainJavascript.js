@@ -359,7 +359,7 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
             tagsSlider.children[i].addEventListener("click", function () {
 
 
-              console.log(tagsSlider.childre)
+              console.log(tagsSlider.children)
 
               let tag = tagsSlider.children[i];
 
@@ -485,7 +485,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     localStorage.setItem("userid", user.uid);
     //puts in related data in localstorage, feel free to use for functions
 
-    whenLoggedIn.style.display = "block"
+    whenLoggedIn.style.display = "block";
+    document.getElementById('weatherCast').style.opacity = '1';
 
     document.getElementById("tagsSliderContentChange").innerHTML = "";
     document.getElementById("tagsSliderContentChange").innerHTML = "<ul class='tags'>" + tagsSlider.children.length + " saved tags</ul>";
@@ -513,7 +514,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     loginDiv.style.display = "none";
     loginPopup.style.display = "";
-
+    document.getElementById('weatherCast').style.opacity = '0';
 
     // No user is signed in.
   }
