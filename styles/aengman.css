@@ -9,6 +9,8 @@
 .commentUserPicture {
   width: 30px;
   height: 30px;
+  float: left;
+  position: relative;
 }
 .commentDropDown {
   position: relative;
@@ -17,6 +19,10 @@
 
 .commentUsername {
     color: dodgerblue;
+    margin-left: 35px;
+    margin-bottom: 15px;
+    position: relative;
+    top: 5px;
 }
 
 /* Jon */
@@ -40,18 +46,26 @@ textarea {
 .commentButton {
     margin-left: 40px;
     margin-bottom: 20px;
+    border-radius: 50%;
+    width:200px;
+    height: 50px;
 }
 
+.commentButton:hover {
+  background-color: darkslategrey;
+  opacity: 0.8;
+  color: white;
+  cursor: pointer;
+}
 
 .commentField {
     max-height: 210px;
     max-width: auto;
     width: 100%;
-    background-color: green;
     white-space: nowrap;
     text-overflow: hidden;
     overflow: scroll;
-    background-color: darkslategray;;
+    background: #333644;
 }
 
 .commentText {
@@ -63,10 +77,17 @@ textarea {
 
 .writeBox {
     color: white;
+    background: #333644;
+    position: relative;
+    top: 20px;
+    height: 50px;
+    width: 400px;
 }
 
 .commentWhole {
   margin: 20px;
+  padding: 7px;
+  box-shadow: 0px 4px 2px white;
 }
 .sumUp {
   max-height:100px;

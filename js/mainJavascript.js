@@ -794,7 +794,6 @@ var browseNews = function (array, number) {
                 commentWhole.appendChild(commentUserPicture);
                 commentWhole.appendChild(commentUsername);
                 commentWhole.appendChild(commentText);
-                console.log(event.target.parentElement.parentElement.children[3]);
                 event.target.parentElement.parentElement.children[5].prepend(commentWhole);
               })
             }
