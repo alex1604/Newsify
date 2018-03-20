@@ -152,7 +152,12 @@ function clear(){
 
   canNotShow.style.display = "none"
   document.getElementById("ownCurrentTag").innerHTML = ""
-  slider.sliderContent.style.display = "block"
+
+  sliderContent.style.display = "block"
+   sliderContentSource.style.display = "block"
+   sliderContentCountry.style.display = "block"
+   sliderContentCategory.style.display = "block"
+   sliderContentLanguage.style.display = "block"
 
   tagsSlider.tagsContentChange.style.marginLeft = "0";
   tagsMinusSlide = 0;
@@ -191,11 +196,16 @@ function clear(){
   categoryMinusSlide = 1;
   languageMinusSlide = 1
 
+
+
   if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
     tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tags</div>";
 
   }else{
+    console.log()
+    if(tagsSlider.children[0] !== undefined){
     tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tag</div>";
+  }
 
   }
 
@@ -354,8 +364,12 @@ deleteOwnTag.addEventListener("click",function(){
           }
 
           if(tagsSlider.children.length === 1){
+            sliderContent.style.display = "block"
 
-            slider.sliderContent.style.display = "block"
+            sliderContentSource.style.display = "block"
+            sliderContentCountry.style.display = "block"
+            sliderContentCategory.style.display = "block"
+            sliderContentLanguage.style.display = "block"
 
           }
           document.getElementById("ownCurrentTag").innerHTML =  tagsSlider.children[tagsMinusSlide].innerHTML
@@ -1325,7 +1339,12 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 }
 
   if(tagsMinusSlide> 0){
-    slider.sliderContent.style.display = "none"
+    sliderContent.style.display = "none"
+
+    sliderContentSource.style.display = "none"
+    sliderContentCountry.style.display = "none"
+    sliderContentCategory.style.display = "none"
+    sliderContentLanguage.style.display = "none"
     sourceSlider.slider.style.opacity = "0";
     sourceSlider.sourceContentChange.style.display = "none"
     languageSlider.slider.style.opacity = "0";
@@ -1346,8 +1365,12 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
     console.log("tagsMinusSlide")
 
   }else{
+    sliderContent.style.display = "block"
 
-    slider.sliderContent.style.display = "block"
+    sliderContentSource.style.display = "block"
+    sliderContentCountry.style.display = "block"
+    sliderContentCategory.style.display = "block"
+    sliderContentLanguage.style.display = "block"
     clear()
 
   }

@@ -34,14 +34,19 @@ let ownCurrentTag = {
 
 let previousTagBtn = document.getElementById("prev");
 let nextTagBtn = document.getElementById("next");
-let sliderContent = document.getElementById("sliderContent");
+let sliderContent = document.getElementsByClassName("sliderContent")[0];
+let sliderContentSource = document.getElementsByClassName("sliderContentSource")[0];
+let sliderContentCountry = document.getElementsByClassName("sliderContentCountry")[0];
+let sliderContentCategory = document.getElementsByClassName("sliderContentCategory")[0];
+let sliderContentLanguage = document.getElementsByClassName("sliderContentLanguage")[0];
+
 let sliderContentChange = document.getElementById("sliderContentChange");
 
 let slider = {
 
     nextTagBtn: document.getElementById("nextInput"),
     prevTagBtn: document.getElementById("prevInput"),
-    sliderContent : document.getElementById("sliderContent"),
+    // sliderContent : document.getElementById("sliderContent"),
     sliderContentChange: document.getElementById("sliderContentChange"),
     children: document.getElementById("sliderContentChange").children,
     sourceName : document.getElementById("sourceName"),
