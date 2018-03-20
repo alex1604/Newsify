@@ -6,7 +6,7 @@ console.log("erikJS");
        let datum = new Date();
        let date = datum.getDate();
        let month = datum.getMonth() + 1;
-       let link = "http://cors-anywhere.herokuapp.com/http://history.muffinlabs.com/date";
+       let link = "https://cors-anywhere.herokuapp.com/http://history.muffinlabs.com/date";
        let footer = document.getElementById("footer");
        let divHistory = document.getElementById("divHistory");
        let eventYear = document.getElementById("eventYear"); 

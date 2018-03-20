@@ -43,14 +43,16 @@ i {
     font-size: 10px;
 }
 
-h3 {
+#logo {
     display: block;
     position: fixed;
     color: white;
+    font-size: 27px;
     font-weight: bold;
-    margin-left: 640px;
     margin-top: -30px;
     font-style: italic;
+    margin-left: 50%;
+    margin-top: -40px;
 }
 
 #time {
