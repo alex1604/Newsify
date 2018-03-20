@@ -550,30 +550,23 @@ var callback = function () {
 
   var getSuggestedNews = function () {
 
+    let savedTags = document.getElementsByTagName('span');
+    var regexp = /^[0-9]+([,.][0-9]+)?$/;
+    console.log(savedTags);
+
     let suggestedArticles = [];
     let searchWords = [];
     let url = urlBase + question;
     let myRegExp = /(inputTag">)#.+\</;
     let myReg = [];
 
-    db.ref('users/' + storedUser.uid + '/tags').once('value', function (snapshot) {
-      let allData = snapshot.val();
-      for (let object in allData) {
-        let exec = myRegExp.exec(allData[object]);
-        if (exec != null) {
-          myReg.push(exec);
-        }
+    for (i=0; i<savedTags.length; i++){
+      if (regexp.test(savedTags[i].id) && savedTags[i].innerHTML != '' && savedTags[i].innerHTML != ' '){
+        searchWords.push(savedTags[i].innerHTML.slice(1));
       }
-      for (let element in myReg) {
-        let word = myReg[element][0];
-        let length = word.length - 1;
-        word = word.slice(11, length);
-        if (word != null && word != '') {
-          searchWords.push(word);
-        } else {
-          continue
-        }
-      }
+    }
+    console.log(searchWords);
+        
       for (let x in searchWords) {
         url += 'q=' + searchWords[x];
         url += '&' + key;
@@ -607,7 +600,6 @@ var callback = function () {
           });
         url = urlBase + question;
       }
-    });
   }
 
 
