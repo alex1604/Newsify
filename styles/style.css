@@ -104,13 +104,12 @@
 
     .tags {
         height: 30px;
-        width: 100px;
-        padding:0;
+        width: 120px;
         margin:0;
         text-align: center;
         display: inline-block;
 color:rgba(255,255,255,0.7);
-line-height: 30px;
+line-height: 0px;
     position: relative;
 
       }
@@ -139,7 +138,7 @@ line-height: 30px;
 
 
       #sliderContentChange, #tagsSliderContentChange{
-        width:100px;
+        width:120px;
         margin-left: 0;
         transition-property: margin-left;
         transition-duration: 0.5s;
@@ -150,7 +149,7 @@ line-height: 30px;
       #sourceContentChange, #countryContentChange, #categoryContentChange, #languageContentChange {
         transition-property: margin-left;
         transition-duration: 0.5s;
-        width:100px;
+        width:120px;
       }
 
       #languageContentChange .tags, #sourceContentChange .tags, #countryContentChange .tags ,#categoryContentChange .tags {
@@ -202,7 +201,7 @@ line-height: 30px;
 
 
       #sliderContent{
-        width:100px;
+        width:120px;
 
         white-space: nowrap;
         background: #C65F63;
@@ -221,12 +220,11 @@ line-height: 30px;
 
       #sliderContent > div > div {
           display: inline-block;
-          width: 100px;
+          width: 120px;
           height: 17px;
           padding:7px 0px;
           text-align: center;
           font-size: 0.8em;
-          background: rgba(0,0,0,0.1)
       }
 
 
@@ -253,8 +251,7 @@ line-height: 30px;
 
      .currentTag{
        position: relative;
-       top:50px;
-
+top:100px;
        text-align: center;
      }
 
@@ -275,7 +272,7 @@ line-height: 30px;
       .divInput > div:first-child input{
         border:none;
         height: 30px;
-        width:100px;
+        width:120px;
         padding: 0 10px;
         border-left: 5px solid #d58c8c;
       }

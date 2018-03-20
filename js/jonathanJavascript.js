@@ -1340,7 +1340,12 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
     currentTag.categoryTag.innerHTML = "";
     currentTag.languageTag.innerHTML = "";
 
+
+    tagSwitch()
+    console.log("tagsMinusSlide")
+
   }else{
+
     slider.sliderContent.style.display = "block"
     clear()
 
@@ -1349,9 +1354,224 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 }
 
 
+function tagSwitch(tagsMinusSlide){
+
+    sourceCode = "";
+    countryCode = "";
+    categoryCode = "";
+    languageCode = ""
+
+    for(let i =0; i< ownCurrentTag.ownCurrentTag.children.length; i++){
+        let child = ownCurrentTag.ownCurrentTag.children[i];
+
+        console.log(sourceCode)
+        console.log(countryCode)
+        console.log(categoryCode)
+        console.log(languageCode)
+
+        if(i === 1){
+
+
+            if(child.innerHTML !== " "){
+
+                let source = child.innerHTML.substring(1, child.length)
+
+
+              switch (source) {
+
+                case "CNN":
+                  sourceCode = 'cnn';
+                  break;
+                  case "BBC":
+                    sourceCode = 'bbc-news';
+                    break;
+                    case "ABCNews":
+                      sourceCode = 'abc-news';
+                      break;
+                      case "AlJazeera":
+                        sourceCode = 'al-jazeera-english';
+                        break;
+                        case "ESPN":
+                          sourceCode = 'espn';
+                          break;
+                          case "FinancialTimes":
+                            sourceCode = 'financial-times';
+                            break;
+                            case "FoxNews":
+                              sourceCode = 'fox-news';
+                              break;
+                              case "DailyMail":
+                                sourceCode = 'daily-mail';
+                                break;
+                                case "TheGuardian":
+                                  sourceCode = 'the-guardian-uk';
+                                  break;
+                                  case "TheNewYorkTimes":
+                                    sourceCode = 'the-new-york-times';
+                                    break;
+                                    case "IGN":
+                                      sourceCode = 'ign';
+                                      break;
+                                      case "CNNSpanish":
+                                        sourceCode = 'cnn-es';
+                                        break;
+                                        case "Bloomberg":
+                                          sourceCode = 'bloomberg';
+                                          break;
+                                          case "CBS":
+                                            sourceCode = 'cbs-news';
+                                            break;
+                            default:
+
+              }
+            }
+        }
+
+        if(i === 2){
+
+              if(child.innerHTML !== " "){
+
+                let country = child.innerHTML.substring(1, child.length)
+
+                  console.log(country)
+                switch (country) {
+
+                  case "USA":
+                    countryCode = 'us';
+                    break;
+                  case "Canada":
+                    countryCode = 'ca';
+                    break;
+                  case "England":
+                    countryCode = 'gb';
+                    break;
+                  case "Germany":
+                  countryCode = 'de';
+                    break;
+                  case "France":
+                  countryCode = 'fr';
+                    break;
+                  case "Australia":
+                  countryCode = 'au';
+                    break;
+                  case "NewZeeland":
+                  countryCode = 'nz';
+                    break;
+                  case "China":
+                  countryCode = 'ch';
+                    break;
+                  case "Japan":
+                  countryCode = 'jp';
+                    break;
+                  case "Russia":
+                  countryCode = 'ru';
+                    break;
+                  case "Spain":
+                  countryCode = 'es';
+                    break;
+                  case "Sweden":
+                  countryCode = 'se';
+                    break;
+                  case "Norway":
+                  countryCode = 'no';
+                    break;
+                  case "Turkey":
+                  countryCode = 'tr';
+                    break;
+
+
+                  default:
+              }
+
+        }
+    }
+
+    if(i ===3){
+
+      if(child.innerHTML !== " "){
+
+        let category = child.innerHTML.substring(1, child.length)
+        console.log(category)
+
+        switch (category) {
+
+          case "Business":
+            categoryCode = 'business';
+            break;
+          case "Entertainment":
+            categoryCode = 'entertainment';
+            break;
+          case "General":
+            categoryCode = 'general';
+            break;
+          case "Health":
+            categoryCode = 'health';
+            break;
+          case "Science":
+            categoryCode = 'science';
+            break;
+          case "Sport":
+            categoryCode = 'sports';
+            break;
+          case "Technology":
+            categoryCode = 'technology';
+            break;
 
 
 
-function tagsSwitch(){
-  return "hej"
+          default:
+
+        }
+
+
+      }
+    }
+
+    if(i === 4){
+
+      let language = child.innerHTML.substring(1, child.length)
+
+      switch (language) {
+
+        case "Arabic":
+          languageCode = 'ar';
+          break;
+        case "English":
+          languageCode = 'en';
+          break;
+        case "Spanish":
+        languageCode = 'es';
+          break;
+        case "French":
+        languageCode = 'fr';
+          break;
+        case "Hebrew":
+        languageCode = 'he';
+          break;
+        case "Italian":
+        languageCode = 'it';
+          break;
+        case "Dutch":
+        languageCode = 'nl';
+          break;
+        case "Norweigan":
+        languageCode = 'no';
+          break;
+        case "Portugues":
+        languageCode = 'pt';
+          break;
+        case "Russian":
+        languageCode = 'ru';
+          break;
+        case "Swedish":
+        languageCode = 'se';
+          break;
+
+        default:
+
+      }
+    }
+
+}
+
 }
