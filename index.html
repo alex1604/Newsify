@@ -42,6 +42,8 @@
   </script>
 
   <header id="header">
+
+
     <div id="weatherCast">
       <i id="weather" class="wi wi-day-cloudy"></i>
       <div id="weatherLocation">Northville, Greenland</div>
@@ -70,6 +72,8 @@
       </div> -->
     </div>
 
+
+
     <!--<div id="passModal">
       <i class="fas fa-times" id='closeModal'></i>
       <form>
@@ -92,6 +96,7 @@
         </div>
       </form>
     </div> -->
+
 
     <div id="whenLoggedIn">
 
@@ -120,13 +125,19 @@
 
   </header>
 
-  <div id="buttons">
-    <button id="deleteOwnTag">Delete tag</button>
-    <button id="showFavouriteList">Show Favourites <span id="addNumberCount"></span></button>
-    <button id="suggestedNews">Suggested News</button>
+
+  <div id="moreOp">
+
+      <button type="button" name="button" id="more">More options</button>
+
   </div>
 
+  <div id="buttons">
+      <button id="deleteOwnTag">Delete tag</button>
+      <button id="showFavouriteList">Show Favourites <span id="addNumberCount"></span></button>
+      <button id="suggestedNews">Suggested News</button>
 
+  </div>
   <div id="beforeLoggedIn">
     <div class="slider">
 
@@ -372,15 +383,24 @@
   </div>
 
 
+  <div class="taggar">
+
+
   <div class="currentTag">
 
-    <button class="Btn" id="addTag">Add tag</button>
+    <div id="current">
+    <button class="Btn" id="addTag">Add tag</button><!--
 
-    <button class="Btn" id="searchBtn">Search</button>
+    --><button class="Btn" id="searchBtn">Search</button><!--
 
-    <button class="Btn" id="deleteTag">Clear tag</button>
+    --><button class="Btn" id="deleteTag">Clear tag</button><!--
+  -->
+    </div>
 
-    <h5>Your current tag is </h5>
+
+
+
+    <h5 id="yourCurrentTag">Your current tag is </h5>
 
     <div id="currentTag">
 
@@ -397,15 +417,22 @@
     </div>
   </div>
 
+  <div class="more">
+
+  </div>
 
 
 
-
+</div>
 
 
 
 
   </div>
+
+
+
+
 
 
 

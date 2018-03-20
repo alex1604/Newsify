@@ -1,4 +1,6 @@
 
+
+
 // Kollar vart man är i den första slidern. den man är på ska få klassen tags zIndex och de andra bara tags eftersom att man vill att den ska vara längst fram och synas beroende på vart minusSlide är.
 function checkZIndex(contentChangeLength, contentChangeCorrect, andraLength, andraContentChange, tredjeLength, tredjeContentChange, fjardeLength, fjardeContentChange){
 
@@ -297,6 +299,7 @@ deleteCurrentTag.addEventListener("click",function(){
 
 let y=2;
 
+if(deleteOwnTag !== null){
 deleteOwnTag.addEventListener("click",function(){
 
     db.ref("/users/"+ id + "/tags/").once("value",function(snapshot){
@@ -397,6 +400,8 @@ deleteOwnTag.addEventListener("click",function(){
 
 
 })
+
+}
 
 
 
@@ -1272,6 +1277,17 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 
   let nummer = i;
 
+  console.log(nummer)
+
+  if(nummer > 0){
+    canNotShow.style.display = "block"
+    canNotShow.style.marginTop = "-35px"
+    canNotShow.style.height = "10px"
+    canNotShow.innerHTML = ""
+  }else{
+    canNotShow.style.marginTop = "0px"
+
+  }
   tagsMinusSlide = nummer
   totalLeft =  (nummer * totalLeft).toString()
 
@@ -1295,6 +1311,7 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
           let ownSourceTag = document.createElement("span");
           ownSourceTag.setAttribute("id", "ownSourceTag");
           ownSourceTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+
 
 
           string += "<span id='ownSourceTag'>"+ownSourceTag.innerHTML+"</span>"
@@ -1602,3 +1619,22 @@ console.log(categoryCode)
 console.log(languageCode)
 
 }
+let more = document.getElementById("more")
+
+more.addEventListener("click",function(){
+
+  let button = document.getElementById("buttons")
+
+  console.log(more.innerHTML)
+  if(more.innerHTML === "More options"){
+
+    button.style.display = "flex"
+    more.innerHTML = "Hide options"
+  }else{
+    button.style.display = "none"
+    more.innerHTML = "More options"
+
+  }
+
+
+})

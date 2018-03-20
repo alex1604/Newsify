@@ -479,6 +479,18 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
+
+
+
+    console.log(window.innerWidth)
+
+
+  document.getElementById("moreOp").style.display = "block"
+  document.getElementById("buttons").style.display = "none"
+
+
+
+
     localStorage.setItem("username", user.displayName);
     localStorage.setItem("photoURL", user.photoURL);
     localStorage.setItem("userid", user.uid);
@@ -514,7 +526,9 @@ firebase.auth().onAuthStateChanged(function (user) {
     loginDiv.style.display = "none";
     loginPopup.style.display = "";
     document.getElementById('weatherCast').style.opacity = '0';
-
+    document.getElementsByClassName("more")[0].style.display = "none"
+    document.getElementById("moreOp").style.display = "none"
+    document.getElementById("buttons").style.display = "none"
     // No user is signed in.
   }
 });
