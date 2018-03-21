@@ -476,6 +476,8 @@ line-height: 0px;
       font-family: "Cardo", serif;
       font-weight:400;
       font-size: 20px;
+      max-height: 200px;
+      margin-bottom: 10px;
     }
 
     .articleImage{
