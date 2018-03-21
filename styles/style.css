@@ -18,13 +18,22 @@
 
       #canNotShow{
 
-          height: 40px;
           width: 100%;
-          top:280px;
+          top:40px;
+          padding:10px 0;
           position: absolute;
           display: none;
-          color:black;
+          color:rgba(255,255,255,0.8);
           text-align: center;
+          background: #C65F63;
+      }
+
+      #canNotShow span{
+        font-size: 0.8em;
+      }
+
+      #beforeLoggedIn {
+        position: relative;
       }
       #ShowAWhile{
         display: none;
@@ -38,24 +47,49 @@
         color:rgba(255,255,255,0.8);
       }
 
-      #buttons button{
+      #buttons  button{
           width:100px;
           text-align: center;
+          padding:10px 0px;
           margin:0;
-          padding-bottom: 2px;
-          background: #333644;
-          color:rgba(255,255,255,0.7);
+          background: ;
+          color:rgba(0,0,0,0.8);
           border:none;
-          border-bottom: 2px solid white;
-          margin-left: 10px;
+
+      }
+
+
+      .more{
+        display: none;
+      }
+      .taggar{
+        position: relative;
       }
 
       #buttons{
+
+        position: relative;
+        display: none;
+        margin-bottom: 5px;
+        justify-content: center;
+        width: 100%;
+        background:#333644;
+      }
+
+      #moreOp{
+        display: block;
+          background: #333644;
+          color: white;
+          font-size: 0.8em;
+          padding-top: 50px;
+          padding-left: 20px;
+      }
+      #moreOp button{
         background: #333644;
-        display: flex;
-        justify-content: flex-start;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        color: white;
+
+        border-radius: 0;
+        border:none;
       }
       header{
         padding-top: 50px;
@@ -84,7 +118,10 @@
 
       }
 
-      .sliderContent, #tagsSlider{
+
+
+
+      .sliderContent, .sliderContentSource, .sliderContentCountry, .sliderContentLanguage, .sliderContentCategory, #tagsSlider{
         width: 100px;
         white-space: nowrap;
         position: relative;
@@ -100,6 +137,10 @@
     #inputKeyword:focus{
       outline: none;
 
+    }
+
+    #yourCurrentTag{
+      marign:0;
     }
 
     .tags {
@@ -135,6 +176,9 @@ line-height: 0px;
         box-sizing:border-box;
         border:none;
       }
+
+
+
 
 
       #sliderContentChange, #tagsSliderContentChange{
@@ -173,13 +217,23 @@ line-height: 0px;
 
 
       .Btn{
-        margin-top: 20px;
-        padding:5px 30px;
+        padding:10px 30px;
         outline: none;
-        border: none;
         cursor: pointer;
-        border-left: 5px solid rgb(52, 55, 77);
-        border-right: 5px solid #34374C;
+      border:none;
+        background:rgba(255,255,255,1);
+        color:rgba(0,0,0,0.7);
+
+      }
+
+      #searchBtn:hover, #deleteTag:hover{
+        background:rgba(255,255,255,0.8);
+
+      }
+
+      #current{
+        background: #333644;
+        margin-top: 30px;
       }
 
       #addTag{
@@ -200,7 +254,8 @@ line-height: 0px;
       }
 
 
-      .sliderContent{
+      .sliderContent, .sliderContentSource, .sliderContentCountry, .sliderContentLanguage, .sliderContentCategory{
+
         width:120px;
 
         white-space: nowrap;
@@ -218,7 +273,8 @@ line-height: 0px;
 
 
 
-      .sliderContent > div > div {
+      .sliderContent > div > div, .sliderContentSource > div > div,.sliderContentCountry > div > div,.sliderContentLanguage > div > div,.sliderContentCategory > div > div {
+
           display: inline-block;
           width: 120px;
           height: 17px;
@@ -251,8 +307,11 @@ line-height: 0px;
 
      .currentTag{
        position: relative;
-top:100px;
+       top:12px;
        text-align: center;
+     }
+
+     .currentTag h5{
      }
 
       .searchField {
@@ -573,13 +632,10 @@ top:100px;
     } */
     /* end of Save,share and comment links*/
     #loginPopup > button{
-      height: 50px;
-      width: 100px;
       font-size:20px;
-      background-color: skyblue;
-      color:darkslategrey;
-      font-weight: bold;
-      border-radius: 10px;
+      color:rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0);
+      border:none;
     }
     #loginPopup{
       position: absolute;
@@ -590,5 +646,15 @@ top:100px;
     #loginPopup:hover > button{
       cursor:pointer;
       background-color: darkcyan;
-      color: white;
     }
+
+@media (min-width: 600px) {
+    body{
+    }
+
+    #buttons {
+      justify-content: flex-start;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+}

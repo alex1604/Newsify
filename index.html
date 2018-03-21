@@ -42,6 +42,8 @@
   </script>
 
   <header id="header">
+
+
     <div id="weatherCast">
       <i id="weather" class="wi wi-day-cloudy"></i>
       <div id="weatherLocation">Northville, Greenland</div>
@@ -54,7 +56,9 @@
     <div id="loginPopup">
       <button class="popupButton">Log in</button>
     </div>
-    <h5>Follow the news you actually want to follow</h5>
+
+
+    <h5 class="follow">Follow the news you actually want to follow</h5>
 
     <div id="login">
       <div id="googleLogo">
@@ -67,6 +71,8 @@
         <i class="fas fa-envelope fa-3x"></i>
       </div> -->
     </div>
+
+
 
     <!--<div id="passModal">
       <i class="fas fa-times" id='closeModal'></i>
@@ -90,6 +96,7 @@
         </div>
       </form>
     </div> -->
+
 
     <div id="whenLoggedIn">
 
@@ -118,19 +125,26 @@
 
   </header>
 
-  <div id="buttons">
-    <button id="deleteOwnTag">Delete tag</button>
-    <button id="showFavouriteOutput">Show Favourites <span id="addNumberCount"></span></button>
-    <button id="suggestedNews">Suggested News</button>
+
+
+  <div id="moreOp">
+
+      <button type="button" name="button" id="more">More options</button>
+
   </div>
 
+  <div id="buttons">
+      <button id="deleteOwnTag">Delete tag</button>
+      <button id="showFavouriteOutput">Show Favourites <span id="addNumberCount"></span></button>
+      <button id="suggestedNews">Suggested News</button>
 
+  </div>
   <div id="beforeLoggedIn">
     <div class="slider">
 
 
 
-      <div class = "sliderContent">
+      <div class="sliderContent">
 
         <div id="sliderContentChange">
           <input class="tags" id="inputKeyword" type="text" placeholder="Search"><!--
@@ -164,7 +178,8 @@
     <div class="slider" id="sourceSlider">
 
 
-      <div class = "sliderContent">
+      <div class="sliderContentSource">
+
 
         <div id="sourceContentChange">
           <div class="tags">
@@ -222,7 +237,8 @@
     <div class="slider" id="countrySlider">
 
 
-      <div class = "sliderContent">
+      <div class="sliderContentCountry">
+
 
         <div id="countryContentChange">
 
@@ -281,7 +297,8 @@
     <div class="slider" id="categorySlider">
 
 
-      <div class = "sliderContent">
+      <div class="sliderContentCategory">
+
 
         <div id="categoryContentChange">
 
@@ -319,7 +336,8 @@
     <div class="slider" id="languageSlider">
 
 
-      <div class = "sliderContent">
+      <div class="sliderContentLanguage">
+
 
         <div id="languageContentChange">
 
@@ -370,15 +388,24 @@
   </div>
 
 
+  <div class="taggar">
+
+
   <div class="currentTag">
 
-    <button class="Btn" id="addTag">Add tag</button>
+    <div id="current">
+    <button class="Btn" id="addTag">Add tag</button><!--
 
-    <button class="Btn" id="searchBtn">Search</button>
+    --><button class="Btn" id="searchBtn">Search</button><!--
 
-    <button class="Btn" id="deleteTag">Clear tag</button>
+    --><button class="Btn" id="deleteTag">Clear tag</button><!--
+  -->
+    </div>
 
-    <h5>Your current tag is </h5>
+
+
+
+    <h5 id="yourCurrentTag">Your current tag is </h5>
 
     <div id="currentTag">
 
@@ -394,6 +421,21 @@
 
     </div>
   </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
 
   <div id="newsContainer">
 
@@ -446,8 +488,8 @@ DEN ENDA GÅNGEN NI KAN SNAPA EN VARIABEL ÄR -> när ni skapar den i en FUNKTIO
 
 <!--Alejandros javascriptfil -->
 <script src="js/alejandroJavascript.js"></script>
+  
 <!--Albins javascriptfil -->
-
 <script src="js/albinJavascript.js"></script>
 <!--Jonas javascriptfil -->
 
