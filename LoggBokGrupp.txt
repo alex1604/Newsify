@@ -1,4 +1,5 @@
-Grupp GitChaos: Alejandra, Albin,Jonas,Erik, Jonathan.
+﻿Grupp GitChaos: Alejandra
+, Albin,Jonas,Erik, Jonathan.
 
 Vecka 8:
 
@@ -58,7 +59,8 @@ Torsdag den 1mars:
 Möte på discord kl 10. Idag arbetas det med att hjälpas åt att färdigställa de funktioner som ska göras denna vecka. Vi kommer ha ett återkopplande diskussion senare under dagen via slack.
 
 Fredag den 2mars: 
-Scrum möte på morgonen där vi gick igenom vår dagliga skörd av kodning. Vi utförde förbättringar på autentisering och väder api färdigställdes samt att vi la till slider för taggar. Footern fick en genomgång med förändringar samt så jobbades det med sparning av artiklar till databas/user. Vi gick även igenom vad som ska presenteras på sprintreview som sker på måndag.
+Scrum möte på morgonen där vi gick igenom vår dagliga skörd av kodning. Vi utförde förbättringar på autentisering och väder api färdigställdes samt att vi la till slider för taggar. 
+Footern fick en genomgång med förändringar samt så jobbades det med sparning av artiklar till databas/user. Vi gick även igenom vad som ska presenteras på sprintreview som sker på måndag.
 
 Måndag 5:e Mars:
 Möte på morgonen och sammanförde kod till Sprint Review. Efterråt ett samlingsmöte med ett par diskussioner om vad som behöver göras näst. Resterande dag arbete med kod.
@@ -81,6 +83,18 @@ Dåligt förberedande inför redovisningen. Något som vi måste jobba mycket b�
 Onsdag 14 
 Inte mycket gjort idag då vi hade företag på besök i skolan.
 
-Tors 
+Torsdag 15
 Möte klockan 10. Fortsatt arbete med kommentarer och designen om hur det ska se ut. Göra om hela slidern så att man inte behöver klicka sig vidare bara ett steg för sig.
 Fortsatt jobb med sparade artiklar.
+
+Fredag 16
+Möte klockan 10. Fortsatt med kommentarer samt slidern som blev färdiga precis innan helgen.
+
+Måndag 19
+Under sprinten får vi reda på att vi har en del buggar att utreda samt att vi måste föra sidan  Efter sprinten har vi möte ang detta och vem som gör vad.
+
+Tisdag 20
+Möte kl 10 på discord, tills på fredag ska sidan vara responsiv! samt ska konsollen vara tom.
+
+Onsdag 21
+Möte kl 10 i skolan, idag har vi alla fokuserat på att göra sidan responsiv för alla platformer.

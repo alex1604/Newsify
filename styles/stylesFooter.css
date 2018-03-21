@@ -43,14 +43,16 @@ i {
     font-size: 10px;
 }
 
-h3 {
+#logo {
     display: block;
     position: fixed;
     color: white;
+    font-size: 27px;
     font-weight: bold;
-    margin-left: 640px;
     margin-top: -30px;
     font-style: italic;
+    margin-left: 50%;
+    margin-top: -40px;
 }
 
 #time {
@@ -65,3 +67,37 @@ h3 {
     font-weight: bold;
     font-size: 10px;
 }
+
+/**** MAX 1200 - MIN ****/
+
+@media screen and (max-width: 1200px) {
+    #logo {
+        display: none;
+    }
+    
+    #divHistory {
+        display: none;
+    }
+    
+    #eventYear {
+        display: none;
+    }
+    
+    #eventText {
+        display: none;
+    }
+    
+    #time {
+        top: 40px;
+        font-size: 12px;
+        margin-left: 50%;
+        margin-right: 50%;
+    }
+    
+    .fa-university {
+        display: none;
+        
+    }
+
+}
+

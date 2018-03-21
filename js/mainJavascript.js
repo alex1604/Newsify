@@ -30,7 +30,7 @@ const db = firebase.database()
 
 let gmailprovider = new firebase.auth.GoogleAuthProvider();
 
-loginPopup.addEventListener("click", function (event) {
+loginPopup.children[0].addEventListener("click", function (event) {
   loginPopup.style.display = "none";
   loginDiv.style.display = "";
 })
@@ -269,9 +269,6 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
         email: userMail,
         tags: {
 
-        },
-        favourites: {
-          example: "example",
         },
       })
 
@@ -751,6 +748,8 @@ var browseNews = function (array, number) {
               }
             })
           }
+        })
+        db.ref("/Articles/").once("value", function (snapshot){
           let writeBox = document.createElement("textarea");
           let commentButton = document.createElement("button");
           writeBox.type = "input";
