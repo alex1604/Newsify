@@ -131,10 +131,6 @@ var callback = function () {
     document.getElementById('min').innerHTML = min + 'ºC' + ' / ';
     document.getElementById('max').innerHTML = max + 'ºC';
 
-    document.getElementById('weatherLocation2').innerHTML = weatherLocation;
-    document.getElementById('min2').innerHTML = min + 'ºC' + ' / ';
-    document.getElementById('max2').innerHTML = max + 'ºC';
-
   };
 
   var getWeather = function (ltd, lng, urlWeather) {
