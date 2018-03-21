@@ -328,9 +328,6 @@ top:100px;
       color:white;
       text-shadow:0px 0px 20px rgba(255,255,255,0.4);
     }
-    body{
-      width:100% auto;
-    }
 
     .fa-angle-left, .fa-angle-right{
       display: flex;
@@ -404,7 +401,6 @@ top:100px;
     .sumUp{
       align-self: flex-end;
       overflow: hidden;
-      height:40%;
       text-align: justify;
       font-family: "Cardo", serif;
       font-weight:400;
@@ -582,6 +578,9 @@ top:100px;
       border-radius: 10px;
     }
     #loginPopup{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
       position: absolute;
       top: 7%;
       left: 50%;
