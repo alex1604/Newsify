@@ -68,3 +68,36 @@ i {
     font-size: 10px;
 }
 
+/**** MAX 1200 - MIN ****/
+
+@media screen and (max-width: 1200px) {
+    #logo {
+        display: none;
+    }
+    
+    #divHistory {
+        display: none;
+    }
+    
+    #eventYear {
+        display: none;
+    }
+    
+    #eventText {
+        display: none;
+    }
+    
+    #time {
+        top: 40px;
+        font-size: 12px;
+        margin-left: 50%;
+        margin-right: 50%;
+    }
+    
+    .fa-university {
+        display: none;
+        
+    }
+
+}
+
