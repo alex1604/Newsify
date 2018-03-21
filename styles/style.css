@@ -399,9 +399,6 @@ line-height: 0px;
       color:white;
       text-shadow:0px 0px 20px rgba(255,255,255,0.4);
     }
-    body{
-      width:100% auto;
-    }
 
     .fa-angle-left, .fa-angle-right{
       display: flex;
@@ -475,11 +472,12 @@ line-height: 0px;
     .sumUp{
       align-self: flex-end;
       overflow: hidden;
-      height:40%;
       text-align: justify;
       font-family: "Cardo", serif;
       font-weight:400;
       font-size: 20px;
+      max-height: 200px;
+      margin-bottom: 10px;
     }
 
     .articleImage{
@@ -658,6 +656,9 @@ line-height: 0px;
       border:none;
     }
     #loginPopup{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
       position: absolute;
       top: 15%;
       left: 50%;
@@ -743,7 +744,6 @@ line-height: 0px;
   .sumUp{
     align-self: flex-end;
     overflow: hidden;
-    height:40%;
     text-align: justify;
     font-family: "Cardo", serif;
     font-weight:400;
