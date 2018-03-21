@@ -36,8 +36,7 @@ login.addEventListener("click", function (event) {
   //simple click event on the "login" div
   firebase.auth().signInWithPopup(gmailprovider).then(function (result) {
 
-    //console.log("log-in button");
-
+    console.log("logging in")
     signedInNowOrBefore = "now";
   }).catch(function (error) {
     console.log("Error: " + error);
@@ -374,11 +373,11 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
         if (tagsSlider.children.length === 1 || tagsSlider.children.length > 2) {
 
-          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tags</ul>";
+          tagsSlider.children[0].innerHTML = "<div class='tags'>" + (tagsSlider.children.length - 1) + " saved tags</div>";
 
         } else {
 
-          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</ul>";
+          tagsSlider.children[0].innerHTML = "<div class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</div>";
 
         }
 
@@ -464,10 +463,10 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
 
 
         if (tagsSlider.children.length === 1 || tagsSlider.children.length > 2) {
-          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tags</ul>";
+          tagsSlider.children[0].innerHTML = "<div class='tags'>" + (tagsSlider.children.length - 1) + " saved tags</div>";
 
         } else {
-          tagsSlider.children[0].innerHTML = "<ul class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</ul>";
+          tagsSlider.children[0].innerHTML = "<div class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</div>";
 
         }
 
@@ -480,6 +479,18 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
+
+
+
+    console.log(window.innerWidth)
+
+
+  document.getElementById("moreOp").style.display = "block"
+  document.getElementById("buttons").style.display = "none"
+
+
+
+
     localStorage.setItem("username", user.displayName);
     localStorage.setItem("photoURL", user.photoURL);
     localStorage.setItem("userid", user.uid);
@@ -489,7 +500,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById('weatherCast').style.opacity = '1';
 
     document.getElementById("tagsSliderContentChange").innerHTML = "";
-    document.getElementById("tagsSliderContentChange").innerHTML = "<ul class='tags'>" + tagsSlider.children.length + " saved tags</ul>";
+    document.getElementById("tagsSliderContentChange").innerHTML = "<div class='tags'>" + tagsSlider.children.length + " saved tags</div>";
 
 
     tagsContentChangeWidth = tagsSlider.tagsContentChange.offsetWidth;
@@ -515,7 +526,9 @@ firebase.auth().onAuthStateChanged(function (user) {
     loginDiv.style.display = "none";
     loginPopup.style.display = "";
     document.getElementById('weatherCast').style.opacity = '0';
-
+    document.getElementsByClassName("more")[0].style.display = "none"
+    document.getElementById("moreOp").style.display = "none"
+    document.getElementById("buttons").style.display = "none"
     // No user is signed in.
   }
 });

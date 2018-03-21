@@ -231,13 +231,14 @@ var callback = function () {
     if (url !== 'https://newsapi.org/v2/top-headlines?apiKey=ca2d5b8c76a84ec68544ecdeadf04043') {
 
       let req = new Request(url);
-
       fetch(req)
         .then(function (response) {
+
 
           return response.json();
 
         }).then(function (object) {
+
 
           let articles = object.articles;
 
@@ -393,7 +394,7 @@ var callback = function () {
         url += 'q=' + searchWords[x];
         url += '&' + key;
         let req = new Request(url);
-
+        console.log(req)
         fetch(req)
           .then(function (response) {
             return response.json();
@@ -461,6 +462,9 @@ var callback = function () {
       getAllNews();
     }
   });
+
+  
+
 
   // Regular expression for suggested articles from database ^#.+\<
   // (inputTag) ^(inputTag">#).+\<

@@ -1,4 +1,6 @@
 
+
+
 // Kollar vart man är i den första slidern. den man är på ska få klassen tags zIndex och de andra bara tags eftersom att man vill att den ska vara längst fram och synas beroende på vart minusSlide är.
 function checkZIndex(contentChangeLength, contentChangeCorrect, andraLength, andraContentChange, tredjeLength, tredjeContentChange, fjardeLength, fjardeContentChange){
 
@@ -152,7 +154,12 @@ function clear(){
 
   canNotShow.style.display = "none"
   document.getElementById("ownCurrentTag").innerHTML = ""
-  slider.sliderContent.style.display = "block"
+
+  sliderContent.style.display = "block"
+   sliderContentSource.style.display = "block"
+   sliderContentCountry.style.display = "block"
+   sliderContentCategory.style.display = "block"
+   sliderContentLanguage.style.display = "block"
 
   tagsSlider.tagsContentChange.style.marginLeft = "0";
   tagsMinusSlide = 0;
@@ -191,11 +198,16 @@ function clear(){
   categoryMinusSlide = 1;
   languageMinusSlide = 1
 
+
+
   if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
-    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+    tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tags</div>";
 
   }else{
-    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+    console.log()
+    if(tagsSlider.children[0] !== undefined){
+    tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tag</div>";
+  }
 
   }
 
@@ -213,10 +225,10 @@ addTagBtn.addEventListener("click", function () {
   let innerHTML = document.getElementById("currentTag").innerHTML;
 
   if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
-    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+    tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tags</div>";
 
   }else{
-    tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+    tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tag</div>";
 
   }
 
@@ -229,6 +241,7 @@ addTagBtn.addEventListener("click", function () {
 
     div.className = "tags";
     div.innerHTML = innerHTML;
+    div.style.textAlign = "center"
     for(let i =0; i< div.children.length; i++){
         div.children[i].setAttribute("id", Math.random().toFixed(2))
     }
@@ -286,6 +299,7 @@ deleteCurrentTag.addEventListener("click",function(){
 
 let y=2;
 
+if(deleteOwnTag !== null){
 deleteOwnTag.addEventListener("click",function(){
 
     db.ref("/users/"+ id + "/tags/").once("value",function(snapshot){
@@ -345,16 +359,20 @@ deleteOwnTag.addEventListener("click",function(){
 
           }
           if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
-            tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tags</ul>";
+            tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tags</div>";
 
           }else{
-            tagsSlider.children[0].innerHTML= "<ul class='tags'>" +(tagsSlider.children.length -1) + " saved tag</ul>";
+            tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tag</div>";
 
           }
 
           if(tagsSlider.children.length === 1){
+            sliderContent.style.display = "block"
 
-            slider.sliderContent.style.display = "block"
+            sliderContentSource.style.display = "block"
+            sliderContentCountry.style.display = "block"
+            sliderContentCategory.style.display = "block"
+            sliderContentLanguage.style.display = "block"
 
           }
           document.getElementById("ownCurrentTag").innerHTML =  tagsSlider.children[tagsMinusSlide].innerHTML
@@ -382,6 +400,8 @@ deleteOwnTag.addEventListener("click",function(){
 
 
 })
+
+}
 
 
 
@@ -996,48 +1016,48 @@ languageSwitch(languageMinusSlide)
         if(sourceMinusSlide>1 && languageMinusSlide >1 && slider.children[0].value !== ""){
 
             if(minusSlide === 3){
-              canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename, Language or Key press clear to reset your tag</h4>"
+              canNotShow.innerHTML = "<span>Sorry you can not combine Country with Sourcename, Language or Key press clear to reset your tag</span>"
 
             }else{
-              canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename, Language or Key press clear to reset your tag</h4>"
+              canNotShow.innerHTML = "<span>Sorry you can not combine Category with Sourcename, Language or Key press clear to reset your tag</span>"
 
             }
 
         }
         else if(sourceMinusSlide>1 && languageMinusSlide >1){
           if(minusSlide === 3){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename or Language press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Sourcename or Language press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename or Language press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Sourcename or Language press clear to reset your tag</span>"
 
           }
 
         }else if(languageMinusSlide>1 && slider.children[0].value !== ""){
           if(minusSlide === 3){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Language or Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Language or Key press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Language or Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Language or Key press clear to reset your tag</span>"
 
           }
 
         }else if(sourceMinusSlide>1 && slider.children[0].value !== ""){
           if(minusSlide === 3){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename or Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Sourcename or Key press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename or Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Sourcename or Key press clear to reset your tag</span>"
 
           }
 
 
         }else if(slider.children[0].value !== ""){
           if(minusSlide === 3){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Key press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Sourcename press clear to reset your tag</span>"
 
           }
 
@@ -1046,28 +1066,28 @@ languageSwitch(languageMinusSlide)
 
           if(minusSlide === 3){
 
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Sourcename press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Sourcename press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Sourcename press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Sourcename press clear to reset your tag</span>"
 
           }
         }else if(languageMinusSlide >1){
           if(minusSlide === 3){
 
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Language press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Language press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Language press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Language press clear to reset your tag</span>"
 
           }
 
         }else if(    slider.children[0].value !== ""){
           if(minusSlide === 3){
 
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Country with Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Country with Key press clear to reset your tag</span>"
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Category with Key press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Category with Key press clear to reset your tag</span>"
 
           }
 
@@ -1075,6 +1095,8 @@ languageSwitch(languageMinusSlide)
 
       }else{
         canNotShow.innerHTML= ""
+        canNotShow.style.display = "none"
+
       }
 
 
@@ -1096,39 +1118,39 @@ languageSwitch(languageMinusSlide)
       if(countryMinusSlide >1 && categoryMinusSlide >1){
 
         if(minusSlide ===1){
-          canNotShow.innerHTML = "<h4>Sorry you can not combine Key with Country or Category press clear to reset your tag</h4>"
+          canNotShow.innerHTML = "<span>Sorry you can not combine Key with Country or Category press clear to reset your tag</span>"
 
         }else if(minusSlide === 2){
-          canNotShow.innerHTML = "<h4>Sorry you can not combine Sourcename with Country or Category press clear to reset your tag</h4>"
+          canNotShow.innerHTML = "<span>Sorry you can not combine Sourcename with Country or Category press clear to reset your tag</span>"
 
         }else{
-          canNotShow.innerHTML = "<h4>Sorry you can not combine Language with Country or Category press clear to reset your tag</h4>"
+          canNotShow.innerHTML = "<span>Sorry you can not combine Language with Country or Category press clear to reset your tag</span>"
 
         }
 
       }  else if(countryMinusSlide>1){
 
           if(minusSlide === 1){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Key with Country press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Key with Country press clear to reset your tag</span>"
 
           }else if(minusSlide=== 2){
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Sourcename with Country press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Sourcename with Country press clear to reset your tag</span>"
 
           }else{
-            canNotShow.innerHTML = "<h4>Sorry you can not combine Language with Country press clear to reset your tag</h4>"
+            canNotShow.innerHTML = "<span>Sorry you can not combine Language with Country press clear to reset your tag</span>"
 
           }
 
         }else if(categoryMinusSlide>1){
 
             if(minusSlide === 1){
-              canNotShow.innerHTML = "<h4>Sorry you can not combine Key with Category press clear to reset your tag</h4>"
+              canNotShow.innerHTML = "<span>Sorry you can not combine Key with Category press clear to reset your tag</span>"
 
             }else if(minusSlide === 2){
-              canNotShow.innerHTML = "<h4>Sorry you can not combine Sourcename with Category press clear to reset your tag</h4>"
+              canNotShow.innerHTML = "<span>Sorry you can not combine Sourcename with Category press clear to reset your tag</span>"
 
             }else {
-              canNotShow.innerHTML = "<h4>Sorry you can not combine Language with Category press clear to reset your tag</h4>"
+              canNotShow.innerHTML = "<span>Sorry you can not combine Language with Category press clear to reset your tag</span>"
 
             }
 
@@ -1138,6 +1160,8 @@ languageSwitch(languageMinusSlide)
 
     }else{
       canNotShow.innerHTML= ""
+      canNotShow.style.display = "none"
+
     }
 
 
@@ -1253,6 +1277,17 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 
   let nummer = i;
 
+  console.log(nummer)
+
+  if(nummer > 0){
+    canNotShow.style.display = "block"
+    canNotShow.style.marginTop = "-35px"
+    canNotShow.style.height = "10px"
+    canNotShow.innerHTML = ""
+  }else{
+    canNotShow.style.marginTop = "0px"
+
+  }
   tagsMinusSlide = nummer
   totalLeft =  (nummer * totalLeft).toString()
 
@@ -1276,6 +1311,7 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
           let ownSourceTag = document.createElement("span");
           ownSourceTag.setAttribute("id", "ownSourceTag");
           ownSourceTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+
 
 
           string += "<span id='ownSourceTag'>"+ownSourceTag.innerHTML+"</span>"
@@ -1324,7 +1360,12 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 }
 
   if(tagsMinusSlide> 0){
-    slider.sliderContent.style.display = "none"
+    sliderContent.style.display = "none"
+
+    sliderContentSource.style.display = "none"
+    sliderContentCountry.style.display = "none"
+    sliderContentCategory.style.display = "none"
+    sliderContentLanguage.style.display = "none"
     sourceSlider.slider.style.opacity = "0";
     sourceSlider.sourceContentChange.style.display = "none"
     languageSlider.slider.style.opacity = "0";
@@ -1345,8 +1386,12 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
     console.log("tagsMinusSlide")
 
   }else{
+    sliderContent.style.display = "block"
 
-    slider.sliderContent.style.display = "block"
+    sliderContentSource.style.display = "block"
+    sliderContentCountry.style.display = "block"
+    sliderContentCategory.style.display = "block"
+    sliderContentLanguage.style.display = "block"
     clear()
 
   }
@@ -1364,10 +1409,7 @@ function tagSwitch(tagsMinusSlide){
     for(let i =0; i< ownCurrentTag.ownCurrentTag.children.length; i++){
         let child = ownCurrentTag.ownCurrentTag.children[i];
 
-        console.log(sourceCode)
-        console.log(countryCode)
-        console.log(categoryCode)
-        console.log(languageCode)
+
 
         if(i === 1){
 
@@ -1433,7 +1475,6 @@ function tagSwitch(tagsMinusSlide){
 
                 let country = child.innerHTML.substring(1, child.length)
 
-                  console.log(country)
                 switch (country) {
 
                   case "USA":
@@ -1491,7 +1532,6 @@ function tagSwitch(tagsMinusSlide){
       if(child.innerHTML !== " "){
 
         let category = child.innerHTML.substring(1, child.length)
-        console.log(category)
 
         switch (category) {
 
@@ -1573,5 +1613,28 @@ function tagSwitch(tagsMinusSlide){
     }
 
 }
+console.log(sourceCode)
+console.log(countryCode)
+console.log(categoryCode)
+console.log(languageCode)
 
 }
+let more = document.getElementById("more")
+
+more.addEventListener("click",function(){
+
+  let button = document.getElementById("buttons")
+
+  console.log(more.innerHTML)
+  if(more.innerHTML === "More options"){
+
+    button.style.display = "flex"
+    more.innerHTML = "Hide options"
+  }else{
+    button.style.display = "none"
+    more.innerHTML = "More options"
+
+  }
+
+
+})
