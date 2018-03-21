@@ -44,8 +44,11 @@ console.log("erikJS");
         */
        // window.addEventListener("scroll", whenScroll)
 };
-window.addEventListener("scroll",function() { 
+window.addEventListener("scroll",function() {
+    let footer = document.getElementById('footer');
+     
     if(window.scrollY > 500) {
-       // din kod
+       footer.style.transition = 'all 1s ease';
+       footer.style.opacity = '1';
     }
  },false);
