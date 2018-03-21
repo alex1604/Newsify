@@ -176,7 +176,7 @@ var callback = function () {
     console.log(ltd + ' / ' + lng + ' / ' + urlWeather);
   }
 
-  //getLocation();
+  getLocation();
   //raden är kommenterat pga begränsat antal anrop till API:t
 
 
