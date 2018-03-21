@@ -1,6 +1,7 @@
 
 
-
+canNotShow.innerHTML= ""
+canNotShow.style.display = "block"
 // Kollar vart man är i den första slidern. den man är på ska få klassen tags zIndex och de andra bara tags eftersom att man vill att den ska vara längst fram och synas beroende på vart minusSlide är.
 function checkZIndex(contentChangeLength, contentChangeCorrect, andraLength, andraContentChange, tredjeLength, tredjeContentChange, fjardeLength, fjardeContentChange){
 
@@ -152,8 +153,11 @@ function showArrowsOrNot(minusSlide,prevBtn,nextBtn, contentChangeLength ){
 
 function clear(){
 
-  canNotShow.style.display = "none"
+  canNotShow.style.display = "block"
   document.getElementById("ownCurrentTag").innerHTML = ""
+
+  currenTag.style.top = "-30px"
+  canNotShow.style.top = "40px"
 
   sliderContent.style.display = "block"
    sliderContentSource.style.display = "block"
@@ -334,6 +338,9 @@ deleteOwnTag.addEventListener("click",function(){
           tag.parentNode.removeChild(tag);
 
 
+
+
+
           db.ref("/users/"+ id + "/tags/"+ proppet).remove()
 
           if(tagsMinusSlide === tagsSlider.children.length){
@@ -367,6 +374,10 @@ deleteOwnTag.addEventListener("click",function(){
           }
 
           if(tagsSlider.children.length === 1){
+
+            canNotShow.style.top = "40px"
+            currenTag.style.top = "-30px"
+
             sliderContent.style.display = "block"
 
             sliderContentSource.style.display = "block"
@@ -968,6 +979,15 @@ sourceSwitch(sourceMinusSlide)
 countrySwitch(countryMinusSlide)
 categorySwitch(categoryMinusSlide)
 languageSwitch(languageMinusSlide)
+console.log(minusSlide)
+
+  if(minusSlide >1){
+
+    currenTag.style.top = "5px"
+  }else{
+    currenTag.style.top = "-30px"
+
+  }
 
   if(minusSlide !==5){
     languageSlider.slider.style.opacity = "0";
@@ -1095,7 +1115,7 @@ languageSwitch(languageMinusSlide)
 
       }else{
         canNotShow.innerHTML= ""
-        canNotShow.style.display = "none"
+        canNotShow.style.display = "block"
 
       }
 
@@ -1110,8 +1130,7 @@ languageSwitch(languageMinusSlide)
     languageSlider.slider.style.opacity = "0";
     languageSlider.languageContentChange.style.display = "none"
 
-    slider.inputKeyword.disabled = true
-    slider.inputKeyword.placeholder = "Clear tag"
+
 
     if(minusSlide === 1 || minusSlide === 2 || minusSlide === 5){
       canNotShow.style.display = "block"
@@ -1160,7 +1179,7 @@ languageSwitch(languageMinusSlide)
 
     }else{
       canNotShow.innerHTML= ""
-      canNotShow.style.display = "none"
+      canNotShow.style.display = "block"
 
     }
 
@@ -1277,15 +1296,25 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 
   let nummer = i;
 
-  console.log(nummer)
 
-  if(nummer > 0){
-    canNotShow.style.display = "block"
-    canNotShow.style.marginTop = "-35px"
-    canNotShow.style.height = "10px"
-    canNotShow.innerHTML = ""
+
+  if(minusSlide>1){
+    console.log(minusSlide)
+
   }else{
-    canNotShow.style.marginTop = "0px"
+
+
+  }
+
+  if(nummer>0){
+    console.log(nummer)
+    currenTag.style.top = "-25px"
+
+    canNotShow.style.top = "0px"
+
+
+  }else{
+    canNotShow.style.top = "40px"
 
   }
   tagsMinusSlide = nummer

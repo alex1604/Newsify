@@ -12,6 +12,7 @@ let tagsSlider ={
     children:  document.getElementById("tagsSliderContentChange").children,
 }
 
+let currenTag = document.getElementsByClassName("currentTag")[0]
 
 let currentTag = {
 

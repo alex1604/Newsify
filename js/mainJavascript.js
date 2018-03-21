@@ -1,5 +1,8 @@
 console.log("mainJS");
 
+
+
+
 let signedInNowOrBefore = "before"
 
 let whenLoggedIn = document.getElementById("whenLoggedIn");
@@ -215,6 +218,8 @@ let loginHeader = function (user) {
     firebase.auth().signOut().then(function () {
       var header = document.getElementById("header");
       header.removeChild(header.lastChild);
+      document.getElementById("moreOp").style.display = "none"
+      document.getElementById("buttons").style.display = "none"
     })
       .catch(function (error) {
         console.log("error: " + error);
@@ -482,11 +487,26 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
+    if(window.innerWidth > 600){
+
+        document.getElementById("buttons").style.display = "block"
+    }else{
+      document.getElementById("buttons").style.display = "none"
+
+    }
     console.log(window.innerWidth)
 
+    window.addEventListener("resize", function(){
 
-  document.getElementById("moreOp").style.display = "block"
-  document.getElementById("buttons").style.display = "none"
+        console.log(window.innerWidth)
+        if(window.innerWidth > 600){
+
+            document.getElementById("buttons").style.display = "block"
+        }else{
+          document.getElementById("buttons").style.display = "none"
+
+        }
+    })
 
 
 
@@ -526,7 +546,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     loginDiv.style.display = "none";
     loginPopup.style.display = "";
     document.getElementById('weatherCast').style.opacity = '0';
-    document.getElementsByClassName("more")[0].style.display = "none"
+    // document.getElementsByClassName("more")[0].style.display = "none"
     document.getElementById("moreOp").style.display = "none"
     document.getElementById("buttons").style.display = "none"
     // No user is signed in.
