@@ -32,19 +32,19 @@ console.log("erikJS");
                eventYear.innerHTML = "Year: " + event1Year;
                eventText.innerHTML = event1Text;
 
-     });
+           });
      
-};
+    };
 
-window.addEventListener("scroll",function() {
-    let footer = document.getElementById('footer');
+    window.addEventListener("scroll",function() {
+        let footer = document.getElementById('footer');
      
-    if(window.scrollY > 500) {
-       footer.style.transition = 'opacity 1s';
-       footer.style.opacity = '1';
-    } else {
-        footer.style.transition = 'opacity 1s';
-        footer.style.opacity = '0'; 
+        if(window.scrollY > 500) {
+            footer.style.transition = 'opacity 1s';
+            footer.style.opacity = '1';
+    }   else {
+            footer.style.transition = 'opacity 1s';
+            footer.style.opacity = '0'; 
     }
  },false);
 
