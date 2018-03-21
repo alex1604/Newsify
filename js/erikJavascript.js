@@ -44,3 +44,8 @@ console.log("erikJS");
         */
        // window.addEventListener("scroll", whenScroll)
 };
+window.addEventListener("scroll",function() { 
+    if(window.scrollY > 500) {
+       // din kod
+    }
+ },false);
