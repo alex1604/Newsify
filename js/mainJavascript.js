@@ -34,6 +34,10 @@ loginPopup.children[0].addEventListener("click", function (event) {
   loginPopup.style.display = "none";
   loginDiv.style.display = "";
 })
+loginDiv.addEventListener("click", function(event){
+  loginPopup.style.display = "";
+  loginDiv.style.display = "none";
+})
 
 login.addEventListener("click", function (event) {
   //simple click event on the "login" div
