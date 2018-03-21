@@ -185,12 +185,13 @@ var callback = function () {
 
 
   getAllNews();
-
+  let tagCode = ""
   // Function that retrieves news corresponding to the user's criteria:
 
   var getSomeNews = function (queryString, category, country, language, source) {
 
-    let tagCode = document.getElementById('inputTag').innerHTML.slice(1);
+     
+    console.log(tagCode)
     let url = urlBase + question;
 
     searchArray.push(tagCode);
@@ -443,10 +444,18 @@ var callback = function () {
       }
     }
 
+
     var childDivsRegular = document.getElementById('currentTag').getElementsByTagName('span');
 
+
     for (i = 0; i < childDivsRegular.length; i++) {
+
       let childDivRegular = childDivsRegular[i];
+      console.log(childDivRegular.id)
+
+      if(childDivRegular.id === "inputTag"){
+        tagCode = childDivRegular.innerHTML.slice(1)
+      }
       if (childDivRegular.innerHTML != '') {
         boo = false;
         noNews = false;
@@ -463,7 +472,7 @@ var callback = function () {
     }
   });
 
-  
+
 
 
   // Regular expression for suggested articles from database ^#.+\<
