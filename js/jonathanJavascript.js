@@ -208,7 +208,6 @@ function clear(){
     tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tags</div>";
 
   }else{
-    console.log()
     if(tagsSlider.children[0] !== undefined){
     tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tag</div>";
   }
@@ -224,7 +223,6 @@ function clear(){
 
 addTagBtn.addEventListener("click", function () {
 
-  // console.log(document.getElementById('ownInputTag').innerHTML.slice(1))
   sourceCode = "";
   countryCode = "";
   categoryCode = "";
@@ -344,15 +342,40 @@ deleteOwnTag.addEventListener("click",function(){
           tag.parentNode.removeChild(tag);
 
 
-
           sourceCode = "";
           countryCode = "";
           categoryCode = "";
           languageCode = ""
 
+
+          console.log(tagsMinusSlide)
+
+          for(let i=0; i< tagsSlider.children.length; i++){
+
+            if(tagsSlider.children[i] !== undefined){
+
+                tagsSlider.children[i].addEventListener("click",function(){
+
+                    let tag = tagsSlider.children[i];
+
+                    tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
+
+
+                })
+
+            }
+          }
+
+
+
+
           db.ref("/users/"+ id + "/tags/"+ proppet).remove()
 
           if(tagsMinusSlide === tagsSlider.children.length){
+
+
+
+
 
             let totalLeft;
 
@@ -364,13 +387,69 @@ deleteOwnTag.addEventListener("click",function(){
 
             tagsMinusSlide--
 
+            if(tagsMinusSlide ===0){
+            document.getElementById("ownCurrentTag").innerHTML = "";
+          }
 
+
+            console.log(tagsMinusSlide)
+
+            if(tagsMinusSlide !== 0){
+                for(let i = 0; i < ownCurrentTag.ownCurrentTag.children.length; i++ ){
+
+                    if(i ===0){
+
+                      ownCurrentTag.ownCurrentTag.children[i].innerHTML = tagsSlider.children[tagsMinusSlide].children[i].innerHTML
+                    }
+                    if(i === 1){
+                      ownCurrentTag.ownCurrentTag.children[i].innerHTML = tagsSlider.children[tagsMinusSlide].children[i].innerHTML
+
+                    }
+                    if( i=== 3){
+                      ownCurrentTag.ownCurrentTag.children[i].innerHTML = tagsSlider.children[tagsMinusSlide].children[i].innerHTML
+
+                    }
+                    if(i === 4){
+                      ownCurrentTag.ownCurrentTag.children[i].innerHTML = tagsSlider.children[tagsMinusSlide].children[i].innerHTML
+
+                    }
+
+
+                }
+            }
 
              if(tagsMinusSlide === 1){
 
                beforeLoggedIn.style.display = "block"
 
              }
+
+
+          }else if(tagsMinusSlide !== 0){
+            console.log(tagsMinusSlide)
+            console.log(tagsSlider.children[tagsMinusSlide])
+
+
+                        for(let i = 0; i < ownCurrentTag.ownCurrentTag.children.length; i++ ){
+                          if(i ===0){
+
+                            ownCurrentTag.ownCurrentTag.children[i].innerHTML = tagsSlider.children[tagsMinusSlide].children[i].innerHTML
+                          }
+                          if(i === 1){
+                            ownCurrentTag.ownCurrentTag.children[i].innerHTML = tagsSlider.children[tagsMinusSlide].children[i].innerHTML
+
+                          }
+                          if( i=== 3){
+                            ownCurrentTag.ownCurrentTag.children[i].innerHTML = tagsSlider.children[tagsMinusSlide].children[i].innerHTML
+
+                          }
+                          if(i === 4){
+                            ownCurrentTag.ownCurrentTag.children[i].innerHTML = tagsSlider.children[tagsMinusSlide].children[i].innerHTML
+
+                          }
+
+                        }
+
 
 
           }
@@ -395,7 +474,7 @@ deleteOwnTag.addEventListener("click",function(){
             sliderContentLanguage.style.display = "block"
 
           }
-          document.getElementById("ownCurrentTag").innerHTML =  tagsSlider.children[tagsMinusSlide].innerHTML
+          // document.getElementById("ownCurrentTag").innerHTML =  tagsSlider.children[tagsMinusSlide].innerHTML
 
           found = false;
         }else{
@@ -988,7 +1067,6 @@ sourceSwitch(sourceMinusSlide)
 countrySwitch(countryMinusSlide)
 categorySwitch(categoryMinusSlide)
 languageSwitch(languageMinusSlide)
-console.log(minusSlide)
 
   if(minusSlide >1){
 
@@ -1301,6 +1379,8 @@ for( let i =0; i< slider.children.length; i++){
 
 function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidth){
 
+
+
   let totalLeft = offsetWidth;
 
   let nummer = i;
@@ -1308,7 +1388,6 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 
 
   if(minusSlide>1){
-    console.log(minusSlide)
 
   }else{
 
@@ -1316,7 +1395,6 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
   }
 
   if(nummer>0){
-    console.log(nummer)
     currenTag.style.top = "-25px"
 
     canNotShow.style.top = "0px"
@@ -1327,75 +1405,80 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 
   }
   tagsMinusSlide = nummer
+
+  console.log("minus: ", tagsMinusSlide)
+
   totalLeft =  (nummer * totalLeft).toString()
 
   contentChange.style.marginLeft = "-" + totalLeft + "px"
 
-  if(contentChange.children[i].innerText !== "Your tags"){
+  if(contentChange.children[i] !== undefined){
+          if(contentChange.children[i].innerText !== "Your tags"){
 
-      let length = contentChange.children[i].children.length
-      let string = ""
-      for(let x = 0; x< length; x++ ){
+              let length = contentChange.children[i].children.length
+              let string = ""
+              for(let x = 0; x< length; x++ ){
 
-        if(x === 0){
-          let ownInputTag = document.createElement("span");
-          ownInputTag.setAttribute("id", "ownInputTag");
-          ownInputTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+                if(x === 0){
+                  let ownInputTag = document.createElement("span");
+                  ownInputTag.setAttribute("id", "ownInputTag");
+                  ownInputTag.innerHTML = contentChange.children[i].children[x].innerHTML;
 
 
-          string += "<span id='ownInputTag'>"+ownInputTag.innerHTML+"</span>"
+                  string += "<span id='ownInputTag'>"+ownInputTag.innerHTML+"</span>"
+                }
+                if(x === 1){
+                  let ownSourceTag = document.createElement("span");
+                  ownSourceTag.setAttribute("id", "ownSourceTag");
+                  ownSourceTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+
+
+
+                  string += "<span id='ownSourceTag'>"+ownSourceTag.innerHTML+"</span>"
+                }
+
+                if(x === 2){
+                  let ownCountryTag = document.createElement("span");
+                  ownCountryTag.setAttribute("id", "ownCountryTag");
+                  ownCountryTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+
+
+                  string += "<span id='ownCountryTag'>"+ownCountryTag.innerHTML+"</span>"
+                }
+
+                if(x === 3){
+                  let ownCategoryTag = document.createElement("span");
+                  ownCategoryTag.setAttribute("id", "ownCategoryTag");
+                  ownCategoryTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+
+
+                  string += "<span id='ownCategoryTag'>"+ownCategoryTag.innerHTML+"</span>"
+                }
+                if(x=== 4){
+                  let ownLanguageTag = document.createElement("span");
+                  ownLanguageTag.setAttribute("id", "ownLanguageTag");
+                  ownLanguageTag.innerHTML = contentChange.children[i].children[x].innerHTML;
+
+
+                  string += "<span id='ownLanguageTag'>"+ownLanguageTag.innerHTML+"</span>"
+                }
+              }
+
+            // let ownSourceTag = document.createElement("span");
+            // ownSourceTag.innerText = contentChange.children[i].children[1].innerHTML
+            // ownSourceTag.setAttribute("id", "ownSourceTag")
+
+              // contentChange.children[i].children[0].setAttribute("id","ownInputTag")
+              // contentChange.children[i].children[1].setAttribute("id","ownSourceTag")
+
+
+
+          document.getElementById("ownCurrentTag").innerHTML =  string
+        }else{
+          document.getElementById("ownCurrentTag").innerHTML =  ""
+
         }
-        if(x === 1){
-          let ownSourceTag = document.createElement("span");
-          ownSourceTag.setAttribute("id", "ownSourceTag");
-          ownSourceTag.innerHTML = contentChange.children[i].children[x].innerHTML;
-
-
-
-          string += "<span id='ownSourceTag'>"+ownSourceTag.innerHTML+"</span>"
-        }
-
-        if(x === 2){
-          let ownCountryTag = document.createElement("span");
-          ownCountryTag.setAttribute("id", "ownCountryTag");
-          ownCountryTag.innerHTML = contentChange.children[i].children[x].innerHTML;
-
-
-          string += "<span id='ownCountryTag'>"+ownCountryTag.innerHTML+"</span>"
-        }
-
-        if(x === 3){
-          let ownCategoryTag = document.createElement("span");
-          ownCategoryTag.setAttribute("id", "ownCategoryTag");
-          ownCategoryTag.innerHTML = contentChange.children[i].children[x].innerHTML;
-
-
-          string += "<span id='ownCategoryTag'>"+ownCategoryTag.innerHTML+"</span>"
-        }
-        if(x=== 4){
-          let ownLanguageTag = document.createElement("span");
-          ownLanguageTag.setAttribute("id", "ownLanguageTag");
-          ownLanguageTag.innerHTML = contentChange.children[i].children[x].innerHTML;
-
-
-          string += "<span id='ownLanguageTag'>"+ownLanguageTag.innerHTML+"</span>"
-        }
-      }
-
-    // let ownSourceTag = document.createElement("span");
-    // ownSourceTag.innerText = contentChange.children[i].children[1].innerHTML
-    // ownSourceTag.setAttribute("id", "ownSourceTag")
-
-      // contentChange.children[i].children[0].setAttribute("id","ownInputTag")
-      // contentChange.children[i].children[1].setAttribute("id","ownSourceTag")
-
-
-
-  document.getElementById("ownCurrentTag").innerHTML =  string
-}else{
-  document.getElementById("ownCurrentTag").innerHTML =  ""
-
-}
+    }
 
   if(tagsMinusSlide> 0){
     sliderContent.style.display = "none"
@@ -1421,7 +1504,6 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 
 
     tagSwitch()
-    console.log("tagsMinusSlide")
 
   }else{
     sliderContent.style.display = "block"
@@ -1651,10 +1733,6 @@ function tagSwitch(tagsMinusSlide){
     }
 
 }
-console.log(sourceCode)
-console.log(countryCode)
-console.log(categoryCode)
-console.log(languageCode)
 
 }
 let more = document.getElementById("more")
@@ -1663,7 +1741,6 @@ more.addEventListener("click",function(){
 
   let button = document.getElementById("buttons")
 
-  console.log(more.innerHTML)
   if(more.innerHTML === "More options"){
 
     button.style.display = "flex"

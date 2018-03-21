@@ -117,87 +117,6 @@ loginFb.addEventListener("click", function () {
   });
 });
 
-/*
-let passLogo = document.getElementById('passLogo');
-let passModal = document.getElementById('passModal');
-passModal.style.display = "none";
-passLogo.addEventListener('click', function () {
-  let email = '';
-  let password = '';
-  let name = '';
-  passModal.style.display = '';
-  passModal.style.zIndex = "1";
-
-  let closeModal = document.getElementById('closeModal');
-  closeModal.addEventListener('click', function () {
-    passModal.style.zIndex = '0';
-    document.getElementById('signUpEmail').value = '';
-    document.getElementById('signUpPass').value = '';
-    document.getElementById('signUpPass2').value = '';
-    passModal.style.display = 'none';
-  });
-
-
-  let createAccount = document.getElementById('createAccount');
-  createAccount.addEventListener('click', function () {
-    if (document.getElementById('signUpPass').value == document.getElementById('signUpPass2').value) {
-      password = document.getElementById('signUpPass2').value;
-      email = document.getElementById('signUpEmail').value;
-      name = document.getElementById('signUpName').value;
-
-
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(function () {
-          passModal.style.display = 'none';
-          passModal.style.zIndex = '0';
-          document.getElementById('signUpEmail').value = '';
-          document.getElementById('signUpPass').value = '';
-          document.getElementById('signUpPass2').value = '';
-
-          var user = firebase.auth().currentUser;
-
-              if (user) {
-                firebaseInsertUserWithEmail(user,name,email);
-              }
-
-          alert('You were successfully logged in');
-        })
-        .catch(function () {
-          firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(function () {
-              passModal.style.display = 'none';
-              passModal.style.zIndex = '0';
-              document.getElementById('signUpEmail').value = '';
-              document.getElementById('signUpPass').value = '';
-              document.getElementById('signUpPass2').value = '';
-              alert('You were successfully registered on the site');
-
-              var user = firebase.auth().currentUser;
-
-              if (user) {
-                firebaseInsertUserWithEmail(user,name,email);
-              }
-            })
-            .catch(function (error) {
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              alert('There was an error creating your account: ' + errorMessage);
-              console.log('There was an error creating your account: ' + errorMessage);
-            })
-        })
-    } else {
-      let p = document.createElement('p');
-      p.innerHTML = 'The passwords are not the same';
-      p.style.color = 'red';
-      let form = document.getElementsByTagName('form')[0];
-      form.appendChild.lastChild(p);
-    }
-
-  });
-
-
-});
-*/
 
 let loginHeader = function (user) {
   /*// This gives you a Google Access Token. You can use it to access the Google API.
@@ -620,7 +539,7 @@ var createNews = function () {
   saveToFavourites.className = 'newsFooter saveToFavourite';
 
   let saveIcon = document.createElement('i');
-  saveIcon.className = 'far fa-star';
+  saveIcon.className = 'fas fa-star';
   saveToFavourites.appendChild(saveIcon);
   let saveToFavouritesText = document.createElement('span');
   saveToFavouritesText.className = 'newsFooterSpan showFavouriteText';
@@ -703,7 +622,7 @@ var createNews = function () {
 }
 
 var browseNews = function (array, number) {
-
+main.innerHTML = "";
   for (i = number; i > 0; i--) {
     createNews();
   }
@@ -860,7 +779,30 @@ var browseNews = function (array, number) {
     });
 
   }
-
+  // changed icons if already stored
+  var thisUser = localStorage.getItem("userid");
+  var checkForURL;
+  
+  const changeTextIfStored = document.getElementsByClassName('showFavouriteText');
+  for (let x of changeTextIfStored){
+  
+    
+    checkForURL = x.parentElement.nextSibling.getAttribute('name');
+ 
+  firebase.database().ref("users/" + thisUser + "/favourites").orderByValue().equalTo(checkForURL).once('value', snapshot => {
+      
+      const updateOutput = snapshot.val();
+      //console.log(checkForURL);
+      if(updateOutput !== null && x.parentElement.className !== 'fas fa-times-circle' ){
+      
+        x.previousSibling.className = 'fas fa-star';
+        x.previousSibling.style.color = 'yellow';
+      x.textContent = 'Saved';
+      console.log('changed icon');
+    }
+  })
+}
+//end of my change
 }
 
 var getAllNews = function () {
@@ -901,99 +843,3 @@ var getAllNews = function () {
     });
 }
 
-/*let passLogo = document.getElementById('passLogo');
-let passModal = document.getElementById('passModal');
-
-passModal.style.display = "none";
-passLogo.addEventListener('click', function () {
-  console.log("passlogo");
-
-  passModal.style.display = '';
-  passModal.style.zIndex = "1";
-
-  let registerModal = document.getElementById('chooseRegister');
-  let loginModal = document.getElementById('chooseLogin');
-
-  let nameField = document.getElementById('signUpName');
-
-  registerModal.addEventListener('click', function () {
-    nameField.disabled = false;
-    nameField.style.display = 'inherit';
-  });
-
-  loginModal.addEventListener('click', function () {
-    nameField.disabled = true;
-    nameField.style.display = 'none';
-  })
-
-  let closeModal = document.getElementById('closeModal');
-  closeModal.addEventListener('click', function () {
-    passModal.style.zIndex = '0';
-    document.getElementById('signUpEmail').value = '';
-    document.getElementById('signUpPass').value = '';
-    passModal.style.display = 'none';
-    nameField.disabled = 'true';
-    nameField.style.display = 'none';
-  });
-
-  let createAccount = document.getElementById('createAccount');
-  createAccount.addEventListener('click', function () {
-
-    if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '') {
-      const password = document.getElementById('signUpPass').value;
-      const passEmail = document.getElementById('signUpEmail').value;
-      const passName = document.getElementById('signUpName').value;
-
-      firebase.auth().createUserWithEmailAndPassword(passEmail, password)
-      .then(function (user) {
-        // [END createwithemail]
-        // callSomeFunction(); Optional
-        //var user = firebase.auth().currentUser;
-        user.updateProfile({
-          displayName: passName,
-          photoURL: '../img/user_default.png',
-        }).then(function () {
-          // Update successful.
-        }, function (error) {
-          // An error happened.
-        });
-      }, function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // [START_EXCLUDE]
-        if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
-        } else {
-          console.error(error);
-        }
-        // [END_EXCLUDE]
-      });
-    }
-  });
-
-  loginPass.addEventListener('click', function () {
-    if (document.getElementById('signUpPass').value != '' && document.getElementById('signUpEmail').value != '') {
-      const password = document.getElementById('signUpPass').value;
-      const passEmail = document.getElementById('signUpEmail').value;
-
-
-      firebase.auth().signInWithEmailAndPassword(passEmail, password)
-        .catch(function (error) {
-          alert('Error logging you in' + error.code + '--' + error.message);
-          console.log('Error logging in: ' + error.message);
-        });
-    }
-  });
-});*/
-
-/*firebase.auth().onAuthStateChanged(firebaseUser => {
-      if (firebaseUser) {
-        console.log(firebaseUser);
-        let user = firebase.auth().currentUser;
-        user = user.id;
-        firebaseInsertUserWithEmail(user, passName, passEmail);
-      } else {
-        console.log('not logged in');
-      }
-    });*/
