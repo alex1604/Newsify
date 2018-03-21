@@ -33,17 +33,9 @@ console.log("erikJS");
                eventText.innerHTML = event1Text;
 
      });
-       /*
-        var whenScroll = function(evt) {
-              if(footer.style.display === "block") {
-                  footer.style.display = "none";
-              } else {
-                  footer.style.display = "block";
-              }
-          }
-        */
-       // window.addEventListener("scroll", whenScroll)
+     
 };
+
 window.addEventListener("scroll",function() {
     let footer = document.getElementById('footer');
      
@@ -52,3 +44,4 @@ window.addEventListener("scroll",function() {
        footer.style.opacity = '1';
     }
  },false);
+
