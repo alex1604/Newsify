@@ -539,7 +539,7 @@ var createNews = function () {
   saveToFavourites.className = 'newsFooter saveToFavourite';
 
   let saveIcon = document.createElement('i');
-  saveIcon.className = 'far fa-star';
+  saveIcon.className = 'fas fa-star';
   saveToFavourites.appendChild(saveIcon);
   let saveToFavouritesText = document.createElement('span');
   saveToFavouritesText.className = 'newsFooterSpan showFavouriteText';
@@ -622,7 +622,7 @@ var createNews = function () {
 }
 
 var browseNews = function (array, number) {
-
+main.innerHTML = "";
   for (i = number; i > 0; i--) {
     createNews();
   }
@@ -779,7 +779,30 @@ var browseNews = function (array, number) {
     });
 
   }
-
+  // changed icons if already stored
+  var thisUser = localStorage.getItem("userid");
+  var checkForURL;
+  
+  const changeTextIfStored = document.getElementsByClassName('showFavouriteText');
+  for (let x of changeTextIfStored){
+  
+    
+    checkForURL = x.parentElement.nextSibling.getAttribute('name');
+ 
+  firebase.database().ref("users/" + thisUser + "/favourites").orderByValue().equalTo(checkForURL).once('value', snapshot => {
+      
+      const updateOutput = snapshot.val();
+      //console.log(checkForURL);
+      if(updateOutput !== null && x.parentElement.className !== 'fas fa-times-circle' ){
+      
+        x.previousSibling.className = 'fas fa-star';
+        x.previousSibling.style.color = 'yellow';
+      x.textContent = 'Saved';
+      console.log('changed icon');
+    }
+  })
+}
+//end of my change
 }
 
 var getAllNews = function () {
