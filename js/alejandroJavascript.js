@@ -128,12 +128,8 @@ var callback = function () {
     }
 
     document.getElementById('weatherLocation').innerHTML = weatherLocation;
-    document.getElementById('min').innerHTML = min + 'ºC' + ' / ';
-    document.getElementById('max').innerHTML = max + 'ºC';
-
-    document.getElementById('weatherLocation2').innerHTML = weatherLocation;
-    document.getElementById('min2').innerHTML = min + 'ºC' + ' / ';
-    document.getElementById('max2').innerHTML = max + 'ºC';
+    document.getElementById('min').innerHTML = min + 'ºC' + ' ';
+    document.getElementById('max').innerHTML = ' ' + max + 'ºC';
 
   };
 
@@ -177,6 +173,7 @@ var callback = function () {
     urlWeather = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq'
       + '&q=' + ltd + ',' + lng;
     getWeather(ltd, lng, urlWeather);
+    console.log(ltd + ' / ' + lng + ' / ' + urlWeather);
   }
 
   getLocation();
