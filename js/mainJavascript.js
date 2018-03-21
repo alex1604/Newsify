@@ -498,13 +498,13 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     window.addEventListener("resize", function(){
 
-        console.log(window.innerWidth)
         if(window.innerWidth > 600){
 
-            document.getElementById("buttons").style.display = "block"
+            document.getElementById("buttons").style.display = "block";
+            document.getElementById("moreOp").style.display = "none";
         }else{
-          document.getElementById("buttons").style.display = "none"
-          document.getElementById("moreOp").style.display = "block"
+          document.getElementById("buttons").style.display = "none";
+          document.getElementById("moreOp").style.display = "block";
 
 
         }
