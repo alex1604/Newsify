@@ -40,8 +40,11 @@ window.addEventListener("scroll",function() {
     let footer = document.getElementById('footer');
      
     if(window.scrollY > 500) {
-       footer.style.transition = 'all 1s ease';
+       footer.style.transition = 'opacity 1s';
        footer.style.opacity = '1';
+    } else {
+        footer.style.transition = 'opacity 1s';
+        footer.style.opacity = '0'; 
     }
  },false);
 
