@@ -224,7 +224,11 @@ function clear(){
 
 addTagBtn.addEventListener("click", function () {
 
-
+  // console.log(document.getElementById('ownInputTag').innerHTML.slice(1))
+  sourceCode = "";
+  countryCode = "";
+  categoryCode = "";
+  languageCode = ""
 
   let innerHTML = document.getElementById("currentTag").innerHTML;
 
@@ -250,6 +254,8 @@ addTagBtn.addEventListener("click", function () {
         div.children[i].setAttribute("id", Math.random().toFixed(2))
     }
     db.ref("users/" + sammaid + "/tags").push(div.innerHTML)
+
+
 
     tagsSliderContentChange.appendChild(div)
 
@@ -339,7 +345,10 @@ deleteOwnTag.addEventListener("click",function(){
 
 
 
-
+          sourceCode = "";
+          countryCode = "";
+          categoryCode = "";
+          languageCode = ""
 
           db.ref("/users/"+ id + "/tags/"+ proppet).remove()
 

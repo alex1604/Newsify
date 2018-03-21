@@ -489,9 +489,8 @@ firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById("buttons").style.display = "block"
     }else{
       document.getElementById("buttons").style.display = "none"
-
+      document.getElementById("moreOp").style.display = "block"
     }
-    console.log(window.innerWidth)
 
     window.addEventListener("resize", function(){
 
@@ -501,6 +500,8 @@ firebase.auth().onAuthStateChanged(function (user) {
             document.getElementById("buttons").style.display = "block"
         }else{
           document.getElementById("buttons").style.display = "none"
+          document.getElementById("moreOp").style.display = "block"
+
 
         }
     })
