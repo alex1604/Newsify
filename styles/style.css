@@ -698,6 +698,9 @@ line-height: 0px;
       background-color: #C65F63;
       border: 1px solid lightgrey;
     }
+   .fa-times-circle {
+     color: red !important;
+   }
 
 @media (min-width: 600px) {
     body{
