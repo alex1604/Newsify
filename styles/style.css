@@ -50,13 +50,15 @@
       #buttons  button{
           width:100px;
           text-align: center;
-          padding:10px 0px;
+          padding:20px 0px;
           margin:0;
-          background: ;
-          color:rgba(0,0,0,0.8);
+          background: #333644;
+          color:rgba(255,255,255,0.8);
           border:none;
 
       }
+
+
 
 
       .more{
@@ -307,7 +309,9 @@ line-height: 0px;
 
      .currentTag{
        position: relative;
-       top:12px;
+       top:-30px;
+       transition-property: top;
+       transition-duration: 0.5s;
        text-align: center;
      }
 
@@ -656,5 +660,10 @@ line-height: 0px;
       justify-content: flex-start;
       margin-top: 0px;
       margin-bottom: 0px;
+      display: flex;
+    }
+
+    #moreOp{
+      display: none;
     }
 }
