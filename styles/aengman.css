@@ -103,8 +103,14 @@
     width: 30px;
   }
 }
+<<<<<<< HEAD
 @media (max-width: 1300px){
   .commentButton {
     right: 30%;
   }
+=======
+.sumUp {
+  max-height:200px;
+  margin-bottom: 10px;
+>>>>>>> origin/develop
 }
