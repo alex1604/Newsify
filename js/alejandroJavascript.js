@@ -174,8 +174,6 @@ var callback = function () {
   var savePosition = function (position) {
     ltd = position.coords.latitude;
     lng = position.coords.longitude;
-    console.log(ltd);
-    console.log(lng);
     urlWeather = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq'
       + '&q=' + ltd + ',' + lng;
     getWeather(ltd, lng, urlWeather);
@@ -183,180 +181,6 @@ var callback = function () {
 
   //getLocation();
   //raden är kommenterat pga begränsat antal anrop till API:t
-
-  /*console.log('Hello');
-
-  const key = 'apiKey=ca2d5b8c76a84ec68544ecdeadf04043';
-  let urlBase = 'https://newsapi.org/v2/top-headlines';
-  let question = '?';
-
-  let searchArray = [];
-  let completeSearchArray = [];
-
-  let queryString = 'q=';
-  let category = 'category=';
-  let language = 'language=';
-  let country = 'country=';
-  let source = 'sources=';
-  let searchBtn = document.getElementById('searchBtn');
-
-  let main = document.getElementsByTagName('main')[0];
-
-  let myArticles = [];
-
-  // Function that creates the HTML for news dynamically:
-
-  var createNews = function (){
-
-    let article = document.createElement('article');
-     let blackLine = document.createElement('div');
-     blackLine.classList.add('blackLine');
-     let mainContent = document.createElement('div');
-     mainContent.classList.add('mainContent');
-
-     let pinkAndTitle = document.createElement('div');
-     pinkAndTitle.classList.add('pinkAndTitle');
-
-     let pinkLine = document.createElement('div');
-     pinkLine.classList.add('pinkLine');
-
-     let title = document.createElement('div');
-     title.classList.add('title');
-
-     let sumUp = document.createElement('p');
-     sumUp.classList.add('sumUp');
-
-     let readMore = document.createElement('div');
-     readMore.classList.add('readMore');
-     let readMore2 = document.createElement('div');
-     readMore.classList.add('readMore');
-     let a = document.createElement('a');
-     a.classList.add('readMoreLink');
-     a.target = '_blank';
-     a.innerHTML = 'Read full article...';
-
-     readMore.appendChild(a);
-
-     pinkAndTitle.appendChild(pinkLine);
-     pinkAndTitle.appendChild(title);
-     pinkAndTitle.appendChild(sumUp);
-     pinkAndTitle.appendChild(readMore);
-
-     let articleImage = document.createElement('div');
-     articleImage.classList.add('articleImage');
-     let img = document.createElement('img');
-     img.classList.add('articleImageLink');
-
-     articleImage.appendChild(img);
-
-     mainContent.appendChild(pinkAndTitle);
-     mainContent.appendChild(articleImage);
-
-     article.appendChild(blackLine);
-     article.appendChild(mainContent);
-
-     main.appendChild(article);
-
-
-    //Jonathans kod //
-
-    mainContent.addEventListener("click",function(e){
-
-      if(e.target.className=== "readMoreLink"){
-
-          // let href = e.target.getAttribute("href")
-          // let divIframe = document.getElementById("iframe");
-          //
-          // let iframeElement = document.createElement("iframe");
-          // iframeElement.setAttribute("src", href);
-          // iframeElement.setAttribute("id", "contact");
-          // iframeElement.setAttribute("allowtransparency", "true");
-          // iframeElement.setAttribute("frameborder","0")
-          // iframeElement.setAttribute("scrolling","yes")
-          // iframeElement.setAttribute("width","100%")
-          // iframeElement.setAttribute("height","500px")
-          // iframeElement.setAttribute("frameborder","0")
-          // iframeElement.setAttribute("align","center")
-          //
-          // divIframe.appendChild(iframeElement)
-
-
-          // <!-- <iframe id="contact" src="http://www.bbc.com/news/world-middle-east-43219614" allowtransparency="true" frameborder="0" scrolling="yes" width="100%" height="500px" align="center"></iframe> -->
-
-      }
-
-    })
-
-  }
-
-  // Define function that browses the results on the page, dynamically modifying the HTML:
-
-  var browseNews = function (array,number){
-
-    for (i = number; i > 0; i--){
-      createNews();
-    }
-
-    let titles = document.getElementsByClassName('title');
-    let descriptions = document.getElementsByClassName('sumUp');
-    let images = document.getElementsByClassName('articleImageLink');
-    let readMore = document.getElementsByClassName('readMoreLink');
-
-    let count = 0;
-
-    do{
-
-      titles[count].innerHTML = array[count].title;
-      descriptions[count].innerHTML = array[count].description;
-      images[count].src = array[count].urlToImage;
-      readMore[count].href = array[count].url;
-      count++;
-
-    } while (count < number);
-
-  }
-
-  // Function that retrieves all most recent and most interesting news:
-
-  var getAllNews = function (){
-
-    let url = urlBase + question + 'country=us&' + key;
-    let req = new Request(url);
-
-    fetch(req)
-    .then(function(response){
-
-      return response.json();
-
-    }).then(function(object){
-
-      let articles = object.articles;
-
-      let amount = 12;
-
-      for (article in articles){
-
-        if (amount > 0 && articles[article] != 'undefined' && articles[article] != null && articles[article] != ''){
-
-          myArticles.push(articles[article]);
-
-
-
-        } else{
-          break;
-        }
-
-        amount--;
-      }
-      amount = myArticles.length;
-      console.log(myArticles)
-
-      browseNews(myArticles, amount);
-    })
-    .catch(function(){
-      console.log('failed');
-    });
-  }*/
 
 
 
@@ -407,13 +231,14 @@ var callback = function () {
     if (url !== 'https://newsapi.org/v2/top-headlines?apiKey=ca2d5b8c76a84ec68544ecdeadf04043') {
 
       let req = new Request(url);
-
       fetch(req)
         .then(function (response) {
+
 
           return response.json();
 
         }).then(function (object) {
+
 
           let articles = object.articles;
 
@@ -550,35 +375,26 @@ var callback = function () {
 
   var getSuggestedNews = function () {
 
+    let savedTags = document.getElementsByTagName('span');
+    var regexp = /^[0-9]+([,.][0-9]+)?$/;
+
     let suggestedArticles = [];
     let searchWords = [];
     let url = urlBase + question;
     let myRegExp = /(inputTag">)#.+\</;
     let myReg = [];
 
-    db.ref('users/' + storedUser.uid + '/tags').once('value', function (snapshot) {
-      let allData = snapshot.val();
-      for (let object in allData) {
-        let exec = myRegExp.exec(allData[object]);
-        if (exec != null) {
-          myReg.push(exec);
-        }
+    for (i=0; i<savedTags.length; i++){
+      if (regexp.test(savedTags[i].id) && savedTags[i].innerHTML != '' && savedTags[i].innerHTML != ' '){
+        searchWords.push(savedTags[i].innerHTML.slice(1));
       }
-      for (let element in myReg) {
-        let word = myReg[element][0];
-        let length = word.length - 1;
-        word = word.slice(11, length);
-        if (word != null && word != '') {
-          searchWords.push(word);
-        } else {
-          continue
-        }
-      }
+    }
+
       for (let x in searchWords) {
         url += 'q=' + searchWords[x];
         url += '&' + key;
         let req = new Request(url);
-
+        console.log(req)
         fetch(req)
           .then(function (response) {
             return response.json();
@@ -607,7 +423,6 @@ var callback = function () {
           });
         url = urlBase + question;
       }
-    });
   }
 
 
@@ -648,15 +463,12 @@ var callback = function () {
     }
   });
 
+  
+
+
   // Regular expression for suggested articles from database ^#.+\<
   // (inputTag) ^(inputTag">#).+\<
   suggestedNews.addEventListener('click', getSuggestedNews);
-
-  let loginBtn = document.getElementsByClassName('popupButton')[0];
-  loginBtn.addEventListener('click', function () {
-    document.getElementById('weatherCast').style.opacity = '1';
-
-  });
 
 }
 
