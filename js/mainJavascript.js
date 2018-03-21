@@ -728,7 +728,7 @@ var browseNews = function (array, number) {
       images[count].src = array[count].urlToImage;
     }
     readMore[count].href = array[count].url;
-    fbShare[count].href = array[count].url;
+    fbShare[count].name = array[count].url;
     commentArticleArray[count].children[1].addEventListener("click", function (event) {
       if (event.target.parentElement.parentElement.children.length == 3) {
         let commentField = document.createElement("div");
@@ -852,7 +852,7 @@ var browseNews = function (array, number) {
 
   for (let x of fbBtn) {
     x.addEventListener('click', function () {
-      let fbUrl = x.href;
+      let fbUrl = x.name;
       FB.ui({
         method: 'share',
         href: fbUrl,
