@@ -1,5 +1,8 @@
 console.log("mainJS");
 
+
+
+
 let signedInNowOrBefore = "before"
 
 let whenLoggedIn = document.getElementById("whenLoggedIn");
@@ -27,9 +30,13 @@ const db = firebase.database()
 
 let gmailprovider = new firebase.auth.GoogleAuthProvider();
 
-loginPopup.addEventListener("click", function (event) {
+loginPopup.children[0].addEventListener("click", function (event) {
   loginPopup.style.display = "none";
   loginDiv.style.display = "";
+})
+loginDiv.addEventListener("click", function(event){
+  loginPopup.style.display = "";
+  loginDiv.style.display = "none";
 })
 
 login.addEventListener("click", function (event) {
@@ -215,6 +222,8 @@ let loginHeader = function (user) {
     firebase.auth().signOut().then(function () {
       var header = document.getElementById("header");
       header.removeChild(header.lastChild);
+      document.getElementById("moreOp").style.display = "none"
+      document.getElementById("buttons").style.display = "none"
     })
       .catch(function (error) {
         console.log("error: " + error);
@@ -264,9 +273,6 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
         email: userMail,
         tags: {
 
-        },
-        favourites: {
-          example: "example",
         },
       })
 
@@ -482,11 +488,27 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 
-    console.log(window.innerWidth)
+    if(window.innerWidth > 600){
+
+        document.getElementById("buttons").style.display = "block"
+    }else{
+      document.getElementById("buttons").style.display = "none"
+      document.getElementById("moreOp").style.display = "block"
+    }
+
+    window.addEventListener("resize", function(){
+
+        if(window.innerWidth > 600){
+
+            document.getElementById("buttons").style.display = "block";
+            document.getElementById("moreOp").style.display = "none";
+        }else{
+          document.getElementById("buttons").style.display = "none";
+          document.getElementById("moreOp").style.display = "block";
 
 
-  document.getElementById("moreOp").style.display = "block"
-  document.getElementById("buttons").style.display = "none"
+        }
+    })
 
 
 
@@ -526,7 +548,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     loginDiv.style.display = "none";
     loginPopup.style.display = "";
     document.getElementById('weatherCast').style.opacity = '0';
-    document.getElementsByClassName("more")[0].style.display = "none"
+    // document.getElementsByClassName("more")[0].style.display = "none"
     document.getElementById("moreOp").style.display = "none"
     document.getElementById("buttons").style.display = "none"
     // No user is signed in.
@@ -730,6 +752,8 @@ var browseNews = function (array, number) {
               }
             })
           }
+        })
+        db.ref("/Articles/").once("value", function (snapshot){
           let writeBox = document.createElement("textarea");
           let commentButton = document.createElement("button");
           writeBox.type = "input";
