@@ -628,6 +628,7 @@ var createNews = function () {
   saveToFavourites.appendChild(saveToFavouritesText);
 
   shareArticle.className = 'newsFooter shareArticle';
+  shareArticle.target = '_blank'
 
   let shareIcon = document.createElement('i');
   shareIcon.className = 'fas fa-share-alt';
