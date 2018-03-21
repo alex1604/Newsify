@@ -35,3 +35,13 @@ console.log("erikJS");
      });
      
 };
+
+window.addEventListener("scroll",function() {
+    let footer = document.getElementById('footer');
+     
+    if(window.scrollY > 500) {
+       footer.style.transition = 'all 1s ease';
+       footer.style.opacity = '1';
+    }
+ },false);
+
