@@ -187,7 +187,7 @@ var callback = function () {
 
   var getSomeNews = function (queryString, category, country, language, source) {
 
-     
+
     console.log(tagCode)
     let url = urlBase + question;
 
@@ -434,6 +434,7 @@ var callback = function () {
     let noNews = true;
     for (i = 0; i < childDivs.length; i++) {
       let childDiv = childDivs[i];
+
       if (childDiv.innerHTML != '') {
         boo = true;
         noNews = false;
