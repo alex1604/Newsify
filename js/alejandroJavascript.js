@@ -281,7 +281,10 @@ var callback = function () {
 
   var getSomeNewsFromOwnTags = function (queryString, category, country, language, source) {
 
-    let tagCode = document.getElementById('ownInputTag').innerHTML.slice(1);
+    let tagCode = document.getElementById('ownInputTag');
+    if (tagCode.innerHTML != null){
+      tagCode = tagCode.innerHTML.slice(1);
+    }
     let url = urlBase + question;
 
     searchArray.push(tagCode);
