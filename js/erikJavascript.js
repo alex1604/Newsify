@@ -33,19 +33,5 @@ console.log("erikJS");
                eventText.innerHTML = event1Text;
 
      });
-       /*
-        var whenScroll = function(evt) {
-              if(footer.style.display === "block") {
-                  footer.style.display = "none";
-              } else {
-                  footer.style.display = "block";
-              }
-          }
-        */
-       // window.addEventListener("scroll", whenScroll)
+     
 };
-window.addEventListener("scroll",function() { 
-    if(window.scrollY > 500) {
-       // din kod
-    }
- },false);

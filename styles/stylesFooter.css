@@ -1,13 +1,12 @@
 #footer {
-    display: block;
+    display: none;
     position: fixed;
     bottom: 0;
     align-self: flex-start;
     background:#333644;
     color:rgba(255,255,255,0.7);
     width: 100%;
-    height: 60px;
-
+    height: 90px;
 }
 
 #divHistory {
@@ -15,7 +14,7 @@
     margin-top: -30px;
     width: 50%;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 13px;
 
 }
 
@@ -30,7 +29,7 @@ i {
     margin-top: 1px;
     width: auto;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 13px;
 
 }
 
@@ -40,7 +39,7 @@ i {
     margin-top: 1px;
     width: 30%;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 13px;
 }
 
 #logo {
@@ -62,10 +61,10 @@ i {
     right: 0;
     display: block;
     margin-left: 1000px;
-    margin-top: -35px;
+    margin-top: -26px;
     width: auto;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 16px;
 }
 
 /**** MAX 1200 - MIN ****/
