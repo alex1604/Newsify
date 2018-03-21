@@ -34,6 +34,10 @@ loginPopup.children[0].addEventListener("click", function (event) {
   loginPopup.style.display = "none";
   loginDiv.style.display = "";
 })
+loginDiv.addEventListener("click", function(event){
+  loginPopup.style.display = "";
+  loginDiv.style.display = "none";
+})
 
 login.addEventListener("click", function (event) {
   //simple click event on the "login" div
@@ -494,13 +498,13 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     window.addEventListener("resize", function(){
 
-        console.log(window.innerWidth)
         if(window.innerWidth > 600){
 
-            document.getElementById("buttons").style.display = "block"
+            document.getElementById("buttons").style.display = "block";
+            document.getElementById("moreOp").style.display = "none";
         }else{
-          document.getElementById("buttons").style.display = "none"
-          document.getElementById("moreOp").style.display = "block"
+          document.getElementById("buttons").style.display = "none";
+          document.getElementById("moreOp").style.display = "block";
 
 
         }
