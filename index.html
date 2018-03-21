@@ -42,6 +42,8 @@
   </script>
 
   <header id="header">
+
+
     <div id="weatherCast">
       <i id="weather" class="wi wi-day-cloudy"></i>
       <div id="weatherLocation">Northville, Greenland</div>
@@ -54,7 +56,9 @@
     <div id="loginPopup">
       <button class="popupButton">Log in</button>
     </div>
-    <h5>Follow the news you actually want to follow</h5>
+
+
+    <h5 class="follow">Follow the news you actually want to follow</h5>
 
     <div id="login">
       <div id="googleLogo">
@@ -67,6 +71,8 @@
         <i class="fas fa-envelope fa-3x"></i>
       </div> -->
     </div>
+
+
 
     <!--<div id="passModal">
       <i class="fas fa-times" id='closeModal'></i>
@@ -90,6 +96,7 @@
         </div>
       </form>
     </div> -->
+
 
     <div id="whenLoggedIn">
 
@@ -115,37 +122,44 @@
 
     </div>
 
+
   </header>
 
-  <div id="buttons">
-    <button id="deleteOwnTag">Delete tag</button>
-    <button id="showFavouriteList">Show Favourites <span id="addNumberCount"></span></button>
-    <button id="suggestedNews">Suggested News</button>
+
+
+  <div id="moreOp">
+
+      <button type="button" name="button" id="more">More options</button>
+
   </div>
 
+  <div id="buttons">
+      <button id="deleteOwnTag">Delete tag</button>
+      <button id="showFavouriteOutput">Show Favourites <span id="addNumberCount"></span></button>
+      <button id="suggestedNews">Suggested News</button>
 
-
+  </div>
   <div id="beforeLoggedIn">
     <div class="slider">
 
 
 
-      <div id="sliderContent">
+      <div class="sliderContent">
 
         <div id="sliderContentChange">
-          <input class="tags" id="inputKeyword" type="text" name="" value="" placeholder="Search"><!--
-          --><ul class="tags">
+          <input class="tags" id="inputKeyword" type="text" placeholder="Search"><!--
+          --><div class="tags">
             Source Name
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Country
-            </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Category
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Languages
-          </ul>
+          </div>
 
         </div>
 
@@ -164,54 +178,55 @@
     <div class="slider" id="sourceSlider">
 
 
-      <div id="sliderContent">
+      <div class="sliderContentSource">
+
 
         <div id="sourceContentChange">
-          <ul class="tags">
+          <div class="tags">
             All
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             CNN
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             BBC News
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             ABC News
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Al Jazeera English
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             ESPN
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Financial Times
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Fox News
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Daily Mail
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             The Guardian (Uk)
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             The New York Times
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             IGN
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             CNN Spanish
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Bloomberg
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             CBS
-          </ul>
+          </div>
         </div>
 
       </div>
@@ -222,55 +237,56 @@
     <div class="slider" id="countrySlider">
 
 
-      <div id="sliderContent">
+      <div class="sliderContentCountry">
+
 
         <div id="countryContentChange">
 
-          <ul class="tags">
+          <div class="tags">
             All
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             USA
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Canada
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             England
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Germany
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             France
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Australia
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             New Zeeland
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             China
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Japan
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Russia
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Spain
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Sweden
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Norway
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Turkey
-          </ul>
+          </div>
 
         </div>
 
@@ -281,34 +297,35 @@
     <div class="slider" id="categorySlider">
 
 
-      <div id="sliderContent">
+      <div class="sliderContentCategory">
+
 
         <div id="categoryContentChange">
 
-          <ul class="tags">
+          <div class="tags">
             All
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Business
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Entertainment
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             General
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Health
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Science
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Sport
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Technology
-          </ul>
+          </div>
 
         </div>
 
@@ -319,46 +336,47 @@
     <div class="slider" id="languageSlider">
 
 
-      <div id="sliderContent">
+      <div class="sliderContentLanguage">
+
 
         <div id="languageContentChange">
 
-          <ul class="tags">
+          <div class="tags">
             All
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Arabic
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             English
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Spanish
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             French
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Hebrew
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Italian
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Dutch
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Norweigan
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Portugues
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Russian
-          </ul><!--
-          --><ul class="tags">
+          </div><!--
+          --><div class="tags">
             Swedish
-          </ul>
+          </div>
 
         </div>
 
@@ -370,15 +388,24 @@
   </div>
 
 
+  <div class="taggar">
+
+
   <div class="currentTag">
 
-    <button class="Btn" id="addTag">Add tag</button>
+    <div id="current">
+    <button class="Btn" id="addTag">Add tag</button><!--
 
-    <button class="Btn" id="searchBtn">Search</button>
+    --><button class="Btn" id="searchBtn">Search</button><!--
 
-    <button class="Btn" id="deleteTag">Clear tag</button>
+    --><button class="Btn" id="deleteTag">Clear tag</button><!--
+  -->
+    </div>
 
-    <h5>Your current tag is </h5>
+
+
+
+    <h5 id="yourCurrentTag">Your current tag is </h5>
 
     <div id="currentTag">
 
@@ -398,12 +425,17 @@
 
 
 
+</div>
 
 
 
 
 
-  </div>
+
+
+
+
+
 
   <div id="newsContainer">
 
@@ -421,14 +453,6 @@
     <div id="divHistory"></div>
     <div id="eventYear"></div>
     <div id="eventText"></div>
-
-    <h3>Newsify</h3>
-
-    <div id="divHistory">
-      <div id="div1"></div>
-      <div id="div2"></div>
-    </div>
-
 
     <div id="time">TIME</div>
   </div>
@@ -452,29 +476,27 @@
   <!--Main javascript fil. Där alla variabler ska skrivas och som vi kan använda oss av. Eller om vi har någon stor funktion som ska användas över hela sidan. t.ex firebase.
 DEN ENDA GÅNGEN NI KAN SNAPA EN VARIABEL ÄR -> när ni skapar den i en FUNKTION så att den inte krockar med andra variabler.  -->
 
-  <script type="text/javascript" src="js/mainJavascript.js"></script>
+<script src="js/mainJavascript.js"></script>
 
-  <!-- Egen javascriptfil för klockan i footern -->
-  <script type="text/javascript" src="js/clockJavascript.js"></script>
-
-
-  <!--Jonathans javascriptfil -->
-  <script type="text/javascript" src="js/jonathansVariabler.js"></script>
-  <script type="text/javascript" src="js/jonathanJavascript.js"></script>
-
-  <!--Alejandros javascriptfil -->
-  <script type="text/javascript" src="js/alejandroJavascript.js"></script>
-  <!--Albins javascriptfil -->
-
-  <script type="text/javascript" src="js/albinJavascript.js"></script>
-  <!--Jonas javascriptfil -->
-
-  <script type="text/javascript" src="js/jonasJavascript.js"></script>
-  <!--Eriks javascriptfil -->
+<!-- Egen javascriptfil för klockan i footern -->
+<script src="js/clockJavascript.js"></script>
 
 
-  <script type="text/javascript" src="js/erikJavascript.js"></script>
+<!--Jonathans javascriptfil -->
+<script src="js/jonathansVariabler.js"></script>
+<script src="js/jonathanJavascript.js"></script>
 
+<!--Alejandros javascriptfil -->
+<script src="js/alejandroJavascript.js"></script>
+  
+<!--Albins javascriptfil -->
+<script src="js/albinJavascript.js"></script>
+<!--Jonas javascriptfil -->
+
+<script src="js/jonasJavascript.js"></script>
+<!--Eriks javascriptfil -->
+
+<script src="js/erikJavascript.js"></script>
 
 
 
