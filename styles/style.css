@@ -671,7 +671,8 @@ line-height: 0px;
     }
     #loginPopup > button:hover{
       cursor:pointer;
-      background-color: darkcyan;
+      background-color: #C65F63;
+      border: 1px solid lightgrey;
     }
 
 @media (min-width: 600px) {
