@@ -156,6 +156,7 @@ var callback = function () {
             console.log('we can`t process this request right now: ' + fail);
           });
       }).catch(function (fail) {
+
         console.log('errorLocation');
       });
   }
@@ -334,6 +335,79 @@ var callback = function () {
           let articles = object.articles;
 
 
+                    showAWhile.style.height = "30px"
+                    showAWhile.style.paddingTop = "20px"
+                    showAWhile.style.backgroundColor = "#C65F63"
+
+                    let arr = [];
+                    console.log("getSomeNewsFromown")
+
+
+
+
+                    for(let i=0; i< ownCurrentTag.ownCurrentTag.children.length; i++){
+
+                      console.log(ownCurrentTag.ownCurrentTag.children[i].innerHTML)
+                      arr.push(ownCurrentTag.ownCurrentTag.children[i].innerHTML)
+
+                    }
+
+
+
+                    let string = ""
+                    for(let i= 0; i< arr.length; i++){
+
+                      if(i===0){
+
+                        if(arr[i] !== "" ){
+                          string +=  arr[i]
+                        }
+
+                      }
+                      if(i === 1){
+                        if(arr[i] !== null && arr[i] !== " " ){
+                          string += " "  + arr[i]
+                        }
+                      }
+                      if(i === 2){
+                        if(arr[i] !== null && arr[i] !== " " ){
+                          string += " "  +arr[i]
+                        }
+                      }
+
+                      if(i === 3){
+                        if(arr[i] !== null && arr[i] !== " " ){
+                          string += " " +arr[i]
+                        }
+                      }
+
+                      if(i === 4){
+                        if(arr[i] !== null && arr[i] !== " " ){
+                          string += " " +arr[i]
+                        }
+                      }
+
+
+                    }
+
+
+                    showAWhile.style.height = "30px"
+                    showAWhile.style.paddingTop = "20px"
+                    showAWhile.style.backgroundColor = "#65C253"
+                    showAWhile.innerHTML = "<h2>You searched for "+ string +"</h2>"
+                    function displayNone() {
+
+                      showAWhile.style.height = "0px"
+                      showAWhile.style.paddingTop = "0px"
+                      showAWhile.innerHTML = ""
+                    }
+                    setTimeout(displayNone, 2000);
+
+
+
+
+
+
           let myArticles = [];
           let amount = 12;
 
@@ -418,7 +492,9 @@ var callback = function () {
             browseNews(suggestedArticles, amount);
           })
           .catch(function (error) {
+
             console.log('Something went wrong');
+
           });
         url = urlBase + question;
       }
