@@ -1,5 +1,4 @@
-console.log("erikJS");
- window.addEventListener("load", getApi)
+window.addEventListener("load", getApi)
 
     function getApi() {
 
@@ -33,20 +32,18 @@ console.log("erikJS");
                eventText.innerHTML = event1Text;
 
            });
-     
+
     };
 
     window.addEventListener("scroll",function() {
         let footer = document.getElementById('footer');
-     
+
         if(window.scrollY > 500) {
             footer.style.transition = 'opacity 1s';
             footer.style.opacity = '1';
     }   else {
             footer.style.transition = 'opacity 1s';
-            footer.style.opacity = '0'; 
+            footer.style.opacity = '0';
     }
  },false);
-
-
 

@@ -70,7 +70,6 @@
     white-space: -moz-pre-wrap;
     white-space: -o-pre-wrap;
 }
-
 .writeBox {
     color: black;
     background: white;
@@ -105,9 +104,19 @@
     width: 30px;
   }
 }
+@media (max-width: 400px){
+  .writeBox {
+    height: 30px;
+  }
+  .commentButton {
+    height: 30px;
+    width: 50px;
+    bottom: 13px;
+    font-size: 10px;
+  }
+}
 @media (max-width: 1300px){
   .commentButton {
     right: 30%;
   }
 }
-
