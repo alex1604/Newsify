@@ -719,6 +719,7 @@ line-height: 0px;
     #weatherLocation{
       display:inherit;
     }
+    
 }
 
 @media (max-width: 600px) {
@@ -798,3 +799,46 @@ line-height: 0px;
     margin-bottom: 10px;
   }
 }
+
+.signOut {
+    
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    padding-top: 10px;
+    margin-left: 20px;
+    top: 10px;
+    background-color: indianred;
+    cursor:pointer;
+    border:none;
+    font-size:14px;
+    border-radius: 10px;
+    
+}
+
+.signOut:hover{
+    cursor:pointer;
+    transform: scale(1.05);
+    transition: all 1s ease;
+    background-color:#424768;
+    box-shadow: 3px 3px 6px rgba(255,255,255,0.4);
+    color: white;
+    
+}
+
+
+@media (max-width: 600px) {
+    .signOut {
+        top: 10px;
+        width: 60px;
+        height: 20px;
+        font-size: 10px;
+        padding-top: 6px; 
+        
+    }
+    .follow {
+        display: none;
+    }
+}
+
