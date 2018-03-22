@@ -197,8 +197,6 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
 
 
     } else {
-
-      //console.log("finns")
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
 
         let obj = snapshot.val()

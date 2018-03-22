@@ -187,8 +187,6 @@ var callback = function () {
 
   var getSomeNews = function (queryString, category, country, language, source) {
 
-
-    console.log(tagCode)
     let url = urlBase + question;
 
     searchArray.push(tagCode);
@@ -452,8 +450,6 @@ var callback = function () {
     for (i = 0; i < childDivsRegular.length; i++) {
 
       let childDivRegular = childDivsRegular[i];
-      console.log(childDivRegular.id)
-
       if(childDivRegular.id === "inputTag"){
         tagCode = childDivRegular.innerHTML.slice(1)
       }
