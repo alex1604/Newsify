@@ -119,6 +119,7 @@
         background: #333644;
         color:rgba(255,255,255,0.8);
         border-left: 5px solid #C65F63;
+        font-size:15px;
       }
       #moreOp > button:hover{
         cursor:pointer;
