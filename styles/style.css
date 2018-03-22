@@ -55,15 +55,26 @@
         margin-bottom:20px;
       }
       #buttons  button{
-          width:100px;
+          min-width:150px;
           text-align: center;
-          padding:20px 0px;
-          margin:0;
-          background: #333644;
+          padding:10px 7px 10px 7px;
+          margin:20px 7.5px 20px 7.5px;
+          background: #4f5369;
           color:rgba(255,255,255,0.8);
-
           border:none;
-
+          font-size:14px;
+          border-bottom: 2px solid #C65F63;
+          border-radius:5px;
+      }
+      #buttons button:hover{
+        cursor:pointer;
+        transform: scale(1.1);
+        transition: all 1s ease;
+        background-color:#424768;
+        box-shadow: 5px 5px 10px rgba(255,255,255,0.4);
+      }
+      #more{
+        outline-style: none;
       }
 
 
@@ -75,31 +86,42 @@
       .taggar{
         position: relative;
       }
-
+      #btnwrapper{
+        display:flex;
+        flex-direction:column;
+        background:#333644;
+      }
       #buttons{
-
-        position: relative;
         display: none;
         margin-bottom: 5px;
-        justify-content: center;
-        width: 100%;
+        display:flex;
+        flex-direction:row;
+        width: auto;
         background:#333644;
+        align-self:center;
       }
 
       #moreOp{
         display: block;
           background: #333644;
           color: white;
-          font-size: 0.8em;
           padding-top: 50px;
           padding-left: 20px;
+          height:40px;
       }
       #moreOp button{
-        background: #333644;
-        color: white;
-
-        border-radius: 0;
+        text-align: center;
+        padding:10px 7px 10px 7px;
+        background-color:#333644;
+        color:rgba(255,255,255,0.8);
         border:none;
+        font-size:16px;
+        border-bottom: 2px solid #C65F63;
+      }
+      #moreOp > button:hover{
+        cursor:pointer;
+        transition: all 1s ease;
+        box-shadow: 0px 0px 20px rgba(255,255,255,0.4);
       }
       header{
         padding-top: 50px;
@@ -676,6 +698,9 @@ line-height: 0px;
       background-color: #C65F63;
       border: 1px solid lightgrey;
     }
+   .fa-times-circle {
+     color: red !important;
+   }
 
 @media (min-width: 600px) {
     body{
@@ -707,9 +732,23 @@ line-height: 0px;
 
   #buttons {
     justify-content: flex-start;
-    margin-top: 0px;
+    margin-top: 10px;
     margin-bottom: 0px;
+    font-size:12px;
   }
+  #buttons button{
+    min-width:50px;
+    padding:7px 5px 7px 5px;
+    margin:20px 4px 20px 4px;
+    font-size:16px;
+  }
+  #buttons button:hover{
+    cursor:pointer;
+    transform: scale(1.05);
+    transition: all 1s ease;
+    background-color:#424768;
+    box-shadow: 3px 3px 6px rgba(255,255,255,0.4);
+}
   #weatherCast{
     display:flex;
     flex-direction:column;

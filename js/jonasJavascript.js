@@ -34,7 +34,7 @@ var outputSaved = [];
         // save article to database 
         // checks if userID is not null
     if (storedUser !== null){
-      console.log(event.target.parentElement.parentElement.parentElement);
+      //console.log(event.target.parentElement.parentElement.parentElement);
     // this is so the click event only occurs if its on that specific class
         if(event.target.parentElement.classList.contains('saveToFavourite')){
            // get data from the articles shown on screen   
@@ -42,6 +42,8 @@ var outputSaved = [];
           let saveDescription = event.target.parentElement.parentElement.parentElement.children[2].textContent;
           let saveUrl = event.target.parentElement.parentElement.parentElement.children[3].firstChild.getAttribute('href');
           let saveUrlImage = event.target.parentElement.parentElement.parentElement.previousSibling.firstChild.getAttribute('src');
+          let changeIconOnAdd = event.target.previousSibling;
+          let changeTextOnAdd = event.target;
           // create object from the data
           const newsObject = new News(saveTitle, saveDescription, saveUrl, saveUrlImage);
             // check if variable saveTitle is equal to child "saveTitle" in firebase 
@@ -52,13 +54,18 @@ var outputSaved = [];
                console.log('it already exists in articles database');
                firebase.database().ref("users/" + storedUser.uid + "/favourites").orderByValue().equalTo(saveUrl).once("value", snapshot => {
                 const userFavourites = snapshot.val();
-                    console.log(userFavourites);
+                    //console.log(userFavourites);
                       // if article already exists it should not reupload
                       if (userFavourites){
                         console.log('it already exists in userprofile');               
                       } else {
                         console.log('added it only to userprofile');
                         firebase.database().ref("users/" + storedUser.uid + "/favourites").push(saveUrl);
+                        //console.log(event.target);
+                        
+                        changeIconOnAdd.style.color = 'yellow';
+                        changeTextOnAdd.textContent = 'Saved';
+                      
                       }
 
               });
@@ -69,6 +76,8 @@ var outputSaved = [];
                   firebase.database().ref("users/" + storedUser.uid + "/favourites").push(saveUrl);
                   console.log('added to database');
                   console.log('added to userprofile');
+                  changeIconOnAdd.style.color = 'yellow';
+                        changeTextOnAdd.textContent = 'Saved';
 
                 }
             });
@@ -142,24 +151,27 @@ showFavourites.addEventListener('click', event => {
     let amount = myArrayFilteredOutput.length;
     browseNews(myArrayFilteredOutput, amount);   
     let saveText = document.getElementsByClassName('showFavouriteText');
-    let changeIcon = document.getElementsByClassName('far fa-star');
+    let changeIcon = document.getElementsByClassName('fas fa-star');
     
     let changeClassToRemove = document.getElementsByClassName('saveToFavourite');
     //changeClassToRemove.classList = "newsFooter remove";
     for (var i = changeIcon.length -1 ; i >= 0; --i) {
 
-      changeIcon[i].className = changeIcon[i].className.replace('far fa-star', 'fas fa-times-circle');
+      changeIcon[i].className = changeIcon[i].className.replace('fas fa-star', 'fas fa-times-circle');
+      
       changeClassToRemove[i].className = changeClassToRemove[i].className.replace('newsFooter saveToFavourite', 'newsFooter remove');
       saveText[i].textContent = 'Remove';
-      
+  
     }
+    
     }
    
 });
+  let changeSavedArticlesText = document.getElementsByClassName('showFavouriteText');
+
   let removeArticle = document.querySelector('#newsContainer');
 
   removeArticle.addEventListener('click', function(event){
-
     if (storedUser !== null){
       // this is so the click event only occurs if its on that specific class
       if(event.target.parentElement.classList.contains('remove')){
