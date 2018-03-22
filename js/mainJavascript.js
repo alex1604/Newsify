@@ -805,6 +805,17 @@ var getAllNews = function () {
 
           myArticles.push(articles[article]);
 
+                              showAWhile.style.height = "30px"
+                              showAWhile.style.paddingTop = "20px"
+                              showAWhile.style.backgroundColor = "#65C253"
+                              showAWhile.innerHTML = "<h3>You searched general news</h3>"
+                              function displayNone() {
+
+                                showAWhile.style.height = "0px"
+                                showAWhile.style.paddingTop = "0px"
+                                showAWhile.innerHTML = ""
+                              }
+                              setTimeout(displayNone, 2000);
 
 
         } else {

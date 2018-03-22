@@ -24,6 +24,7 @@
           padding:10px 0;
           position: absolute;
           display: none;
+          font-size: 0.9em;
           color:rgba(255,255,255,0.8);
           text-align: center;
           background: #C65F63;
@@ -188,7 +189,19 @@ color:rgba(255,255,255,0.7);
 line-height: 0px;
     position: relative;
 
+      transition: transform;
+      transition-duration: 0.5s;
+
       }
+
+    .tags:hover{
+
+      cursor: pointer;
+
+
+    }
+
+
       #tagsSlider{
       }
 
@@ -737,6 +750,9 @@ line-height: 0px;
 @media (min-width: 600px) {
     body{
     }
+ #canNotShow{
+    font-size: 1.2em;
+  }
 
     #buttons {
       padding-left:20px;

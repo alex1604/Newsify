@@ -284,20 +284,25 @@ var callback = function () {
 
           }
 
+          console.log(string)
+          if(string !== ""){
 
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#65C253"
-          showAWhile.innerHTML = "<h2>You searched for "+ string +"</h2>"
-          function displayNone() {
+                      showAWhile.style.height = "30px"
+                      showAWhile.style.paddingTop = "20px"
+                      showAWhile.style.backgroundColor = "#65C253"
 
-            showAWhile.style.height = "0px"
-            showAWhile.style.paddingTop = "0px"
-            showAWhile.innerHTML = ""
+                      showAWhile.innerHTML = "<h3>You searched for "+ string +"</h3>"
+                      function displayNone() {
+
+                        showAWhile.style.height = "0px"
+                        showAWhile.style.paddingTop = "0px"
+                        showAWhile.innerHTML = ""
+                      }
+                      setTimeout(displayNone, 2000);
           }
-          setTimeout(displayNone, 2000);
 
 
+          string = ""
 
           let myArticles = [];
           let amount = 12;
@@ -324,7 +329,7 @@ var callback = function () {
           showAWhile.style.height = "30px"
           showAWhile.style.paddingTop = "20px"
           showAWhile.style.backgroundColor = "#C65F63"
-          showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
+          showAWhile.innerHTML = "<h3>Nothing matched your search!</h3>"
           function displayNone() {
             showAWhile.style.height = "0px"
             showAWhile.style.paddingTop = "0px"
@@ -452,11 +457,12 @@ var callback = function () {
 
                     }
 
+                    console.log(string)
 
                     showAWhile.style.height = "30px"
                     showAWhile.style.paddingTop = "20px"
                     showAWhile.style.backgroundColor = "#65C253"
-                    showAWhile.innerHTML = "<h2>You searched for "+ string +"</h2>"
+                    showAWhile.innerHTML = "<h3>You searched for "+ string +"</h3>"
                     function displayNone() {
 
                       showAWhile.style.height = "0px"
@@ -494,7 +500,7 @@ var callback = function () {
           showAWhile.style.height = "30px"
           showAWhile.style.paddingTop = "20px"
           showAWhile.style.backgroundColor = "#C65F63"
-          showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
+          showAWhile.innerHTML = "<h3>Nothing matched your search!</h3>"
           function displayNone() {
 
             showAWhile.style.height = "0px"
