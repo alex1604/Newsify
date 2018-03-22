@@ -1,8 +1,3 @@
-console.log("mainJS");
-
-
-
-
 let signedInNowOrBefore = "before"
 
 let whenLoggedIn = document.getElementById("whenLoggedIn");
@@ -42,8 +37,6 @@ loginDiv.addEventListener("click", function(event){
 login.addEventListener("click", function (event) {
   //simple click event on the "login" div
   firebase.auth().signInWithPopup(gmailprovider).then(function (result) {
-
-    console.log("logging in")
     signedInNowOrBefore = "now";
   }).catch(function (error) {
     console.log("Error: " + error);
@@ -62,7 +55,6 @@ loginFb.addEventListener("click", function () {
   let accessToken = '';
 
   FB.getLoginStatus(function (response) {
-    //console.log(response);
     if (response.status == 'unknown' || response.status == 'not_authorized') {
       FB.login(function (response) {
         if (response.authResponse) {
@@ -71,26 +63,17 @@ loginFb.addEventListener("click", function () {
 
           signedInNowOrBefore = "now";
           firebase.auth().signInWithPopup(fbProvider).then(function (response) {
-            //console.log(response);
             uid = response.user.uid;
-            //console.log(uid + ' first');
             uemail = response.additionalUserInfo.profile.email;
-            //console.log(uemail + ' first');
             uname = response.additionalUserInfo.profile.name;
-            //console.log(uname + ' first');
             upicture = response.additionalUserInfo.profile.picture.data.url;
-            //console.log(upicture);
-
-            //console.log(response);
-            //console.log('success authenticating fb in database');
             firebaseInsertUserFacebook(uid, uname, upicture, uemail);
           })
-            .catch(function () {
-              console.log('error authenticating fb in database');
+            .catch(function (error) {
+              console.log('error authenticating fb in database ' + error);
             });
 
         } else {
-          console.log('User cancelled login');
         }
       },
         { scope: 'public_profile,email' })
@@ -134,7 +117,7 @@ let loginHeader = function (user) {
   userPicture.className = "userPicture"
   userName.innerText = user.displayName;
   userName.className = "userName";
-  signOut.innerText = "log out";
+  signOut.innerText = "Log Out";
 
 
   signOut.addEventListener("click", function () {
@@ -184,7 +167,6 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
 
 
     if (id === "") {
-      //console.log("finns inte")
       var database = firebase.database;
       database().ref("/users/" + userID).set({
         username: userName,
@@ -200,6 +182,7 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
       let indexet = 0;
 
       //console.log("finns")
+
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
 
         let obj = snapshot.val()
@@ -246,7 +229,6 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
 
     if (id === "") {
-      //console.log("finns inte")
       var database = firebase.database;
       database().ref("/users/" + userID).set({
         username: userName,
@@ -293,9 +275,6 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
             tagsSlider.children[i].addEventListener("click", function () {
 
-
-              console.log(tagsSlider.children)
-
               let tag = tagsSlider.children[i];
 
 
@@ -316,10 +295,6 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
           tagsSlider.children[0].innerHTML = "<div class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</div>";
 
         }
-
-        //console.log(tagsSlider.children[0].innerHTML)
-
-
       })
     }
   })
@@ -347,7 +322,6 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
 
 
     if (id === "") {
-      //console.log("finns inte")
       var database = firebase.database;
       database().ref("/users/" + userID).set({
         username: userName,
@@ -470,7 +444,6 @@ firebase.auth().onAuthStateChanged(function (user) {
     // User is signed in.
     // Put in the displayname change and whatnot?
   } else {
-    //console.log("logged out");
     localStorage.clear(); //clears the localstorage for the next user
     addTagBtn.style.display = "none";
     whenLoggedIn.style.display = "none";
@@ -612,7 +585,7 @@ var createNews = function () {
   articleImage.appendChild(img);
 
   mainContent.appendChild(pinkAndTitle);
-  mainContent.prepend(articleImage);
+  mainContent.insertBefore(articleImage, mainContent.firstChild);
 
   article.appendChild(blackLine);
   article.appendChild(mainContent);
@@ -658,12 +631,12 @@ main.innerHTML = "";
       images[count].src = array[count].urlToImage;
     }
     readMore[count].href = array[count].url;
-    fbShare[count].name = array[count].url;
+    fbShare[count].href = array[count].url;
     commentArticleArray[count].children[1].addEventListener("click", function (event) {
       if (event.target.parentElement.parentElement.children.length == 3) {
         let commentField = document.createElement("div");
         commentField.className = "commentField";
-        event.target.parentElement.parentElement.append(commentField);
+        event.target.parentElement.parentElement.appendChild(commentField);
         let targetUrl = event.target.parentNode.parentNode.children[1].href;
         db.ref("/Articles/").once("value", function (snapshot) {
           var found = "unfound";
@@ -700,7 +673,6 @@ main.innerHTML = "";
             }
 
             else if (event.key == "Enter" && localStorage.getItem("username") !== null) {
-              //console.log(event.target);
 
               let text = event.target.parentElement.children[3].value;
               event.target.parentElement.children[3].value = "";
@@ -712,7 +684,8 @@ main.innerHTML = "";
                       firebase.database().ref("/Articles/" + item + "/comments/").push({
                         content: text,
                         username: localStorage.getItem("username"),
-                        photoURL: localStorage.getItem("photoURL"),
+                        photoURL: 
+                        localStorage.getItem("photoURL"),
                         userID: localStorage.getItem("userid"),
                       })
                     }
@@ -761,7 +734,7 @@ main.innerHTML = "";
                 commentWhole.appendChild(commentUserPicture);
                 commentWhole.appendChild(commentUsername);
                 commentWhole.appendChild(commentText);
-                event.target.parentElement.parentElement.children[5].prepend(commentWhole);
+                event.target.parentElement.parentElement.children[5].insertBefore(commentWhole, event.target.parentElement.parentElement.children[5].firstChild);
               })
             }
           }
@@ -782,7 +755,7 @@ main.innerHTML = "";
 
   for (let x of fbBtn) {
     x.addEventListener('click', function () {
-      let fbUrl = x.name;
+      let fbUrl = x.href;
       FB.ui({
         method: 'share',
         href: fbUrl,
@@ -799,17 +772,16 @@ main.innerHTML = "";
 
 
     checkForURL = x.parentElement.nextSibling.getAttribute('name');
+    checkForURL = x.parentElement.nextSibling.getAttribute('href');
 
   firebase.database().ref("users/" + thisUser + "/favourites").orderByValue().equalTo(checkForURL).once('value', snapshot => {
 
       const updateOutput = snapshot.val();
-      //console.log(checkForURL);
       if(updateOutput !== null && x.parentElement.className !== 'fas fa-times-circle' ){
 
         x.previousSibling.className = 'fas fa-star';
         x.previousSibling.style.color = 'yellow';
       x.textContent = 'Saved';
-      console.log('changed icon');
     }
   })
 }

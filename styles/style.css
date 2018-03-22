@@ -37,42 +37,38 @@
         position: relative;
       }
       #ShowAWhile{
-        height: 0;
+        display: none;
         width:100%;
-        transition-property: height, padding-top, padding-bottom;
-        font-size: 0.7em;
-        transition-duration: 0.5s;
+        padding:10px;
+        top:230px;
+
         text-align: center;
         z-index: 1000;
         position: fixed;
         color:rgba(255,255,255,0.8);
       }
       .follow{
-        display:flex;
-        flex-direction:row;
-        justify-content:space-around;
         font-size:18px;
         margin-bottom:20px;
       }
       #buttons  button{
+          min-width:150px;
           text-align: center;
+          padding:10px 7px 10px 7px;
+          margin:20px 7.5px 20px 7.5px;
+          background: #4f5369;
           color:rgba(255,255,255,0.8);
           border:none;
-          padding:10px;
           font-size:14px;
-          background: #333644;
           border-bottom: 2px solid #C65F63;
-          transition-property: transform;
-          transition-duration: 0.5s;
-
-
-
+          border-radius:5px;
       }
       #buttons button:hover{
         cursor:pointer;
-        transform:translate(0px, -5px);
-
-
+        transform: scale(1.1);
+        transition: all 1s ease;
+        background-color:#424768;
+        box-shadow: 5px 5px 10px rgba(255,255,255,0.4);
       }
       #more{
         outline-style: none;
@@ -94,32 +90,36 @@
       }
       #buttons{
         display: none;
-        justify-content: center;
+        margin-bottom: 5px;
+        display:flex;
+        flex-direction:row;
         width: auto;
+        background:#333644;
         align-self:center;
-        background: #333644;
-        padding-bottom: 10px;
-
       }
 
       #moreOp{
         display: block;
           background: #333644;
           color: white;
-          padding-top: 50px;
+          top: 45px;
+          left: 20px;
           height:40px;
+          padding-bottom: 2px;
       }
       #moreOp button{
-        border:none;
-        padding-left: 10px;
-        background: #333644;
+        text-align: center;
+        padding:10px 7px 10px 7px;
+        background-color:#333644;
         color:rgba(255,255,255,0.8);
-        border-left: 5px solid #C65F63;
-        border-bottom:
-
+        border:none;
+        font-size:16px;
+        border-bottom: 2px solid #C65F63;
       }
       #moreOp > button:hover{
         cursor:pointer;
+        transition: all 1s ease;
+        box-shadow: 0px 0px 15px rgba(255,255,255,0.4);
       }
       header{
         padding-top: 50px;
@@ -739,26 +739,49 @@ line-height: 0px;
     #weatherLocation{
       display:inherit;
     }
+    
 }
 
 @media (max-width: 600px) {
   body{
 
   }
+  .newsFooter {
+    padding: 0px;
+    font-size: 12px;
+    margin-left: 10px;
+  }
+  .readMoreLink {
+    font-size: 15px;
+  }
+  .readMore {
+    margin-bottom: 10px;
+  }
 
   #weatherLocation{
     display:none;
   }
-
+  #moreOp {
+    font-size: 12px;
+  }
   #buttons {
-
+    justify-content: flex-start;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size:12px;
   }
   #buttons button{
-
+    min-width:50px;
+    padding:7px 5px 7px 5px;
+    margin:20px 4px 20px 4px;
+    font-size:12px;
   }
   #buttons button:hover{
     cursor:pointer;
-
+    transform: scale(1.05);
+    transition: all 1s ease;
+    background-color:#424768;
+    box-shadow: 3px 3px 6px rgba(255,255,255,0.4);
 }
   #weatherCast{
     display:none;
@@ -784,13 +807,6 @@ line-height: 0px;
   header{
     padding-top: 20px;
   }
-  .follow{
-    display:flex;
-    flex-direction:row;
-    justify-content:space-around;
-    font-size:16px;
-    margin-bottom:20px;
-  }
   .title{
     margin-top:3%;
     font-family: 'Josefin Sans', sans-serif;
@@ -809,3 +825,46 @@ line-height: 0px;
     margin-bottom: 10px;
   }
 }
+
+.signOut {
+    
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    padding-top: 10px;
+    margin-left: 20px;
+    top: 10px;
+    background-color: indianred;
+    cursor:pointer;
+    border:none;
+    font-size:14px;
+    border-radius: 10px;
+    
+}
+
+.signOut:hover{
+    cursor:pointer;
+    transform: scale(1.05);
+    transition: all 1s ease;
+    background-color:#424768;
+    box-shadow: 3px 3px 6px rgba(255,255,255,0.4);
+    color: white;
+    
+}
+
+
+@media (max-width: 600px) {
+    .signOut {
+        top: 10px;
+        width: 60px;
+        height: 20px;
+        font-size: 10px;
+        padding-top: 6px; 
+        
+    }
+    .follow {
+        display: none;
+    }
+}
+
