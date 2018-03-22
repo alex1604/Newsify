@@ -104,7 +104,7 @@ let categoryContentChangeWidth = categorySlider.categoryContentChange.offsetWidt
 let languageContentChangeWidth = languageSlider.languageContentChange.offsetWidth;
 let tagsSliderContentChangeWidth = tagsSlider.tagsContentChange.offsetWidth;
 
-console.log(tagsSliderContentChangeWidth)
+
 
 let sliderContentChangeLength = sliderContentChange.children.length;
 
@@ -393,30 +393,14 @@ function languageSwitch(languageMinusSlide){
 }
 
 
-slider.inputKeyword.addEventListener("click", function(e){
 
-
-
-  currentTag.inputTag.innerHTML = "";
-  currentTag.sourceTag.innerHTML = "";
-  currentTag.countryTag.innerHTML = "";
-  currentTag.categoryTag.innerHTML = "";
-  currentTag.languageTag.innerHTML = "";
-  slider.inputKeyword.value = ""
-
-
-
-})
 
 
 slider.inputKeyword.addEventListener("keydown",function(e){
 
 
-  if(countryMinusSlide>1 || categoryMinusSlide > 1){
 
-    slider.inputKeyword.disabled = true;
-
-  }else if(e.key === "Backspace" ){
+  if(e.key === "Backspace" ){
     currentTag.inputTag.innerHTML = currentTag.inputTag.innerHTML.substring(0,currentTag.inputTag.innerHTML.length-1)
 
       if(currentTag.inputTag.innerText === "#"){
@@ -429,12 +413,7 @@ slider.inputKeyword.addEventListener("keydown",function(e){
 
 slider.inputKeyword.addEventListener("keypress",function(e){
 
-
-  if(countryMinusSlide>1 || categoryMinusSlide > 1){
-
-    slider.inputKeyword.disabled = true;
-
-  }else if(e.key !== "Backspace"  && e.key !== "Tab" && e.key !== "Escape" && e.key !== "Shift" && e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.key !== "ArrowUp" && e.key !== "ArrowDown"){
+  if(e.key !== "Backspace"  && e.key !== "Tab" && e.key !== "Escape" && e.key !== "Shift" && e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.key !== "ArrowUp" && e.key !== "ArrowDown"){
       if(e.key !== "Enter" ){
 
         if(currentTag.inputTag.innerHTML.length === 0){
@@ -1061,7 +1040,7 @@ function sliderFunctionRight(contentChangeLength, totalLeft, contentChangeWidth,
 
         }else{
           slider.inputKeyword.disabled = false;
-          slider.inputKeyword.setAttribute("placeholder", "Keyword")
+          slider.inputKeyword.setAttribute("placeholder", "Search")
 
 
         }

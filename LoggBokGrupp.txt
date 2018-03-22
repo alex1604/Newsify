@@ -98,7 +98,3 @@ Möte kl 10 på discord, tills på fredag ska sidan vara responsiv! samt ska kon
 
 Onsdag 21
 Möte kl 10 i skolan, idag har vi alla fokuserat på att göra sidan responsiv för alla platformer.
-
-Torsdag 22:
-Möte kl 10 i skolan, vi har några buggar som vi måste fixa under dagen samt fortsätta med responsiviteten, för att sedan merga allting och förberede
-sig för morgondagens presentation!

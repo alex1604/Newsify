@@ -44,7 +44,7 @@
 
         text-align: center;
         z-index: 1000;
-        position: fixed;
+        position: absolute;
         color:rgba(255,255,255,0.8);
       }
       .follow{
@@ -183,19 +183,6 @@ line-height: 0px;
     position: relative;
 
       }
-      #tagsSlider{
-      }
-
-      #tagsSlider .tags{
-        width: 100px;
-        height: 40px;
-        padding-top: 100px;
-      }
-
-      #tagsSlider .tags span{
-        display: block;
-        width:100px;
-      }
 
     #sourceSlider, #countrySlider, #categorySlider, #languageSlider{
       position: absolute;
@@ -211,8 +198,6 @@ line-height: 0px;
         transform: rotate(180deg);
       }
 
-      #whenLoggedIn .slider{
-      }
 
 
       #sliderContentChange input.tags{
@@ -223,14 +208,9 @@ line-height: 0px;
 
 
 
-#tagsSliderContentChange{
-  width:100px;
-  margin-left: 0;
-  transition-property: margin-left;
-  transition-duration: 0.5s;
-}
 
-      #sliderContentChange, {
+
+      #sliderContentChange, #tagsSliderContentChange{
         width:120px;
         margin-left: 0;
         transition-property: margin-left;
@@ -533,7 +513,7 @@ line-height: 0px;
 
     }
     #weatherCast{
-      display:none;
+      display:flex;
       flex-direction:column;
       justify-content: space-around;
       align-items: flex-end;
@@ -542,7 +522,6 @@ line-height: 0px;
       right:1%;
       top:19%;
       opacity: 0;
-      z-index: 200;
     }
 
     #weather{
@@ -728,7 +707,6 @@ line-height: 0px;
       justify-content: flex-start;
       margin-top: 0px;
       margin-bottom: 0px;
-      padding-left:20px;
       display: flex;
     }
 
@@ -738,7 +716,6 @@ line-height: 0px;
     #weatherLocation{
       display:inherit;
     }
-    
 }
 
 @media (max-width: 600px) {
@@ -767,7 +744,7 @@ line-height: 0px;
     box-shadow: 3px 3px 6px rgba(255,255,255,0.4);
 }
   #weatherCast{
-    display:none;
+    display:flex;
     flex-direction:column;
     justify-content: space-around;
     align-items: flex-end;
@@ -815,46 +792,3 @@ line-height: 0px;
     margin-bottom: 10px;
   }
 }
-
-.signOut {
-    
-    position: absolute;
-    display: inline-block;
-    width: 60px;
-    height: 30px;
-    padding-top: 10px;
-    margin-left: 20px;
-    top: 10px;
-    background-color: indianred;
-    cursor:pointer;
-    border:none;
-    font-size:14px;
-    border-radius: 10px;
-    
-}
-
-.signOut:hover{
-    cursor:pointer;
-    transform: scale(1.05);
-    transition: all 1s ease;
-    background-color:#424768;
-    box-shadow: 3px 3px 6px rgba(255,255,255,0.4);
-    color: white;
-    
-}
-
-
-@media (max-width: 600px) {
-    .signOut {
-        top: 10px;
-        width: 60px;
-        height: 20px;
-        font-size: 10px;
-        padding-top: 6px; 
-        
-    }
-    .follow {
-        display: none;
-    }
-}
-
