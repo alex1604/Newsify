@@ -753,7 +753,7 @@ main.innerHTML = "";
 
   for (let x of fbBtn) {
     x.addEventListener('click', function () {
-      let fbUrl = x.href;
+      let fbUrl = x.name;
       FB.ui({
         method: 'share',
         href: fbUrl,
