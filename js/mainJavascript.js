@@ -236,9 +236,6 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
         tags: {
 
         },
-        favourites: {
-          example: "example",
-        },
       })
 
 
@@ -327,9 +324,6 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
         email: userMail,
         tags: {
 
-        },
-        favourites: {
-          example: "example",
         },
       })
 
