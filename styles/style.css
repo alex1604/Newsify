@@ -522,20 +522,10 @@ line-height: 0px;
     }
     .readMore{
       align-self: center;
-      font-size:1.2em;
-      margin: 10px 0 20px 0;
     }
     .readMore a:link{
       text-decoration:none;
       font-weight:bold;
-      color: #C65F63;
-    }
-    .readMore a:visited{
-      color: #333644;
-    }
-    .shareArticle{
-      text-decoration: none;
-      color: #333644;
     }
     .sumUp{
       align-self: flex-end;
@@ -720,12 +710,15 @@ line-height: 0px;
     /* end of Save,share and comment links*/
     #loginPopup > button{
       font-size:20px;
-      color:rgba(255,255,255,0.8);
-      background: rgba(255,255,255,0);
-      border:1px solid white;
-      border-radius: 5px;
-      padding: 10px 10px;
+      color:rgba(255,255,255,0.7);
+      background:#333644 ;
+      border:1px solid rgba(255,255,255,0);
+      border-bottom: 3px solid #C65F63;
       margin-bottom: 20px;
+      display: inline-block;
+      position: relative;
+      transition-property: top;
+      transition-delay: 0.3s;
     }
     #loginPopup{
       display: flex;
@@ -740,11 +733,16 @@ line-height: 0px;
     }
     #loginPopup > button:hover{
       cursor:pointer;
-      background-color: #C65F63;
-      border: 1px solid lightgrey;
+
+      top:-2px;
     }
    .fa-times-circle {
      color: red !important;
+   }
+
+
+   .signOut{
+     font-size: 1.1em;
    }
 
 @media (min-width: 600px) {
@@ -852,22 +850,21 @@ line-height: 0px;
     width: 60px;
     height: 30px;
     padding-top: 10px;
-    margin-left: 20px;
+    padding-left: 10px;
+    margin-left: 0px;
     top: 10px;
-    background-color: indianred;
     cursor:pointer;
     border:none;
     font-size:14px;
-    border-radius: 10px;
+    border-left: 5px solid #C65F63;
 
 }
 
 .signOut:hover{
     cursor:pointer;
     transform: scale(1.05);
-    transition: all 1s ease;
-    background-color:#424768;
-    box-shadow: 3px 3px 6px rgba(255,255,255,0.4);
+    padding-left: 15px;
+    transition: all 0.5s ease;
     color: white;
 
 }
@@ -878,7 +875,7 @@ line-height: 0px;
         top: 10px;
         width: 60px;
         height: 20px;
-        font-size: 10px;
+        font-size: 1em;
         padding-top: 6px;
 
     }
