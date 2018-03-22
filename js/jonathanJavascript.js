@@ -372,6 +372,9 @@ deleteOwnTag.addEventListener("click",function(){
           countryCode = "";
           categoryCode = "";
           languageCode = ""
+
+
+
           let string = ""
 
           for(let i= 0; i< tagChildren.length; i++){
@@ -422,6 +425,10 @@ deleteOwnTag.addEventListener("click",function(){
             showAWhile.innerHTML = ""
           }
           setTimeout(displayNone, 1000);
+
+
+          console.log(tagsMinusSlide)
+
           for(let i=0; i< tagsSlider.children.length; i++){
 
             if(tagsSlider.children[i] !== undefined){
@@ -463,6 +470,9 @@ deleteOwnTag.addEventListener("click",function(){
             document.getElementById("ownCurrentTag").innerHTML = "";
           }
 
+
+            console.log(tagsMinusSlide)
+
             if(tagsMinusSlide !== 0){
                 for(let i = 0; i < ownCurrentTag.ownCurrentTag.children.length; i++ ){
 
@@ -495,6 +505,10 @@ deleteOwnTag.addEventListener("click",function(){
 
 
           }else if(tagsMinusSlide !== 0){
+            console.log(tagsMinusSlide)
+            console.log(tagsSlider.children[tagsMinusSlide])
+
+
                         for(let i = 0; i < ownCurrentTag.ownCurrentTag.children.length; i++ ){
                           if(i ===0){
 
@@ -1478,6 +1492,9 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 
   }
   tagsMinusSlide = nummer
+
+  console.log("minus: ", tagsMinusSlide)
+
   totalLeft =  (nummer * totalLeft).toString()
 
   contentChange.style.marginLeft = "-" + totalLeft + "px"
