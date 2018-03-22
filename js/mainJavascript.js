@@ -5,7 +5,8 @@ let whenLoggedIn = document.getElementById("whenLoggedIn");
 let addTagBtn = document.getElementById("addTag");
 
 let deleteOwnTag = document.getElementById("deleteOwnTag");
-let allUsers = []
+let allUsers = [];
+let userHasTouchScreen = false;
 
 let loginDiv = document.getElementById("login");
 let loginPopup = document.getElementById("loginPopup");
