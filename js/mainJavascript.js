@@ -828,6 +828,9 @@ var getAllNews = function () {
 
       browseNews(myArticles, amount);
     })
+    .then(function(){
+      myArticles = [];
+    })
     .catch(function (error) {
       console.log('failed', error);
     });
