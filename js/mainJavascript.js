@@ -117,7 +117,7 @@ let loginHeader = function (user) {
   userPicture.className = "userPicture"
   userName.innerText = user.displayName;
   userName.className = "userName";
-  signOut.innerText = "log out";
+  signOut.innerText = "Log Out";
 
 
   signOut.addEventListener("click", function () {
@@ -670,7 +670,8 @@ main.innerHTML = "";
                       firebase.database().ref("/Articles/" + item + "/comments/").push({
                         content: text,
                         username: localStorage.getItem("username"),
-                        photoURL: localStorage.getItem("photoURL"),
+                        photoURL: 
+                        localStorage.getItem("photoURL"),
                         userID: localStorage.getItem("userid"),
                       })
                     }

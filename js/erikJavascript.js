@@ -46,3 +46,4 @@ window.addEventListener("load", getApi)
             footer.style.opacity = '0';
     }
  },false);
+
