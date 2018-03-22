@@ -179,6 +179,10 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
 
 
     } else {
+      let indexet = 0;
+
+      //console.log("finns")
+
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
 
         let obj = snapshot.val()
@@ -189,8 +193,10 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
           let div = document.createElement("div");
           div.className = "tags";
           div.innerHTML = obj[prop];
+          div.style.zIndex = indexet.toString();
+          div.style.backgroundColor = "#333644"
           tagsSliderContentChange.appendChild(div)
-
+          indexet++
 
         }
       })
@@ -239,6 +245,8 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
     } else {
 
+      let indexet = 0;
+
       db.ref("/users/" + userID + "/photoURL").set(userPicture);
 
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
@@ -251,7 +259,13 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
           let div = document.createElement("div");
           div.className = "tags";
           div.innerHTML = obj[prop];
+          div.style.zIndex = indexet.toString();
+          div.style.backgroundColor = "#333644"
+
           tagsSliderContentChange.appendChild(div)
+
+          indexet++
+
 
 
         }
@@ -757,6 +771,7 @@ main.innerHTML = "";
   for (let x of changeTextIfStored){
 
 
+    checkForURL = x.parentElement.nextSibling.getAttribute('name');
     checkForURL = x.parentElement.nextSibling.getAttribute('href');
 
   firebase.database().ref("users/" + thisUser + "/favourites").orderByValue().equalTo(checkForURL).once('value', snapshot => {
