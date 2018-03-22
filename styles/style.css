@@ -37,14 +37,15 @@
         position: relative;
       }
       #ShowAWhile{
-        display: none;
+        height: 0;
         width:100%;
-        padding:10px;
-        top:230px;
-
+        transition-property: height, padding-top, padding-bottom;
+        font-size: 0.7em;
+        transition-duration: 0.5s;
         text-align: center;
         z-index: 1000;
-        position: absolute;
+        position: fixed;
+        top:0
         color:rgba(255,255,255,0.8);
       }
       .follow{
@@ -52,23 +53,24 @@
         margin-bottom:20px;
       }
       #buttons  button{
-          min-width:150px;
           text-align: center;
-          padding:10px 7px 10px 7px;
-          margin:20px 7.5px 20px 7.5px;
-          background: #4f5369;
           color:rgba(255,255,255,0.8);
           border:none;
+          padding:10px;
           font-size:14px;
+          background: #333644;
           border-bottom: 2px solid #C65F63;
-          border-radius:5px;
+          transition-property: transform;
+          transition-duration: 0.5s;
+
+
+
       }
       #buttons button:hover{
         cursor:pointer;
-        transform: scale(1.1);
-        transition: all 1s ease;
-        background-color:#424768;
-        box-shadow: 5px 5px 10px rgba(255,255,255,0.4);
+        transform:translate(0px, -5px);
+
+
       }
       #more{
         outline-style: none;
@@ -90,12 +92,12 @@
       }
       #buttons{
         display: none;
-        margin-bottom: 5px;
-        display:flex;
-        flex-direction:row;
+        justify-content: center;
         width: auto;
-        background:#333644;
         align-self:center;
+        background: #333644;
+        padding-bottom: 10px;
+
       }
 
       #moreOp{
@@ -108,13 +110,13 @@
           padding-bottom: 2px;
       }
       #moreOp button{
-        text-align: center;
-        padding:10px 7px 10px 7px;
-        background-color:#333644;
-        color:rgba(255,255,255,0.8);
         border:none;
-        font-size:16px;
-        border-bottom: 2px solid #C65F63;
+        padding-left: 10px;
+        background: #333644;
+        color:rgba(255,255,255,0.8);
+        border-left: 5px solid #C65F63;
+        border-bottom:
+
       }
       #moreOp > button:hover{
         cursor:pointer;
@@ -184,6 +186,19 @@ line-height: 0px;
     position: relative;
 
       }
+      #tagsSlider{
+      }
+
+      #tagsSlider .tags{
+        width: 100px;
+        height: 40px;
+        padding-top: 100px;
+      }
+
+      #tagsSlider .tags span{
+        display: block;
+        width:100px;
+      }
 
     #sourceSlider, #countrySlider, #categorySlider, #languageSlider{
       position: absolute;
@@ -209,9 +224,14 @@ line-height: 0px;
 
 
 
+#tagsSliderContentChange{
+  width:100px;
+  margin-left: 0;
+  transition-property: margin-left;
+  transition-duration: 0.5s;
+}
 
-
-      #sliderContentChange, #tagsSliderContentChange{
+      #sliderContentChange, {
         width:120px;
         margin-left: 0;
         transition-property: margin-left;
@@ -523,6 +543,7 @@ line-height: 0px;
       right:1%;
       top:19%;
       opacity: 0;
+      z-index: 200;
     }
 
     #weather{
@@ -705,9 +726,7 @@ line-height: 0px;
     }
 
     #buttons {
-      justify-content: flex-start;
-      margin-top: 0px;
-      margin-bottom: 0px;
+      padding-left:20px;
       display: flex;
     }
 
@@ -742,10 +761,7 @@ line-height: 0px;
     font-size: 12px;
   }
   #buttons {
-    justify-content: flex-start;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    font-size:12px;
+
   }
   #buttons button{
     min-width:50px;
@@ -755,13 +771,10 @@ line-height: 0px;
   }
   #buttons button:hover{
     cursor:pointer;
-    transform: scale(1.05);
-    transition: all 1s ease;
-    background-color:#424768;
-    box-shadow: 3px 3px 6px rgba(255,255,255,0.4);
+
 }
   #weatherCast{
-    display:flex;
+    display: flex;
     flex-direction:column;
     justify-content: space-around;
     align-items: flex-end;

@@ -235,6 +235,69 @@ var callback = function () {
 
           let articles = object.articles;
 
+          showAWhile.style.height = "30px"
+          showAWhile.style.paddingTop = "20px"
+          showAWhile.style.backgroundColor = "#C65F63"
+
+          let arr = [];
+            console.log("getSomeNews")
+          arr.push(currentTag.inputTag.innerHTML)
+          arr.push(currentTag.sourceTag.innerHTML);
+          arr.push(currentTag.countryTag.innerHTML);
+          arr.push(currentTag.categoryTag.innerHTML);
+          arr.push(currentTag.languageTag.innerHTML)
+
+
+          let string = ""
+          for(let i= 0; i< arr.length; i++){
+
+            if(i===0){
+
+              if(arr[i] !== " " || arr[i] === "#" ){
+                string +=  arr[i]
+              }
+
+            }
+            if(i === 1){
+              if(arr[i] !== null && arr[i] !== " " ){
+                string += " "  + arr[i]
+              }
+            }
+            if(i === 2){
+              if(arr[i] !== null && arr[i] !== " " ){
+                string += " "  +arr[i]
+              }
+            }
+
+            if(i === 3){
+              if(arr[i] !== null && arr[i] !== " " ){
+                string += " " +arr[i]
+              }
+            }
+
+            if(i === 4){
+              if(arr[i] !== null && arr[i] !== " " ){
+                string += " " +arr[i]
+              }
+            }
+
+
+          }
+
+
+          showAWhile.style.height = "30px"
+          showAWhile.style.paddingTop = "20px"
+          showAWhile.style.backgroundColor = "#65C253"
+          showAWhile.innerHTML = "<h2>You searched for "+ string +"</h2>"
+          function displayNone() {
+
+            showAWhile.style.height = "0px"
+            showAWhile.style.paddingTop = "0px"
+            showAWhile.innerHTML = ""
+          }
+          setTimeout(displayNone, 2000);
+
+
 
           let myArticles = [];
           let amount = 12;
@@ -258,10 +321,15 @@ var callback = function () {
         })
         .catch(function () {
 
-          showAWhile.style.display = "block"
+          showAWhile.style.height = "30px"
+          showAWhile.style.paddingTop = "20px"
+          showAWhile.style.backgroundColor = "#C65F63"
           showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
           function displayNone() {
-            showAWhile.style.display = "none"
+            showAWhile.style.height = "0px"
+            showAWhile.style.paddingTop = "0px"
+            showAWhile.innerHTML = ""
+
 
           }
           setTimeout(displayNone, 2000);
@@ -329,6 +397,77 @@ var callback = function () {
 
           let articles = object.articles;
 
+                    showAWhile.style.height = "30px"
+                    showAWhile.style.paddingTop = "20px"
+                    showAWhile.style.backgroundColor = "#C65F63"
+
+                    let arr = [];
+                    console.log("getSomeNewsFromown")
+
+
+
+
+                    for(let i=0; i< ownCurrentTag.ownCurrentTag.children.length; i++){
+
+                      console.log(ownCurrentTag.ownCurrentTag.children[i].innerHTML)
+                      arr.push(ownCurrentTag.ownCurrentTag.children[i].innerHTML)
+
+                    }
+
+
+
+                    let string = ""
+                    for(let i= 0; i< arr.length; i++){
+
+                      if(i===0){
+
+                        if(arr[i] !== "" ){
+                          string +=  arr[i]
+                        }
+
+                      }
+                      if(i === 1){
+                        if(arr[i] !== null && arr[i] !== " " ){
+                          string += " "  + arr[i]
+                        }
+                      }
+                      if(i === 2){
+                        if(arr[i] !== null && arr[i] !== " " ){
+                          string += " "  +arr[i]
+                        }
+                      }
+
+                      if(i === 3){
+                        if(arr[i] !== null && arr[i] !== " " ){
+                          string += " " +arr[i]
+                        }
+                      }
+
+                      if(i === 4){
+                        if(arr[i] !== null && arr[i] !== " " ){
+                          string += " " +arr[i]
+                        }
+                      }
+
+
+                    }
+
+
+                    showAWhile.style.height = "30px"
+                    showAWhile.style.paddingTop = "20px"
+                    showAWhile.style.backgroundColor = "#65C253"
+                    showAWhile.innerHTML = "<h2>You searched for "+ string +"</h2>"
+                    function displayNone() {
+
+                      showAWhile.style.height = "0px"
+                      showAWhile.style.paddingTop = "0px"
+                      showAWhile.innerHTML = ""
+                    }
+                    setTimeout(displayNone, 2000);
+
+
+
+
 
           let myArticles = [];
           let amount = 12;
@@ -352,11 +491,15 @@ var callback = function () {
         })
         .catch(function () {
 
-          showAWhile.style.display = "block"
+          showAWhile.style.height = "30px"
+          showAWhile.style.paddingTop = "20px"
+          showAWhile.style.backgroundColor = "#C65F63"
           showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
           function displayNone() {
-            showAWhile.style.display = "none"
 
+            showAWhile.style.height = "0px"
+            showAWhile.style.paddingTop = "0px"
+            showAWhile.innerHTML = ""
           }
           setTimeout(displayNone, 2000);
           clear()
@@ -424,6 +567,7 @@ var callback = function () {
 
   searchBtn.addEventListener('click', function () {
 
+    slider.inputKeyword.value = ""
     var childDivs = document.getElementById('ownCurrentTag').getElementsByTagName('span');
     let boo = false;
     let noNews = true;

@@ -179,6 +179,8 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
 
 
     } else {
+      let indexet = 0;
+
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
 
         let obj = snapshot.val()
@@ -189,8 +191,10 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
           let div = document.createElement("div");
           div.className = "tags";
           div.innerHTML = obj[prop];
+          div.style.zIndex = indexet.toString();
+          div.style.backgroundColor = "#333644"
           tagsSliderContentChange.appendChild(div)
-
+          indexet++
 
         }
       })
@@ -239,6 +243,8 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
     } else {
 
+      let indexet = 0;
+
       db.ref("/users/" + userID + "/photoURL").set(userPicture);
 
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
@@ -251,7 +257,13 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
           let div = document.createElement("div");
           div.className = "tags";
           div.innerHTML = obj[prop];
+          div.style.zIndex = indexet.toString();
+          div.style.backgroundColor = "#333644"
+
           tagsSliderContentChange.appendChild(div)
+
+          indexet++
+
 
 
         }
@@ -536,7 +548,7 @@ var createNews = function () {
     var commentCount = 0;
     var snap = snapshot.val();
     for (var item in snap){
-      if (snap[item].saveUrl == shareArticle.href){
+      if (snap[item].saveUrl == a.href){
         for(var comment in snap[item].comments){
             commentCount += 1;
         }
@@ -617,13 +629,13 @@ main.innerHTML = "";
       images[count].src = array[count].urlToImage;
     }
     readMore[count].href = array[count].url;
-    fbShare[count].href = array[count].url;
+    fbShare[count].name = array[count].url;
     commentArticleArray[count].children[1].addEventListener("click", function (event) {
       if (event.target.parentElement.parentElement.children.length == 3) {
         let commentField = document.createElement("div");
         commentField.className = "commentField";
         event.target.parentElement.parentElement.appendChild(commentField);
-        let targetUrl = event.target.parentNode.parentNode.children[1].href;
+        let targetUrl = event.target.parentElement.parentElement.parentElement.children[3].children[0].href;
         db.ref("/Articles/").once("value", function (snapshot) {
           var found = "unfound";
           for (var item in snapshot.val()){
@@ -666,7 +678,7 @@ main.innerHTML = "";
                 firebase.database().ref("/Articles/").once("value", function (snapshot) {
                   let snap = snapshot.val();
                   for (var item in snap) {
-                    if (snap[item].saveUrl == event.target.parentElement.children[1].href) {
+                    if (snap[item].saveUrl == event.target.parentElement.parentElement.children[3].children[0].href) {
                       firebase.database().ref("/Articles/" + item + "/comments/").push({
                         content: text,
                         username: localStorage.getItem("username"),
@@ -686,7 +698,7 @@ main.innerHTML = "";
               firebase.database().ref("/Articles/").once("value", function (snapshot) {
                 let snap = snapshot.val();
                 for (var item in snap) {
-                  if (snap[item].saveUrl == event.target.parentElement.children[1].href) {
+                  if (snap[item].saveUrl == event.target.parentElement.parentElement.children[3].children[0].href) {
                     firebase.database().ref("/Articles/" + item + "/comments/").push({
                       content: text,
                       username: localStorage.getItem("username"),
@@ -756,7 +768,7 @@ main.innerHTML = "";
   for (let x of changeTextIfStored){
 
 
-    checkForURL = x.parentElement.nextSibling.getAttribute('href');
+    checkForURL = x.parentElement.nextSibling.getAttribute('name');
 
   firebase.database().ref("users/" + thisUser + "/favourites").orderByValue().equalTo(checkForURL).once('value', snapshot => {
 
