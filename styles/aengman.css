@@ -104,10 +104,23 @@
   .userPicture {
     width: 30px;
   }
+  .follow {
+    font-size: 12px;
+  }
+}
+@media (max-width: 400px){
+  .writeBox {
+    height: 30px;
+  }
+  .commentButton {
+    height: 30px;
+    width: 50px;
+    bottom: 13px;
+    font-size: 10px;
+  }
 }
 @media (max-width: 1300px){
   .commentButton {
     right: 30%;
   }
 }
-
