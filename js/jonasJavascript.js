@@ -52,7 +52,7 @@ var outputSaved = [];
                       } else {
                         firebase.database().ref("users/" + storedUser + "/favourites").push(saveUrl);
 
-                        changeIconOnAdd.style.color = 'yellow';
+                        changeIconOnAdd.style.color = '#C65F63';
                         changeTextOnAdd.textContent = 'Saved';
 
                       }
@@ -63,7 +63,7 @@ var outputSaved = [];
                   firebase.database().ref('Articles').push(newsObject);
 
                   firebase.database().ref("users/" + storedUser + "/favourites").push(saveUrl);
-                  changeIconOnAdd.style.color = 'yellow';
+                  changeIconOnAdd.style.color = '#C65F63';
                         changeTextOnAdd.textContent = 'Saved';
 
                 }
