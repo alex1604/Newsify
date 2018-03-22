@@ -7,6 +7,8 @@ let tagCode = document.getElementById('inputTag').value;
 */
 var callback = function () {
   
+  let userHasTouchScreen = false;
+  
   window.addEventListener('touchstart', function(){
     userHasTouchScreen = true;
     window.removeEventListener('touchstart', onFirstTouch, false);
@@ -577,10 +579,6 @@ var callback = function () {
   // when click on search Button:
 
   searchBtn.addEventListener('click', function () {
-    
-    if (userHasTouchScreen){
-      tagCode = document.getElementById('inputKeyword').value;
-    } else {
   
     slider.inputKeyword.value = ""
     var childDivs = document.getElementById('ownCurrentTag').getElementsByTagName('span');
@@ -617,9 +615,11 @@ var callback = function () {
       getSomeNewsFromOwnTags(queryString, category, country, language, source);
     } else if (boo == false){
       getSomeNews(queryString, category, country, language, source);
+    } else if(userHasTouchScreen && document.getElementById('inputKeyword').value != '' & document.getElementById('inputKeyword').value != null){
+      tagCode = document.getElementById('inputKeyword').value;
+      getSomeNews(queryString, category, country, language, source);
     } else if (noNews == true){
       getAllNews();
-    }
     }
   });
 
