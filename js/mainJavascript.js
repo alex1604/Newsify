@@ -564,7 +564,7 @@ var createNews = function () {
     var commentCount = 0;
     var snap = snapshot.val();
     for (var item in snap){
-      if (snap[item].saveUrl == shareArticle.href){
+      if (snap[item].saveUrl == a.href){
         for(var comment in snap[item].comments){
             commentCount += 1;
         }
@@ -650,8 +650,8 @@ main.innerHTML = "";
       if (event.target.parentElement.parentElement.children.length == 3) {
         let commentField = document.createElement("div");
         commentField.className = "commentField";
-        event.target.parentElement.parentElement.append(commentField);
-        let targetUrl = event.target.parentNode.parentNode.children[1].href;
+        event.target.parentElement.parentElement.appendChild(commentField);
+        let targetUrl = event.target.parentNode.parentNode.parentElement.children[3].children[0].href;
         db.ref("/Articles/").once("value", function (snapshot) {
           var found = "unfound";
           for (var item in snapshot.val()){
@@ -695,11 +695,12 @@ main.innerHTML = "";
                 firebase.database().ref("/Articles/").once("value", function (snapshot) {
                   let snap = snapshot.val();
                   for (var item in snap) {
-                    if (snap[item].saveUrl == event.target.parentElement.children[1].href) {
+                    if (snap[item].saveUrl == event.target.parentElement.parentElement.children[3].children[0].href) {
                       firebase.database().ref("/Articles/" + item + "/comments/").push({
                         content: text,
                         username: localStorage.getItem("username"),
-                        photoURL: localStorage.getItem("photoURL"),
+                        photoURL:
+                        localStorage.getItem("photoURL"),
                         userID: localStorage.getItem("userid"),
                       })
                     }
@@ -715,7 +716,7 @@ main.innerHTML = "";
               firebase.database().ref("/Articles/").once("value", function (snapshot) {
                 let snap = snapshot.val();
                 for (var item in snap) {
-                  if (snap[item].saveUrl == event.target.parentElement.children[1].href) {
+                  if (snap[item].saveUrl == event.target.parentElement.parentElement.children[3].children[0].href) {
                     firebase.database().ref("/Articles/" + item + "/comments/").push({
                       content: text,
                       username: localStorage.getItem("username"),
