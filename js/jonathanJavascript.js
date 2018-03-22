@@ -286,6 +286,11 @@ addTagBtn.addEventListener("click", function () {
         tagsSliderContentChange.appendChild(div)
 
         for(let i=0; i< tagsSlider.children.length; i++){
+    showAWhile.style.display = "block"
+    showAWhile.style.backgroundColor = "#00cc00"
+    showAWhile.innerHTML = "<h2>Added "+ innerHTML + " successfully!</h2>"
+    function displayNone(){
+      showAWhile.style.display = "none"
 
           if(tagsSlider.children[i] !== undefined){
 
@@ -363,6 +368,7 @@ addTagBtn.addEventListener("click", function () {
 
 
 
+  }
 
 
     clear()
@@ -383,8 +389,6 @@ let y=2;
 if(deleteOwnTag !== null){
 deleteOwnTag.addEventListener("click",function(){
 
-
-    let tagChildren = ""
     db.ref("/users/"+ id + "/tags/").once("value",function(snapshot){
 
 
@@ -392,10 +396,6 @@ deleteOwnTag.addEventListener("click",function(){
         let found = false;
         let proppet = ""
         let tag = tagsSlider.children[tagsMinusSlide];
-
-        tagChildren = tag.children;
-        console.log(tag.children)
-
         for(let prop in obj){
 
 
@@ -425,62 +425,6 @@ deleteOwnTag.addEventListener("click",function(){
           countryCode = "";
           categoryCode = "";
           languageCode = ""
-
-
-
-          let string = ""
-
-          for(let i= 0; i< tagChildren.length; i++){
-
-            if(i===0){
-
-                if(tagChildren[i].innerHTML !== "#" ){
-                  console.log(tagChildren[i].innerHTML)
-                string += " "+ tagChildren[i].innerHTML
-              }
-
-            }
-            if(i === 1){
-                if(tagChildren[i].innerHTML !== "#" ){
-                string += " " + tagChildren[i].innerHTML
-              }
-            }
-            if(i === 2){
-              if(tagChildren[i].innerHTML !== "#" ){
-                string += " " +tagChildren[i].innerHTML
-              }
-            }
-
-            if(i === 3){
-              if(tagChildren[i].innerHTML !== "#"  ){
-                string += " " + tagChildren[i].innerHTML
-              }
-            }
-
-            if(i === 4){
-              if(tagChildren[i].innerHTML !== "#"  ){
-                string += " " +tagChildren[i].innerHTML
-              }
-            }
-
-
-          }
-
-
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#65C253"
-          showAWhile.innerHTML = "<h2>You deleted" + string+ "</h2>"
-          function displayNone() {
-
-            showAWhile.style.height = "0px"
-            showAWhile.style.paddingTop = "0px"
-            showAWhile.innerHTML = ""
-          }
-          setTimeout(displayNone, 1000);
-
-
-          console.log(tagsMinusSlide)
 
           for(let i=0; i< tagsSlider.children.length; i++){
 
@@ -523,9 +467,6 @@ deleteOwnTag.addEventListener("click",function(){
             document.getElementById("ownCurrentTag").innerHTML = "";
           }
 
-
-            console.log(tagsMinusSlide)
-
             if(tagsMinusSlide !== 0){
                 for(let i = 0; i < ownCurrentTag.ownCurrentTag.children.length; i++ ){
 
@@ -558,10 +499,6 @@ deleteOwnTag.addEventListener("click",function(){
 
 
           }else if(tagsMinusSlide !== 0){
-            console.log(tagsMinusSlide)
-            console.log(tagsSlider.children[tagsMinusSlide])
-
-
                         for(let i = 0; i < ownCurrentTag.ownCurrentTag.children.length; i++ ){
                           if(i ===0){
 
@@ -610,19 +547,11 @@ deleteOwnTag.addEventListener("click",function(){
 
           found = false;
         }else{
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "10px"
-          showAWhile.style.paddingBottom = "10px"
-
-          showAWhile.style.backgroundColor = "#C65F63"
+          showAWhile.style.display = "block"
+          showAWhile.style.backgroundColor = "#ff3333"
           showAWhile.innerHTML = "<h5>Press the saved tag that you want to delete and then press delete</h5>"
           function displayNone(){
-            showAWhile.style.height = "0px"
-            showAWhile.innerHTML = ""
-            showAWhile.style.paddingBottom = "0px"
-
-            showAWhile.style.paddingTop = "0px"
-
+            showAWhile.style.display = "none"
 
           }
           setTimeout(displayNone, 3000);
@@ -1566,9 +1495,6 @@ function tagsContentChangeClick(tag, length, i, contentChange, minus, offsetWidt
 
   }
   tagsMinusSlide = nummer
-
-  console.log("minus: ", tagsMinusSlide)
-
   totalLeft =  (nummer * totalLeft).toString()
 
   contentChange.style.marginLeft = "-" + totalLeft + "px"

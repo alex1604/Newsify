@@ -154,6 +154,8 @@ var callback = function () {
           }).catch(function (fail) {
           });
       }).catch(function (fail) {
+
+        console.log('errorLocation' ) + fail;
       });
   }
 
@@ -224,7 +226,6 @@ var callback = function () {
 
       let req = new Request(url);
 
-
       fetch(req)
         .then(function (response) {
 
@@ -235,6 +236,7 @@ var callback = function () {
 
 
           let articles = object.articles;
+
 
           showAWhile.style.height = "30px"
           showAWhile.style.paddingTop = "20px"
@@ -300,6 +302,7 @@ var callback = function () {
 
 
 
+
           let myArticles = [];
           let amount = 12;
 
@@ -322,15 +325,10 @@ var callback = function () {
         })
         .catch(function () {
 
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#C65F63"
+          showAWhile.style.display = "block"
           showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
           function displayNone() {
-            showAWhile.style.height = "0px"
-            showAWhile.style.paddingTop = "0px"
-            showAWhile.innerHTML = ""
-
+            showAWhile.style.display = "none"
 
           }
           setTimeout(displayNone, 2000);
@@ -397,6 +395,7 @@ var callback = function () {
         }).then(function (object) {
 
           let articles = object.articles;
+
 
                     showAWhile.style.height = "30px"
                     showAWhile.style.paddingTop = "20px"
@@ -492,15 +491,11 @@ var callback = function () {
         })
         .catch(function () {
 
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#C65F63"
+          showAWhile.style.display = "block"
           showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
           function displayNone() {
+            showAWhile.style.display = "none"
 
-            showAWhile.style.height = "0px"
-            showAWhile.style.paddingTop = "0px"
-            showAWhile.innerHTML = ""
           }
           setTimeout(displayNone, 2000);
           clear()
@@ -556,6 +551,9 @@ var callback = function () {
             browseNews(suggestedArticles, amount);
           })
           .catch(function (error) {
+
+            console.log('Something went wrong' ) + error;
+
           });
         url = urlBase + question;
       }
