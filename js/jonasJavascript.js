@@ -1,3 +1,4 @@
+console.log("jonasJS");
 // object constructor for Newsarticles
 var outputSaved = [];
   class News {
@@ -16,25 +17,27 @@ var outputSaved = [];
       firebase.database().ref("users/" + storedUser.uid + "/favourites").on('value', snapshot => {
         let updateCounter = snapshot.val();
         var updateCounterOutput = [];
-        for( let article in updateCounter ) {
+        for( let article in updateCounter ) {  
         let r = updateCounter[article];
           updateCounterOutput.push(r);
-    }
+    } 
         document.getElementById('addNumberCount').textContent = updateCounterOutput.length;
        });
     } else{
+      console.log('not logged in')
     }
   });
 
   // click event for newsarticle
   let saveArticle = document.querySelector('#newsContainer');
-  saveArticle.addEventListener('click', function(event){
-        // save article to database
+  saveArticle.addEventListener('click', function(event){   
+        // save article to database 
         // checks if userID is not null
     if (storedUser !== null){
+      //console.log(event.target.parentElement.parentElement.parentElement);
     // this is so the click event only occurs if its on that specific class
         if(event.target.parentElement.classList.contains('saveToFavourite')){
-           // get data from the articles shown on screen
+           // get data from the articles shown on screen   
           var saveTitle = event.target.parentElement.parentElement.parentElement.children[1].textContent;
           let saveDescription = event.target.parentElement.parentElement.parentElement.children[2].textContent;
           let saveUrl = event.target.parentElement.parentElement.parentElement.children[3].firstChild.getAttribute('href');
@@ -43,29 +46,40 @@ var outputSaved = [];
           let changeTextOnAdd = event.target;
           // create object from the data
           const newsObject = new News(saveTitle, saveDescription, saveUrl, saveUrlImage);
-            // check if variable saveTitle is equal to child "saveTitle" in firebase
+            // check if variable saveTitle is equal to child "saveTitle" in firebase 
           firebase.database().ref("Articles").orderByChild("saveUrl").equalTo(saveUrl).once("value", snapshot => {
            const userData = snapshot.val();
                 // if article already exists it should not reupload
              if (userData){
+               console.log('it already exists in articles database');
                firebase.database().ref("users/" + storedUser.uid + "/favourites").orderByValue().equalTo(saveUrl).once("value", snapshot => {
                 const userFavourites = snapshot.val();
+                    //console.log(userFavourites);
                       // if article already exists it should not reupload
                       if (userFavourites){
+                        console.log('it already exists in userprofile');               
                       } else {
+                        console.log('added it only to userprofile');
                         firebase.database().ref("users/" + storedUser.uid + "/favourites").push(saveUrl);
-                        changeIconOnAdd.style.color = '#C65F63';
-                        changeTextOnAdd.textContent = 'Saved';
 
+                        changeIconOnAdd.style.color = '#C65F63';
+
+                        changeTextOnAdd.textContent = 'Saved';
+                      
                       }
 
               });
                 } else {
                   // add article to database and to userprofile
-                  firebase.database().ref('Articles').push(newsObject);
-
+                  firebase.database().ref('Articles').push(newsObject); 
+                  
                   firebase.database().ref("users/" + storedUser.uid + "/favourites").push(saveUrl);
+
+                  console.log('added to database');
+                  console.log('added to userprofile');
+
                   changeIconOnAdd.style.color = '#C65F63';
+
                         changeTextOnAdd.textContent = 'Saved';
 
                 }
@@ -73,9 +87,10 @@ var outputSaved = [];
           }
 
     } else {
+     console.log('Need to be logged in to save')
     }
-
-
+  
+ 
 
   event.preventDefault();
 });
@@ -83,7 +98,7 @@ var outputSaved = [];
 let showFavourites = document.getElementById('showFavouriteOutput');
 var allArticles = [];
 var favArray = [];
-firebase.database().ref("Articles").once("value", snapshot => {
+firebase.database().ref("Articles").on("value", snapshot => {
   allArticles = [];
   const fetchUserData = snapshot.val();
   for( let newArticle in fetchUserData){
@@ -91,7 +106,7 @@ firebase.database().ref("Articles").once("value", snapshot => {
     allArticles.push(newList);
   }
 
-})
+})  
 
 showFavourites.addEventListener('click', event => {
   // get articles from firebase
@@ -101,21 +116,22 @@ showFavourites.addEventListener('click', event => {
     // this data should check if exists as articles title in db and get the whole object.
     var main = document.getElementsByTagName('main')[0];
     main.innerHTML = "";
-    for ( let article in data ) {
+    for ( let article in data ) {    
         let r = data[article];
         favArray.push(r);
     }
-  })
+  }) 
   var myArrayFiltered = allArticles.filter(function (el) {
       return favArray.some(function (f) {
         return f === el.saveUrl;
         });
       });
 
-    if(favArray.length === 0){
+    if(favArray.length === 0){   
       main.innerHTML = 'No Favourites Saved';
     } else {
-
+      console.log('Saved Articles');
+      
       outputSaved = [];
       for( let news in myArrayFiltered ) {
         let k = myArrayFiltered[news];
@@ -126,7 +142,7 @@ showFavourites.addEventListener('click', event => {
       obj["description"] = k.saveDescription;
       obj["urlToImage"] = k.saveUrlImage;
       obj["url"] = k.saveUrl;
-
+      
       outputSaved.push(obj);
     }
     var myArrayFilteredOutput = outputSaved.filter(function (el) {
@@ -136,23 +152,23 @@ showFavourites.addEventListener('click', event => {
      });
 
     let amount = myArrayFilteredOutput.length;
-    browseNews(myArrayFilteredOutput, amount);
+    browseNews(myArrayFilteredOutput, amount);   
     let saveText = document.getElementsByClassName('showFavouriteText');
     let changeIcon = document.getElementsByClassName('fas fa-star');
-
+    
     let changeClassToRemove = document.getElementsByClassName('saveToFavourite');
     //changeClassToRemove.classList = "newsFooter remove";
     for (var i = changeIcon.length -1 ; i >= 0; --i) {
 
       changeIcon[i].className = changeIcon[i].className.replace('fas fa-star', 'fas fa-times-circle');
-
+      
       changeClassToRemove[i].className = changeClassToRemove[i].className.replace('newsFooter saveToFavourite', 'newsFooter remove');
       saveText[i].textContent = 'Remove';
-
+  
     }
-
+    
     }
-
+   
 });
   let changeSavedArticlesText = document.getElementsByClassName('showFavouriteText');
 
@@ -167,7 +183,9 @@ showFavourites.addEventListener('click', event => {
         //find it in users profile on firebase
         firebase.database().ref("users/" + storedUser.uid + "/favourites").orderByValue().equalTo(removeUrl).once("value", snapshot => {
           const key = Object.keys(snapshot.val())[0];
-          firebase.database().ref("users/" + storedUser.uid + "/favourites").ref.child(key).remove();
+          firebase.database().ref("users/" + storedUser.uid + "/favourites").ref.child(key).remove();  
+          console.log('article removed from favourites');
+          
         })
         event.target.parentElement.parentElement.parentElement.parentElement.remove();
       }

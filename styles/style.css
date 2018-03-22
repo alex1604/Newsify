@@ -44,10 +44,15 @@
 
         text-align: center;
         z-index: 1000;
-        position: absolute;
+        position: fixed;
+        top:0
+
         color:rgba(255,255,255,0.8);
       }
       .follow{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-around;
         font-size:18px;
         margin-bottom:20px;
       }
@@ -102,10 +107,8 @@
         display: block;
           background: #333644;
           color: white;
-          top: 45px;
-          left: 20px;
+          padding-top: 50px;
           height:40px;
-          padding-bottom: 2px;
       }
       #moreOp button{
         text-align: center;
@@ -118,8 +121,6 @@
       }
       #moreOp > button:hover{
         cursor:pointer;
-        transition: all 1s ease;
-        box-shadow: 0px 0px 15px rgba(255,255,255,0.4);
       }
       header{
         padding-top: 50px;
@@ -734,24 +735,11 @@ line-height: 0px;
   body{
 
   }
-  .newsFooter {
-    padding: 0px;
-    font-size: 12px;
-    margin-left: 10px;
-  }
-  .readMoreLink {
-    font-size: 15px;
-  }
-  .readMore {
-    margin-bottom: 10px;
-  }
 
   #weatherLocation{
     display:none;
   }
-  #moreOp {
-    font-size: 12px;
-  }
+
   #buttons {
     justify-content: flex-start;
     margin-top: 10px;
@@ -759,10 +747,7 @@ line-height: 0px;
     font-size:12px;
   }
   #buttons button{
-    min-width:50px;
-    padding:7px 5px 7px 5px;
-    margin:20px 4px 20px 4px;
-    font-size:12px;
+
   }
   #buttons button:hover{
     cursor:pointer;
@@ -794,6 +779,13 @@ line-height: 0px;
   }
   header{
     padding-top: 20px;
+  }
+  .follow{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    font-size:16px;
+    margin-bottom:20px;
   }
   .title{
     margin-top:3%;
