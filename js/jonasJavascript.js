@@ -11,7 +11,6 @@ var outputSaved = [];
   // to get a userid from firebase when logged in
   var storedUser = localStorage.getItem("userid");
   if (localStorage.getItem("userid") !== null){
-
       firebase.database().ref("users/" + storedUser + "/favourites").on('value', snapshot => {
         let updateCounter = snapshot.val();
         var updateCounterOutput = [];

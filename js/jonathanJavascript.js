@@ -306,7 +306,7 @@ addTagBtn.addEventListener("click", function () {
         showAWhile.style.height = "30px"
         showAWhile.style.paddingTop = "20px"
         showAWhile.style.backgroundColor = "#65C253"
-        showAWhile.innerHTML = "<h2>Added "+ innerHTML + " successfully!</h2>"
+        showAWhile.innerHTML = "<h3>Added "+ innerHTML + " successfully!</h3>"
         function displayNone(){
           showAWhile.style.height = "0px"
           showAWhile.innerHTML = ""
@@ -324,11 +324,11 @@ addTagBtn.addEventListener("click", function () {
 
       }else{
         showAWhile.style.height = "30px"
-        showAWhile.style.paddingTop = "10px"
+        showAWhile.style.paddingTop = "20px"
         showAWhile.style.paddingBottom = "10px"
 
         showAWhile.style.backgroundColor = "#C65F63"
-        showAWhile.innerHTML = "<h2>You can not add an empty tag!</h2>"
+        showAWhile.innerHTML = "<h3>You can not add an empty tag!</h3>"
         function displayNone(){
           showAWhile.style.height = "0px"
           showAWhile.innerHTML = ""
@@ -346,11 +346,11 @@ addTagBtn.addEventListener("click", function () {
 
   }else{
     showAWhile.style.height = "30px"
-    showAWhile.style.paddingTop = "10px"
+    showAWhile.style.paddingTop = "20px"
     showAWhile.style.paddingBottom = "10px"
 
     showAWhile.style.backgroundColor = "#C65F63"
-    showAWhile.innerHTML = "<h2>Your tag is to long!</h2>"
+    showAWhile.innerHTML = "<h3>Your tag is to long!</h3>"
     function displayNone(){
       showAWhile.style.height = "0px"
       showAWhile.innerHTML = ""
@@ -470,7 +470,7 @@ deleteOwnTag.addEventListener("click",function(){
           showAWhile.style.height = "30px"
           showAWhile.style.paddingTop = "20px"
           showAWhile.style.backgroundColor = "#65C253"
-          showAWhile.innerHTML = "<h2>You deleted" + string+ "</h2>"
+          showAWhile.innerHTML = "<h3>You deleted" + string+ "</h3>"
           function displayNone() {
 
             showAWhile.style.height = "0px"
@@ -602,11 +602,11 @@ deleteOwnTag.addEventListener("click",function(){
           found = false;
         }else{
           showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "10px"
+          showAWhile.style.paddingTop = "20px"
           showAWhile.style.paddingBottom = "10px"
 
           showAWhile.style.backgroundColor = "#C65F63"
-          showAWhile.innerHTML = "<h5>Press the saved tag that you want to delete and then press delete</h5>"
+          showAWhile.innerHTML = "<h3>Choose the tag you want delete and press delete</h3>"
           function displayNone(){
             showAWhile.style.height = "0px"
             showAWhile.innerHTML = ""
