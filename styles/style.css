@@ -48,7 +48,10 @@
         top:0
         color:rgba(255,255,255,0.8);
       }
-      .follow{
+      .follow {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
         font-size:18px;
         margin-bottom:20px;
       }
@@ -817,7 +820,7 @@ line-height: 0px;
 }
 
 .signOut {
-    
+
     position: absolute;
     display: inline-block;
     width: 60px;
@@ -830,7 +833,7 @@ line-height: 0px;
     border:none;
     font-size:14px;
     border-radius: 10px;
-    
+
 }
 
 .signOut:hover{
@@ -840,7 +843,7 @@ line-height: 0px;
     background-color:#424768;
     box-shadow: 3px 3px 6px rgba(255,255,255,0.4);
     color: white;
-    
+
 }
 
 
@@ -850,11 +853,10 @@ line-height: 0px;
         width: 60px;
         height: 20px;
         font-size: 10px;
-        padding-top: 6px; 
-        
+        padding-top: 6px;
+
     }
     .follow {
         display: none;
     }
 }
-
