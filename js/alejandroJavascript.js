@@ -224,9 +224,6 @@ var callback = function () {
     if (url !== 'https://newsapi.org/v2/top-headlines?apiKey=ca2d5b8c76a84ec68544ecdeadf04043') {
 
       let req = new Request(url);
-      console.log("searching")
-
-
       fetch(req)
         .then(function (response) {
 
@@ -237,77 +234,6 @@ var callback = function () {
 
 
           let articles = object.articles;
-
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#C65F63"
-
-          let arr = [];
-          console.log(tagCode)
-          console.log(sourceCode)
-          console.log(countryCode)
-          console.log(categoryCode)
-          console.log(languageCode)
-
-          arr.push(tagCode)
-          arr.push(sourceCode);
-          arr.push(countryCode);
-          arr.push(categoryCode);
-          arr.push(languageCode)
-
-          console.log(arr)
-
-          let string = ""
-          for(let i= 0; i< arr.length; i++){
-
-            if(i===0){
-
-              console.log(arr[i]);
-              if(arr[i] !== ""){
-                string += arr[i]
-              }
-
-            }
-            if(i === 1){
-              if(arr[i] !== null){
-                string += " " + "#" + arr[i]
-              }
-            }
-            if(i === 2){
-              if(arr[i] !== null){
-                string += " " + "#" +arr[i]
-              }
-            }
-
-            if(i === 3){
-              if(arr[i] !== null){
-                string += " " + "#" +arr[i]
-              }
-            }
-
-            if(i === 4){
-              if(arr[i] !== null){
-                string += " " + "#" +arr[i]
-              }
-            }
-
-
-          }
-
-          console.log(string)
-
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#65C253"
-          showAWhile.innerHTML = "<h2>You searched for "+ string +"</h2>"
-          function displayNone() {
-
-            showAWhile.style.height = "0px"
-            showAWhile.style.paddingTop = "0px"
-            showAWhile.innerHTML = ""
-          }
-          setTimeout(displayNone, 2000);
-
 
 
           let myArticles = [];
@@ -332,15 +258,10 @@ var callback = function () {
         })
         .catch(function () {
 
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#C65F63"
+          showAWhile.style.display = "block"
           showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
           function displayNone() {
-            showAWhile.style.height = "0px"
-            showAWhile.style.paddingTop = "0px"
-            showAWhile.innerHTML = ""
-
+            showAWhile.style.display = "none"
 
           }
           setTimeout(displayNone, 2000);
@@ -408,80 +329,6 @@ var callback = function () {
 
           let articles = object.articles;
 
-                    showAWhile.style.height = "30px"
-                    showAWhile.style.paddingTop = "20px"
-                    showAWhile.style.backgroundColor = "#C65F63"
-
-                    let arr = [];
-                    console.log(tagCode)
-                    console.log(sourceCode)
-                    console.log(countryCode)
-                    console.log(categoryCode)
-                    console.log(languageCode)
-
-                    arr.push(tagCode)
-                    arr.push(sourceCode);
-                    arr.push(countryCode);
-                    arr.push(categoryCode);
-                    arr.push(languageCode)
-
-                    console.log(arr)
-
-                    let string = ""
-                    for(let i= 0; i< arr.length; i++){
-
-                      if(i===0){
-
-                        console.log(arr[i]);
-                        if(arr[i] !== " " ){
-                          string += "#" + arr[i]
-                        }
-
-                      }
-                      if(i === 1){
-                        console.log(arr[i])
-                        if(arr[i] !== null && arr[i] !== "" ){
-                          string += " " + "#" + arr[i]
-                        }
-                      }
-                      if(i === 2){
-                        if(arr[i] !== null && arr[i] !== "" ){
-                          string += " " + "#" +arr[i]
-                        }
-                      }
-
-                      if(i === 3){
-                        if(arr[i] !== null && arr[i] !== "" ){
-                          string += " " + "#" +arr[i]
-                        }
-                      }
-
-                      if(i === 4){
-                        if(arr[i] !== null && arr[i] !== "" ){
-                          string += " " + "#" +arr[i]
-                        }
-                      }
-
-
-                    }
-
-                    console.log(string)
-
-                    showAWhile.style.height = "30px"
-                    showAWhile.style.paddingTop = "20px"
-                    showAWhile.style.backgroundColor = "#65C253"
-                    showAWhile.innerHTML = "<h2>You searched for "+ string +"</h2>"
-                    function displayNone() {
-
-                      showAWhile.style.height = "0px"
-                      showAWhile.style.paddingTop = "0px"
-                      showAWhile.innerHTML = ""
-                    }
-                    setTimeout(displayNone, 2000);
-
-
-
-
 
           let myArticles = [];
           let amount = 12;
@@ -505,15 +352,11 @@ var callback = function () {
         })
         .catch(function () {
 
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#C65F63"
+          showAWhile.style.display = "block"
           showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
           function displayNone() {
+            showAWhile.style.display = "none"
 
-            showAWhile.style.height = "0px"
-            showAWhile.style.paddingTop = "0px"
-            showAWhile.innerHTML = ""
           }
           setTimeout(displayNone, 2000);
           clear()
