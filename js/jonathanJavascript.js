@@ -153,6 +153,8 @@ function showArrowsOrNot(minusSlide,prevBtn,nextBtn, contentChangeLength ){
 
 function clear(){
 
+  slider.inputKeyword.disabled = false;
+
   canNotShow.style.display = "block"
   document.getElementById("ownCurrentTag").innerHTML = ""
 
@@ -178,7 +180,7 @@ function clear(){
   currentTag.languageTag.innerHTML = "";
 
   slider.inputKeyword.value = ""
-  slider.inputKeyword.placeholder ="Search"
+  slider.inputKeyword.placeholder ="Keyword"
   slider.inputKeyword.disabled = false;
 
   countrySlider.slider.style.opacity = "0";
@@ -219,77 +221,151 @@ function clear(){
 }
 
 
-
+let indexet = 0;
 
 addTagBtn.addEventListener("click", function () {
+
+  console.log(slider.inputKeyword.value.length)
 
   sourceCode = "";
   countryCode = "";
   categoryCode = "";
   languageCode = ""
 
-  let innerHTML = document.getElementById("currentTag").innerHTML;
 
-  if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
-    tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tags</div>";
+  if(slider.inputKeyword.value.length < 25){
 
-  }else{
-    tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tag</div>";
+      let innerHTML = document.getElementById("currentTag").innerHTML;
 
-  }
+      if(tagsSlider.children.length === 1 || tagsSlider.children.length >2){
+        tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tags</div>";
 
-
-    if (currentTag.inputTag.innerText !== "" || currentTag.sourceTag.innerText !== "" || currentTag.countryTag.innerText !== "" || currentTag.categoryTag.innerText !== "" || currentTag.languageTag.innerText !== "") {
-
-
-
-    let div = document.createElement("div");
-
-    div.className = "tags";
-    div.innerHTML = innerHTML;
-    div.style.textAlign = "center"
-    for(let i =0; i< div.children.length; i++){
-        div.children[i].setAttribute("id", Math.random().toFixed(2))
-    }
-    db.ref("users/" + sammaid + "/tags").push(div.innerHTML)
-
-
-
-    tagsSliderContentChange.appendChild(div)
-
-    for(let i=0; i< tagsSlider.children.length; i++){
-
-      if(tagsSlider.children[i] !== undefined){
-
-          tagsSlider.children[i].addEventListener("click",function(){
-
-              let tag = tagsSlider.children[i];
-
-              tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
-
-
-          })
+      }else{
+        tagsSlider.children[0].innerHTML= "<div class='tags'>" +(tagsSlider.children.length -1) + " saved tag</div>";
 
       }
-    }
 
+
+        if (currentTag.inputTag.innerText !== "" || currentTag.sourceTag.innerText !== "" || currentTag.countryTag.innerText !== "" || currentTag.categoryTag.innerText !== "" || currentTag.languageTag.innerText !== "") {
+
+
+        let div = document.createElement("div");
+
+        div.className = "tags";
+        div.innerHTML = innerHTML;
+        div.style.textAlign = "center"
+        div.style.backgroundColor = "#333644"
+        div.style.height = "40px"
+        div.style.zIndex = indexet.toString();
+        let arret = []
+        let child = ""
+        for(let i =0; i< div.children.length; i++){
+            div.children[i].setAttribute("id", Math.random().toFixed(2))
+
+
+            if(div.children[i].innerHTML !== " "){
+              div.children[i].style.height = "20px";
+
+            }
+
+
+
+
+        }
+        console.log(arret.length)
+        // if(arret.length === 1){
+        //
+        //     child.style.height = "40px"
+        //     console.log("hej")
+        //
+        // }
+        db.ref("users/" + sammaid + "/tags").push(div.innerHTML)
+
+
+
+        tagsSliderContentChange.appendChild(div)
+
+        for(let i=0; i< tagsSlider.children.length; i++){
     showAWhile.style.display = "block"
     showAWhile.style.backgroundColor = "#00cc00"
     showAWhile.innerHTML = "<h2>Added "+ innerHTML + " successfully!</h2>"
     function displayNone(){
       showAWhile.style.display = "none"
 
+          if(tagsSlider.children[i] !== undefined){
+
+              tagsSlider.children[i].addEventListener("click",function(){
+
+                  let tag = tagsSlider.children[i];
+
+                  tagsContentChangeClick(tag, tagsSlider.children.length, i, tagsSlider.tagsContentChange, tagsMinusSlide, tagsContentChangeWidth)
+
+
+              })
+
+          }
+        }
+
+        indexet++
+
+        showAWhile.style.height = "30px"
+        showAWhile.style.paddingTop = "20px"
+        showAWhile.style.backgroundColor = "#65C253"
+        showAWhile.innerHTML = "<h2>Added "+ innerHTML + " successfully!</h2>"
+        function displayNone(){
+          showAWhile.style.height = "0px"
+          showAWhile.innerHTML = ""
+          showAWhile.style.paddingTop = "0px"
+
+        }
+        setTimeout(displayNone, 2000);
+
+
+
+
+
+
+      }
+
+      }else{
+        showAWhile.style.height = "30px"
+        showAWhile.style.paddingTop = "10px"
+        showAWhile.style.paddingBottom = "10px"
+
+        showAWhile.style.backgroundColor = "#C65F63"
+        showAWhile.innerHTML = "<h2>You can not add an empty tag!</h2>"
+        function displayNone(){
+          showAWhile.style.height = "0px"
+          showAWhile.innerHTML = ""
+          showAWhile.style.paddingTop = "0px"
+          showAWhile.style.paddingBottom = "0px"
+
+        }
+        setTimeout(displayNone, 2000);
+
+
+      }
+
+
+
+
+  }else{
+    showAWhile.style.height = "30px"
+    showAWhile.style.paddingTop = "10px"
+    showAWhile.style.paddingBottom = "10px"
+
+    showAWhile.style.backgroundColor = "#C65F63"
+    showAWhile.innerHTML = "<h2>Your tag is to long!</h2>"
+    function displayNone(){
+      showAWhile.style.height = "0px"
+      showAWhile.innerHTML = ""
+      showAWhile.style.paddingTop = "0px"
+      showAWhile.style.paddingBottom = "0px"
+
     }
     setTimeout(displayNone, 2000);
-
-
-
-
-
-
-
-
   }
+
 
 
     clear()
@@ -562,6 +638,7 @@ deleteOwnTag.addEventListener("click",function(){
 
 function contentChangeClick(tag, length, i, contentChange, minus, offsetWidth){
 
+  slider.inputKeyword.disabled = false;
 
 
     let totalLeft = offsetWidth;
@@ -1116,10 +1193,13 @@ function showOrNot(slider, contentChange){
 
 function minusFunction(minusSlide,sourceMinusSlide, countryMinusSlide,categoryMinusSlide,languageMinusSlide){
 
+  canNotShow.style.display = "none"
 sourceSwitch(sourceMinusSlide)
 countrySwitch(countryMinusSlide)
 categorySwitch(categoryMinusSlide)
 languageSwitch(languageMinusSlide)
+
+
 
   if(minusSlide >1){
 
@@ -1167,6 +1247,7 @@ languageSwitch(languageMinusSlide)
   }
 
   if(sourceMinusSlide>1 || languageMinusSlide > 1 || slider.children[0].value !== ""){
+
 
     countrySlider.slider.style.opacity = "0";
     countrySlider.countryContentChange.style.display = "none"
@@ -1270,14 +1351,27 @@ languageSwitch(languageMinusSlide)
     languageSlider.slider.style.opacity = "0";
     languageSlider.languageContentChange.style.display = "none"
 
+    canNotShow.style.display = "block"
+
+
 
 
     if(minusSlide === 1 || minusSlide === 2 || minusSlide === 5){
-      canNotShow.style.display = "block"
+
+
+
+      canNotShow.style.block = "block"
+      currenTag.style.top = "0px"
+
+
+
       if(countryMinusSlide >1 && categoryMinusSlide >1){
 
+
         if(minusSlide ===1){
+
           canNotShow.innerHTML = "<span>Sorry you can not combine Key with Country or Category press clear to reset your tag</span>"
+
 
         }else if(minusSlide === 2){
           canNotShow.innerHTML = "<span>Sorry you can not combine Sourcename with Country or Category press clear to reset your tag</span>"
@@ -1290,7 +1384,9 @@ languageSwitch(languageMinusSlide)
       }  else if(countryMinusSlide>1){
 
           if(minusSlide === 1){
+
             canNotShow.innerHTML = "<span>Sorry you can not combine Key with Country press clear to reset your tag</span>"
+
 
           }else if(minusSlide=== 2){
             canNotShow.innerHTML = "<span>Sorry you can not combine Sourcename with Country press clear to reset your tag</span>"
@@ -1303,6 +1399,7 @@ languageSwitch(languageMinusSlide)
         }else if(categoryMinusSlide>1){
 
             if(minusSlide === 1){
+
               canNotShow.innerHTML = "<span>Sorry you can not combine Key with Category press clear to reset your tag</span>"
 
             }else if(minusSlide === 2){
@@ -1327,7 +1424,7 @@ languageSwitch(languageMinusSlide)
 
   }else{
     slider.inputKeyword.disabled = false
-    slider.inputKeyword.placeholder = "Search"
+    slider.inputKeyword.placeholder = "Keyword"
 
   }
 

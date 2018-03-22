@@ -134,7 +134,7 @@ let loginHeader = function (user) {
   userPicture.className = "userPicture"
   userName.innerText = user.displayName;
   userName.className = "userName";
-  signOut.innerText = "log out";
+  signOut.innerText = "Log Out";
 
 
   signOut.addEventListener("click", function () {
@@ -197,8 +197,10 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
 
 
     } else {
+      let indexet = 0;
 
       //console.log("finns")
+
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
 
         let obj = snapshot.val()
@@ -209,8 +211,10 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
           let div = document.createElement("div");
           div.className = "tags";
           div.innerHTML = obj[prop];
+          div.style.zIndex = indexet.toString();
+          div.style.backgroundColor = "#333644"
           tagsSliderContentChange.appendChild(div)
-
+          indexet++
 
         }
       })
@@ -260,6 +264,8 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
     } else {
 
+      let indexet = 0;
+
       db.ref("/users/" + userID + "/photoURL").set(userPicture);
 
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
@@ -272,7 +278,13 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
           let div = document.createElement("div");
           div.className = "tags";
           div.innerHTML = obj[prop];
+          div.style.zIndex = indexet.toString();
+          div.style.backgroundColor = "#333644"
+
           tagsSliderContentChange.appendChild(div)
+
+          indexet++
+
 
 
         }
@@ -701,7 +713,8 @@ main.innerHTML = "";
                       firebase.database().ref("/Articles/" + item + "/comments/").push({
                         content: text,
                         username: localStorage.getItem("username"),
-                        photoURL: localStorage.getItem("photoURL"),
+                        photoURL: 
+                        localStorage.getItem("photoURL"),
                         userID: localStorage.getItem("userid"),
                       })
                     }
