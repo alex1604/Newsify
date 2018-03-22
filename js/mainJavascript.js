@@ -764,7 +764,7 @@ main.innerHTML = "";
       if(updateOutput !== null && x.parentElement.className !== 'fas fa-times-circle' ){
 
         x.previousSibling.className = 'fas fa-star';
-        x.previousSibling.style.color = 'yellow';
+        x.previousSibling.style.color = '#C65F63';
       x.textContent = 'Saved';
     }
   })
