@@ -6,6 +6,11 @@ let languageCode = '';
 let tagCode = document.getElementById('inputTag').value;
 */
 var callback = function () {
+  
+  window.addEventListener('touchstart', function(){
+    userHasTouchScreen = true;
+    window.removeEventListener('touchstart', onFirstTouch, false);
+  }, false);
 
   var countryKey = '';
   var ltd = '';
@@ -572,6 +577,10 @@ var callback = function () {
   // when click on search Button:
 
   searchBtn.addEventListener('click', function () {
+    
+    if (userHasTouchScreen){
+      tagCode = document.getElementById('inputKeyword').value;
+    } else {
   
     slider.inputKeyword.value = ""
     var childDivs = document.getElementById('ownCurrentTag').getElementsByTagName('span');
@@ -610,6 +619,7 @@ var callback = function () {
       getSomeNews(queryString, category, country, language, source);
     } else if (noNews == true){
       getAllNews();
+    }
     }
   });
 
