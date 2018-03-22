@@ -117,7 +117,7 @@ let loginHeader = function (user) {
   userPicture.className = "userPicture"
   userName.innerText = user.displayName;
   userName.className = "userName";
-  signOut.innerText = "log out";
+  signOut.innerText = "Log Out";
 
 
   signOut.addEventListener("click", function () {
