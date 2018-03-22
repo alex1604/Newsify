@@ -5,6 +5,7 @@ let categoryCode = '';
 let languageCode = '';
 let tagCode = document.getElementById('inputTag').value;
 */
+console.log("alejandroJavacript.js");
 var callback = function () {
 
   var countryKey = '';
@@ -155,7 +156,7 @@ var callback = function () {
             console.log('we can`t process this request right now: ' + fail);
           });
       }).catch(function (fail) {
-        console.log('errorLocation' ) + fail;
+        console.log('errorLocation');
       });
   }
 
@@ -163,6 +164,7 @@ var callback = function () {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(savePosition);
     } else {
+      console.log("Geolocation is not supported by this browser.");
     }
   }
   var savePosition = function (position) {
@@ -171,6 +173,7 @@ var callback = function () {
     urlWeather = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq'
       + '&q=' + ltd + ',' + lng;
     getWeather(ltd, lng, urlWeather);
+    console.log(ltd + ' / ' + lng + ' / ' + urlWeather);
   }
 
   //getLocation();
@@ -184,6 +187,8 @@ var callback = function () {
 
   var getSomeNews = function (queryString, category, country, language, source) {
 
+
+    console.log(tagCode)
     let url = urlBase + question;
 
     searchArray.push(tagCode);
@@ -265,6 +270,7 @@ var callback = function () {
 
           }
           setTimeout(displayNone, 2000);
+          console.log('failed');
           clear()
         });
     } else {
@@ -359,6 +365,7 @@ var callback = function () {
 
           }
           setTimeout(displayNone, 2000);
+          console.log('failed');
           clear()
         });
     } else {
@@ -388,6 +395,7 @@ var callback = function () {
         url += 'q=' + searchWords[x];
         url += '&' + key;
         let req = new Request(url);
+        console.log(req)
         fetch(req)
           .then(function (response) {
             return response.json();
@@ -412,7 +420,7 @@ var callback = function () {
             browseNews(suggestedArticles, amount);
           })
           .catch(function (error) {
-            console.log('Something went wrong' ) + error;
+            console.log('Something went wrong');
           });
         url = urlBase + question;
       }
@@ -444,6 +452,8 @@ var callback = function () {
     for (i = 0; i < childDivsRegular.length; i++) {
 
       let childDivRegular = childDivsRegular[i];
+      console.log(childDivRegular.id)
+
       if(childDivRegular.id === "inputTag"){
         tagCode = childDivRegular.innerHTML.slice(1)
       }

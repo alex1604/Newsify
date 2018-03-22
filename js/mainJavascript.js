@@ -1,3 +1,8 @@
+console.log("mainJS");
+
+
+
+
 let signedInNowOrBefore = "before"
 
 let whenLoggedIn = document.getElementById("whenLoggedIn");
@@ -37,6 +42,8 @@ loginDiv.addEventListener("click", function(event){
 login.addEventListener("click", function (event) {
   //simple click event on the "login" div
   firebase.auth().signInWithPopup(gmailprovider).then(function (result) {
+
+    console.log("logging in")
     signedInNowOrBefore = "now";
   }).catch(function (error) {
     console.log("Error: " + error);
@@ -55,6 +62,7 @@ loginFb.addEventListener("click", function () {
   let accessToken = '';
 
   FB.getLoginStatus(function (response) {
+    //console.log(response);
     if (response.status == 'unknown' || response.status == 'not_authorized') {
       FB.login(function (response) {
         if (response.authResponse) {
@@ -63,17 +71,26 @@ loginFb.addEventListener("click", function () {
 
           signedInNowOrBefore = "now";
           firebase.auth().signInWithPopup(fbProvider).then(function (response) {
+            //console.log(response);
             uid = response.user.uid;
+            //console.log(uid + ' first');
             uemail = response.additionalUserInfo.profile.email;
+            //console.log(uemail + ' first');
             uname = response.additionalUserInfo.profile.name;
+            //console.log(uname + ' first');
             upicture = response.additionalUserInfo.profile.picture.data.url;
+            //console.log(upicture);
+
+            //console.log(response);
+            //console.log('success authenticating fb in database');
             firebaseInsertUserFacebook(uid, uname, upicture, uemail);
           })
-            .catch(function (error) {
-              console.log('error authenticating fb in database ' + error);
+            .catch(function () {
+              console.log('error authenticating fb in database');
             });
 
         } else {
+          console.log('User cancelled login');
         }
       },
         { scope: 'public_profile,email' })
@@ -167,6 +184,7 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
 
 
     if (id === "") {
+      //console.log("finns inte")
       var database = firebase.database;
       database().ref("/users/" + userID).set({
         username: userName,
@@ -179,6 +197,8 @@ let firebaseInsertUserFacebook = function (userID, userName, userPicture, userMa
 
 
     } else {
+
+      //console.log("finns")
       db.ref("users/" + id + "/tags").once("value", function (snapshot) {
 
         let obj = snapshot.val()
@@ -223,6 +243,7 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
 
     if (id === "") {
+      //console.log("finns inte")
       var database = firebase.database;
       database().ref("/users/" + userID).set({
         username: userName,
@@ -261,6 +282,9 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
 
             tagsSlider.children[i].addEventListener("click", function () {
 
+
+              console.log(tagsSlider.children)
+
               let tag = tagsSlider.children[i];
 
 
@@ -281,6 +305,10 @@ let firebaseInsertUser = function (userID, userName, userPicture, userMail) {
           tagsSlider.children[0].innerHTML = "<div class='tags'>" + (tagsSlider.children.length - 1) + " saved tag</div>";
 
         }
+
+        //console.log(tagsSlider.children[0].innerHTML)
+
+
       })
     }
   })
@@ -308,6 +336,7 @@ let firebaseInsertUserWithEmail = function (userID, userName, userMail) {
 
 
     if (id === "") {
+      //console.log("finns inte")
       var database = firebase.database;
       database().ref("/users/" + userID).set({
         username: userName,
@@ -430,6 +459,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     // User is signed in.
     // Put in the displayname change and whatnot?
   } else {
+    //console.log("logged out");
     localStorage.clear(); //clears the localstorage for the next user
     addTagBtn.style.display = "none";
     whenLoggedIn.style.display = "none";
@@ -571,7 +601,7 @@ var createNews = function () {
   articleImage.appendChild(img);
 
   mainContent.appendChild(pinkAndTitle);
-  mainContent.insertBefore(articleImage, mainContent.firstChild);
+  mainContent.prepend(articleImage);
 
   article.appendChild(blackLine);
   article.appendChild(mainContent);
@@ -617,12 +647,12 @@ main.innerHTML = "";
       images[count].src = array[count].urlToImage;
     }
     readMore[count].href = array[count].url;
-    fbShare[count].href = array[count].url;
+    fbShare[count].name = array[count].url;
     commentArticleArray[count].children[1].addEventListener("click", function (event) {
       if (event.target.parentElement.parentElement.children.length == 3) {
         let commentField = document.createElement("div");
         commentField.className = "commentField";
-        event.target.parentElement.parentElement.appendChild(commentField);
+        event.target.parentElement.parentElement.append(commentField);
         let targetUrl = event.target.parentNode.parentNode.children[1].href;
         db.ref("/Articles/").once("value", function (snapshot) {
           var found = "unfound";
@@ -659,6 +689,7 @@ main.innerHTML = "";
             }
 
             else if (event.key == "Enter" && localStorage.getItem("username") !== null) {
+              //console.log(event.target);
 
               let text = event.target.parentElement.children[3].value;
               event.target.parentElement.children[3].value = "";
@@ -719,7 +750,7 @@ main.innerHTML = "";
                 commentWhole.appendChild(commentUserPicture);
                 commentWhole.appendChild(commentUsername);
                 commentWhole.appendChild(commentText);
-                event.target.parentElement.parentElement.children[5].insertBefore(commentWhole, event.target.parentElement.parentElement.children[5].firstChild);
+                event.target.parentElement.parentElement.children[5].prepend(commentWhole);
               })
             }
           }
@@ -740,7 +771,7 @@ main.innerHTML = "";
 
   for (let x of fbBtn) {
     x.addEventListener('click', function () {
-      let fbUrl = x.href;
+      let fbUrl = x.name;
       FB.ui({
         method: 'share',
         href: fbUrl,
@@ -751,21 +782,23 @@ main.innerHTML = "";
   // changed icons if already stored
   var thisUser = localStorage.getItem("userid");
   var checkForURL;
-
+  
   const changeTextIfStored = document.getElementsByClassName('showFavouriteText');
   for (let x of changeTextIfStored){
-
-
-    checkForURL = x.parentElement.nextSibling.getAttribute('href');
-
+  
+    
+    checkForURL = x.parentElement.nextSibling.getAttribute('name');
+ 
   firebase.database().ref("users/" + thisUser + "/favourites").orderByValue().equalTo(checkForURL).once('value', snapshot => {
-
+      
       const updateOutput = snapshot.val();
+      //console.log(checkForURL);
       if(updateOutput !== null && x.parentElement.className !== 'fas fa-times-circle' ){
-
+      
         x.previousSibling.className = 'fas fa-star';
         x.previousSibling.style.color = 'yellow';
       x.textContent = 'Saved';
+      console.log('changed icon');
     }
   })
 }
@@ -809,3 +842,4 @@ var getAllNews = function () {
       console.log('failed', error);
     });
 }
+
