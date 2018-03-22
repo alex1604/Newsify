@@ -5,6 +5,7 @@ let categoryCode = '';
 let languageCode = '';
 let tagCode = document.getElementById('inputTag').value;
 */
+console.log("alejandroJavacript.js");
 var callback = function () {
 
   var countryKey = '';
@@ -152,8 +153,10 @@ var callback = function () {
             weatherResponse = object;
             browseWeather(weatherResponse, weatherLocation);
           }).catch(function (fail) {
+            console.log('we can`t process this request right now: ' + fail);
           });
       }).catch(function (fail) {
+        console.log('errorLocation');
       });
   }
 
@@ -161,6 +164,7 @@ var callback = function () {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(savePosition);
     } else {
+      console.log("Geolocation is not supported by this browser.");
     }
   }
   var savePosition = function (position) {
@@ -169,6 +173,7 @@ var callback = function () {
     urlWeather = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=IxakMj3SWJfAzvA9dAg428hfd18gwwVq'
       + '&q=' + ltd + ',' + lng;
     getWeather(ltd, lng, urlWeather);
+    console.log(ltd + ' / ' + lng + ' / ' + urlWeather);
   }
 
   //getLocation();
@@ -181,7 +186,6 @@ var callback = function () {
   // Function that retrieves news corresponding to the user's criteria:
 
   var getSomeNews = function (queryString, category, country, language, source) {
-
 
     let url = urlBase + question;
 
@@ -223,8 +227,6 @@ var callback = function () {
     if (url !== 'https://newsapi.org/v2/top-headlines?apiKey=ca2d5b8c76a84ec68544ecdeadf04043') {
 
       let req = new Request(url);
-
-
       fetch(req)
         .then(function (response) {
 
@@ -235,69 +237,6 @@ var callback = function () {
 
 
           let articles = object.articles;
-
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#C65F63"
-
-          let arr = [];
-            console.log("getSomeNews")
-          arr.push(currentTag.inputTag.innerHTML)
-          arr.push(currentTag.sourceTag.innerHTML);
-          arr.push(currentTag.countryTag.innerHTML);
-          arr.push(currentTag.categoryTag.innerHTML);
-          arr.push(currentTag.languageTag.innerHTML)
-
-
-          let string = ""
-          for(let i= 0; i< arr.length; i++){
-
-            if(i===0){
-
-              if(arr[i] !== " " || arr[i] === "#" ){
-                string +=  arr[i]
-              }
-
-            }
-            if(i === 1){
-              if(arr[i] !== null && arr[i] !== " " ){
-                string += " "  + arr[i]
-              }
-            }
-            if(i === 2){
-              if(arr[i] !== null && arr[i] !== " " ){
-                string += " "  +arr[i]
-              }
-            }
-
-            if(i === 3){
-              if(arr[i] !== null && arr[i] !== " " ){
-                string += " " +arr[i]
-              }
-            }
-
-            if(i === 4){
-              if(arr[i] !== null && arr[i] !== " " ){
-                string += " " +arr[i]
-              }
-            }
-
-
-          }
-
-
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#65C253"
-          showAWhile.innerHTML = "<h2>You searched for "+ string +"</h2>"
-          function displayNone() {
-
-            showAWhile.style.height = "0px"
-            showAWhile.style.paddingTop = "0px"
-            showAWhile.innerHTML = ""
-          }
-          setTimeout(displayNone, 2000);
-
 
 
           let myArticles = [];
@@ -322,18 +261,14 @@ var callback = function () {
         })
         .catch(function () {
 
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#C65F63"
+          showAWhile.style.display = "block"
           showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
           function displayNone() {
-            showAWhile.style.height = "0px"
-            showAWhile.style.paddingTop = "0px"
-            showAWhile.innerHTML = ""
-
+            showAWhile.style.display = "none"
 
           }
           setTimeout(displayNone, 2000);
+          console.log('failed');
           clear()
         });
     } else {
@@ -398,77 +333,6 @@ var callback = function () {
 
           let articles = object.articles;
 
-                    showAWhile.style.height = "30px"
-                    showAWhile.style.paddingTop = "20px"
-                    showAWhile.style.backgroundColor = "#C65F63"
-
-                    let arr = [];
-                    console.log("getSomeNewsFromown")
-
-
-
-
-                    for(let i=0; i< ownCurrentTag.ownCurrentTag.children.length; i++){
-
-                      console.log(ownCurrentTag.ownCurrentTag.children[i].innerHTML)
-                      arr.push(ownCurrentTag.ownCurrentTag.children[i].innerHTML)
-
-                    }
-          
-
-
-                    let string = ""
-                    for(let i= 0; i< arr.length; i++){
-
-                      if(i===0){
-
-                        if(arr[i] !== "" ){
-                          string +=  arr[i]
-                        }
-
-                      }
-                      if(i === 1){
-                        if(arr[i] !== null && arr[i] !== " " ){
-                          string += " "  + arr[i]
-                        }
-                      }
-                      if(i === 2){
-                        if(arr[i] !== null && arr[i] !== " " ){
-                          string += " "  +arr[i]
-                        }
-                      }
-
-                      if(i === 3){
-                        if(arr[i] !== null && arr[i] !== " " ){
-                          string += " " +arr[i]
-                        }
-                      }
-
-                      if(i === 4){
-                        if(arr[i] !== null && arr[i] !== " " ){
-                          string += " " +arr[i]
-                        }
-                      }
-
-
-                    }
-
-
-                    showAWhile.style.height = "30px"
-                    showAWhile.style.paddingTop = "20px"
-                    showAWhile.style.backgroundColor = "#65C253"
-                    showAWhile.innerHTML = "<h2>You searched for "+ string +"</h2>"
-                    function displayNone() {
-
-                      showAWhile.style.height = "0px"
-                      showAWhile.style.paddingTop = "0px"
-                      showAWhile.innerHTML = ""
-                    }
-                    setTimeout(displayNone, 2000);
-
-
-
-
 
           let myArticles = [];
           let amount = 12;
@@ -492,17 +356,14 @@ var callback = function () {
         })
         .catch(function () {
 
-          showAWhile.style.height = "30px"
-          showAWhile.style.paddingTop = "20px"
-          showAWhile.style.backgroundColor = "#C65F63"
+          showAWhile.style.display = "block"
           showAWhile.innerHTML = "<h2>Nothing matched your search!</h2>"
           function displayNone() {
+            showAWhile.style.display = "none"
 
-            showAWhile.style.height = "0px"
-            showAWhile.style.paddingTop = "0px"
-            showAWhile.innerHTML = ""
           }
           setTimeout(displayNone, 2000);
+          console.log('failed');
           clear()
         });
     } else {
@@ -532,6 +393,7 @@ var callback = function () {
         url += 'q=' + searchWords[x];
         url += '&' + key;
         let req = new Request(url);
+        console.log(req)
         fetch(req)
           .then(function (response) {
             return response.json();
@@ -556,6 +418,7 @@ var callback = function () {
             browseNews(suggestedArticles, amount);
           })
           .catch(function (error) {
+            console.log('Something went wrong');
           });
         url = urlBase + question;
       }
@@ -567,7 +430,6 @@ var callback = function () {
 
   searchBtn.addEventListener('click', function () {
 
-    slider.inputKeyword.value = ""
     var childDivs = document.getElementById('ownCurrentTag').getElementsByTagName('span');
     let boo = false;
     let noNews = true;
@@ -588,7 +450,6 @@ var callback = function () {
     for (i = 0; i < childDivsRegular.length; i++) {
 
       let childDivRegular = childDivsRegular[i];
-
       if(childDivRegular.id === "inputTag"){
         tagCode = childDivRegular.innerHTML.slice(1)
       }
