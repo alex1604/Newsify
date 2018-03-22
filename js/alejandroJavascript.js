@@ -572,7 +572,8 @@ var callback = function () {
   // when click on search Button:
 
   searchBtn.addEventListener('click', function () {
-
+  
+     tagCode = slider.inputKeyword.value;
     slider.inputKeyword.value = ""
     var childDivs = document.getElementById('ownCurrentTag').getElementsByTagName('span');
     let boo = false;
