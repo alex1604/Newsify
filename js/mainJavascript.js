@@ -571,7 +571,7 @@ var createNews = function () {
   articleImage.appendChild(img);
 
   mainContent.appendChild(pinkAndTitle);
-  mainContent.prepend(articleImage);
+  mainContent.insertBefore(articleImage, mainContent.firstChild);
 
   article.appendChild(blackLine);
   article.appendChild(mainContent);
@@ -622,7 +622,7 @@ main.innerHTML = "";
       if (event.target.parentElement.parentElement.children.length == 3) {
         let commentField = document.createElement("div");
         commentField.className = "commentField";
-        event.target.parentElement.parentElement.append(commentField);
+        event.target.parentElement.parentElement.appendChild(commentField);
         let targetUrl = event.target.parentNode.parentNode.children[1].href;
         db.ref("/Articles/").once("value", function (snapshot) {
           var found = "unfound";
@@ -719,7 +719,7 @@ main.innerHTML = "";
                 commentWhole.appendChild(commentUserPicture);
                 commentWhole.appendChild(commentUsername);
                 commentWhole.appendChild(commentText);
-                event.target.parentElement.parentElement.children[5].prepend(commentWhole);
+                event.target.parentElement.parentElement.children[5].insertBefore(commentWhole, event.target.parentElement.parentElement.children[5].firstChild);
               })
             }
           }

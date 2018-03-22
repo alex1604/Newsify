@@ -83,7 +83,7 @@ var outputSaved = [];
 let showFavourites = document.getElementById('showFavouriteOutput');
 var allArticles = [];
 var favArray = [];
-firebase.database().ref("Articles").on("value", snapshot => {
+firebase.database().ref("Articles").once("value", snapshot => {
   allArticles = [];
   const fetchUserData = snapshot.val();
   for( let newArticle in fetchUserData){
