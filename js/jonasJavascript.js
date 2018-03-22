@@ -61,9 +61,9 @@ var outputSaved = [];
                       } else {
                         console.log('added it only to userprofile');
                         firebase.database().ref("users/" + storedUser.uid + "/favourites").push(saveUrl);
-                        //console.log(event.target);
-                        
-                        changeIconOnAdd.style.color = 'yellow';
+
+                        changeIconOnAdd.style.color = '#C65F63';
+
                         changeTextOnAdd.textContent = 'Saved';
                       
                       }
@@ -74,9 +74,12 @@ var outputSaved = [];
                   firebase.database().ref('Articles').push(newsObject); 
                   
                   firebase.database().ref("users/" + storedUser.uid + "/favourites").push(saveUrl);
+
                   console.log('added to database');
                   console.log('added to userprofile');
-                  changeIconOnAdd.style.color = 'yellow';
+
+                  changeIconOnAdd.style.color = '#C65F63';
+
                         changeTextOnAdd.textContent = 'Saved';
 
                 }
