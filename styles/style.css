@@ -46,7 +46,7 @@
         text-align: center;
         z-index: 1000;
         position: fixed;
-        top:0;
+        top:0
         color:rgba(255,255,255,0.8);
       }
       .follow {
@@ -119,6 +119,7 @@
         background: #333644;
         color:rgba(255,255,255,0.8);
         border-left: 5px solid #C65F63;
+        font-size: 15px;
       }
       #moreOp > button:hover{
         cursor:pointer;
@@ -520,20 +521,10 @@ line-height: 0px;
     }
     .readMore{
       align-self: center;
-      font-size:1.2em;
-      margin: 10px 0 20px 0;
     }
     .readMore a:link{
       text-decoration:none;
       font-weight:bold;
-      color: #C65F63;
-    }
-    .readMore a:visited{
-      color: #333644;
-    }
-    .shareArticle{
-      text-decoration: none;
-      color: #333644;
     }
     .sumUp{
       align-self: flex-end;
@@ -792,14 +783,7 @@ line-height: 0px;
   #weatherLocation{
     display:none;
   }
-  #min{
-    display:none;
-  }
-  #max{
-    display:none;
-  }
   #moreOp {
-    font-size: 12px;
   }
   #buttons {
 
@@ -808,7 +792,6 @@ line-height: 0px;
     min-width:50px;
     padding:7px 5px 7px 5px;
     margin:20px 4px 20px 4px;
-    font-size:12px;
   }
   #buttons button:hover{
     cursor:pointer;
@@ -822,7 +805,7 @@ line-height: 0px;
     width: 20%;
     position:absolute;
     right:5%;
-    top:7%;
+    top:15%;
     opacity: 0;
   }
   #weatherTemp{
