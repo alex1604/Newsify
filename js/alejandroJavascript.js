@@ -7,12 +7,6 @@ let tagCode = document.getElementById('inputTag').value;
 */
 var callback = function () {
   
-  let userHasTouchScreen = false;
-  
-  window.addEventListener('touchstart', function(){
-    userHasTouchScreen = true;
-    window.removeEventListener('touchstart', onFirstTouch, false);
-  }, false);
 
   var countryKey = '';
   var ltd = '';
@@ -614,9 +608,6 @@ var callback = function () {
     if (boo == true) {
       getSomeNewsFromOwnTags(queryString, category, country, language, source);
     } else if (boo == false){
-      getSomeNews(queryString, category, country, language, source);
-    } else if(userHasTouchScreen && document.getElementById('inputKeyword').value != '' & document.getElementById('inputKeyword').value != null){
-      tagCode = document.getElementById('inputKeyword').value;
       getSomeNews(queryString, category, country, language, source);
     } else if (noNews == true){
       getAllNews();
