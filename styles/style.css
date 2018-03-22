@@ -44,7 +44,7 @@
         transition-duration: 0.5s;
         text-align: center;
         z-index: 1000;
-        position: absolute;
+        position: fixed;
         color:rgba(255,255,255,0.8);
       }
       .follow{
@@ -184,6 +184,19 @@ line-height: 0px;
     position: relative;
 
       }
+      #tagsSlider{
+      }
+
+      #tagsSlider .tags{
+        width: 100px;
+        height: 40px;
+        padding-top: 100px;
+      }
+
+      #tagsSlider .tags span{
+        display: block;
+        width:100px;
+      }
 
     #sourceSlider, #countrySlider, #categorySlider, #languageSlider{
       position: absolute;
@@ -199,6 +212,8 @@ line-height: 0px;
         transform: rotate(180deg);
       }
 
+      #whenLoggedIn .slider{
+      }
 
 
       #sliderContentChange input.tags{
@@ -209,9 +224,14 @@ line-height: 0px;
 
 
 
+#tagsSliderContentChange{
+  width:100px;
+  margin-left: 0;
+  transition-property: margin-left;
+  transition-duration: 0.5s;
+}
 
-
-      #sliderContentChange, #tagsSliderContentChange{
+      #sliderContentChange, {
         width:120px;
         margin-left: 0;
         transition-property: margin-left;
@@ -514,7 +534,7 @@ line-height: 0px;
 
     }
     #weatherCast{
-      display:flex;
+      display:none;
       flex-direction:column;
       justify-content: space-around;
       align-items: flex-end;
@@ -523,6 +543,7 @@ line-height: 0px;
       right:1%;
       top:19%;
       opacity: 0;
+      z-index: 200;
     }
 
     #weather{
@@ -708,6 +729,7 @@ line-height: 0px;
       justify-content: flex-start;
       margin-top: 0px;
       margin-bottom: 0px;
+      padding-left:20px;
       display: flex;
     }
 
@@ -739,7 +761,7 @@ line-height: 0px;
 
 }
   #weatherCast{
-    display:flex;
+    display:none;
     flex-direction:column;
     justify-content: space-around;
     align-items: flex-end;
