@@ -9,11 +9,9 @@ var outputSaved = [];
     }
   }
   // to get a userid from firebase when logged in
-  var storedUser = null;
-  firebase.auth().onAuthStateChanged(user => {
-    storedUser = user;
-    if (storedUser.uid !== null){
-      firebase.database().ref("users/" + storedUser.uid + "/favourites").on('value', snapshot => {
+  var storedUser = localStorage.getItem("userid");
+  if (localStorage.getItem("userid") !== null){
+      firebase.database().ref("users/" + storedUser + "/favourites").on('value', snapshot => {
         let updateCounter = snapshot.val();
         var updateCounterOutput = [];
         for( let article in updateCounter ) {
@@ -24,14 +22,13 @@ var outputSaved = [];
        });
     } else{
     }
-  });
 
   // click event for newsarticle
   let saveArticle = document.querySelector('#newsContainer');
   saveArticle.addEventListener('click', function(event){
         // save article to database
         // checks if userID is not null
-    if (storedUser !== null){
+    if (localStorage.getItem("userid") !== null){
     // this is so the click event only occurs if its on that specific class
         if(event.target.parentElement.classList.contains('saveToFavourite')){
            // get data from the articles shown on screen
@@ -48,13 +45,14 @@ var outputSaved = [];
            const userData = snapshot.val();
                 // if article already exists it should not reupload
              if (userData){
-               firebase.database().ref("users/" + storedUser.uid + "/favourites").orderByValue().equalTo(saveUrl).once("value", snapshot => {
+               firebase.database().ref("users/" + storedUser + "/favourites").orderByValue().equalTo(saveUrl).once("value", snapshot => {
                 const userFavourites = snapshot.val();
                       // if article already exists it should not reupload
                       if (userFavourites){
                       } else {
-                        firebase.database().ref("users/" + storedUser.uid + "/favourites").push(saveUrl);
-                        changeIconOnAdd.style.color = '#C65F63';
+                        firebase.database().ref("users/" + storedUser + "/favourites").push(saveUrl);
+
+                        changeIconOnAdd.style.color = 'yellow';
                         changeTextOnAdd.textContent = 'Saved';
 
                       }
@@ -64,8 +62,8 @@ var outputSaved = [];
                   // add article to database and to userprofile
                   firebase.database().ref('Articles').push(newsObject);
 
-                  firebase.database().ref("users/" + storedUser.uid + "/favourites").push(saveUrl);
-                  changeIconOnAdd.style.color = '#C65F63';
+                  firebase.database().ref("users/" + storedUser + "/favourites").push(saveUrl);
+                  changeIconOnAdd.style.color = 'yellow';
                         changeTextOnAdd.textContent = 'Saved';
 
                 }
@@ -83,7 +81,7 @@ var outputSaved = [];
 let showFavourites = document.getElementById('showFavouriteOutput');
 var allArticles = [];
 var favArray = [];
-firebase.database().ref("Articles").once("value", snapshot => {
+firebase.database().ref("Articles").on("value", snapshot => {
   allArticles = [];
   const fetchUserData = snapshot.val();
   for( let newArticle in fetchUserData){
@@ -95,7 +93,8 @@ firebase.database().ref("Articles").once("value", snapshot => {
 
 showFavourites.addEventListener('click', event => {
   // get articles from firebase
-  firebase.database().ref("users/" + storedUser.uid + "/favourites").once('value', snapshot => {
+  if(localStorage.getItem("userid") !== null){
+  firebase.database().ref("users/" + storedUser + "/favourites").once('value', snapshot => {
     let data = snapshot.val();
     favArray = [];
     // this data should check if exists as articles title in db and get the whole object.
@@ -152,24 +151,26 @@ showFavourites.addEventListener('click', event => {
     }
 
     }
-
+  }
 });
   let changeSavedArticlesText = document.getElementsByClassName('showFavouriteText');
 
   let removeArticle = document.querySelector('#newsContainer');
 
   removeArticle.addEventListener('click', function(event){
-    if (storedUser !== null){
+    if (localStorage.getItem("userid") !== null){
       // this is so the click event only occurs if its on that specific class
       if(event.target.parentElement.classList.contains('remove')){
         // get data from the articles shown on screen
         let removeUrl = event.target.parentElement.parentElement.parentElement.children[3].firstChild.getAttribute('href');
         //find it in users profile on firebase
-        firebase.database().ref("users/" + storedUser.uid + "/favourites").orderByValue().equalTo(removeUrl).once("value", snapshot => {
+        firebase.database().ref("users/" + storedUser + "/favourites").orderByValue().equalTo(removeUrl).once("value", snapshot => {
           const key = Object.keys(snapshot.val())[0];
-          firebase.database().ref("users/" + storedUser.uid + "/favourites").ref.child(key).remove();
+          firebase.database().ref("users/" + storedUser + "/favourites").ref.child(key).remove();
+
         })
         event.target.parentElement.parentElement.parentElement.parentElement.remove();
       }
     }
+
   })

@@ -126,6 +126,7 @@ let loginHeader = function (user) {
       header.removeChild(header.lastChild);
       document.getElementById("moreOp").style.display = "none"
       document.getElementById("buttons").style.display = "none"
+      getAllNews();
     })
       .catch(function (error) {
         console.log("error: " + error);
