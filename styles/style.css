@@ -520,10 +520,20 @@ line-height: 0px;
     }
     .readMore{
       align-self: center;
+      font-size:1.2em;
+      margin: 10px 0 20px 0;
     }
     .readMore a:link{
       text-decoration:none;
       font-weight:bold;
+      color: #C65F63;
+    }
+    .readMore a:visited{
+      color: #333644;
+    }
+    .shareArticle{
+      text-decoration: none;
+      color: #333644;
     }
     .sumUp{
       align-self: flex-end;
