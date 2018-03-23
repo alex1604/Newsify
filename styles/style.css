@@ -752,6 +752,7 @@ line-height: 0px;
 
    .signOut{
      font-size: 1.1em;
+     z-index:200;
    }
 
 @media (min-width: 600px) {
