@@ -38,6 +38,7 @@ login.addEventListener("click", function (event) {
   //simple click event on the "login" div
   firebase.auth().signInWithPopup(gmailprovider).then(function (result) {
     signedInNowOrBefore = "now";
+    location.reload();
   }).catch(function (error) {
     console.log("Error: " + error);
   })
@@ -760,6 +761,7 @@ main.innerHTML = "";
   var checkForURL;
 
   const changeTextIfStored = document.getElementsByClassName('showFavouriteText');
+  if(thisUser && changeTextIfStored.textContent === "Remove"){
   for (let x of changeTextIfStored){
 
 
@@ -775,6 +777,7 @@ main.innerHTML = "";
       x.textContent = 'Saved';
     }
   })
+}
 }
 //end of my change
 }
